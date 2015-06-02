@@ -205,7 +205,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         comboBoxTorneo.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-                Info.display("Categoria", "Filtro por la categoría " + comboBoxTorneo.getTorneosElegido().getCategoria().getNombrecategoria());
+                Info.display("Categoria", "Filtró por la categoría " + comboBoxTorneo.getTorneosElegido().getCategoria().getNombrecategoria());
                 adminPestComp.cargarJugadores(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
             }
         });
@@ -959,7 +959,6 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cpCuerpoTecCom.setEnabled(false);
         btnGuardarComp.setEnabled(true);
         btnGuardarCompetencia.disable();
-        btnEditar.setEnabled(false);
         adminCuerpoTecnico.cbxPersonal.recargar();
         adminCuerpoTecnico.setIdCompetencia(null);
         adminPestComp.panelAdminConvocados.setIdCompetencia(null);

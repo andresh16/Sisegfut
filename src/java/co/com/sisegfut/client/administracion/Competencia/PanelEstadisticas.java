@@ -14,10 +14,9 @@ import com.sencha.gxt.widget.core.client.FramedPanel;
 public class PanelEstadisticas {
     
     private FramedPanel panel;
-    
-    
-    
-    
+
+    public PanelEstadisticas() {
+    }
     
     
     
