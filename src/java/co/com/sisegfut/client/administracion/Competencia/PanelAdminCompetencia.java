@@ -1259,7 +1259,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     }
     
     public void prueba(){ 
-    //sdfsddfgsfgdfghdfh;
+    //sdfsddfgsfgdf4445345;
     }
 
 }
