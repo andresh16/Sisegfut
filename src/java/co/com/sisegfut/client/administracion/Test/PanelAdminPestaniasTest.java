@@ -26,7 +26,7 @@ public class PanelAdminPestaniasTest extends LayoutContainer {
     TabItem tabItemEvaIndividual = new TabItem("Evaluación Indvivual");
     TabItem tabItemPrueValorativas = new TabItem("Pruebas Valorativas");
 
-    TabItem tabItemAntropometrico = new TabItem("Antropometrico");
+    TabItem tabItemAntropometrico = new TabItem("Antropométrico");
     TabItem tabItemCtlTecnico = new TabItem("Control Técnico");
 
     TabItem tabItemKarvonen = new TabItem("Test de carga progresiva Karvonen");

@@ -137,7 +137,7 @@ public class PanelModificarTipoDocumento extends LayoutContainer {
 
             TipoDocumento tipoDocumento = new TipoDocumento();
             tipoDocumento.setId(cbxTipoDocumento.getTipoDocumentoElegido().getId());
-            tipoDocumento.setNombreTipoDocumento(txtTipoDocumento.getValue());
+            tipoDocumento.setNombreTipoDocumento(txtTipoDocumento.getValue().toUpperCase());
 
             getServiceTipoDocumento().guardarEntidad(tipoDocumento, new AsyncCallback() {
 
@@ -152,7 +152,7 @@ public class PanelModificarTipoDocumento extends LayoutContainer {
                 @Override
                 public void onSuccess(Object result) {
                     //MessageBox.alert("Modificar", "Se Modifico correctamente el Tipo de Documento", null);
-                    pnlExito.definirTexto("Se Modifico correctamente el Tipo de Documento");
+                    pnlExito.definirTexto("Se Modificó correctamente el Tipo de Documento");
                     pnlExito.setVisible(true);
                 }
 

@@ -138,7 +138,7 @@ public class PanelModificarInstEducativa extends LayoutContainer {
 
             InstEducativa instEducativa = new InstEducativa();
             instEducativa.setId(cbxInsEducativa.getInstEducativaElegida().getId());
-            instEducativa.setNombreInstEducativa(txtInstEducativa.getValue());
+            instEducativa.setNombreInstEducativa(txtInstEducativa.getValue().toUpperCase());
 
             getServiceInstEducativo().guardarEntidad(instEducativa, new AsyncCallback() {
 
@@ -151,7 +151,7 @@ public class PanelModificarInstEducativa extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente la Inst. Educativa");
+                    pnlExito.definirTexto("Se Modificó correctamente la Inst. Educativa");
                     pnlExito.setVisible(true);
                 }
 

@@ -343,10 +343,10 @@ public final class PanelAntropometrico extends LayoutContainer {
 
         ContentPanel cpGrid = new ContentPanel();
         cpGrid.setHeaderVisible(true);
-        cm.addHeaderGroup(0, 1, new HeaderGroupConfig("Perimetros", 1, 4));
+        cm.addHeaderGroup(0, 1, new HeaderGroupConfig("Perímetros", 1, 4));
         
         
-        cm.addHeaderGroup(0, 5, new HeaderGroupConfig("Pliegues Cutaneos", 1, 4));
+        cm.addHeaderGroup(0, 5, new HeaderGroupConfig("Pliegues Cutáneos", 1, 4));
 
 //      cpGrid.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cpGrid.setLayout(new FillLayout(Style.Orientation.VERTICAL));
@@ -488,7 +488,7 @@ public final class PanelAntropometrico extends LayoutContainer {
                 if (txtPliAbdominal.getValue() != null && txtPliSubescapular.getValue() != null && txtPliSupraescapular.getValue() != null && txtPliTricipital.getValue() != null) {
                     mostrasResultados();
                 } else {
-                    MessageBox.alert("Error", "Debe diligenciar todos los campos de pliegues cutaneos", null);
+                    MessageBox.alert("Error", "Debe diligenciar todos los campos de pliegues cutáneos", null);
                 }
             }
         };
@@ -524,7 +524,7 @@ public final class PanelAntropometrico extends LayoutContainer {
                 if (idDeportista != null) {
 
                     if (idAntropometrico != null) {
-                        MessageBox.confirm("Confirmación", "Seguro quiere eliminar el test Antropometrico", new Listener<MessageBoxEvent>() {
+                        MessageBox.confirm("Confirmación", "Seguro quiere eliminar el test Antropométrico", new Listener<MessageBoxEvent>() {
                             @Override
                             public void handleEvent(MessageBoxEvent be) {
 
@@ -536,12 +536,12 @@ public final class PanelAntropometrico extends LayoutContainer {
 
                                         @Override
                                         public void onFailure(Throwable caught) {
-                                            Info.display("Eliminar", "No Elimino el test Antropometrico" + idAntropometrico);
+                                            Info.display("Eliminar", "No Elimino el test Antropométrico" + idAntropometrico);
                                         }
 
                                         @Override
                                         public void onSuccess(RespuestaRPC<Antropometrico> result) {
-                                            Info.display("Eliminar", "Se eliminó correctamente el test Antropometrico");
+                                            Info.display("Eliminar", "Se eliminó correctamente el test Antropométrico");
                                             limpiar();
                                         }
                                     });
@@ -551,7 +551,7 @@ public final class PanelAntropometrico extends LayoutContainer {
                             }
                         });
                     } else {
-                        MessageBox.alert("Advertencia!", "Debe seleccionar un test antropometrico a eliminar", null);
+                        MessageBox.alert("Advertencia!", "Debe seleccionar un test antropométrico a eliminar", null);
                     }
                 } else {
                     MessageBox.alert("Advertencia!", "Debe seleccionar un deportista", null);
@@ -646,7 +646,7 @@ public final class PanelAntropometrico extends LayoutContainer {
 //        Columna1.add(LayoutFoto, new FormData("100%"));
 
         FieldSet flPerimetros = new FieldSet();
-        flPerimetros.setHeading("Perimetros");
+        flPerimetros.setHeading("Perímetros");
         layout = new FormLayout();
         layout.setLabelWidth(115);
         flPerimetros.setLayout(layout);
@@ -705,7 +705,7 @@ public final class PanelAntropometrico extends LayoutContainer {
         Columna2.setLayout(layout);
 
         FieldSet flPliegues = new FieldSet();
-        flPliegues.setHeading("Pliegues Cutaneos");
+        flPliegues.setHeading("Pliegues Cutáneos");
         layout = new FormLayout();
         layout.setLabelWidth(115);
         flPliegues.setLayout(layout);
@@ -849,13 +849,13 @@ public final class PanelAntropometrico extends LayoutContainer {
 
             @Override
             public void onFailure(Throwable caught) {
-                MessageBox.alert("Error", "No guardo las medidas antropometricas", null);
+                MessageBox.alert("Error", "No guardo las medidas antropométricas", null);
             }
 
             @Override
             public void onSuccess(Object result) {
                 actualizarGrasaDeportista(idDeportista, antropometrico.getPorcentajeGrasa());
-                Info.display("Guardar", "Guardo correctamente las medidas antropometricas");
+                Info.display("Guardar", "Guardó correctamente las medidas antropométricas");
                 cargar();
                 form.reset();
             }
@@ -873,7 +873,7 @@ public final class PanelAntropometrico extends LayoutContainer {
 
               @Override
               public void onSuccess(Void result) {
-               Info.display("Actulizar", "Se actualizo el porcentaje de grasa");
+               Info.display("Actulizar", "Se actualizó el porcentaje de grasa");
               }
           });
     

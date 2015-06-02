@@ -130,7 +130,7 @@ public class PanelInactivarNivelEducativo extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente el Nivel Educativo");
+                    pnlExito.definirTexto("Se Inactivó correctamente el Nivel Educativo");
                     pnlExito.setVisible(true);
                 }
 

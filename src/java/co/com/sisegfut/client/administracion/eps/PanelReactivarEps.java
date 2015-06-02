@@ -128,7 +128,7 @@ public class PanelReactivarEps extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Reactivo correctamente la eps");
+                    pnlExito.definirTexto("Se Reactivó correctamente la eps");
                     pnlExito.setVisible(true);
                 }
 

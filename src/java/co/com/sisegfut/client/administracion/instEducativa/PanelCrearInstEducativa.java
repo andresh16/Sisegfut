@@ -6,13 +6,10 @@
 package co.com.sisegfut.client.administracion.instEducativa;
 
 import co.com.sisegfut.client.aaI18N.Main;
-import co.com.sisegfut.client.datos.dominio.Eps;
 import co.com.sisegfut.client.datos.dominio.InstEducativa;
 import co.com.sisegfut.client.util.PanelErrores;
 import co.com.sisegfut.client.util.PanelExito;
 import co.com.sisegfut.client.util.Resources;
-import co.com.sisegfut.client.util.rpc.RPCAdminEps;
-import co.com.sisegfut.client.util.rpc.RPCAdminEpsAsync;
 import co.com.sisegfut.client.util.rpc.RPCAdminInstEducativa;
 import co.com.sisegfut.client.util.rpc.RPCAdminInstEducativaAsync;
 import com.extjs.gxt.ui.client.Style;
@@ -123,7 +120,7 @@ public class PanelCrearInstEducativa extends LayoutContainer {
         pnlErrores.setVisible(false);
         if (panel.isValid()) {
             InstEducativa instEducativa = new InstEducativa();
-            instEducativa.setNombreInstEducativa(txtIntEducativa.getValue());
+            instEducativa.setNombreInstEducativa(txtIntEducativa.getValue().toUpperCase());
 
             getServiceInstEducativo().guardarEntidad(instEducativa, new AsyncCallback() {
 
@@ -136,7 +133,7 @@ public class PanelCrearInstEducativa extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente la Inst. Educativa");
+                    pnlExito.definirTexto("Guardó correctamente la Inst. Educativa");
                     pnlExito.setVisible(true);
                 }
 

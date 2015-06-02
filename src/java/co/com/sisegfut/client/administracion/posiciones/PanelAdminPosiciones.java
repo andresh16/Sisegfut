@@ -5,6 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.posiciones;
 
+import co.com.sisegfut.client.aaI18N.Main;
 import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
@@ -19,6 +20,7 @@ import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.FillLayout;
 import com.extjs.gxt.ui.client.widget.layout.MarginData;
+import com.google.gwt.core.client.GWT;
 
 /**
  *
@@ -35,6 +37,8 @@ public class PanelAdminPosiciones extends Window {
     TabItem tabModificar = new TabItem("Modificar");
     TabItem tabInactivar = new TabItem("Inactivar");
     TabItem tabReactivar = new TabItem("Reactivar");
+    
+    private Main myConstants = (Main) GWT.create(Main.class);
 
     public PanelAdminPosiciones() {
 
@@ -81,7 +85,7 @@ public class PanelAdminPosiciones extends Window {
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana("Administra Posiciones");
+                abrirVentana(myConstants.ayudaPanelPosicones());
             }
         }));
 

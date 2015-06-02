@@ -130,7 +130,7 @@ public class PanelInactivarTipoDocumento extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente el Tipo de Documento");
+                    pnlExito.definirTexto("Se Inactivó correctamente el Tipo de Documento");
                     pnlExito.setVisible(true);
                 }
 

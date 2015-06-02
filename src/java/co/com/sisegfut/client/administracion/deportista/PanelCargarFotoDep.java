@@ -154,7 +154,7 @@ public class PanelCargarFotoDep extends Window {
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana("Guarda foto del un deportista");
+                abrirVentana(myConstants.ayudaPanelCargarFotoDeportista());
             }
         }));
 

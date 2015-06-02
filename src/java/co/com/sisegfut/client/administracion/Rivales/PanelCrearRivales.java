@@ -158,7 +158,7 @@ public class PanelCrearRivales extends LayoutContainer {
 
                         @Override
                         public void onSuccess(Object result) {
-                            pnlExito.definirTexto("Guardo correctamente el rival");
+                            pnlExito.definirTexto("Guardó correctamente el rival");
                             pnlExito.setVisible(true);
                         }
 

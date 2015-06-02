@@ -137,7 +137,7 @@ public class PanelModificarEps extends LayoutContainer {
 
             Eps eps = new Eps();
             eps.setId(cbxEps.getEpsElegido().getId());
-            eps.setNombreEps(txtEps.getValue());
+            eps.setNombreEps(txtEps.getValue().toUpperCase());
 
             getServiceEps().guardarEntidad(eps, new AsyncCallback() {
 
@@ -150,7 +150,7 @@ public class PanelModificarEps extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente la eps");
+                    pnlExito.definirTexto("Se Modificó correctamente la eps");
                     pnlExito.setVisible(true);
                 }
 

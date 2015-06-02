@@ -1,12 +1,6 @@
 /*
- * PanelMenu
- * Versión 1.0
- * 14/08/2012
- *
- * Copyright(c) 2007-2012, Boos IT.
- * admin@boosit.com
- *
- * http://boosit.com/license
+  PanelMenu
+ 
  */
 package co.com.sisegfut.client.base;
 
@@ -372,13 +366,13 @@ public class PanelMenu extends LayoutContainer {
                 cmdAdmCargos);
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
-                + "Categorias"
+                + "Categorías"
                 + "</img>",
                 true,
                 cmdAdmCategorias);
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
-                + "Institucion Educativa"
+                + "Institución Educativa"
                 + "</img>",
                 true,
                 cmdAdmInstEducativa);
@@ -418,7 +412,7 @@ public class PanelMenu extends LayoutContainer {
 
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
-                + "Medidas Antropometrica"
+                + "Medidas Antropométricas"
                 + "</img>",
                 true,
                 cmdAdmMedAntropometricas);
@@ -473,13 +467,13 @@ public class PanelMenu extends LayoutContainer {
 
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
-                + "Test 1 Kilomentro"
+                + "Test 1 Kilómetro"
                 + "</img>",
                 true,
                 cmdAdmTest1Kilometro);
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
-                + "Frecuencia Cardiaca Máxima"
+                + "Frecuencia Cardíaca Máxima"
                 + "</img>",
                 true,
                 cmdAdmFrecuenciaCardiaca);

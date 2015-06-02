@@ -136,7 +136,7 @@ public class PanelInactivarTorneos extends LayoutContainer{
 
                        @Override
                        public void onSuccess(Object result) {
-                           pnlExito.definirTexto("Se Inactivo correctamente el torneo");
+                           pnlExito.definirTexto("Se Inactivó correctamente el torneo");
                     pnlExito.setVisible(true);
                        }
                        

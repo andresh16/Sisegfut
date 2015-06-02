@@ -74,7 +74,7 @@ public class PanelCrearTorneos extends LayoutContainer {
         txtAnno.setToolTip("Digite un año que desee guardar");
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría");
         cbxCategoria.setAllowBlank(false);
 
         Button btnCrear = new Button(" Crear", ListenerCrear(1));
@@ -127,7 +127,7 @@ public class PanelCrearTorneos extends LayoutContainer {
         pnlErrores.setVisible(false);
         if (panel.isValid()) {
             Torneos torneos = new Torneos();
-            torneos.setNombreTorneo(txtTorneo.getValue());
+            torneos.setNombreTorneo(txtTorneo.getValue().toUpperCase());
             torneos.setAnno(txtAnno.getValue());
             torneos.setCategoria(cbxCategoria.getCategoriaElegida());
 
@@ -142,7 +142,7 @@ public class PanelCrearTorneos extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente el torneo");
+                    pnlExito.definirTexto("Guardó correctamente el torneo");
                     pnlExito.setVisible(true);
                 }
 

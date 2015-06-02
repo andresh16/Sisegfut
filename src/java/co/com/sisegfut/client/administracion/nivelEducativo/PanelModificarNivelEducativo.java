@@ -138,7 +138,7 @@ public class PanelModificarNivelEducativo extends LayoutContainer {
 
             NivelEducativo eps = new NivelEducativo();
             eps.setId(cbxNivelEducativo.getNivelEducativoElegido().getId());
-            eps.setNombreNivelEducativo(txtNivelEducativo.getValue());
+            eps.setNombreNivelEducativo(txtNivelEducativo.getValue().toUpperCase());
 
             getServiceEps().guardarEntidad(eps, new AsyncCallback() {
 
@@ -151,7 +151,7 @@ public class PanelModificarNivelEducativo extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente el Nivel Educativo");
+                    pnlExito.definirTexto("Se Modificó correctamente el Nivel Educativo");
                     pnlExito.setVisible(true);
                 }
 

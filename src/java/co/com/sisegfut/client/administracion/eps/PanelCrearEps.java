@@ -120,7 +120,7 @@ public class PanelCrearEps extends LayoutContainer {
         pnlErrores.setVisible(false);
         if (panel.isValid()) {
             Eps eps = new Eps();
-            eps.setNombreEps(txtEps.getValue());
+            eps.setNombreEps(txtEps.getValue().toUpperCase());
 
             getServiceEps().guardarEntidad(eps, new AsyncCallback() {
 
@@ -133,7 +133,7 @@ public class PanelCrearEps extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente la eps");
+                    pnlExito.definirTexto("Guardó correctamente la eps");
                     pnlExito.setVisible(true);
                 }
             });

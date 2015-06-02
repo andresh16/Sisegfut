@@ -129,7 +129,7 @@ public class PanelReactivarPosiciones extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Reactivo correctamente la Posición");
+                    pnlExito.definirTexto("Se Reactivó correctamente la Posición");
                     pnlExito.setVisible(true);
                 }
 

@@ -60,7 +60,7 @@ public class PanelModificarPosiciones extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
         txtPosiciones.setName("posiciones");
-        txtPosiciones.setFieldLabel("Posicion");
+        txtPosiciones.setFieldLabel("Posición");
         txtPosiciones.setAllowBlank(false);
         txtPosiciones.setToolTip("Digite una posición que desee guardar");
 
@@ -146,7 +146,7 @@ public class PanelModificarPosiciones extends LayoutContainer {
 
             Posiciones posiciones = new Posiciones();
             posiciones.setId(cbxPosiciones.getPosicionesElegido().getId());
-            posiciones.setNombrePosicion(txtPosiciones.getValue());
+            posiciones.setNombrePosicion(txtPosiciones.getValue().toUpperCase());
 
             getServicePosicion().guardarEntidad(posiciones, new AsyncCallback() {
 
@@ -159,7 +159,7 @@ public class PanelModificarPosiciones extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente la Posición");
+                    pnlExito.definirTexto("Se Modificó correctamente la Posición");
                     pnlExito.setVisible(true);
                 }
 

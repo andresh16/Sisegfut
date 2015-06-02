@@ -35,6 +35,8 @@ public class PanelAdminCategoria extends Window {
     TabItem tabModificar = new TabItem("Modificar");
     TabItem tabInactivar = new TabItem("Inactivar");
     TabItem tabReactivar = new TabItem("Reactivar");
+    
+    
 
     public PanelAdminCategoria() {
 

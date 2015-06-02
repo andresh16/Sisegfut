@@ -130,7 +130,7 @@ public class PanelInactivarInstEducativa extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente la Inst Educativa");
+                    pnlExito.definirTexto("Se Inactivó correctamente la Inst Educativa");
                     pnlExito.setVisible(true);
                 }
 

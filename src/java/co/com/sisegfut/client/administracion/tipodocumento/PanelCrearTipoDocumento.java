@@ -124,7 +124,7 @@ public class PanelCrearTipoDocumento extends LayoutContainer {
         pnlErrores.setVisible(false);
         if (panel.isValid()) {
             TipoDocumento tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento(txtTipoDocumento.getValue());
+            tipoDocumento.setNombreTipoDocumento(txtTipoDocumento.getValue().toUpperCase());
 
             getServiceTipoDocumento().guardarEntidad(tipoDocumento, new AsyncCallback() {
 
@@ -140,7 +140,7 @@ public class PanelCrearTipoDocumento extends LayoutContainer {
                 @Override
                 public void onSuccess(Object result) {
                     // MessageBox.alert("Crear", "Guardo correctamente el Tipo de Documento", null);
-                    pnlExito.definirTexto("Guardo correctamente el Tipo de Documento");
+                    pnlExito.definirTexto("Guardó correctamente el Tipo de Documento");
                     pnlExito.setVisible(true);
                 }
 

@@ -240,7 +240,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         cpForm.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana(myConstants.ayudaPanelDeportistaAntecedentesOsteomusculares());
+                abrirVentana(myConstants.ayudaPanelPersonalEstudios());
             }
         }));
         

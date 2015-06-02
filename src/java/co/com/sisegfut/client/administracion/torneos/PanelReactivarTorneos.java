@@ -128,7 +128,7 @@ public class PanelReactivarTorneos extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Reactivo correctamente el torneo");
+                    pnlExito.definirTexto("Se Reactivó correctamente el torneo");
                     pnlExito.setVisible(true);
                 }
 

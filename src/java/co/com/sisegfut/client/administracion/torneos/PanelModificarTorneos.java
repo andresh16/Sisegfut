@@ -85,7 +85,7 @@ public class PanelModificarTorneos extends LayoutContainer {
         txtAnno.setValue(Formatos.anio(anio));
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría");
         cbxCategoria.setAllowBlank(false);
 
         // 
@@ -163,7 +163,7 @@ public class PanelModificarTorneos extends LayoutContainer {
             Torneos torneo = new Torneos();
             torneo.setId(cbxTorneo.getTorneosElegido().getId());
             torneo.setCategoria(cbxCategoria.getCategoriaElegida());
-            torneo.setNombreTorneo(txtTorneo.getValue());
+            torneo.setNombreTorneo(txtTorneo.getValue().toUpperCase());
             torneo.setAnno(txtAnno.getValue());
 
             getServiceTorneos().guardarEntidad(torneo, new AsyncCallback() {
@@ -177,7 +177,7 @@ public class PanelModificarTorneos extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente el torneo");
+                    pnlExito.definirTexto("Se Modificó correctamente el torneo");
                     pnlExito.setVisible(true);
                 }
 

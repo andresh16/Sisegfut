@@ -99,4 +99,18 @@ public interface Main extends Constants {
     
     String ayudaPanelTorneos();
     
+    String ayudaPanelRivales();
+    
+    String ayudaPanelCompetencia();
+    
+    String ayudaPanelControlDisciplinario();
+    
+    String ayudaPanelCargarFotoDeportista();
+    
+    String ayudaPanelCargarFotoPersonal();
+    
+    String ayudaPanelPersonalExperiencia();
+    
+    String ayudaPanelPersonalEstudios();
+    
 }

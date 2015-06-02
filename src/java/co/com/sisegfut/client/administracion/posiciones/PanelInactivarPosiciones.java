@@ -131,7 +131,7 @@ public class PanelInactivarPosiciones extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente la Posición");
+                    pnlExito.definirTexto("Se Inactivó correctamente la Posición");
                     pnlExito.setVisible(true);
                 }
 

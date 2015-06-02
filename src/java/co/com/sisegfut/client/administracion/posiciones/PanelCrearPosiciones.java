@@ -61,7 +61,7 @@ public class PanelCrearPosiciones extends LayoutContainer {
         txtPosiciones.setName("posiciones");
         txtPosiciones.setFieldLabel("Posición");
         txtPosiciones.setAllowBlank(false);
-        txtPosiciones.setToolTip("Digite la posicion que desee guardar");
+        txtPosiciones.setToolTip("Digite la posición que desee guardar");
 
         Button btnCrear = new Button(" Crear", ListenerCrear(1));
         btnCrear.setArrowAlign(Style.ButtonArrowAlign.BOTTOM);
@@ -118,7 +118,7 @@ public class PanelCrearPosiciones extends LayoutContainer {
         pnlErrores.setVisible(false);
         if (panel.isValid()) {
             Posiciones posiciones = new Posiciones();
-            posiciones.setNombrePosicion(txtPosiciones.getValue());
+            posiciones.setNombrePosicion(txtPosiciones.getValue().toUpperCase());
 
             getServicePosicion().guardarEntidad(posiciones, new AsyncCallback() {
 
@@ -131,7 +131,7 @@ public class PanelCrearPosiciones extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente la posición");
+                    pnlExito.definirTexto("Guardó correctamente la posición");
                     pnlExito.setVisible(true);
                 }
 

@@ -50,8 +50,6 @@ public class PanelAdminCargos extends Window {
         setResizable(false);
 //        setAutoHeight(true);
 //        setAutoWidth(true);
-        
-        
 
         crear = new PanelCrearCargos();
         modificar = new PanelModificarCargos();

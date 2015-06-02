@@ -130,7 +130,7 @@ public class PanelInactivarEps extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente la eps");
+                    pnlExito.definirTexto("Se Inactivó correctamente la eps");
                     pnlExito.setVisible(true);
                 }
 

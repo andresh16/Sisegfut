@@ -221,7 +221,7 @@ public class PanelExperiencia extends LayoutContainer {
         cpForm.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana(myConstants.ayudaPanelDeportistaLogrosDeportivos());
+                abrirVentana(myConstants.ayudaPanelPersonalExperiencia());
             }
         }));
 

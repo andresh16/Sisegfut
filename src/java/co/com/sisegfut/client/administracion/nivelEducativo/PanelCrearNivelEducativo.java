@@ -120,7 +120,7 @@ public class PanelCrearNivelEducativo extends LayoutContainer {
 
         if (panel.isValid()) {
             NivelEducativo nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo(txtNivelEducativo.getValue());
+            nivelEducativo.setNombreNivelEducativo(txtNivelEducativo.getValue().toUpperCase());
 
             getServiceNivelEducativo().guardarEntidad(nivelEducativo, new AsyncCallback() {
 
@@ -133,7 +133,7 @@ public class PanelCrearNivelEducativo extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente el Nivel Educativo");
+                    pnlExito.definirTexto("Guardó correctamente el Nivel Educativo");
                     pnlExito.setVisible(true);
                 }
 

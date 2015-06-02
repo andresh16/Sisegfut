@@ -123,13 +123,13 @@ public class PanelReactivarNivelEducativo extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No se Reactivo el Tipo de Documento");
+                    pnlErrores.aniadir("No se Reactivo el Nivel Educativo");
                     MessageBox.alert("Error", "No se Reactivo el Nivel Educativo", null);
                 }
 
                 @Override
                 public void onSuccess(Object result) {
-                    MessageBox.alert("Reactivar", "Se Reactivo correctamente el Nivel Educativo", null);
+                    MessageBox.alert("Reactivar", "Se Reactivó correctamente el Nivel Educativo", null);
                 }
 
             });

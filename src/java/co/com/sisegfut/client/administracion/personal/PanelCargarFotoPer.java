@@ -155,7 +155,7 @@ public class PanelCargarFotoPer extends Window {
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana("Guarda foto del un personal");
+                abrirVentana(myConstants.ayudaPanelCargarFotoPersonal());
             }
         }));
 
