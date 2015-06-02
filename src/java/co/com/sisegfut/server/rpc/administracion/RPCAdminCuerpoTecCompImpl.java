@@ -10,6 +10,7 @@ import co.com.sisegfut.client.datos.dominio.Personal;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.util.rpc.RPCAdminCuerpoTecComp;
 import co.com.sisegfut.server.datos.dao.DaoCuerpoTecnicoCompe;
+import co.com.sisegfut.server.datos.dao.DaoPersonal;
 import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class RPCAdminCuerpoTecCompImpl extends RPCMaestroImpl<CuerpoTecnicoCompe
 
     private Usuarios usuarioSession;
     private DaoCuerpoTecnicoCompe daoCuerpoTecnicoCompe;
+    private DaoPersonal daoPersonal;
 
     @Autowired
     @Override
@@ -38,6 +40,11 @@ public class RPCAdminCuerpoTecCompImpl extends RPCMaestroImpl<CuerpoTecnicoCompe
     public void setDaoCuerpoTec(DaoCuerpoTecnicoCompe daoCuerpoTecnicoCompe) {
         this.daoCuerpoTecnicoCompe = daoCuerpoTecnicoCompe;
         super.setDaoGenerico(daoCuerpoTecnicoCompe);
+    }
+
+    @Autowired
+    public void setDaoPersonal(DaoPersonal daoPersonal) {
+        this.daoPersonal = daoPersonal;
     }
 
     @Override
@@ -57,18 +64,43 @@ public class RPCAdminCuerpoTecCompImpl extends RPCMaestroImpl<CuerpoTecnicoCompe
     @Override
     public void eliminarCuerpoTecComp(Long idCompetencia, Long idPersonal) {
         try {
-            
+
             List<CuerpoTecnicoCompe> listaRetorno = daoCuerpoTecnicoCompe.eliminarCuerpoTecCompe(idCompetencia, idPersonal);
-            
+
             for (CuerpoTecnicoCompe listaPersonalCuerpoTec : listaRetorno) {
                 daoCuerpoTecnicoCompe.eliminar(listaPersonalCuerpoTec);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        
+
+    }
+
+    @Override
+    public List<Personal> getPersonalCompetencia(Long idCompetencia) {
+        List<Personal> listaRetorno = new ArrayList<Personal>();
+        List<Personal> eliminar = new ArrayList<Personal>();
+        List<Personal> listaPersonalCompetencia = new ArrayList<Personal>();
+        listaRetorno = daoPersonal.listar();
+        try {
+            listaPersonalCompetencia = daoCuerpoTecnicoCompe.personalXCompetencia(idCompetencia);
+        } catch (Exception ex) {
+            Logger.getLogger(RPCAdminCuerpoTecCompImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (!listaPersonalCompetencia.isEmpty() || listaPersonalCompetencia.size() != 0) {
+            for (Personal personal : listaRetorno) {
+                for (Personal personalCompetencia : listaPersonalCompetencia) {
+                    if(personal.getId().equals(personalCompetencia.getId())){
+                      eliminar.add(personal);
+                    }
+                }
+
+            }
+            listaRetorno.removeAll(eliminar);
+        }
+
+        return listaRetorno;
     }
 
 }

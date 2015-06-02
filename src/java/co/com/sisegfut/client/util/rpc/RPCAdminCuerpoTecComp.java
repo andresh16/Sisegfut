@@ -8,6 +8,7 @@ package co.com.sisegfut.client.util.rpc;
 import co.com.sisegfut.client.datos.dominio.CuerpoTecnicoCompe;
 import co.com.sisegfut.client.datos.dominio.Personal;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,10 @@ import com.extjs.gxt.ui.client.data.PagingLoadResult;
 public interface RPCAdminCuerpoTecComp extends RPCMaestro<CuerpoTecnicoCompe>{
     
     public PagingLoadResult<Personal> getCuerpoTecnicoXCompetencia(Long idCompetencia);
+    
+    
+    public List<Personal> getPersonalCompetencia(Long idCompetencia);
+    
     
     public void eliminarCuerpoTecComp(Long idCompetencia, Long idPersonal);
     
