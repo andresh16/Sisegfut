@@ -1258,6 +1258,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         simple.show();
     }
     
-    public void prueba(){}
+    public void prueba(){ 
+    //sdjfsdjf;
+    }
 
 }
