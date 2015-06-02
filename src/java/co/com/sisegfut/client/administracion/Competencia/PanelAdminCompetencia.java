@@ -214,7 +214,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         comboBoxTorneo.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-                Info.display("Categoria", "Filtro por la categoria " + comboBoxTorneo.getTorneosElegido().getCategoria().getNombrecategoria());
+                Info.display("Categoria", "Filtro por la categoría " + comboBoxTorneo.getTorneosElegido().getCategoria().getNombrecategoria());
                 adminPestComp.cargarJugadores(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
             }
         });
@@ -296,7 +296,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         ToolButton btnayudaCompetencia =new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentanaAyuda("Compentencia");
+                abrirVentanaAyuda(myConstants.ayudaPanelCompetencia());
             }
         });
         btnayudaCompetencia.setTitle("Ayuda ");
@@ -490,7 +490,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         ToolButton btnayudaCompetencia =new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentanaAyuda("Cuerpo tecnico");
+                abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaCuerpoTecnico());
             }
         });
         btnayudaCompetencia.setTitle("Ayuda ");
@@ -585,13 +585,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                         @Override
                         public void onSuccess(Void result) {
-                            Info.display("Elimino", "Se elimino correctamente el personal seleccionado");
+                            Info.display("Elimino", "Se eliminó correctamente el personal seleccionado");
                             cargarGridCuerpoTecComp();
                         }
                     });
 
                 } else {
-                    MessageBox.alert("Alerta", "Seleccione un personal de la tabla de cuerpo tecnico ", null);
+                    MessageBox.alert("Alerta", "Seleccione un personal de la tabla de cuerpo técnico ", null);
                 }
             }
         };
@@ -900,7 +900,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-//                abrirVentana(myConstants.ayudaPanelDeportistaAntecedentesOsteomusculares());
+                abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaBuscar());
                     }
                 }));
                 wBuscar.addButton(btnEditarCompetencia);
@@ -1258,8 +1258,6 @@ public class PanelAdminCompetencia extends LayoutContainer {
         simple.show();
     }
     
-    public void prueba(){ 
-    //sdfsddfgsfgdf4445345;
-    }
+   
 
 }

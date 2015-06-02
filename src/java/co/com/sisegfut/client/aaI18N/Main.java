@@ -113,4 +113,10 @@ public interface Main extends Constants {
     
     String ayudaPanelPersonalEstudios();
     
+    String ayudaPanelCompetenciaCuerpoTecnico();
+    
+    String ayudaPanelCompetenciaBuscar();
+    
+    String ayudaPanelSituacionesCompetencia();
+    
 }

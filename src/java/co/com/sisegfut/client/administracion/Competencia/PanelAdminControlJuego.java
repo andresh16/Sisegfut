@@ -504,7 +504,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<CambiosCompe> result) {
-                            Info.display("Elimino", "Se elimino correctamente el personal seleccionado");
+                            Info.display("Elimino", "Se eliminó correctamente la sustitución seleccionada");
                             cargarGridCambios();
                         }
                     });
@@ -532,7 +532,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<Goles> result) {
-                            Info.display("Elimino", "Se elimino correctamente el gol");
+                            Info.display("Elimino", "Se eliminó correctamente el gol");
                             cargarGridGoles();
                             if (equipoGol.equals("Politecnico JIC")) {
                                 eliminarGolCompetencia(idCompetencia, true);
@@ -544,7 +544,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
                     });
 
                 } else {
-                    MessageBox.alert("Alerta", "Debe selecccionar una gol de la tabla ", null);
+                    MessageBox.alert("Alerta", "Debe selecccionar un gol de la tabla ", null);
                 }
             }
         };
@@ -566,7 +566,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<ControlDisciplinarioCompe> result) {
-                            Info.display("Elimino", "Se elimino correctamente la tarjeta");
+                            Info.display("Elimino", "Se eliminó correctamente la tarjeta");
                             cargarGridTarjetas();
                         }
                     });
@@ -815,7 +815,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
             public void onSuccess(Boolean result) {
                 if (result) {
                     controlDisciplinarioCompe.setTipoTarjeta("ROJA");
-                    MessageBox.info("Importante!", "El jugador " + cbxDeportista.getDeportistaElegido().getNombreCompleto() + " tenía una tarjeta AMARILLA acomulada, por ende se registró una tarjeta ROJA", null);
+                    MessageBox.info("Importante!", "El jugador " + cbxDeportista.getDeportistaElegido().getNombreCompleto() + " tenía una tarjeta AMARILLA acumulada, por ende se registró una tarjeta ROJA", null);
                 }
                 guardarTarjeta(controlDisciplinarioCompe);
             }
@@ -975,7 +975,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
                 } else {
                     agregarGolCompetencia(idCompetencia, false);
                 }
-                Info.display("Exito", "Se registro el gol correctamente");
+                Info.display("Exito", "Se registró el gol correctamente");
             }
         });
 
@@ -994,7 +994,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
             @Override
             public void onSuccess(RespuestaRPC<ControlDisciplinarioCompe> result) {
                 cargarGridTarjetas();
-                Info.display("Exito", "Se registro la tarjeta correctamente");
+                Info.display("Exito", "Se registró la tarjeta correctamente");
             }
         });
 

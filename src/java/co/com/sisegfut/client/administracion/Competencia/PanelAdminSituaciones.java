@@ -5,6 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.Competencia;
 
+import co.com.sisegfut.client.aaI18N.Main;
 import co.com.sisegfut.client.datos.dominio.Competencia;
 import co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe;
 import co.com.sisegfut.client.datos.dominio.dto.DTOSituacionJuegoComp;
@@ -16,12 +17,15 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.Radio;
@@ -156,6 +160,8 @@ public class PanelAdminSituaciones extends ContentPanel {
     private Button btnReiniciar;
     private Long IdCompetencia;
     private ContentPanel cp;
+    
+    private Main myConstants = (Main) GWT.create(Main.class);
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -183,6 +189,14 @@ public class PanelAdminSituaciones extends ContentPanel {
         btnReiniciar.setIconAlign(Style.IconAlign.LEFT);
         btnReiniciar.setIcon(Resources.ICONS.iconoModificar());
         btnReiniciar.setEnabled(false);
+        
+        //Agrego boton al panel principal que permite desplegar la ayuda.
+        getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                abrirVentana(myConstants.ayudaPanelSituacionesCompetencia());
+            }
+        }));
 
         cp.addButton(btnGuardarSituaciones);
         cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
@@ -977,4 +991,22 @@ public class PanelAdminSituaciones extends ContentPanel {
         endpoint.setServiceEntryPoint("services/RPCAdminSituacionesJuego");
         return svc;
     }
+    /**
+     * Abre ventana de ayuda.
+     */
+    private void abrirVentana(String texto) {
+        final Dialog simple = new Dialog();
+        simple.setHeading("Ayuda");
+        simple.setButtons(Dialog.OK);
+        simple.setBodyStyleName("pad-text");
+        simple.addText(texto);
+        simple.getItem(0).getFocusSupport().setIgnore(true);
+        simple.setScrollMode(Style.Scroll.AUTO);
+        simple.setHideOnButtonClick(true);
+        simple.setWidth(550);
+        //simple.setSize(550, 255);
+
+        simple.show();
+    }
+    
 }
