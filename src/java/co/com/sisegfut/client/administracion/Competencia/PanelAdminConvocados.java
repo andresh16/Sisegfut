@@ -5,6 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.Competencia;
 
+import co.com.sisegfut.client.aaI18N.Main;
 import static co.com.sisegfut.client.administracion.deportista.PanelInfoGeneral.ACTIVOS;
 import co.com.sisegfut.client.datos.dominio.Competencia;
 import co.com.sisegfut.client.datos.dominio.ConvocadosCompe;
@@ -92,9 +93,12 @@ public class PanelAdminConvocados extends LayoutContainer {
     public ComboBoxCategoria cbxCategoria = new ComboBoxCategoria(ACTIVOS);
     private Long idCompetencia = null;
     PanelAdminPestComp adminPestComp;
+    private Main myConstants;
 
 //    PanelAdminPestComp adminPestComp = new PanelAdminPestComp();
     public PanelAdminConvocados(PanelAdminPestComp adminPestana) {
+        
+        myConstants = (Main) GWT.create(Main.class);
         adminPestComp = adminPestana;
         setScrollMode(Style.Scroll.AUTOY);
         BorderLayout layout = new BorderLayout();
