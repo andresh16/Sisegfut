@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <context:annotation-config />
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <map>
+                <entry key = "RPCAdminUsuarios">
+                    <ref bean="ServiceControllerAdminUsuarios" />
+                </entry>
+               
+                <entry key = "RPCLogin">
+                    <ref bean="ServiceControllerLogin" />
+                </entry>
+                <entry key = "RPCRecuperarClave">
+                    <ref bean="ServiceControllerClave" />
+                </entry>
+                <entry key = "RPCAdminCuenta">
+                    <ref bean="ServiceControllerCuenta" />
+                </entry>
+                
+                <entry key = "RPCAdminMovimiento">
+                    <ref bean="ServiceControllerMovimiento" />
+                </entry>
+                
+                <entry key = "RPCAdminCategoria">
+                    <ref bean="ServiceControllerCategoria" />
+                </entry>
+                
+                <entry key = "RPCAdminEps">
+                    <ref bean="ServiceControllerEps" />
+                </entry>
+                
+                <entry key = "RPCAdminTipoDocumento">
+                    <ref bean="ServiceControllerTipoDocumento" />
+                </entry>
+                
+                <entry key = "RPCAdminNivelEducativo">
+                    <ref bean="ServiceControllerNivelEducativo" />
+                </entry>
+                
+                <entry key = "RPCAdminCargos">
+                    <ref bean="ServiceControllerCargos" />
+                </entry>
+                
+                <entry key = "RPCAdminInstEducativa">
+                    <ref bean="ServiceControllerInstEducativa" />
+                </entry>
+                
+                <entry key = "RPCAdminPosiciones">
+                    <ref bean="ServiceControllerPosiciones" />
+                </entry>
+                
+                <entry key = "RPCAdminSituacionesJuego">
+                    <ref bean="ServiceControllerSituacionesJuego" />
+                </entry>
+                
+                <!---entry key = "RPCAdminEstadoAsistencia">
+                    <ref bean="ServiceControllerEstadoAsistencia" />
+                </entry-->
+                
+                <entry key = "RPCAdminDeportista">
+                    <ref bean="ServiceControllerDeportista" />
+                </entry>
+                
+                <entry key = "RPCAdminPersonal">
+                    <ref bean="ServiceControllerPersonal" />
+                </entry>
+                
+                <entry key = "RPCAdminAntDeportivos">
+                    <ref bean="ServiceControllerAntDeportivos" />
+                </entry>
+                
+                <entry key = "RPCAdminTorneos">
+                    <ref bean="ServiceControllerTorneos" />
+                </entry>
+                <entry key = "RPCAdminControlAsistencia">
+                    <ref bean="ServiceControllerControlAsistencia" />
+                </entry>
+                <entry key = "RPCAdminAsistencia">
+                    <ref bean="ServiceControllerAsistencia" />
+                </entry>
+                
+                <entry key = "RPCAdminLesion">
+                    <ref bean="ServiceControllerLesion" />
+                </entry>
+                
+                
+                <entry key = "RPCAdminLogrosDep">
+                    <ref bean="ServiceControllerLogrosDep" />
+                </entry>
+                
+                <entry key = "RPCAdminAntropometrico">
+                    <ref bean="ServiceControllerAntropometrico" />
+                </entry>
+                
+                <entry key = "RPCAdminControlTecnico">
+                    <ref bean="ServiceControllerControlTecnico" />
+                </entry>
+                
+                <entry key = "RPCAdminTestKarvonen">
+                    <ref bean="ServiceControllerTestKarvonen" />
+                </entry>
+                <entry key = "RPCAdminTestCooper">
+                    <ref bean="ServiceControllerTestCooper" />
+                </entry>
+                
+                
+                <entry key = "RPCAdminCompetencia">
+                    <ref bean="ServiceControllerCompetencia" />
+                </entry>
+                
+                
+                <entry key = "RPCAdminConvocadosComp">
+                    <ref bean="ServiceControllerConvocadosComp" />
+                </entry>
+                <entry key = "RPCAdminCambiosCompe">
+                    <ref bean="ServiceControllerCambiosCompe" />
+                </entry>
+                <entry key = "RPCAdminCuerpoTecComp">
+                    <ref bean="ServiceControllerCuerpoTecComp" />
+                </entry>
+                <entry key = "RPCAdminControlDisciplinarioComp">
+                    <ref bean="ServiceControllerCtrolDiscrioC" />
+                </entry>
+                
+                <entry key = "RPCAdminGoles">
+                    <ref bean="ServiceControllerGoles" />
+                </entry>
+                
+                
+                <entry key = "RPCAdminEstudiosRealizados">
+                    <ref bean="ServiceControllerEstudiosRealizados" />
+                </entry>
+                <entry key = "RPCAdminExperiencia">
+                    <ref bean="ServiceControllerExperiencia" />
+                </entry>
+                
+                <entry key = "RPCAdminRivales">
+                    <ref bean="ServiceControllerRivales" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+      <bean id="ServiceControllerRivales" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminRivales"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminRivales"/>
+        </property>
+    </bean>
+      <bean id="ServiceControllerEstudiosRealizados" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminEstudiosRealizados"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminEstudiosRealizados"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerExperiencia" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminExperiencia"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminExperiencia"/>
+        </property>
+    </bean> 
+        
+    <bean id="ServiceControllerCtrolDiscrioC" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminControlDisciplinarioComp"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminControlDisciplinarioComp"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerConvocadosComp" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminConvocadosComp"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminConvocadosComp"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerCambiosCompe" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCambiosCompe"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCambiosCompe"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerGoles" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminGoles"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminGoles"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerCuerpoTecComp" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCuerpoTecComp"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCuerpoTecComp"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerCompetencia" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCompetencia"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCompetencia"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerTestKarvonen" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminTestKarvonen"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminTestKarvonen"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerTestCooper" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminTestCooper"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminTestCooper"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerAdminUsuarios" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminUsuarios"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminUsuarios"/>
+        </property>
+    </bean>
+  
+    <bean id="ServiceControllerLogin" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCLogin"/>    
+        <property name="servletInstance">
+            <ref bean="RPCLogin"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerClave" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCRecuperarClave"/>    
+        <property name="servletInstance">
+            <ref bean="RPCRecuperarClave"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerCuenta" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCuenta"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCuenta"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerMovimiento" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminMovimiento"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminMovimiento"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerCategoria" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCategoria"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCategoria"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerEps" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminEps"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminEps"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerTipoDocumento" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminTipoDocumento"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminTipoDocumento"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerNivelEducativo" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminNivelEducativo"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminNivelEducativo"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerCargos" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminCargos"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminCargos"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerInstEducativa" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminInstEducativa"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminInstEducativa"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerPosiciones" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminPosiciones"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminPosiciones"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerSituacionesJuego" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminSituacionesJuego"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminSituacionesJuego"/>
+        </property>
+    </bean>
+    
+    <!--bean id="ServiceControllerEstadoAsistencia" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminEstadoAsistencia"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminEstadoAsistencia"/>
+        </property>
+    </bean-->
+    
+    <bean id="ServiceControllerDeportista" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminDeportista"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminDeportista"/>
+        </property>
+    </bean>
+
+    <bean id="ServiceControllerPersonal" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminPersonal"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminPersonal"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerAntDeportivos" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminAntDeportivos"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminAntDeportivos"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerTorneos" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminTorneos"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminTorneos"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerControlAsistencia" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminControlAsistencia"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminControlAsistencia"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerAsistencia" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminAsistencia"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminAsistencia"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerLesion" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminLesion"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminLesion"/>
+        </property>
+    </bean>
+    
+    
+    <bean id="ServiceControllerLogrosDep" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminLogrosDep"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminLogrosDep"/>
+        </property>
+    </bean>
+    
+    <bean id="ServiceControllerAntropometrico" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminAntropometrico"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminAntropometrico"/>
+        </property>
+    </bean>
+    <bean id="ServiceControllerControlTecnico" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminControlTecnico"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminControlTecnico"/>
+        </property>
+    </bean>
+     
+    
+    <bean id="RPCAdminUsuarios" class="co.com.sisegfut.server.rpc.administracion.RPCAdminUsuariosImpl"> </bean>
+    
+    <bean id="RPCAdminCuenta" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCuentaImpl"> </bean>
+    
+    <bean id="RPCLogin" class="co.com.sisegfut.server.rpc.usuario.RPCLoginImpl"> </bean>
+   
+    <bean id="RPCAdminMovimiento" class="co.com.sisegfut.server.rpc.administracion.RPCAdminMovimientoImpl"> </bean>
+   
+    <bean id="RPCRecuperarClave" class="co.com.sisegfut.server.rpc.usuario.RPCRecuperarClaveImpl"> </bean>
+    
+    <bean id="RPCAdminCategoria" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCategoriaImpl"> </bean>
+    
+    <bean id="RPCAdminEps" class="co.com.sisegfut.server.rpc.administracion.RPCAdminEpsImpl"> </bean>
+     
+    <bean id="RPCAdminTipoDocumento" class="co.com.sisegfut.server.rpc.administracion.RPCAdminTipoDocumentoImpl"> </bean>
+     
+    <bean id="RPCAdminNivelEducativo" class="co.com.sisegfut.server.rpc.administracion.RPCAdminNivelEducativoImpl"> </bean>
+    
+    <bean id="RPCAdminCargos" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCargosImpl"> </bean>
+    
+    <bean id="RPCAdminInstEducativa" class="co.com.sisegfut.server.rpc.administracion.RPCAdminInstEducativaImpl"> </bean>
+    
+    <bean id="RPCAdminPosiciones" class="co.com.sisegfut.server.rpc.administracion.RPCAdminPosicionesImpl"> </bean>
+    
+    <bean id="RPCAdminSituacionesJuego" class="co.com.sisegfut.server.rpc.administracion.RPCAdminSituacionesJuegoImpl"> </bean>
+ 
+    <!--bean id="RPCAdminEstadoAsistencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminEstadoAsistenciaImpl"> </bean-->
+     
+    <bean id="RPCAdminDeportista" class="co.com.sisegfut.server.rpc.administracion.RPCAdminDeportistaImpl"> </bean>
+         
+    <bean id="RPCAdminPersonal" class="co.com.sisegfut.server.rpc.administracion.RPCAdminPersonaImpl"> </bean>    
+    
+    <bean id="RPCAdminAntDeportivos" class="co.com.sisegfut.server.rpc.administracion.RPCAdminAntDeportivosImpl"> </bean> 
+       
+    <bean id="RPCAdminTorneos" class="co.com.sisegfut.server.rpc.administracion.RPCAdminTorneosImpl"> </bean>    
+    
+    <bean id="RPCAdminControlAsistencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminControlAsistenciaImpl"> </bean>
+        
+    <bean id="RPCAdminAsistencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminAsistenciaImpl"> </bean> 
+       
+    <bean id="RPCAdminLesion" class="co.com.sisegfut.server.rpc.administracion.RPCAdminLesionImpl"> </bean> 
+           
+    <bean id="RPCAdminLogrosDep" class="co.com.sisegfut.server.rpc.administracion.RPCAdminLogrosDepImpl"> </bean>  
+      
+    <bean id="RPCAdminAntropometrico" class="co.com.sisegfut.server.rpc.administracion.RPCAdminAntropometricoImpl"> </bean>   
+     
+    <bean id="RPCAdminControlTecnico" class="co.com.sisegfut.server.rpc.administracion.RPCAdminControlTecnicoImpl"> </bean>   
+     
+    <bean id="RPCAdminTestKarvonen" class="co.com.sisegfut.server.rpc.administracion.RPCAdminTestKarvonenImpl"> </bean>  
+      
+    <bean id="RPCAdminTestCooper" class="co.com.sisegfut.server.rpc.administracion.RPCAdminTestCooperImpl"> </bean>  
+      
+    <bean id="RPCAdminCuerpoTecComp" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCuerpoTecCompImpl"> </bean>  
+      
+    <bean id="RPCAdminCompetencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCompetenciaImpl"> </bean> 
+       
+    <bean id="RPCAdminGoles" class="co.com.sisegfut.server.rpc.administracion.RPCAdminGolesImpl"> </bean>    
+    
+    <bean id="RPCAdminConvocadosComp" class="co.com.sisegfut.server.rpc.administracion.RPCAdminConvocadosCompImpl"> </bean>    
+    
+    <bean id="RPCAdminCambiosCompe" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCambiosCompeImpl"> </bean>   
+     
+    <bean id="RPCAdminControlDisciplinarioComp" class="co.com.sisegfut.server.rpc.administracion.RPCAdminControlDisciplinarioCompImpl"> </bean>    
+
+    <bean id="RPCAdminEstudiosRealizados" class="co.com.sisegfut.server.rpc.administracion.RPCAdminEstudiosRealizadosImpl"> </bean>  
+      
+    <bean id="RPCAdminExperiencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminExperienciaImpl"> </bean>    
+   
+    <bean id="RPCAdminRivales" class="co.com.sisegfut.server.rpc.administracion.RPCAdminRivalesImpl"> </bean>    
+
+</beans>

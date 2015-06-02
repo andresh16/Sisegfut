@@ -1,0 +1,1050 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f2e82d0e9d2, pid=13812, tid=139837420058368
+#
+# JRE version: 6.0_29-b11
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (20.4-b02 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x3dc9d2]  constantPoolOopDesc::klass_at_impl(constantPoolHandle, int, Thread*)+0x42
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000419ef000):  JavaThread "AWT-EventQueue-0" [_thread_in_vm, id=13931, stack(0x00007f2e6fafb000,0x00007f2e6fbfc000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x0000000000000009
+
+Registers:
+RAX=0x00007f2e7a52e9f0, RBX=0x0000000000000001, RCX=0xfffffffffffffff7, RDX=0x00007f2e833b7530
+RSP=0x00007f2e6fbf8280, RBP=0x00007f2e6fbf86c0, RSI=0x00007f2e833d3ee0, RDI=0x00007f2e7a52e9f0
+R8 =0x0000000000005388, R9 =0x0000000000000001, R10=0x00007f2e83512140, R11=0x00007f2e833b7550
+R12=0x000000000000e920, R13=0x00007f2e7a52e9f0, R14=0x00000000419ef000, R15=0x000000000000e920
+RIP=0x00007f2e82d0e9d2, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f2e6fbf8280)
+0x00007f2e6fbf8280:   00007f2e790b7928 00000000419ef000
+0x00007f2e6fbf8290:   00007f2e790b7900 000000004188a040
+0x00007f2e6fbf82a0:   00007f2e790b7900 00000000419ef000
+0x00007f2e6fbf82b0:   00007f2e833b7678 00007f2e833cc000
+0x00007f2e6fbf82c0:   00007f2e6fbf82f0 00007f2e830137dd
+0x00007f2e6fbf82d0:   00000000419ef000 000000004188a040
+0x00007f2e6fbf82e0:   0000000000000007 00007f2e833ca588
+0x00007f2e6fbf82f0:   00007f2e6fbf8310 00007f2e83013f00
+0x00007f2e6fbf8300:   00007f2e6fbf8310 00007f2e83013fd7
+0x00007f2e6fbf8310:   00007f2e6fbf8440 00007f2e830b5af9
+0x00007f2e6fbf8320:   00007f2e790b7900 00000000419ef000
+0x00007f2e6fbf8330:   00007f2e833b7678 0000000041eff730
+0x00007f2e6fbf8340:   00007f2e6fbf8370 00007f2e830137dd
+0x00007f2e6fbf8350:   00000000419ef000 000000004188a040
+0x00007f2e6fbf8360:   00007f2e6fbf8390 00007f2e83013726
+0x00007f2e6fbf8370:   00000000419ef000 00007f2e78003400
+0x00007f2e6fbf8380:   00007f2e6fbf83b0 00007f2e83042458
+0x00007f2e6fbf8390:   00007f2e6fbf83b0 0000000000000000
+0x00007f2e6fbf83a0:   00007f2e78001c50 00007f2e78003400
+0x00007f2e6fbf83b0:   00007f2e6fbf83f0 00007f2e82f488ea
+0x00007f2e6fbf83c0:   00007f2e6fbf83e0 00007f2e6fbf83e0
+0x00007f2e6fbf83d0:   00000000419ef000 00000000419ef000
+0x00007f2e6fbf83e0:   00007f2e833d2750 00007f2e78001c50
+0x00007f2e6fbf83f0:   00000000419ef000 00007f2e78001c50
+0x00007f2e6fbf8400:   00007f2e78001c50 0000000000000000
+0x00007f2e6fbf8410:   00007f2e6fbf8860 00007f2e82d0e9ec
+0x00007f2e6fbf8420:   00007f2e6fbf8460 00007f2e82f2f253
+0x00007f2e6fbf8430:   00007f2e6fbf8460 00007f2e83013726
+0x00007f2e6fbf8440:   00000000419ef000 0000000041ca41f0
+0x00007f2e6fbf8450:   00007f2e6fbf84c0 00007f2e82f26c25
+0x00007f2e6fbf8460:   0000000041ca4c00 00007f2e83013f00
+0x00007f2e6fbf8470:   00000000419ef000 00007f2e83013fd7 
+
+Instructions: (pc=0x00007f2e82d0e9d2)
+0x00007f2e82d0e9b2:   17 48 83 c2 40 4a 8b 1c e2 48 8b 15 1e e9 7e 00
+0x00007f2e82d0e9c2:   80 3a 00 0f 84 35 0e 00 00 48 8b 35 ee cc 7e 00
+0x00007f2e82d0e9d2:   8b 53 08 8b 4e 08 48 d3 e2 48 03 16 48 8b 42 10
+0x00007f2e82d0e9e2:   48 8d 7a 10 ff 90 10 01 00 00 48 89 da 84 c0 74 
+
+Register to memory mapping:
+
+RAX=0x00007f2e7a52e9f0 is an unknown value
+RBX=0x0000000000000001 is an unknown value
+RCX=0xfffffffffffffff7 is an unknown value
+RDX=0x00007f2e833b7530: <offset 0xa85530> in /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so at 0x00007f2e82932000
+RSP=0x00007f2e6fbf8280 is pointing into the stack for thread: 0x00000000419ef000
+RBP=0x00007f2e6fbf86c0 is pointing into the stack for thread: 0x00000000419ef000
+RSI=0x00007f2e833d3ee0: <offset 0xaa1ee0> in /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so at 0x00007f2e82932000
+RDI=0x00007f2e7a52e9f0 is an unknown value
+R8 =0x0000000000005388 is an unknown value
+R9 =0x0000000000000001 is an unknown value
+R10=0x00007f2e83512140: <offset 0xbe0140> in /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so at 0x00007f2e82932000
+R11=0x00007f2e833b7550: <offset 0xa85550> in /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so at 0x00007f2e82932000
+R12=0x000000000000e920 is an unknown value
+R13=0x00007f2e7a52e9f0 is an unknown value
+R14=0x00000000419ef000 is a thread
+R15=0x000000000000e920 is an unknown value
+
+
+Stack: [0x00007f2e6fafb000,0x00007f2e6fbfc000],  sp=0x00007f2e6fbf8280,  free space=1012k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x3dc9d2]  constantPoolOopDesc::klass_at_impl(constantPoolHandle, int, Thread*)+0x42
+V  [libjvm.so+0x3de2be]  constantPoolOopDesc::klass_ref_at(int, Thread*)+0x4e
+V  [libjvm.so+0x65115b]  LinkResolver::resolve_klass(KlassHandle&, constantPoolHandle, int, Thread*)+0x2b
+V  [libjvm.so+0x652e8c]  LinkResolver::resolve_field(FieldAccessInfo&, constantPoolHandle, int, Bytecodes::Code, bool, bool, Thread*)+0x8c
+V  [libjvm.so+0x652df7]  LinkResolver::resolve_field(FieldAccessInfo&, constantPoolHandle, int, Bytecodes::Code, bool, Thread*)+0x17
+V  [libjvm.so+0x4d64fc]  InterpreterRuntime::resolve_get_put(JavaThread*, Bytecodes::Code)+0x1ac
+j  javax.swing.TimerQueue$1.<init>(Ljavax/swing/TimerQueue;Ljava/lang/ThreadGroup;)V+2
+j  javax.swing.TimerQueue.start()V+30
+j  javax.swing.TimerQueue.<init>()V+5
+j  javax.swing.TimerQueue.sharedInstance()Ljavax/swing/TimerQueue;+24
+j  javax.swing.Timer.timerQueue()Ljavax/swing/TimerQueue;+0
+j  javax.swing.Timer.stop()V+1
+j  javax.swing.ToolTipManager.initiateToolTip(Ljava/awt/event/MouseEvent;)V+32
+j  javax.swing.ToolTipManager.mouseEntered(Ljava/awt/event/MouseEvent;)V+2
+j  java.awt.AWTEventMulticaster.mouseEntered(Ljava/awt/event/MouseEvent;)V+21
+j  java.awt.Component.processMouseEvent(Ljava/awt/event/MouseEvent;)V+94
+j  javax.swing.JComponent.processMouseEvent(Ljava/awt/event/MouseEvent;)V+23
+j  java.awt.Component.processEvent(Ljava/awt/AWTEvent;)V+81
+j  java.awt.Container.processEvent(Ljava/awt/AWTEvent;)V+18
+j  java.awt.Component.dispatchEventImpl(Ljava/awt/AWTEvent;)V+566
+j  java.awt.Container.dispatchEventImpl(Ljava/awt/AWTEvent;)V+42
+j  java.awt.Component.dispatchEvent(Ljava/awt/AWTEvent;)V+2
+j  java.awt.LightweightDispatcher.retargetMouseEvent(Ljava/awt/Component;ILjava/awt/event/MouseEvent;)V+320
+j  java.awt.LightweightDispatcher.trackMouseEnterExit(Ljava/awt/Component;Ljava/awt/event/MouseEvent;)V+158
+j  java.awt.LightweightDispatcher.processMouseEvent(Ljava/awt/event/MouseEvent;)Z+25
+j  java.awt.LightweightDispatcher.dispatchEvent(Ljava/awt/AWTEvent;)Z+50
+j  java.awt.Container.dispatchEventImpl(Ljava/awt/AWTEvent;)V+12
+j  java.awt.Window.dispatchEventImpl(Ljava/awt/AWTEvent;)V+19
+j  java.awt.Component.dispatchEvent(Ljava/awt/AWTEvent;)V+2
+j  java.awt.EventQueue.dispatchEventImpl(Ljava/awt/AWTEvent;Ljava/lang/Object;)V+41
+j  java.awt.EventQueue.access$000(Ljava/awt/EventQueue;Ljava/awt/AWTEvent;Ljava/lang/Object;)V+3
+j  java.awt.EventQueue$1.run()Ljava/lang/Void;+12
+j  java.awt.EventQueue$1.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x4df400]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x1e0
+V  [libjvm.so+0x70f6d9]  os::os_exception_wrapper(void (*)(JavaValue*, methodHandle*, JavaCallArguments*, Thread*), JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x19
+V  [libjvm.so+0x4df215]  JavaCalls::call(JavaValue*, methodHandle, JavaCallArguments*, Thread*)+0x25
+V  [libjvm.so+0x551179]  JVM_DoPrivileged+0x439
+C  [libjava.so+0x10e2c]  Java_java_security_AccessController_doPrivileged__Ljava_security_PrivilegedAction_2Ljava_security_AccessControlContext_2+0xc
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;Ljava/security/AccessControlContext;)Ljava/lang/Object;+28
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;+6
+j  java.awt.EventQueue$2.run()Ljava/lang/Void;+11
+j  java.awt.EventQueue$2.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x4df400]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x1e0
+V  [libjvm.so+0x70f6d9]  os::os_exception_wrapper(void (*)(JavaValue*, methodHandle*, JavaCallArguments*, Thread*), JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x19
+V  [libjvm.so+0x4df215]  JavaCalls::call(JavaValue*, methodHandle, JavaCallArguments*, Thread*)+0x25
+V  [libjvm.so+0x551179]  JVM_DoPrivileged+0x439
+C  [libjava.so+0x10e2c]  Java_java_security_AccessController_doPrivileged__Ljava_security_PrivilegedAction_2Ljava_security_AccessControlContext_2+0xc
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;Ljava/security/AccessControlContext;)Ljava/lang/Object;+28
+j  java.awt.EventQueue.dispatchEvent(Ljava/awt/AWTEvent;)V+73
+j  java.awt.EventDispatchThread.pumpOneEventForFilters(I)Z+204
+j  java.awt.EventDispatchThread.pumpEventsForFilter(ILjava/awt/Conditional;Ljava/awt/EventFilter;)V+30
+j  java.awt.EventDispatchThread.pumpEventsForHierarchy(ILjava/awt/Conditional;Ljava/awt/Component;)V+11
+j  java.awt.EventDispatchThread.pumpEvents(ILjava/awt/Conditional;)V+4
+j  java.awt.EventDispatchThread.pumpEvents(Ljava/awt/Conditional;)V+3
+j  java.awt.EventDispatchThread.run()V+9
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x4df400]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x1e0
+V  [libjvm.so+0x70f6d9]  os::os_exception_wrapper(void (*)(JavaValue*, methodHandle*, JavaCallArguments*, Thread*), JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x19
+V  [libjvm.so+0x4ded46]  JavaCalls::call_virtual(JavaValue*, KlassHandle, symbolHandle, symbolHandle, JavaCallArguments*, Thread*)+0x126
+V  [libjvm.so+0x4dedf7]  JavaCalls::call_virtual(JavaValue*, Handle, KlassHandle, symbolHandle, symbolHandle, Thread*)+0x47
+V  [libjvm.so+0x5729f0]  thread_entry(JavaThread*, Thread*)+0xa0
+V  [libjvm.so+0x8191a1]  JavaThread::run()+0x121
+V  [libjvm.so+0x710b8f]  java_start(Thread*)+0x13f
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  javax.swing.TimerQueue$1.<init>(Ljavax/swing/TimerQueue;Ljava/lang/ThreadGroup;)V+2
+j  javax.swing.TimerQueue.start()V+30
+j  javax.swing.TimerQueue.<init>()V+5
+j  javax.swing.TimerQueue.sharedInstance()Ljavax/swing/TimerQueue;+24
+j  javax.swing.Timer.timerQueue()Ljavax/swing/TimerQueue;+0
+j  javax.swing.Timer.stop()V+1
+j  javax.swing.ToolTipManager.initiateToolTip(Ljava/awt/event/MouseEvent;)V+32
+j  javax.swing.ToolTipManager.mouseEntered(Ljava/awt/event/MouseEvent;)V+2
+j  java.awt.AWTEventMulticaster.mouseEntered(Ljava/awt/event/MouseEvent;)V+21
+j  java.awt.Component.processMouseEvent(Ljava/awt/event/MouseEvent;)V+94
+j  javax.swing.JComponent.processMouseEvent(Ljava/awt/event/MouseEvent;)V+23
+j  java.awt.Component.processEvent(Ljava/awt/AWTEvent;)V+81
+j  java.awt.Container.processEvent(Ljava/awt/AWTEvent;)V+18
+j  java.awt.Component.dispatchEventImpl(Ljava/awt/AWTEvent;)V+566
+j  java.awt.Container.dispatchEventImpl(Ljava/awt/AWTEvent;)V+42
+j  java.awt.Component.dispatchEvent(Ljava/awt/AWTEvent;)V+2
+j  java.awt.LightweightDispatcher.retargetMouseEvent(Ljava/awt/Component;ILjava/awt/event/MouseEvent;)V+320
+j  java.awt.LightweightDispatcher.trackMouseEnterExit(Ljava/awt/Component;Ljava/awt/event/MouseEvent;)V+158
+j  java.awt.LightweightDispatcher.processMouseEvent(Ljava/awt/event/MouseEvent;)Z+25
+j  java.awt.LightweightDispatcher.dispatchEvent(Ljava/awt/AWTEvent;)Z+50
+j  java.awt.Container.dispatchEventImpl(Ljava/awt/AWTEvent;)V+12
+j  java.awt.Window.dispatchEventImpl(Ljava/awt/AWTEvent;)V+19
+j  java.awt.Component.dispatchEvent(Ljava/awt/AWTEvent;)V+2
+j  java.awt.EventQueue.dispatchEventImpl(Ljava/awt/AWTEvent;Ljava/lang/Object;)V+41
+j  java.awt.EventQueue.access$000(Ljava/awt/EventQueue;Ljava/awt/AWTEvent;Ljava/lang/Object;)V+3
+j  java.awt.EventQueue$1.run()Ljava/lang/Void;+12
+j  java.awt.EventQueue$1.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;+0
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;Ljava/security/AccessControlContext;)Ljava/lang/Object;+28
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;+6
+j  java.awt.EventQueue$2.run()Ljava/lang/Void;+11
+j  java.awt.EventQueue$2.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;+0
+j  java.security.AccessControlContext$1.doIntersectionPrivilege(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;Ljava/security/AccessControlContext;)Ljava/lang/Object;+28
+j  java.awt.EventQueue.dispatchEvent(Ljava/awt/AWTEvent;)V+73
+j  java.awt.EventDispatchThread.pumpOneEventForFilters(I)Z+204
+j  java.awt.EventDispatchThread.pumpEventsForFilter(ILjava/awt/Conditional;Ljava/awt/EventFilter;)V+30
+j  java.awt.EventDispatchThread.pumpEventsForHierarchy(ILjava/awt/Conditional;Ljava/awt/Component;)V+11
+j  java.awt.EventDispatchThread.pumpEvents(ILjava/awt/Conditional;)V+4
+j  java.awt.EventDispatchThread.pumpEvents(Ljava/awt/Conditional;)V+3
+j  java.awt.EventDispatchThread.run()V+9
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+=>0x00000000419ef000 JavaThread "AWT-EventQueue-0" [_thread_in_vm, id=13931, stack(0x00007f2e6fafb000,0x00007f2e6fbfc000)]
+  0x00007f2e79905800 JavaThread "btpool0-6" [_thread_blocked, id=13882, stack(0x00007f2e6fbfc000,0x00007f2e6fcfd000)]
+  0x00000000419a8800 JavaThread "Code server for co.transglobal.Main from Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:11.0) Gecko/20100101 Firefox/11.0 on http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997 @ Bn#c.Dx/+}svESxW" daemon [_thread_blocked, id=13867, stack(0x00007f2e6fdfe000,0x00007f2e6feff000)]
+  0x00007f2e79246000 JavaThread "btpool0-4" [_thread_blocked, id=13866, stack(0x00007f2e6feff000,0x00007f2e70000000)]
+  0x00007f2e78b9d000 JavaThread "btpool0-3" [_thread_blocked, id=13865, stack(0x00007f2e7c506000,0x00007f2e7c607000)]
+  0x00007f2e78b9c800 JavaThread "btpool0-2" [_thread_blocked, id=13864, stack(0x00007f2e74b45000,0x00007f2e74c46000)]
+  0x00007f2e78716800 JavaThread "Thread-13" [_thread_in_native, id=13861, stack(0x00007f2e759e4000,0x00007f2e75ae5000)]
+  0x00007f2e70c0d000 JavaThread "Timer-1" daemon [_thread_blocked, id=13858, stack(0x00007f2e74069000,0x00007f2e7416a000)]
+  0x00007f2e78475000 JavaThread "btpool0-1 - Acceptor0 SelectChannelConnector@127.0.0.1:8888" [_thread_in_native, id=13857, stack(0x00007f2e74943000,0x00007f2e74a44000)]
+  0x00007f2e78483800 JavaThread "btpool0-0" [_thread_blocked, id=13856, stack(0x00007f2e74a44000,0x00007f2e74b45000)]
+  0x00007f2e78480000 JavaThread "GC Daemon" daemon [_thread_blocked, id=13850, stack(0x00007f2e756da000,0x00007f2e757db000)]
+  0x0000000041e05000 JavaThread "Code server listener" daemon [_thread_in_native, id=13847, stack(0x00007f2e754d8000,0x00007f2e755d9000)]
+  0x00007f2e70468800 JavaThread "Timer-0" daemon [_thread_blocked, id=13846, stack(0x00007f2e755d9000,0x00007f2e756da000)]
+  0x0000000041e83800 JavaThread "UnitWriteThread" daemon [_thread_blocked, id=13844, stack(0x00007f2e757db000,0x00007f2e758dc000)]
+  0x0000000041bfb800 JavaThread "org.netbeans.modules.debugger.jpda.visual AWT Access Loop" daemon [_thread_blocked, id=13841, stack(0x00007f2e75ae5000,0x00007f2e75be6000)]
+  0x0000000041aca800 JavaThread "AWT-Shutdown" [_thread_blocked, id=13839, stack(0x00007f2e75ce7000,0x00007f2e75de8000)]
+  0x00007f2e782f4800 JavaThread "com.google.gwt.thirdparty.guava.common.base.internal.Finalizer" daemon [_thread_blocked, id=13837, stack(0x00007f2e76655000,0x00007f2e76756000)]
+  0x00007f2e782f2000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=13836, stack(0x00007f2e76785000,0x00007f2e76886000)]
+  0x00007f2e7800a800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=13833, stack(0x00007f2e7caa7000,0x00007f2e7cba8000)]
+  0x00007f2e78008000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=13832, stack(0x00007f2e7cba8000,0x00007f2e7cca9000)]
+  0x00007f2e78005000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=13831, stack(0x00007f2e7cca9000,0x00007f2e7cdaa000)]
+  0x0000000041926800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=13828, stack(0x00007f2e7cdaa000,0x00007f2e7ceab000)]
+  0x00007f2e78002000 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=13827, stack(0x00007f2e7ceab000,0x00007f2e7cfac000)]
+  0x0000000041924000 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=13825, stack(0x00007f2e7cfac000,0x00007f2e7d0ad000)]
+  0x0000000041914800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13824, stack(0x00007f2e7d1b1000,0x00007f2e7d2b2000)]
+  0x00000000418f4000 JavaThread "Finalizer" daemon [_thread_blocked, id=13823, stack(0x00007f2e7d2b2000,0x00007f2e7d3b3000)]
+  0x00000000418f2000 JavaThread "Reference Handler" daemon [_thread_blocked, id=13822, stack(0x00007f2e7d3b3000,0x00007f2e7d4b4000)]
+  0x000000004188d000 JavaThread "main" [_thread_blocked, id=13816, stack(0x00007f2e825ad000,0x00007f2e826ae000)]
+
+Other Threads:
+  0x00000000418eb000 VMThread [stack: 0x00007f2e7d4b4000,0x00007f2e7d5b5000] [id=13821]
+  0x00007f2e78015800 WatcherThread [stack: 0x00007f2e7c9a6000,0x00007f2e7caa7000] [id=13834]
+
+VM state:synchronizing (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000000004188a040] Threads_lock - owner thread: 0x00000000418eb000
+[0x000000004188a540] Heap_lock - owner thread: 0x00000000419a8800
+
+Heap
+ PSYoungGen      total 32192K, used 835K [0x00000000faab0000, 0x00000000fcb40000, 0x0000000100000000)
+  eden space 30976K, 2% used [0x00000000faab0000,0x00000000fab80f10,0x00000000fc8f0000)
+  from space 1216K, 0% used [0x00000000fc8f0000,0x00000000fc8f0000,0x00000000fca20000)
+  to   space 1152K, 0% used [0x00000000fca20000,0x00000000fca20000,0x00000000fcb40000)
+ PSOldGen        total 174784K, used 146555K [0x00000000f0000000, 0x00000000faab0000, 0x00000000faab0000)
+  object space 174784K, 83% used [0x00000000f0000000,0x00000000f8f1ed88,0x00000000faab0000)
+ PSPermGen       total 83968K, used 83968K [0x00000000eae00000, 0x00000000f0000000, 0x00000000f0000000)
+  object space 83968K, 100% used [0x00000000eae00000,0x00000000f0000000,0x00000000f0000000)
+
+Code Cache  [0x00007f2e7e1db000, 0x00007f2e7e89b000, 0x00007f2e811db000)
+ total_blobs=2035 nmethods=1348 adapters=648 free_code_cache=43868992 largest_free_block=131456
+
+Dynamic libraries:
+40000000-40009000 r-xp 00000000 08:01 29364980                           /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/bin/java
+40108000-4010a000 rwxp 00008000 08:01 29364980                           /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/bin/java
+41878000-455a4000 rwxp 00000000 00:00 0                                  [heap]
+eae00000-f0000000 rwxp 00000000 00:00 0 
+f0000000-faab0000 rwxp 00000000 00:00 0 
+faab0000-fcb40000 rwxp 00000000 00:00 0 
+fcb40000-100000000 ---p 00000000 00:00 0 
+7f2e68000000-7f2e6b314000 rwxp 00000000 00:00 0 
+7f2e6b314000-7f2e6c000000 ---p 00000000 00:00 0 
+7f2e6f9fa000-7f2e6f9fd000 ---p 00000000 00:00 0 
+7f2e6f9fd000-7f2e6fafb000 rwxp 00000000 00:00 0 
+7f2e6fafb000-7f2e6fafe000 ---p 00000000 00:00 0 
+7f2e6fafe000-7f2e6fbfc000 rwxp 00000000 00:00 0 
+7f2e6fbfc000-7f2e6fbff000 ---p 00000000 00:00 0 
+7f2e6fbff000-7f2e6fcfd000 rwxp 00000000 00:00 0 
+7f2e6fcfd000-7f2e6fd00000 ---p 00000000 00:00 0 
+7f2e6fd00000-7f2e6fdfe000 rwxp 00000000 00:00 0 
+7f2e6fdfe000-7f2e6fe01000 ---p 00000000 00:00 0 
+7f2e6fe01000-7f2e6feff000 rwxp 00000000 00:00 0 
+7f2e6feff000-7f2e6ff02000 ---p 00000000 00:00 0 
+7f2e6ff02000-7f2e70000000 rwxp 00000000 00:00 0 
+7f2e70000000-7f2e73ffb000 rwxp 00000000 00:00 0 
+7f2e73ffb000-7f2e74000000 ---p 00000000 00:00 0 
+7f2e74069000-7f2e7406c000 ---p 00000000 00:00 0 
+7f2e7406c000-7f2e7416a000 rwxp 00000000 00:00 0 
+7f2e7416a000-7f2e74172000 r-xs 0004a000 fd:00 39886                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.orm-3.0.2.RELEASE.jar
+7f2e74172000-7f2e74175000 r-xs 0001a000 fd:00 39857                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/hibernate-entitymanager.jar
+7f2e74175000-7f2e74177000 r-xs 00010000 fd:00 38386                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-fastinfoset-1.4.1.jar
+7f2e74177000-7f2e742eb000 r-xs 0198d000 fd:00 39905                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/gwt-dev.jar
+7f2e742eb000-7f2e742f0000 r-xs 0006f000 fd:00 39894                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/postgresql-8.3-603.jdbc4.jar
+7f2e742f0000-7f2e742f5000 r-xs 0002e000 fd:00 39848                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-javamail_1.4_spec-1.6.jar
+7f2e742f5000-7f2e742f8000 r-xs 00009000 fd:00 38390                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-jaxws-api-1.4.1.jar
+7f2e742f8000-7f2e74301000 r-xs 00064000 fd:00 39910                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jasperreports-applet-4.5.0.jar
+7f2e74301000-7f2e74306000 r-xs 00046000 fd:00 39842                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/dom4j-1.6.1.jar
+7f2e74306000-7f2e7430f000 r-xs 00046000 fd:00 39874                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.aop-3.0.2.RELEASE.jar
+7f2e7430f000-7f2e74316000 r-xs 00049000 fd:00 39804                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/cglib-nodep.jar
+7f2e74316000-7f2e74320000 r-xs 00054000 fd:00 39890                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.web-3.0.2.RELEASE.jar
+7f2e74320000-7f2e74322000 r-xs 00011000 fd:00 39865                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/json-0.10.jar
+7f2e74322000-7f2e74323000 r-xs 00000000 fd:00 39882                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.instrument-3.0.2.RELEASE.jar
+7f2e74323000-7f2e74327000 r-xs 00020000 fd:00 39904                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/XmlSchema-1.4.5.jar
+7f2e74327000-7f2e7432f000 r-xs 00057000 fd:00 39900                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/standard.jar
+7f2e7432f000-7f2e74330000 r-xs 00002000 fd:00 38396                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-mtompolicy-1.4.1.jar
+7f2e74330000-7f2e74416000 r-xs 00b59000 fd:00 39907                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/gwt-user.jar
+7f2e74416000-7f2e7441f000 r-xs 00042000 fd:00 39839                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/cxf-api-2.2.6.jar
+7f2e7441f000-7f2e74422000 r-xs 00023000 fd:00 38378                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axiom-dom-1.2.7.jar
+7f2e74422000-7f2e74423000 r-xs 00001000 fd:00 39899                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/slf4j-jcl-1.6.1.jar
+7f2e74423000-7f2e74428000 r-xs 00044000 fd:00 39841                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/cxf-rt-frontend-jaxws-2.2.6.jar
+7f2e74428000-7f2e74436000 r-xs 00080000 fd:00 39809                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.collections-3.2.0.jar
+7f2e74436000-7f2e7443d000 r-xs 0007c000 fd:00 39863                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jetty-6.1.21.jar
+7f2e7443d000-7f2e74447000 r-xs 00061000 fd:00 39805                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.com.thoughtworks.xstream-1.3.1.jar
+7f2e74447000-7f2e744b0000 r-xs 004c6000 fd:00 39906                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/gwt-servlet.jar
+7f2e744b0000-7f2e744b4000 r-xs 00030000 fd:00 39813                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.lang-2.1.0.jar
+7f2e744b4000-7f2e744b7000 r-xs 0000f000 fd:00 39850                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-servlet_2.5_spec-1.2.jar
+7f2e744b7000-7f2e744bc000 r-xs 0002c000 fd:00 38377                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axiom-api-1.2.7.jar
+7f2e744bc000-7f2e744bf000 r-xs 00022000 fd:00 39820                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.codehaus.jackson-1.4.2.jar
+7f2e744bf000-7f2e744e2000 r-xs 00178000 fd:00 39802                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/bcprov-jdk16-141.jar
+7f2e744e2000-7f2e744e4000 r-xs 00006000 fd:00 38398                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-saaj-api-1.4.1.jar
+7f2e744e4000-7f2e744e7000 r-xs 0000c000 fd:00 39831                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-fileupload-1.2.1.jar
+7f2e744e7000-7f2e744f5000 r-xs 0007f000 fd:00 39826                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-collections-3.2.1.jar
+7f2e744f5000-7f2e744f6000 r-xs 0000a000 fd:00 39822                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.objectweb.asm-3.1.0.jar
+7f2e744f6000-7f2e744fc000 r-xs 00066000 fd:00 38371                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/postgresql-8.3-603.jdbc3.jar
+7f2e744fc000-7f2e74509000 r-xs 000ac000 fd:00 38395                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-metadata-1.4.1.jar
+7f2e74509000-7f2e7450d000 r-xs 00023000 fd:00 39881                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.expression-3.0.2.RELEASE.jar
+7f2e7450d000-7f2e74512000 r-xs 00020000 fd:00 39901                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/wsdl4j-1.6.2.jar
+7f2e74512000-7f2e74517000 r-xs 00019000 fd:00 39844                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/eclipselink-javax.persistence-2.0.jar
+7f2e74517000-7f2e7451a000 r-xs 00018000 fd:00 39812                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.io-1.4.0.jar
+7f2e7451a000-7f2e7451f000 r-xs 00026000 fd:00 39891                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.web.portlet-3.0.2.RELEASE.jar
+7f2e7451f000-7f2e74525000 r-xs 00037000 fd:00 38373                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/annogen-0.1.0.jar
+7f2e74525000-7f2e74546000 r-xs 001fd000 fd:00 39859                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/hibernate3.jar
+7f2e74546000-7f2e7454d000 r-xs 00066000 fd:00 39895                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/quartz-1.8.4.jar
+7f2e7454d000-7f2e74551000 r-xs 0003c000 fd:00 39834                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-lang-2.4.jar
+7f2e74551000-7f2e7455a000 r-xs 0004f000 fd:00 39880                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.core-3.0.2.RELEASE.jar
+7f2e7455a000-7f2e7455e000 r-xs 0001f000 fd:00 39828                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-digester-1.7.jar
+7f2e7455e000-7f2e7458b000 r-xs 0025f000 fd:00 39854                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/gxt-2.2.5-gwt22.jar
+7f2e7458b000-7f2e7458e000 r-xs 0001f000 fd:00 39837                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-validator-1.3.1.jar
+7f2e7458e000-7f2e74590000 r-xs 00020000 fd:00 38385                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-corba-1.4.1.jar
+7f2e74590000-7f2e74592000 r-xs 00016000 fd:00 39815                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.pool-1.5.3.jar
+7f2e74592000-7f2e74593000 r-xs 0000c000 fd:00 39875                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.asm-3.0.2.RELEASE.jar
+7f2e74593000-7f2e74596000 r-xs 0000e000 fd:00 38383                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-clustering-1.4.1.jar
+7f2e74596000-7f2e74598000 r-xs 0000a000 fd:00 39849                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-jaxws_2.1_spec-1.0.jar
+7f2e74598000-7f2e745a9000 r-xs 00090000 fd:00 39878                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.context-3.0.2.RELEASE.jar
+7f2e745a9000-7f2e745ae000 r-xs 00028000 fd:00 39885                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.jms-3.0.2.RELEASE.jar
+7f2e745ae000-7f2e745c0000 r-xs 000c2000 fd:00 39862                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jaxb-impl-2.1.12.jar
+7f2e745c0000-7f2e745fe000 r-xs 0025d000 fd:00 39817                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.xmlbeans-2.4.0.jar
+7f2e745fe000-7f2e74604000 r-xs 00045000 fd:00 39832                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-httpclient-3.1.jar
+7f2e74604000-7f2e74607000 r-xs 00022000 fd:00 38375                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/antlr-runtime-3.1.3.jar
+7f2e74607000-7f2e74608000 r-xs 00002000 fd:00 38399                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-spring-1.4.1.jar
+7f2e74608000-7f2e7460b000 r-xs 00018000 fd:00 39833                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-io-1.4.jar
+7f2e7460b000-7f2e7460d000 r-xs 0001c000 fd:00 39810                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.dbcp-1.2.2.osgi.jar
+7f2e7460d000-7f2e7460e000 r-xs 00006000 fd:00 38400                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-xmlbeans-1.4.1.jar
+7f2e7460e000-7f2e74610000 r-xs 0000e000 fd:00 38372                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/activation-1.1.jar
+7f2e74610000-7f2e7461a000 r-xs 00053000 fd:00 39884                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.jdbc-3.0.2.RELEASE.jar
+7f2e7461a000-7f2e7461d000 r-xs 0000a000 fd:00 39845                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/ejb3-persistence.jar
+7f2e7461d000-7f2e7461e000 r-xs 00003000 fd:00 38393                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-jws-api-1.4.1.jar
+7f2e7461e000-7f2e74621000 r-xs 00018000 fd:00 39827                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-dbcp-1.2.1.jar
+7f2e74621000-7f2e74623000 r-xs 00005000 fd:00 38388                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-jaxbri-1.4.1.jar
+7f2e74623000-7f2e74626000 r-xs 0000c000 fd:00 39873                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.eclipse.persistence.oracle.jar
+7f2e74626000-7f2e74627000 r-xs 00003000 fd:00 39852                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-ws-metadata_2.0_spec-1.1.2.jar
+7f2e74627000-7f2e74629000 r-xs 00004000 fd:00 39866                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jstl.jar
+7f2e74629000-7f2e74631000 r-xs 00049000 fd:00 38401                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/backport-util-concurrent-3.1.jar
+7f2e74631000-7f2e74636000 r-xs 00037000 fd:00 38384                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-codegen-1.4.1.jar
+7f2e74636000-7f2e74641000 r-xs 000b3000 fd:00 38380                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-adb-1.4.1.jar
+7f2e74641000-7f2e74644000 r-xs 00013000 fd:00 39861                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jaxb-api-2.1.jar
+7f2e74644000-7f2e74647000 r-xs 0000c000 fd:00 39869                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.eclipse.persistence.antlr.jar
+7f2e74647000-7f2e7464e000 r-xs 0005a000 fd:00 39816                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.log4j-1.2.15.jar
+7f2e7464e000-7f2e74652000 r-xs 0003f000 fd:00 39855                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/hibernate-annotations.jar
+7f2e74652000-7f2e74654000 r-xs 00002000 fd:00 39847                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-annotation_1.0_spec-1.1.1.jar
+7f2e74654000-7f2e74656000 r-xs 00006000 fd:00 39893                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.web.struts-3.0.2.RELEASE.jar
+7f2e74656000-7f2e74658000 r-xs 00007000 fd:00 39846                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-activation_1.1_spec-1.0.2.jar
+7f2e74658000-7f2e746a2000 r-xs 00434000 fd:00 39838                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/cxf-2.2.6.jar
+7f2e746a2000-7f2e746a4000 r-xs 00007000 fd:00 39823                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.objectweb.asm.commons-3.1.0.jar
+7f2e746a4000-7f2e746a9000 r-xs 0002f000 fd:00 38402                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/bcmail-jdk15-141.jar
+7f2e746a9000-7f2e746ac000 r-xs 00019000 fd:00 39830                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-el-1.0.jar
+7f2e746ac000-7f2e746af000 r-xs 00018000 fd:00 39824                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-beanutils-20030211.134440.jar
+7f2e746af000-7f2e746b1000 r-xs 0025c000 fd:00 39911                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jasperreports-fonts-4.5.0.jar
+7f2e746b1000-7f2e746b4000 r-xs 00016000 fd:00 39879                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.context.support-3.0.2.RELEASE.jar
+7f2e746b4000-7f2e746bc000 r-xs 00057000 fd:00 39821                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.codehaus.jackson.mapper-1.4.2.jar
+7f2e746bc000-7f2e746df000 r-xs 0016c000 fd:00 38403                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/bcprov-ext-jdk15-141.jar
+7f2e746df000-7f2e7471b000 r-xs 00300000 fd:00 39909                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jasperreports-4.5.0.jar
+7f2e7471b000-7f2e7471d000 r-xs 00006000 fd:00 39876                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.aspects-3.0.2.RELEASE.jar
+7f2e7471d000-7f2e7471f000 r-xs 00000000 fd:00 39807                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar
+7f2e7471f000-7f2e74724000 r-xs 0002d000 fd:00 39888                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.test-3.0.2.RELEASE.jar
+7f2e74724000-7f2e7472a000 r-xs 0007a000 fd:00 39902                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/wstx-asl-3.2.9.jar
+7f2e7472a000-7f2e7472c000 r-xs 00006000 fd:00 39851                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar
+7f2e7472c000-7f2e7472f000 r-xs 0000b000 fd:00 39811                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.fileupload-1.2.0.jar
+7f2e7472f000-7f2e74736000 r-xs 0004e000 fd:00 39858                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/hibernate-tools.jar
+7f2e74736000-7f2e74772000 r-xs 0030a000 fd:00 39912                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jasperreports-javaflow-4.5.0.jar
+7f2e74772000-7f2e74774000 r-xs 00028000 fd:00 38381                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-adb-codegen-1.4.1.jar
+7f2e74774000-7f2e74775000 r-xs 00008000 fd:00 38391                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-jibx-1.4.1.jar
+7f2e74775000-7f2e74781000 r-xs 00108000 fd:00 39908                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/itext-2.1.7.jar
+7f2e74781000-7f2e74783000 r-xs 00014000 fd:00 38397                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-saaj-1.4.1.jar
+7f2e74783000-7f2e74785000 r-xs 0000a000 fd:00 39825                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-codec-1.3.jar
+7f2e74785000-7f2e74788000 r-xs 00028000 fd:00 39864                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jetty-util-6.1.21.jar
+7f2e74788000-7f2e7478a000 r-xs 00003000 fd:00 38382                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-ant-plugin-1.4.1.jar
+7f2e7478a000-7f2e74792000 r-xs 00063000 fd:00 39872                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.eclipse.persistence.jpa.jar
+7f2e74792000-7f2e74793000 r-xs 00001000 fd:00 39883                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.instrument.tomcat-3.0.2.RELEASE.jar
+7f2e74793000-7f2e74795000 r-xs 0000d000 fd:00 39887                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.oxm-3.0.2.RELEASE.jar
+7f2e74795000-7f2e74797000 r-xs 00005000 fd:00 38387                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-java2wsdl-1.4.1.jar
+7f2e74797000-7f2e7479e000 r-xs 0005a000 fd:00 39806                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.javax.mail-1.4.0.jar
+7f2e7479e000-7f2e747a0000 r-xs 0000e000 fd:00 39814                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.logging.jar
+7f2e747a0000-7f2e747a3000 r-xs 0000d000 fd:00 39860                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/javax.persistence.jar
+7f2e747a3000-7f2e747b8000 r-xs 001c2000 fd:00 38374                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/antlr-3.2.jar
+7f2e747b8000-7f2e747ba000 r-xs 0000d000 fd:00 39835                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-logging-1.1.1.jar
+7f2e747ba000-7f2e747ce000 r-xs 000a5000 fd:00 39853                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/gwt-maps.jar
+7f2e747ce000-7f2e747d0000 r-xs 00013000 fd:00 39903                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/xml-resolver-1.2.jar
+7f2e747d0000-7f2e747d2000 r-xs 00003000 fd:00 38392                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-json-1.4.1.jar
+7f2e747d2000-7f2e747d5000 r-xs 0000f000 fd:00 39829                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-discovery-20040218.194635.jar
+7f2e747d5000-7f2e747e5000 r-xs 0012c000 fd:00 38394                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-kernel-1.4.1.jar
+7f2e747e5000-7f2e747e8000 r-xs 0000e000 fd:00 39856                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/hibernate-commons-annotations.jar
+7f2e747e8000-7f2e747e9000 r-xs 00005000 fd:00 39803                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/bctsp-jdk15-141.jar
+7f2e747e9000-7f2e747f0000 r-xs 00032000 fd:00 39889                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.transaction-3.0.2.RELEASE.jar
+7f2e747f0000-7f2e7481e000 r-xs 002fa000 fd:00 39871                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.eclipse.persistence.core.jar
+7f2e7481e000-7f2e74839000 r-xs 001b2000 fd:00 38376                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/aspectjweaver-1.5.3.jar
+7f2e74839000-7f2e74845000 r-xs 00089000 fd:00 38389                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axis2-jaxws-1.4.1.jar
+7f2e74845000-7f2e7484a000 r-xs 0002f000 fd:00 39870                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.eclipse.persistence.asm.jar
+7f2e7484a000-7f2e7484d000 r-xs 0001c000 fd:00 38379                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/axiom-impl-1.2.7.jar
+7f2e7484d000-7f2e7484f000 r-xs 00005000 fd:00 39898                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/slf4j-api-1.6.1.jar
+7f2e7484f000-7f2e74851000 r-xs 00008000 fd:00 39836                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-pool-20030825.183949.jar
+7f2e74851000-7f2e74853000 r-xs 00007000 fd:00 39868                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/neethi-2.0.4.jar
+7f2e74853000-7f2e74855000 r-xs 00003000 fd:00 39896                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/saaj-api-1.3.jar
+7f2e74855000-7f2e74872000 r-xs 0017c000 fd:00 39914                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/poi-3.7-20101029.jar
+7f2e74872000-7f2e7487b000 r-xs 0005a000 fd:00 39892                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.web.servlet-3.0.2.RELEASE.jar
+7f2e7487b000-7f2e74890000 r-xs 0017c000 fd:00 39819                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar
+7f2e74890000-7f2e74893000 r-xs 00015000 fd:00 39913                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/commons-javaflow-20060411.jar
+7f2e74893000-7f2e748df000 r-xs 0050f000 fd:00 39843                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/eclipselink-2.0.2.jar
+7f2e748df000-7f2e74943000 r-xs 0080a000 fd:00 39818                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar
+7f2e74943000-7f2e74946000 ---p 00000000 00:00 0 
+7f2e74946000-7f2e74a44000 rwxp 00000000 00:00 0 
+7f2e74a44000-7f2e74a47000 ---p 00000000 00:00 0 
+7f2e74a47000-7f2e74b45000 rwxp 00000000 00:00 0 
+7f2e74b45000-7f2e74b48000 ---p 00000000 00:00 0 
+7f2e74b48000-7f2e74c46000 rwxp 00000000 00:00 0 
+7f2e74c46000-7f2e74c5d000 r-xp 00000000 08:01 2887492                    /lib/x86_64-linux-gnu/libresolv-2.13.so
+7f2e74c5d000-7f2e74e5d000 ---p 00017000 08:01 2887492                    /lib/x86_64-linux-gnu/libresolv-2.13.so
+7f2e74e5d000-7f2e74e5e000 r-xp 00017000 08:01 2887492                    /lib/x86_64-linux-gnu/libresolv-2.13.so
+7f2e74e5e000-7f2e74e5f000 rwxp 00018000 08:01 2887492                    /lib/x86_64-linux-gnu/libresolv-2.13.so
+7f2e74e5f000-7f2e74e61000 rwxp 00000000 00:00 0 
+7f2e74e61000-7f2e74e67000 r-xp 00000000 08:01 2887485                    /lib/x86_64-linux-gnu/libnss_dns-2.13.so
+7f2e74e67000-7f2e75066000 ---p 00006000 08:01 2887485                    /lib/x86_64-linux-gnu/libnss_dns-2.13.so
+7f2e75066000-7f2e75067000 r-xp 00005000 08:01 2887485                    /lib/x86_64-linux-gnu/libnss_dns-2.13.so
+7f2e75067000-7f2e75068000 rwxp 00006000 08:01 2887485                    /lib/x86_64-linux-gnu/libnss_dns-2.13.so
+7f2e75068000-7f2e7506a000 r-xp 00000000 08:01 2883649                    /lib/libnss_mdns4_minimal.so.2
+7f2e7506a000-7f2e75269000 ---p 00002000 08:01 2883649                    /lib/libnss_mdns4_minimal.so.2
+7f2e75269000-7f2e7526a000 r-xp 00001000 08:01 2883649                    /lib/libnss_mdns4_minimal.so.2
+7f2e7526a000-7f2e7526b000 rwxp 00002000 08:01 2883649                    /lib/libnss_mdns4_minimal.so.2
+7f2e7526b000-7f2e754d8000 rwxs 00000000 00:04 43581496                   /SYSV00000000 (deleted)
+7f2e754d8000-7f2e754db000 ---p 00000000 00:00 0 
+7f2e754db000-7f2e755d9000 rwxp 00000000 00:00 0 
+7f2e755d9000-7f2e755dc000 ---p 00000000 00:00 0 
+7f2e755dc000-7f2e756da000 rwxp 00000000 00:00 0 
+7f2e756da000-7f2e756dd000 ---p 00000000 00:00 0 
+7f2e756dd000-7f2e757db000 rwxp 00000000 00:00 0 
+7f2e757db000-7f2e757de000 ---p 00000000 00:00 0 
+7f2e757de000-7f2e758dc000 rwxp 00000000 00:00 0 
+7f2e758dc000-7f2e758e3000 r-xp 00000000 08:01 29365580                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnio.so
+7f2e758e3000-7f2e759e2000 ---p 00007000 08:01 29365580                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnio.so
+7f2e759e2000-7f2e759e4000 rwxp 00006000 08:01 29365580                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnio.so
+7f2e759e4000-7f2e759e7000 ---p 00000000 00:00 0 
+7f2e759e7000-7f2e75ae5000 rwxp 00000000 00:00 0 
+7f2e75ae5000-7f2e75ae8000 ---p 00000000 00:00 0 
+7f2e75ae8000-7f2e75be6000 rwxp 00000000 00:00 0 
+7f2e75be6000-7f2e75be9000 ---p 00000000 00:00 0 
+7f2e75be9000-7f2e75ce7000 rwxp 00000000 00:00 0 
+7f2e75ce7000-7f2e75cea000 ---p 00000000 00:00 0 
+7f2e75cea000-7f2e75de8000 rwxp 00000000 00:00 0 
+7f2e75de8000-7f2e75de9000 r-xs 00000000 08:01 4590007                    /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le64.cache-3
+7f2e75de9000-7f2e75df2000 r-xs 00000000 08:01 4587603                    /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-3
+7f2e75df2000-7f2e75df4000 r-xs 00000000 08:01 4590001                    /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le64.cache-3
+7f2e75df4000-7f2e75df7000 r-xs 00000000 08:01 4589999                    /var/cache/fontconfig/e383d7ea5fbe662a33d9b44caf393297-le64.cache-3
+7f2e75df7000-7f2e75dfb000 r-xs 00000000 08:01 4589998                    /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le64.cache-3
+7f2e75dfb000-7f2e75dfc000 r-xs 00000000 08:01 4589997                    /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le64.cache-3
+7f2e75dfc000-7f2e75e01000 r-xs 00000000 08:01 4589991                    /var/cache/fontconfig/6eb3985aa4124903f6ff08ba781cd364-le64.cache-3
+7f2e75e01000-7f2e75e02000 r-xs 00000000 08:01 4589983                    /var/cache/fontconfig/4c73fe0c47614734b17d736dbde7580a-le64.cache-3
+7f2e75e02000-7f2e75e03000 r-xs 00000000 08:01 4589948                    /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le64.cache-3
+7f2e75e03000-7f2e75e04000 r-xs 00000000 08:01 4589947                    /var/cache/fontconfig/6a53c69dea097a2d716e069445527da8-le64.cache-3
+7f2e75e04000-7f2e75e0a000 r-xs 00000000 08:01 4589936                    /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le64.cache-3
+7f2e75e0a000-7f2e75e13000 r-xs 00000000 08:01 4589927                    /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le64.cache-3
+7f2e75e13000-7f2e75e23000 r-xs 00000000 08:01 4589924                    /var/cache/fontconfig/0f34bcd4b6ee430af32735b75db7f02b-le64.cache-3
+7f2e75e23000-7f2e75e51000 r-xs 00000000 08:01 4589812                    /var/cache/fontconfig/365b55f210c0a22e9a19e35191240f32-le64.cache-3
+7f2e75e5b000-7f2e75e6a000 r-xs 00667000 08:01 29365655                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/charsets.jar
+7f2e75e6a000-7f2e75e79000 r-xs 00667000 08:01 29365655                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/charsets.jar
+7f2e75e79000-7f2e75e7f000 r-xs 00043000 fd:00 39840                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/cxf-common-utilities-2.2.6.jar
+7f2e75e7f000-7f2e75e80000 r-xs 00001000 fd:00 39867                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/jta.jar
+7f2e75e80000-7f2e75e8c000 r-xs 0007b000 fd:00 39877                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/org.springframework.beans-3.0.2.RELEASE.jar
+7f2e75e8c000-7f2e75e91000 r-xs 00035000 fd:00 39808                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/com.springsource.org.apache.commons.beanutils-1.8.0.jar
+7f2e75e91000-7f2e75e96000 r-xs 0003f000 fd:00 39897                      /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web/WEB-INF/lib/saaj-impl-1.3.2.jar
+7f2e75e96000-7f2e75e9c000 r-xs 00095000 08:01 29365647                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/jsse.jar
+7f2e75e9c000-7f2e75e9f000 r-xs 00013000 08:01 29365762                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/jce.jar
+7f2e75e9f000-7f2e75ea3000 rwxs 00000000 00:04 43614269                   /SYSV00000000 (deleted)
+7f2e75ea3000-7f2e75eab000 r-xs 00115000 08:01 29365696                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/resources.jar
+7f2e75eab000-7f2e75eac000 r-xs 00000000 08:01 4590007                    /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le64.cache-3
+7f2e75eac000-7f2e75eb5000 r-xs 00000000 08:01 4587603                    /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-3
+7f2e75eb5000-7f2e75eb7000 r-xs 00000000 08:01 4590001                    /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le64.cache-3
+7f2e75eb7000-7f2e75eba000 r-xs 00000000 08:01 4589999                    /var/cache/fontconfig/e383d7ea5fbe662a33d9b44caf393297-le64.cache-3
+7f2e75eba000-7f2e75ebe000 r-xs 00000000 08:01 4589998                    /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le64.cache-3
+7f2e75ebe000-7f2e75ebf000 r-xs 00000000 08:01 4589997                    /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le64.cache-3
+7f2e75ebf000-7f2e75ec4000 r-xs 00000000 08:01 4589991                    /var/cache/fontconfig/6eb3985aa4124903f6ff08ba781cd364-le64.cache-3
+7f2e75ec4000-7f2e75ec5000 r-xs 00000000 08:01 4589983                    /var/cache/fontconfig/4c73fe0c47614734b17d736dbde7580a-le64.cache-3
+7f2e75ec5000-7f2e75ecb000 r-xs 00000000 08:01 4589936                    /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le64.cache-3
+7f2e75ecb000-7f2e75ed4000 r-xs 00000000 08:01 4589927                    /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le64.cache-3
+7f2e75ed4000-7f2e75ee4000 r-xs 00000000 08:01 4589924                    /var/cache/fontconfig/0f34bcd4b6ee430af32735b75db7f02b-le64.cache-3
+7f2e75ee4000-7f2e75ee7000 r-xs 00000000 08:01 4589898                    /var/cache/fontconfig/d60319d88cac85ba9e1a07bd06cfbb8c-le64.cache-3
+7f2e75ee7000-7f2e75f15000 r-xs 00000000 08:01 4589812                    /var/cache/fontconfig/365b55f210c0a22e9a19e35191240f32-le64.cache-3
+7f2e75f15000-7f2e75f18000 ---p 00000000 00:00 0 
+7f2e75f18000-7f2e76016000 rwxp 00000000 00:00 0 
+7f2e76016000-7f2e7601b000 r-xp 00000000 08:01 30023444                   /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f2e7601b000-7f2e7621a000 ---p 00005000 08:01 30023444                   /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f2e7621a000-7f2e7621b000 r-xp 00004000 08:01 30023444                   /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f2e7621b000-7f2e7621c000 rwxp 00005000 08:01 30023444                   /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f2e7621c000-7f2e76225000 r-xp 00000000 08:01 30023454                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f2e76225000-7f2e76425000 ---p 00009000 08:01 30023454                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f2e76425000-7f2e76426000 r-xp 00009000 08:01 30023454                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f2e76426000-7f2e76427000 rwxp 0000a000 08:01 30023454                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f2e76427000-7f2e76430000 r-xp 00000000 08:01 30023436                   /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f2e76430000-7f2e7662f000 ---p 00009000 08:01 30023436                   /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f2e7662f000-7f2e76630000 r-xp 00008000 08:01 30023436                   /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f2e76630000-7f2e76631000 rwxp 00009000 08:01 30023436                   /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f2e76631000-7f2e76632000 r-xs 00000000 08:01 4589948                    /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le64.cache-3
+7f2e76632000-7f2e76633000 r-xs 00000000 08:01 4589947                    /var/cache/fontconfig/6a53c69dea097a2d716e069445527da8-le64.cache-3
+7f2e76633000-7f2e76634000 r-xs 00000000 08:01 4589895                    /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le64.cache-3
+7f2e76634000-7f2e76644000 r-xs 00000000 08:01 4589805                    /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le64.cache-3
+7f2e76644000-7f2e7664f000 r-xs 00000000 08:01 4591087                    /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-3
+7f2e7664f000-7f2e76653000 r-xs 00000000 08:01 4587583                    /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-3
+7f2e76653000-7f2e76655000 r-xs 00000000 08:01 4589765                    /var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-3
+7f2e76655000-7f2e76658000 ---p 00000000 00:00 0 
+7f2e76658000-7f2e76756000 rwxp 00000000 00:00 0 
+7f2e76756000-7f2e7675a000 r-xs 000cb000 08:01 29365680                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/ext/localedata.jar
+7f2e7675a000-7f2e7675e000 r-xs 00035000 08:01 29365475                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/ext/sunpkcs11.jar
+7f2e7675e000-7f2e76760000 r-xs 00001000 08:01 29365472                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/ext/dnsns.jar
+7f2e76760000-7f2e76763000 r-xs 00027000 08:01 29365476                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/ext/sunjce_provider.jar
+7f2e76763000-7f2e76766000 r-xs 00000000 08:01 4589898                    /var/cache/fontconfig/d60319d88cac85ba9e1a07bd06cfbb8c-le64.cache-3
+7f2e76766000-7f2e76776000 r-xs 00000000 08:01 4589805                    /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le64.cache-3
+7f2e76776000-7f2e76781000 r-xs 00000000 08:01 4591087                    /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-3
+7f2e76781000-7f2e76785000 r-xs 00000000 08:01 4587583                    /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-3
+7f2e76785000-7f2e76788000 ---p 00000000 00:00 0 
+7f2e76788000-7f2e76886000 rwxp 00000000 00:00 0 
+7f2e76886000-7f2e768ff000 r-xp 00000000 08:01 29365588                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libfontmanager.so
+7f2e768ff000-7f2e769fe000 ---p 00079000 08:01 29365588                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libfontmanager.so
+7f2e769fe000-7f2e76a13000 rwxp 00078000 08:01 29365588                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libfontmanager.so
+7f2e76a13000-7f2e76a24000 rwxp 00000000 00:00 0 
+7f2e76a24000-7f2e76a41000 r-xs 0017c000 fd:00 1182649                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/poi-3.7-20101029.jar
+7f2e76a41000-7f2e76a44000 r-xs 00015000 fd:00 1182643                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-javaflow-20060411.jar
+7f2e76a44000-7f2e76a80000 r-xs 0030a000 fd:00 1228030                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jasperreports-javaflow-4.5.0.jar
+7f2e76a80000-7f2e76a82000 r-xs 0025c000 fd:00 1228029                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jasperreports-fonts-4.5.0.jar
+7f2e76a82000-7f2e76a8b000 r-xs 00064000 fd:00 1228023                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jasperreports-applet-4.5.0.jar
+7f2e76a8b000-7f2e76ac7000 r-xs 00300000 fd:00 1228022                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jasperreports-4.5.0.jar
+7f2e76ac7000-7f2e76ad3000 r-xs 00108000 fd:00 1226061                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/itext-2.1.7.jar
+7f2e76ad3000-7f2e76bb9000 r-xs 00b59000 fd:00 1225727                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/gwt-user.jar
+7f2e76bb9000-7f2e76c22000 r-xs 004c6000 fd:00 1225719                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/gwt-servlet.jar
+7f2e76c22000-7f2e76d96000 r-xs 0198d000 fd:00 1225740                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/gwt-dev.jar
+7f2e76d96000-7f2e76d9a000 r-xs 00020000 fd:00 1225730                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/XmlSchema-1.4.5.jar
+7f2e76d9a000-7f2e76d9c000 r-xs 00013000 fd:00 1225631                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/xml-resolver-1.2.jar
+7f2e76d9c000-7f2e76da2000 r-xs 0007a000 fd:00 1225650                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/wstx-asl-3.2.9.jar
+7f2e76da2000-7f2e76da7000 r-xs 00020000 fd:00 1225707                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/wsdl4j-1.6.2.jar
+7f2e76da7000-7f2e76daf000 r-xs 00057000 fd:00 1225729                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/standard.jar
+7f2e76daf000-7f2e76db0000 r-xs 00001000 fd:00 1225724                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/slf4j-jcl-1.6.1.jar
+7f2e76db0000-7f2e76db2000 r-xs 00005000 fd:00 1225619                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/slf4j-api-1.6.1.jar
+7f2e76db2000-7f2e76db7000 r-xs 0003f000 fd:00 1225607                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/saaj-impl-1.3.2.jar
+7f2e76db7000-7f2e76db9000 r-xs 00003000 fd:00 1225616                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/saaj-api-1.3.jar
+7f2e76db9000-7f2e76dc0000 r-xs 00066000 fd:00 1225701                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/quartz-1.8.4.jar
+7f2e76dc0000-7f2e76dc5000 r-xs 0006f000 fd:00 1225739                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/postgresql-8.3-603.jdbc4.jar
+7f2e76dc5000-7f2e76dc7000 r-xs 00006000 fd:00 1225663                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.web.struts-3.0.2.RELEASE.jar
+7f2e76dc7000-7f2e76dd0000 r-xs 0005a000 fd:00 1225615                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.web.servlet-3.0.2.RELEASE.jar
+7f2e76dd0000-7f2e76dd5000 r-xs 00026000 fd:00 1225704                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.web.portlet-3.0.2.RELEASE.jar
+7f2e76dd5000-7f2e76ddf000 r-xs 00054000 fd:00 1225733                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.web-3.0.2.RELEASE.jar
+7f2e76ddf000-7f2e76de6000 r-xs 00032000 fd:00 1225625                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.transaction-3.0.2.RELEASE.jar
+7f2e76de6000-7f2e76deb000 r-xs 0002d000 fd:00 1225651                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.test-3.0.2.RELEASE.jar
+7f2e76deb000-7f2e76ded000 r-xs 0000d000 fd:00 1225638                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.oxm-3.0.2.RELEASE.jar
+7f2e76ded000-7f2e76df5000 r-xs 0004a000 fd:00 1225743                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.orm-3.0.2.RELEASE.jar
+7f2e76df5000-7f2e76dfa000 r-xs 00028000 fd:00 1225689                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.jms-3.0.2.RELEASE.jar
+7f2e76dfa000-7f2e76e04000 r-xs 00053000 fd:00 1225679                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.jdbc-3.0.2.RELEASE.jar
+7f2e76e04000-7f2e76e05000 r-xs 00001000 fd:00 1225639                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.instrument.tomcat-3.0.2.RELEASE.jar
+7f2e76e05000-7f2e76e06000 r-xs 00000000 fd:00 1225731                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.instrument-3.0.2.RELEASE.jar
+7f2e76e06000-7f2e76e0a000 r-xs 00023000 fd:00 1225708                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.expression-3.0.2.RELEASE.jar
+7f2e76e0a000-7f2e76e13000 r-xs 0004f000 fd:00 1225699                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.core-3.0.2.RELEASE.jar
+7f2e76e13000-7f2e76e16000 r-xs 00016000 fd:00 1225656                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.context.support-3.0.2.RELEASE.jar
+7f2e76e16000-7f2e76e27000 r-xs 00090000 fd:00 1225690                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.context-3.0.2.RELEASE.jar
+7f2e76e27000-7f2e76e33000 r-xs 0007b000 fd:00 1225609                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.beans-3.0.2.RELEASE.jar
+7f2e76e33000-7f2e76e35000 r-xs 00006000 fd:00 1225653                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.aspects-3.0.2.RELEASE.jar
+7f2e76e35000-7f2e76e36000 r-xs 0000c000 fd:00 1225693                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.asm-3.0.2.RELEASE.jar
+7f2e76e36000-7f2e76e3f000 r-xs 00046000 fd:00 1225735                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.springframework.aop-3.0.2.RELEASE.jar
+7f2e76e3f000-7f2e76e42000 r-xs 0000c000 fd:00 1225674                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.eclipse.persistence.oracle.jar
+7f2e76e42000-7f2e76e4a000 r-xs 00063000 fd:00 1225640                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.eclipse.persistence.jpa.jar
+7f2e76e4a000-7f2e76e78000 r-xs 002fa000 fd:00 1225624                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.eclipse.persistence.core.jar
+7f2e76e78000-7f2e76e7d000 r-xs 0002f000 fd:00 1225621                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.eclipse.persistence.asm.jar
+7f2e76e7d000-7f2e76e80000 r-xs 0000c000 fd:00 1225667                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/org.eclipse.persistence.antlr.jar
+7f2e76e80000-7f2e76e82000 r-xs 00007000 fd:00 1225617                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/neethi-2.0.4.jar
+7f2e76e82000-7f2e76e83000 r-xs 00001000 fd:00 1225611                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jta.jar
+7f2e76e83000-7f2e76e85000 r-xs 00004000 fd:00 1225672                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jstl.jar
+7f2e76e85000-7f2e76e87000 r-xs 00011000 fd:00 1225732                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/json-0.10.jar
+7f2e76e87000-7f2e76e8a000 r-xs 00028000 fd:00 1225642                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jetty-util-6.1.21.jar
+7f2e76e8a000-7f2e76e91000 r-xs 0007c000 fd:00 1225721                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jetty-6.1.21.jar
+7f2e76e91000-7f2e76ea3000 r-xs 000c2000 fd:00 1225688                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jaxb-impl-2.1.12.jar
+7f2e76ea3000-7f2e76ea6000 r-xs 00013000 fd:00 1225668                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/jaxb-api-2.1.jar
+7f2e76ea6000-7f2e76ea9000 r-xs 0000d000 fd:00 1225634                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/javax.persistence.jar
+7f2e76ea9000-7f2e76eca000 r-xs 001fd000 fd:00 1225702                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/hibernate3.jar
+7f2e76eca000-7f2e76ed1000 r-xs 0004e000 fd:00 1225647                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/hibernate-tools.jar
+7f2e76ed1000-7f2e76ed4000 r-xs 0001a000 fd:00 1225742                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/hibernate-entitymanager.jar
+7f2e76ed4000-7f2e76ed7000 r-xs 0000e000 fd:00 1225627                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/hibernate-commons-annotations.jar
+7f2e76ed7000-7f2e76edb000 r-xs 0003f000 fd:00 1225665                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/hibernate-annotations.jar
+7f2e76edb000-7f2e76f08000 r-xs 0025f000 fd:00 1225697                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/gxt-2.2.5-gwt22.jar
+7f2e76f08000-7f2e76f1c000 r-xs 000a5000 fd:00 1227006                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/gwt-maps.jar
+7f2e76f1c000-7f2e76f1d000 r-xs 00003000 fd:00 1225673                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-ws-metadata_2.0_spec-1.1.2.jar
+7f2e76f1d000-7f2e76f1f000 r-xs 00006000 fd:00 1225649                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-stax-api_1.0_spec-1.0.1.jar
+7f2e76f1f000-7f2e76f22000 r-xs 0000f000 fd:00 1225717                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-servlet_2.5_spec-1.2.jar
+7f2e76f22000-7f2e76f24000 r-xs 0000a000 fd:00 1225691                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-jaxws_2.1_spec-1.0.jar
+7f2e76f24000-7f2e76f29000 r-xs 0002e000 fd:00 1225738                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-javamail_1.4_spec-1.6.jar
+7f2e76f29000-7f2e76f2b000 r-xs 00002000 fd:00 1225664                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-annotation_1.0_spec-1.1.1.jar
+7f2e76f2b000-7f2e76f2d000 r-xs 00007000 fd:00 1225662                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/geronimo-activation_1.1_spec-1.0.2.jar
+7f2e76f2d000-7f2e76f30000 r-xs 0000a000 fd:00 1225678                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/ejb3-persistence.jar
+7f2e76f30000-7f2e76f35000 r-xs 00019000 fd:00 1225706                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/eclipselink-javax.persistence-2.0.jar
+7f2e76f35000-7f2e76f81000 r-xs 0050f000 fd:00 1225613                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/eclipselink-2.0.2.jar
+7f2e76f81000-7f2e76f86000 r-xs 00046000 fd:00 1225736                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/dom4j-1.6.1.jar
+7f2e76f86000-7f2e76f8b000 r-xs 00044000 fd:00 1225723                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/cxf-rt-frontend-jaxws-2.2.6.jar
+7f2e76f8b000-7f2e76f91000 r-xs 00043000 fd:00 1225612                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/cxf-common-utilities-2.2.6.jar
+7f2e76f91000-7f2e76f9a000 r-xs 00042000 fd:00 1225726                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/cxf-api-2.2.6.jar
+7f2e76f9a000-7f2e76fe4000 r-xs 00434000 fd:00 1225661                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/cxf-2.2.6.jar
+7f2e76fe4000-7f2e76fe7000 r-xs 0001f000 fd:00 1225696                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-validator-1.3.1.jar
+7f2e76fe7000-7f2e76fe9000 r-xs 00008000 fd:00 1225618                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-pool-20030825.183949.jar
+7f2e76fe9000-7f2e76feb000 r-xs 0000d000 fd:00 1225632                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-logging-1.1.1.jar
+7f2e76feb000-7f2e76fef000 r-xs 0003c000 fd:00 1225700                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-lang-2.4.jar
+7f2e76fef000-7f2e76ff2000 r-xs 00018000 fd:00 1225683                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-io-1.4.jar
+7f2e76ff2000-7f2e76ff8000 r-xs 00045000 fd:00 1225686                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-httpclient-3.1.jar
+7f2e76ff8000-7f2e76ffb000 r-xs 0000c000 fd:00 1225712                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-fileupload-1.2.1.jar
+7f2e76ffb000-7f2e76ffe000 r-xs 00019000 fd:00 1225658                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-el-1.0.jar
+7f2e76ffe000-7f2e77001000 r-xs 0000f000 fd:00 1225629                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-discovery-20040218.194635.jar
+7f2e77001000-7f2e77005000 r-xs 0001f000 fd:00 1225698                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-digester-1.7.jar
+7f2e77005000-7f2e77008000 r-xs 00018000 fd:00 1225676                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-dbcp-1.2.1.jar
+7f2e77008000-7f2e77016000 r-xs 0007f000 fd:00 1225711                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-collections-3.2.1.jar
+7f2e77016000-7f2e7707a000 r-xs 0080a000 fd:00 1225610                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar
+7f2e7707a000-7f2e7707f000 r-xp 00000000 08:01 30023440                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f2e7707f000-7f2e7727e000 ---p 00005000 08:01 30023440                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f2e7727e000-7f2e7727f000 r-xp 00004000 08:01 30023440                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f2e7727f000-7f2e77280000 rwxp 00005000 08:01 30023440                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f2e77280000-7f2e77282000 r-xp 00000000 08:01 30023432                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f2e77282000-7f2e77481000 ---p 00002000 08:01 30023432                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f2e77481000-7f2e77482000 r-xp 00001000 08:01 30023432                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f2e77482000-7f2e77483000 rwxp 00002000 08:01 30023432                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f2e77483000-7f2e7749e000 r-xp 00000000 08:01 30023677                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f2e7749e000-7f2e7769d000 ---p 0001b000 08:01 30023677                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f2e7769d000-7f2e7769e000 r-xp 0001a000 08:01 30023677                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f2e7769e000-7f2e7769f000 rwxp 0001b000 08:01 30023677                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f2e7769f000-7f2e776ae000 r-xp 00000000 08:01 30023448                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f2e776ae000-7f2e778ad000 ---p 0000f000 08:01 30023448                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f2e778ad000-7f2e778ae000 r-xp 0000e000 08:01 30023448                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f2e778ae000-7f2e778af000 rwxp 0000f000 08:01 30023448                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f2e778af000-7f2e778b4000 r-xp 00000000 08:01 30017064                   /usr/lib/libXtst.so.6.1.0
+7f2e778b4000-7f2e77ab3000 ---p 00005000 08:01 30017064                   /usr/lib/libXtst.so.6.1.0
+7f2e77ab3000-7f2e77ab4000 r-xp 00004000 08:01 30017064                   /usr/lib/libXtst.so.6.1.0
+7f2e77ab4000-7f2e77ab5000 rwxp 00005000 08:01 30017064                   /usr/lib/libXtst.so.6.1.0
+7f2e77ab5000-7f2e77be8000 r-xp 00000000 08:01 30023430                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f2e77be8000-7f2e77de8000 ---p 00133000 08:01 30023430                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f2e77de8000-7f2e77de9000 r-xp 00133000 08:01 30023430                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f2e77de9000-7f2e77ded000 rwxp 00134000 08:01 30023430                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f2e77ded000-7f2e77dff000 r-xp 00000000 08:01 30023442                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f2e77dff000-7f2e77ffe000 ---p 00012000 08:01 30023442                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f2e77ffe000-7f2e77fff000 r-xp 00011000 08:01 30023442                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f2e77fff000-7f2e78000000 rwxp 00012000 08:01 30023442                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f2e78000000-7f2e7b556000 rwxp 00000000 00:00 0 
+7f2e7b556000-7f2e7c000000 ---p 00000000 00:00 0 
+7f2e7c000000-7f2e7c001000 r-xs 00000000 08:01 4589866                    /var/cache/fontconfig/04e6febddc5a474cc90c0cdd4968de8a-le64.cache-3
+7f2e7c001000-7f2e7c002000 r-xs 00000000 08:01 4589895                    /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le64.cache-3
+7f2e7c002000-7f2e7c004000 r-xs 00000000 08:01 4589765                    /var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-3
+7f2e7c004000-7f2e7c006000 r-xs 0000a000 fd:00 1225643                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-codec-1.3.jar
+7f2e7c006000-7f2e7c009000 r-xs 00018000 fd:00 1225657                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/commons-beanutils-20030211.134440.jar
+7f2e7c009000-7f2e7c00b000 r-xs 00007000 fd:00 1225660                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.objectweb.asm.commons-3.1.0.jar
+7f2e7c00b000-7f2e7c013000 r-xs 00057000 fd:00 1225655                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.codehaus.jackson.mapper-1.4.2.jar
+7f2e7c013000-7f2e7c016000 r-xs 00022000 fd:00 1225715                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.codehaus.jackson-1.4.2.jar
+7f2e7c016000-7f2e7c02b000 r-xs 0017c000 fd:00 1225614                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar
+7f2e7c02b000-7f2e7c069000 r-xs 0025d000 fd:00 1225687                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.xmlbeans-2.4.0.jar
+7f2e7c069000-7f2e7c070000 r-xs 0005a000 fd:00 1225666                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.log4j-1.2.15.jar
+7f2e7c070000-7f2e7c072000 r-xs 00016000 fd:00 1225694                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.pool-1.5.3.jar
+7f2e7c072000-7f2e7c074000 r-xs 0000e000 fd:00 1225635                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.logging.jar
+7f2e7c074000-7f2e7c078000 r-xs 00030000 fd:00 1225718                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.lang-2.1.0.jar
+7f2e7c078000-7f2e7c07b000 r-xs 00018000 fd:00 1225705                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.io-1.4.0.jar
+7f2e7c07b000-7f2e7c07e000 r-xs 0000b000 fd:00 1225648                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.fileupload-1.2.0.jar
+7f2e7c07e000-7f2e7c080000 r-xs 0001c000 fd:00 1225682                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.dbcp-1.2.2.osgi.jar
+7f2e7c080000-7f2e7c08e000 r-xs 00080000 fd:00 1225722                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.collections-3.2.0.jar
+7f2e7c08e000-7f2e7c093000 r-xs 00035000 fd:00 1225608                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.apache.commons.beanutils-1.8.0.jar
+7f2e7c093000-7f2e7c095000 r-xs 00000000 fd:00 1225652                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.aopalliance-1.0.0.jar
+7f2e7c095000-7f2e7c09c000 r-xs 0005a000 fd:00 1225636                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.javax.mail-1.4.0.jar
+7f2e7c09c000-7f2e7c0a6000 r-xs 00061000 fd:00 1225720                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.com.thoughtworks.xstream-1.3.1.jar
+7f2e7c0a6000-7f2e7c0ad000 r-xs 00049000 fd:00 1225734                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/cglib-nodep.jar
+7f2e7c0ad000-7f2e7c0ae000 r-xs 00005000 fd:00 1225626                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/bctsp-jdk15-141.jar
+7f2e7c0ae000-7f2e7c0d1000 r-xs 00178000 fd:00 1225714                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/bcprov-jdk16-141.jar
+7f2e7c0d1000-7f2e7c0f4000 r-xs 0016c000 fd:00 1225654                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/bcprov-ext-jdk15-141.jar
+7f2e7c0f4000-7f2e7c0f9000 r-xs 0002f000 fd:00 1225659                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/bcmail-jdk15-141.jar
+7f2e7c0f9000-7f2e7c101000 r-xs 00049000 fd:00 1225671                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/backport-util-concurrent-3.1.jar
+7f2e7c101000-7f2e7c102000 r-xs 00006000 fd:00 1225681                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-xmlbeans-1.4.1.jar
+7f2e7c102000-7f2e7c103000 r-xs 00002000 fd:00 1225684                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-spring-1.4.1.jar
+7f2e7c103000-7f2e7c105000 r-xs 00006000 fd:00 1225713                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-saaj-api-1.4.1.jar
+7f2e7c105000-7f2e7c107000 r-xs 00014000 fd:00 1225644                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-saaj-1.4.1.jar
+7f2e7c107000-7f2e7c108000 r-xs 00002000 fd:00 1225728                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-mtompolicy-1.4.1.jar
+7f2e7c108000-7f2e7c115000 r-xs 000ac000 fd:00 1225709                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-metadata-1.4.1.jar
+7f2e7c115000-7f2e7c125000 r-xs 0012c000 fd:00 1225628                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-kernel-1.4.1.jar
+7f2e7c125000-7f2e7c126000 r-xs 00003000 fd:00 1225677                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-jws-api-1.4.1.jar
+7f2e7c126000-7f2e7c128000 r-xs 00003000 fd:00 1225630                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-json-1.4.1.jar
+7f2e7c128000-7f2e7c129000 r-xs 00008000 fd:00 1225645                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-jibx-1.4.1.jar
+7f2e7c129000-7f2e7c12c000 r-xs 00009000 fd:00 1225737                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-jaxws-api-1.4.1.jar
+7f2e7c12c000-7f2e7c138000 r-xs 00089000 fd:00 1225622                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-jaxws-1.4.1.jar
+7f2e7c138000-7f2e7c13a000 r-xs 00005000 fd:00 1225675                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-jaxbri-1.4.1.jar
+7f2e7c13a000-7f2e7c13c000 r-xs 00005000 fd:00 1225637                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-java2wsdl-1.4.1.jar
+7f2e7c13c000-7f2e7c13e000 r-xs 00010000 fd:00 1225741                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-fastinfoset-1.4.1.jar
+7f2e7c13e000-7f2e7c140000 r-xs 00020000 fd:00 1225695                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-corba-1.4.1.jar
+7f2e7c140000-7f2e7c145000 r-xs 00037000 fd:00 1225670                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-codegen-1.4.1.jar
+7f2e7c145000-7f2e7c150000 r-xs 000b3000 fd:00 1225669                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-adb-1.4.1.jar
+7f2e7c150000-7f2e7c16b000 r-xs 001b2000 fd:00 1225623                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/aspectjweaver-1.5.3.jar
+7f2e7c16b000-7f2e7c180000 r-xs 001c2000 fd:00 1225633                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/antlr-3.2.jar
+7f2e7c180000-7f2e7c1e9000 r-xs 004c6000 08:01 9177384                    /home/josorio/Trabajo/Recursos/GWT/gwt-2.4.0/gwt-servlet.jar
+7f2e7c1e9000-7f2e7c22b000 r-xp 00000000 08:01 29365577                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/xawt/libmawt.so
+7f2e7c22b000-7f2e7c32a000 ---p 00042000 08:01 29365577                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/xawt/libmawt.so
+7f2e7c32a000-7f2e7c336000 rwxp 00041000 08:01 29365577                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/xawt/libmawt.so
+7f2e7c336000-7f2e7c337000 rwxp 00000000 00:00 0 
+7f2e7c337000-7f2e7c3c9000 r-xp 00000000 08:01 29365624                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libawt.so
+7f2e7c3c9000-7f2e7c4c8000 ---p 00092000 08:01 29365624                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libawt.so
+7f2e7c4c8000-7f2e7c4e2000 rwxp 00091000 08:01 29365624                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libawt.so
+7f2e7c4e2000-7f2e7c506000 rwxp 00000000 00:00 0 
+7f2e7c506000-7f2e7c509000 ---p 00000000 00:00 0 
+7f2e7c509000-7f2e7c607000 rwxp 00000000 00:00 0 
+7f2e7c607000-7f2e7c61a000 r-xp 00000000 08:01 29365579                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnet.so
+7f2e7c61a000-7f2e7c71b000 ---p 00013000 08:01 29365579                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnet.so
+7f2e7c71b000-7f2e7c71e000 rwxp 00014000 08:01 29365579                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnet.so
+7f2e7c71e000-7f2e7c74c000 rwxp 00000000 00:00 0 
+7f2e7c74c000-7f2e7c8c0000 r-xs 0198d000 08:01 9177269                    /home/josorio/Trabajo/Recursos/GWT/gwt-2.4.0/gwt-dev.jar
+7f2e7c8c0000-7f2e7c9a6000 r-xs 00b59000 08:01 9177383                    /home/josorio/Trabajo/Recursos/GWT/gwt-2.4.0/gwt-user.jar
+7f2e7c9a6000-7f2e7c9a7000 ---p 00000000 00:00 0 
+7f2e7c9a7000-7f2e7caa7000 rwxp 00000000 00:00 0 
+7f2e7caa7000-7f2e7caaa000 ---p 00000000 00:00 0 
+7f2e7caaa000-7f2e7cba8000 rwxp 00000000 00:00 0 
+7f2e7cba8000-7f2e7cbab000 ---p 00000000 00:00 0 
+7f2e7cbab000-7f2e7cca9000 rwxp 00000000 00:00 0 
+7f2e7cca9000-7f2e7ccac000 ---p 00000000 00:00 0 
+7f2e7ccac000-7f2e7cdaa000 rwxp 00000000 00:00 0 
+7f2e7cdaa000-7f2e7cdad000 ---p 00000000 00:00 0 
+7f2e7cdad000-7f2e7ceab000 rwxp 00000000 00:00 0 
+7f2e7ceab000-7f2e7ceae000 ---p 00000000 00:00 0 
+7f2e7ceae000-7f2e7cfac000 rwxp 00000000 00:00 0 
+7f2e7cfac000-7f2e7cfaf000 ---p 00000000 00:00 0 
+7f2e7cfaf000-7f2e7d0ad000 rwxp 00000000 00:00 0 
+7f2e7d0ad000-7f2e7d0b0000 r-xp 00000000 08:01 29365615                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libdt_socket.so
+7f2e7d0b0000-7f2e7d1af000 ---p 00003000 08:01 29365615                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libdt_socket.so
+7f2e7d1af000-7f2e7d1b1000 rwxp 00002000 08:01 29365615                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libdt_socket.so
+7f2e7d1b1000-7f2e7d1b4000 ---p 00000000 00:00 0 
+7f2e7d1b4000-7f2e7d2b2000 rwxp 00000000 00:00 0 
+7f2e7d2b2000-7f2e7d2b5000 ---p 00000000 00:00 0 
+7f2e7d2b5000-7f2e7d3b3000 rwxp 00000000 00:00 0 
+7f2e7d3b3000-7f2e7d3b6000 ---p 00000000 00:00 0 
+7f2e7d3b6000-7f2e7d4b4000 rwxp 00000000 00:00 0 
+7f2e7d4b4000-7f2e7d4b5000 ---p 00000000 00:00 0 
+7f2e7d4b5000-7f2e7daee000 rwxp 00000000 00:00 0 
+7f2e7daee000-7f2e7dc86000 r-xs 0302d000 08:01 29363226                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/rt.jar
+7f2e7dc86000-7f2e7dcae000 rwxp 00000000 00:00 0 
+7f2e7dcae000-7f2e7dcaf000 ---p 00000000 00:00 0 
+7f2e7dcaf000-7f2e7ddaf000 rwxp 00000000 00:00 0 
+7f2e7ddaf000-7f2e7ddb0000 ---p 00000000 00:00 0 
+7f2e7ddb0000-7f2e7deb0000 rwxp 00000000 00:00 0 
+7f2e7deb0000-7f2e7deb1000 ---p 00000000 00:00 0 
+7f2e7deb1000-7f2e7dfb1000 rwxp 00000000 00:00 0 
+7f2e7dfb1000-7f2e7dfb2000 ---p 00000000 00:00 0 
+7f2e7dfb2000-7f2e7e0db000 rwxp 00000000 00:00 0 
+7f2e7e0db000-7f2e7e131000 rwxp 00000000 00:00 0 
+7f2e7e131000-7f2e7e15a000 rwxp 00000000 00:00 0 
+7f2e7e15a000-7f2e7e1af000 rwxp 00000000 00:00 0 
+7f2e7e1af000-7f2e7e1c0000 rwxp 00000000 00:00 0 
+7f2e7e1c0000-7f2e7e1da000 ---p 00000000 00:00 0 
+7f2e7e1da000-7f2e7e89b000 rwxp 00000000 00:00 0 
+7f2e7e89b000-7f2e811db000 rwxp 00000000 00:00 0 
+7f2e811db000-7f2e811e9000 r-xp 00000000 08:01 29365590                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libzip.so
+7f2e811e9000-7f2e812eb000 ---p 0000e000 08:01 29365590                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libzip.so
+7f2e812eb000-7f2e812ee000 rwxp 00010000 08:01 29365590                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libzip.so
+7f2e812ee000-7f2e812ef000 rwxp 00000000 00:00 0 
+7f2e812ef000-7f2e812fb000 r-xp 00000000 08:01 2887486                    /lib/x86_64-linux-gnu/libnss_files-2.13.so
+7f2e812fb000-7f2e814fa000 ---p 0000c000 08:01 2887486                    /lib/x86_64-linux-gnu/libnss_files-2.13.so
+7f2e814fa000-7f2e814fb000 r-xp 0000b000 08:01 2887486                    /lib/x86_64-linux-gnu/libnss_files-2.13.so
+7f2e814fb000-7f2e814fc000 rwxp 0000c000 08:01 2887486                    /lib/x86_64-linux-gnu/libnss_files-2.13.so
+7f2e814fc000-7f2e81506000 r-xp 00000000 08:01 2887488                    /lib/x86_64-linux-gnu/libnss_nis-2.13.so
+7f2e81506000-7f2e81706000 ---p 0000a000 08:01 2887488                    /lib/x86_64-linux-gnu/libnss_nis-2.13.so
+7f2e81706000-7f2e81707000 r-xp 0000a000 08:01 2887488                    /lib/x86_64-linux-gnu/libnss_nis-2.13.so
+7f2e81707000-7f2e81708000 rwxp 0000b000 08:01 2887488                    /lib/x86_64-linux-gnu/libnss_nis-2.13.so
+7f2e81708000-7f2e81710000 r-xp 00000000 08:01 2887484                    /lib/x86_64-linux-gnu/libnss_compat-2.13.so
+7f2e81710000-7f2e8190f000 ---p 00008000 08:01 2887484                    /lib/x86_64-linux-gnu/libnss_compat-2.13.so
+7f2e8190f000-7f2e81910000 r-xp 00007000 08:01 2887484                    /lib/x86_64-linux-gnu/libnss_compat-2.13.so
+7f2e81910000-7f2e81911000 rwxp 00008000 08:01 2887484                    /lib/x86_64-linux-gnu/libnss_compat-2.13.so
+7f2e81911000-7f2e81d0b000 r-xp 00000000 08:01 30022137                   /usr/lib/locale/locale-archive
+7f2e81d0b000-7f2e81d0e000 r-xp 00000000 08:01 29365581                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnpt.so
+7f2e81d0e000-7f2e81e0d000 ---p 00003000 08:01 29365581                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnpt.so
+7f2e81e0d000-7f2e81e0e000 rwxp 00002000 08:01 29365581                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libnpt.so
+7f2e81e0e000-7f2e81e44000 r-xp 00000000 08:01 29365607                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjdwp.so
+7f2e81e44000-7f2e81f43000 ---p 00036000 08:01 29365607                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjdwp.so
+7f2e81f43000-7f2e81f4d000 rwxp 00035000 08:01 29365607                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjdwp.so
+7f2e81f4d000-7f2e81f64000 r-xp 00000000 08:01 2887483                    /lib/x86_64-linux-gnu/libnsl-2.13.so
+7f2e81f64000-7f2e82163000 ---p 00017000 08:01 2887483                    /lib/x86_64-linux-gnu/libnsl-2.13.so
+7f2e82163000-7f2e82164000 r-xp 00016000 08:01 2887483                    /lib/x86_64-linux-gnu/libnsl-2.13.so
+7f2e82164000-7f2e82165000 rwxp 00017000 08:01 2887483                    /lib/x86_64-linux-gnu/libnsl-2.13.so
+7f2e82165000-7f2e82167000 rwxp 00000000 00:00 0 
+7f2e82167000-7f2e82190000 r-xp 00000000 08:01 29365603                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjava.so
+7f2e82190000-7f2e8228f000 ---p 00029000 08:01 29365603                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjava.so
+7f2e8228f000-7f2e82296000 rwxp 00028000 08:01 29365603                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libjava.so
+7f2e82296000-7f2e822a3000 r-xp 00000000 08:01 29365585                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libverify.so
+7f2e822a3000-7f2e823a2000 ---p 0000d000 08:01 29365585                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libverify.so
+7f2e823a2000-7f2e823a5000 rwxp 0000c000 08:01 29365585                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/libverify.so
+7f2e823a5000-7f2e823ac000 r-xp 00000000 08:01 2887493                    /lib/x86_64-linux-gnu/librt-2.13.so
+7f2e823ac000-7f2e825ab000 ---p 00007000 08:01 2887493                    /lib/x86_64-linux-gnu/librt-2.13.so
+7f2e825ab000-7f2e825ac000 r-xp 00006000 08:01 2887493                    /lib/x86_64-linux-gnu/librt-2.13.so
+7f2e825ac000-7f2e825ad000 rwxp 00007000 08:01 2887493                    /lib/x86_64-linux-gnu/librt-2.13.so
+7f2e825ad000-7f2e825b0000 ---p 00000000 00:00 0 
+7f2e825b0000-7f2e826ae000 rwxp 00000000 00:00 0 
+7f2e826ae000-7f2e82731000 r-xp 00000000 08:01 2887481                    /lib/x86_64-linux-gnu/libm-2.13.so
+7f2e82731000-7f2e82930000 ---p 00083000 08:01 2887481                    /lib/x86_64-linux-gnu/libm-2.13.so
+7f2e82930000-7f2e82931000 r-xp 00082000 08:01 2887481                    /lib/x86_64-linux-gnu/libm-2.13.so
+7f2e82931000-7f2e82932000 rwxp 00083000 08:01 2887481                    /lib/x86_64-linux-gnu/libm-2.13.so
+7f2e82932000-7f2e8324c000 r-xp 00000000 08:01 29365610                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so
+7f2e8324c000-7f2e8334e000 ---p 0091a000 08:01 29365610                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so
+7f2e8334e000-7f2e83503000 rwxp 0091c000 08:01 29365610                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server/libjvm.so
+7f2e83503000-7f2e8353d000 rwxp 00000000 00:00 0 
+7f2e8353d000-7f2e836d4000 r-xp 00000000 08:01 2887477                    /lib/x86_64-linux-gnu/libc-2.13.so
+7f2e836d4000-7f2e838d3000 ---p 00197000 08:01 2887477                    /lib/x86_64-linux-gnu/libc-2.13.so
+7f2e838d3000-7f2e838d7000 r-xp 00196000 08:01 2887477                    /lib/x86_64-linux-gnu/libc-2.13.so
+7f2e838d7000-7f2e838d8000 rwxp 0019a000 08:01 2887477                    /lib/x86_64-linux-gnu/libc-2.13.so
+7f2e838d8000-7f2e838de000 rwxp 00000000 00:00 0 
+7f2e838de000-7f2e838e0000 r-xp 00000000 08:01 2887480                    /lib/x86_64-linux-gnu/libdl-2.13.so
+7f2e838e0000-7f2e83ae0000 ---p 00002000 08:01 2887480                    /lib/x86_64-linux-gnu/libdl-2.13.so
+7f2e83ae0000-7f2e83ae1000 r-xp 00002000 08:01 2887480                    /lib/x86_64-linux-gnu/libdl-2.13.so
+7f2e83ae1000-7f2e83ae2000 rwxp 00003000 08:01 2887480                    /lib/x86_64-linux-gnu/libdl-2.13.so
+7f2e83ae2000-7f2e83afa000 r-xp 00000000 08:01 2887491                    /lib/x86_64-linux-gnu/libpthread-2.13.so
+7f2e83afa000-7f2e83cf9000 ---p 00018000 08:01 2887491                    /lib/x86_64-linux-gnu/libpthread-2.13.so
+7f2e83cf9000-7f2e83cfa000 r-xp 00017000 08:01 2887491                    /lib/x86_64-linux-gnu/libpthread-2.13.so
+7f2e83cfa000-7f2e83cfb000 rwxp 00018000 08:01 2887491                    /lib/x86_64-linux-gnu/libpthread-2.13.so
+7f2e83cfb000-7f2e83cff000 rwxp 00000000 00:00 0 
+7f2e83cff000-7f2e83d20000 r-xp 00000000 08:01 2887474                    /lib/x86_64-linux-gnu/ld-2.13.so
+7f2e83d20000-7f2e83d21000 r-xs 00000000 08:01 4589866                    /var/cache/fontconfig/04e6febddc5a474cc90c0cdd4968de8a-le64.cache-3
+7f2e83d21000-7f2e83d24000 r-xs 0000e000 fd:00 1225692                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-clustering-1.4.1.jar
+7f2e83d24000-7f2e83d26000 r-xs 00003000 fd:00 1225641                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-ant-plugin-1.4.1.jar
+7f2e83d26000-7f2e83d28000 r-xs 00028000 fd:00 1225646                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axis2-adb-codegen-1.4.1.jar
+7f2e83d28000-7f2e83d2b000 r-xs 0001c000 fd:00 1225620                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axiom-impl-1.2.7.jar
+7f2e83d2b000-7f2e83d46000 rwxp 00000000 00:00 0 
+7f2e83d46000-7f2e83deb000 rwxp 00000000 00:00 0 
+7f2e83deb000-7f2e83dee000 rwxp 00000000 00:00 0 
+7f2e83dee000-7f2e83df5000 r-xp 00000000 08:01 29365575                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/jli/libjli.so
+7f2e83df5000-7f2e83ef6000 ---p 00007000 08:01 29365575                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/jli/libjli.so
+7f2e83ef6000-7f2e83ef8000 rwxp 00008000 08:01 29365575                   /opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/jli/libjli.so
+7f2e83ef8000-7f2e83ef9000 rwxp 00000000 00:00 0 
+7f2e83ef9000-7f2e83efa000 r-xs 0000a000 fd:00 1225710                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/com.springsource.org.objectweb.asm-3.1.0.jar
+7f2e83efa000-7f2e83efd000 r-xs 00023000 fd:00 1225725                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axiom-dom-1.2.7.jar
+7f2e83efd000-7f2e83f02000 r-xs 0002c000 fd:00 1225716                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/axiom-api-1.2.7.jar
+7f2e83f02000-7f2e83f05000 r-xs 00022000 fd:00 1225685                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/antlr-runtime-3.1.3.jar
+7f2e83f05000-7f2e83f0b000 r-xs 00037000 fd:00 1225703                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/annogen-0.1.0.jar
+7f2e83f0b000-7f2e83f0d000 r-xs 0000e000 fd:00 1225680                    /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/lib/activation-1.1.jar
+7f2e83f0d000-7f2e83f13000 r-xs 00066000 08:01 30940038                   /usr/local/netbeans-7.1/ide/modules/ext/postgresql-8.3-603.jdbc3.jar
+7f2e83f13000-7f2e83f1b000 rwxs 00000000 08:01 23986449                   /tmp/hsperfdata_josorio/13812
+7f2e83f1b000-7f2e83f1c000 rwxp 00000000 00:00 0 
+7f2e83f1c000-7f2e83f1d000 ---p 00000000 00:00 0 
+7f2e83f1d000-7f2e83f1f000 rwxp 00000000 00:00 0 
+7f2e83f1f000-7f2e83f20000 r-xp 00020000 08:01 2887474                    /lib/x86_64-linux-gnu/ld-2.13.so
+7f2e83f20000-7f2e83f22000 rwxp 00021000 08:01 2887474                    /lib/x86_64-linux-gnu/ld-2.13.so
+7fff8d591000-7fff8d5b5000 rwxp 00000000 00:00 0                          [stack]
+7fff8d5ff000-7fff8d600000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Xmx256M -Xdebug -Xnoagent -Djava.compiler=none -Xrunjdwp:transport=dt_socket,address=localhost:44910 
+java_command: com.google.gwt.dev.DevMode -war /media/truecrypt1/ProyJava/Transglobal/SenchaTransglobal/build/web -logLevel WARN -logdir build/dev-mode-logs -startupUrl / -port 8888 -codeServerPort 9997 co.transglobal.Main
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/
+PATH=/usr/share/maven2//bin:/home/josorio/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29//bin
+LD_LIBRARY_PATH=/opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64/server:/opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/lib/amd64:/opt/desarrollo/java/jdk1.6_64bits/jdk1.6.0_29/jre/../lib/amd64
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x85f780], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x85f780], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x70e3b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x70e3b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x70e3b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x70e3b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x7111c0], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x710dc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: SIG_IGN, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGTERM: [libjvm.so+0x710dc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x710dc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:wheezy/sid
+
+uname:Linux 3.0.0-17-generic #30-Ubuntu SMP Thu Mar 8 20:45:39 UTC 2012 x86_64
+libc:glibc 2.13 NPTL 2.13 
+rlimit: STACK 8192k, CORE 0k, NPROC 62995, NOFILE 4096, AS infinity
+load average:0,37 0,36 0,31
+
+/proc/meminfo:
+MemTotal:        8087336 kB
+MemFree:          284312 kB
+Buffers:          235596 kB
+Cached:          3419912 kB
+SwapCached:          152 kB
+Active:          4861012 kB
+Inactive:        2446248 kB
+Active(anon):    3201660 kB
+Inactive(anon):   639880 kB
+Active(file):    1659352 kB
+Inactive(file):  1806368 kB
+Unevictable:          16 kB
+Mlocked:              16 kB
+SwapTotal:       8279036 kB
+SwapFree:        8278696 kB
+Dirty:               332 kB
+Writeback:             0 kB
+AnonPages:       3651604 kB
+Mapped:           401504 kB
+Shmem:            189804 kB
+Slab:             286400 kB
+SReclaimable:     239464 kB
+SUnreclaim:        46936 kB
+KernelStack:        5680 kB
+PageTables:        61880 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    12322704 kB
+Committed_AS:    7028216 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      379856 kB
+VmallocChunk:   34359346744 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       92156 kB
+DirectMap2M:     8192000 kB
+
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz
+stepping	: 7
+cpu MHz		: 1800.000
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 x2apic popcnt aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5581.37
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz
+stepping	: 7
+cpu MHz		: 2200.000
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 x2apic popcnt aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5581.66
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz
+stepping	: 7
+cpu MHz		: 800.000
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 x2apic popcnt aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5581.67
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz
+stepping	: 7
+cpu MHz		: 2200.000
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 x2apic popcnt aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5581.67
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 8087336k(284312k free), swap 8279036k(8278696k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (20.4-b02) for linux-amd64 JRE (1.6.0_29-b11), built on Oct  3 2011 01:19:20 by "java_re" with gcc 3.2.2 (SuSE Linux)
+
+time: Tue Apr 24 13:56:11 2012
+elapsed time: 156 seconds
+

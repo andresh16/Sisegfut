@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <!-- Scan por los DAO -->
+    <context:component-scan base-package="co.com.sisegfut.server.datos.dao"/>
+    
+    <!-- Scan por los Servicios -->
+    <context:component-scan base-package="co.com.sisegfut.server.servicios"/>
+    
+    <!-- ############ Inicio Hibernate ############ -->
+
+    <!-- DATASOURCE DECLARATION -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> <!-- p:validationQuery="select 1" p:testOnBorrow="true"> -->
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- HIBERNATE SESSION FACTORY -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <!--prop key="hibernate.cache.use_query_cache">${hibernate.use_query_cache}</prop-->
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>                
+                <value>co.com.sisegfut.client.datos.dominio.Rol</value>                
+                <value>co.com.sisegfut.client.datos.dominio.Usuarios</value>
+                <!--value>co.com.sisegfut.client.datos.dominio.Cuentas</value-->
+                <!--value>co.com.sisegfut.client.datos.dominio.Movimientos</value-->
+                <!--value>co.com.sisegfut.client.datos.dominio.TipoCuenta</value-->
+                <!--value>co.com.sisegfut.client.datos.dominio.TipoMovimiento</value-->
+                <value>co.com.sisegfut.client.datos.dominio.Categoria</value>
+                <value>co.com.sisegfut.client.datos.dominio.TipoDocumento</value>
+                <!--value>co.com.sisegfut.client.datos.dominio.SituacionesJuego</value-->
+                <value>co.com.sisegfut.client.datos.dominio.Personal</value>
+                <value>co.com.sisegfut.client.datos.dominio.Cargos</value>
+                <value>co.com.sisegfut.client.datos.dominio.Eps</value>
+                <value>co.com.sisegfut.client.datos.dominio.InstEducativa</value>
+                <value>co.com.sisegfut.client.datos.dominio.NivelEducativo</value>
+                <value>co.com.sisegfut.client.datos.dominio.Deportista</value>
+                <value>co.com.sisegfut.client.datos.dominio.Posiciones</value>
+                <value>co.com.sisegfut.client.datos.dominio.LogrosDeportivos</value>
+                <value>co.com.sisegfut.client.datos.dominio.AntecedentesDeportivos</value>
+                <value>co.com.sisegfut.client.datos.dominio.Lesiones</value> 
+                <!--value>co.com.sisegfut.client.datos.dominio.EstadoAsistencia</value-->         
+                <value>co.com.sisegfut.client.datos.dominio.Torneos</value> 
+                <value>co.com.sisegfut.client.datos.dominio.Asistencia</value>  
+                <value>co.com.sisegfut.client.datos.dominio.ControlAsistencia</value>           
+                <value>co.com.sisegfut.client.datos.dominio.Antropometrico</value>           
+                <value>co.com.sisegfut.client.datos.dominio.ControlTecnico</value>           
+                <value>co.com.sisegfut.client.datos.dominio.TestKarvonen</value>           
+                <value>co.com.sisegfut.client.datos.dominio.TestCooper</value>           
+                <value>co.com.sisegfut.client.datos.dominio.Competencia</value> 
+                <value>co.com.sisegfut.client.datos.dominio.CambiosCompe</value>           
+                <value>co.com.sisegfut.client.datos.dominio.ControlDisciplinarioCompe</value>           
+                <value>co.com.sisegfut.client.datos.dominio.ConvocadosCompe</value>           
+                <value>co.com.sisegfut.client.datos.dominio.CuerpoTecnicoCompe</value>           
+                <value>co.com.sisegfut.client.datos.dominio.Goles</value>           
+                <value>co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe</value>  
+                
+                <value>co.com.sisegfut.client.datos.dominio.Experiencia</value>           
+                <value>co.com.sisegfut.client.datos.dominio.EstudiosRealizados</value>             
+                <value>co.com.sisegfut.client.datos.dominio.Rivales</value>             
+        
+                
+            </list>
+        </property>
+        <property name="annotatedPackages">
+            <list>
+                <value>co.com.sisegfut.client.datos.dominio</value>
+            </list>
+        </property>
+        <property name="eventListeners">
+            <map>
+                <entry key="merge">
+                    <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory"/>
+
+    <!-- ############ Fin Hibernate ############ -->
+
+    <!-- ############ Inicio Configuración mail ############ -->
+    <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage" />
+
+    <!-- Configuracion Para el envio de correos -->
+    <bean id="emisorCorreos" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${smtp.servidor}"/>
+        <property name="port" value="${smtp.puerto}"/>
+        <property name="username" value="${smtp.usuario}"/>
+        <property name="password" value="${smtp.clave}"/>
+        <property name="javaMailProperties">
+            <props>
+                <!-- Use SMTP-AUTH to authenticate to SMTP server -->
+                <prop key="mail.smtp.auth">${smtp.autenticar}</prop>
+                <!-- Use TLS to encrypt communication with SMTP server -->
+                <prop key="mail.smtp.starttls.enable">${smtp.tls}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ############ Fin Configuración mail ############ -->
+
+    <context:annotation-config />
+
+    <tx:annotation-driven/>
+
+    <aop:aspectj-autoproxy/>    
+
+    <!-- Usuario de sessión (se construye al loguearse) -->
+    <bean id="usuario" class="co.com.sisegfut.client.datos.dominio.Usuarios" scope="session">
+        <aop:scoped-proxy/>
+    </bean>
+    
+
+   
+    <bean class="co.com.sisegfut.server.servicios.local.ServicioCorreosImpl">
+        <property name="emisorCorreos" ref="emisorCorreos"/>
+        <property name="mailMessage" ref="mailMessage"/>
+        <property name="remitente" value="${smtp.remitente}"/>
+        <property name="urlLogo" value="${smtp.urllogo}"/>
+    </bean>
+    
+    <bean class="co.com.sisegfut.server.servicios.local.ServicioSMSImpl">
+        <property name="urlBase" value="${http.sms.url.base}"/>
+        <property name="paramUsuarioNombre" value="${http.sms.param.usuario.nombre}"/>
+        <property name="paramUsuarioValor" value="${http.sms.param.usuario.valor}"/>
+        <property name="paramClaveNombre" value="${http.sms.param.clave.nombre}"/>
+        <property name="paramClaveValor" value="${http.sms.param.clave.valor}"/>
+        <property name="paramDeNombre" value="${http.sms.param.de.nombre}"/>
+        <property name="paramParaNombre" value="${http.sms.param.para.nombre}"/>
+        <property name="prefijo" value="${http.sms.prefijo}"/>
+        <property name="paramMensajeNombre" value="${http.sms.param.mensaje.nombre}"/>
+        <property name="remitente" value="${http.sms.remitente}"/>
+    </bean>
+    
+     
+    
+    
+    
+</beans>

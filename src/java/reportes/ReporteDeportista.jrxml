@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="700" pageHeight="595" orientation="Landscape" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb412084-7d04-4229-a8ee-6fcca5874b9a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<field name="fechaNacimiento" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="posicion" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="139" splitType="Stretch">
+			<textField>
+				<reportElement x="447" y="99" width="213" height="36" forecolor="#336600" uuid="28d2efd1-1622-4d9f-bf71-6204531422b0"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="99" width="413" height="36" forecolor="#336600" uuid="b8478e84-4486-44e9-880f-de92f8bc45f3"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de deportistas por la categoría]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="32" width="660" height="1" isRemoveLineWhenBlank="true" forecolor="#006600" backcolor="#336600" uuid="d3b188b4-a045-43e3-8160-72b6c5754d04"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="2" y="0" width="110" height="22" forecolor="#336600" uuid="42269927-a82a-4bbe-8c62-cfe3372aab01"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="260" y="0" width="153" height="20" uuid="4ff4ebb3-684d-486f-bfb8-b0dfb477c1a3"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="403" y="1" width="147" height="20" uuid="c86ae57e-f69f-48ac-811b-0312f3ed4822"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha nacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="540" y="0" width="120" height="20" uuid="13de9aca-5217-4ea6-8030-e72e6a94e819"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Posición]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="137" y="0" width="129" height="20" uuid="406ff566-5bcc-4551-9d0e-651513ac927f"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="141" height="20" uuid="ea2eda7e-dec0-4eae-b26b-197c69a777b3"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="20" width="660" height="1" isRemoveLineWhenBlank="true" uuid="1d5d3a67-d8b8-410e-b991-1bf3f23a47cb"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="540" y="0" width="120" height="20" uuid="406cf5b4-190b-408f-80cc-0f2212217a48"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{posicion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="403" y="0" width="123" height="20" uuid="2a90e741-a46e-43f8-83c2-ab52d95a325e"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaNacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="133" y="0" width="133" height="20" uuid="e04b33b6-4698-4bb9-9e08-74066932f2a8"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="141" height="20" uuid="0862e69c-773b-4d48-a610-8b88fca744ed"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="260" y="0" width="153" height="20" uuid="a1d34442-2290-4cb0-9bb8-8fe77a97a5f4"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="660" height="1" uuid="e2cb2180-811c-44a5-845e-ab494a4a33c3"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24">
+			<elementGroup>
+				<frame>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="2" y="0" width="658" height="24" forecolor="#339900" backcolor="#99FF99" uuid="5eecf97d-8508-48b4-80f6-ddc6c662fe36">
+						<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+					</reportElement>
+					<textField pattern="EEEEE dd MMMMM yyyy">
+						<reportElement x="2" y="4" width="184" height="20" uuid="ba7fca21-f2b0-4d06-a312-ad6e1ae9b8e8"/>
+						<textElement>
+							<font size="12"/>
+						</textElement>
+						<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="504" y="4" width="80" height="20" uuid="ab70402f-cd77-4cae-8aee-c04aa22fdef6"/>
+						<textElement textAlignment="Right"/>
+						<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					</textField>
+					<textField evaluationTime="Report">
+						<reportElement x="584" y="4" width="40" height="20" uuid="0dba674e-ac43-4cfd-9efa-27f93680ec8d"/>
+						<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</elementGroup>
+		</band>
+	</pageFooter>
+</jasperReport>
