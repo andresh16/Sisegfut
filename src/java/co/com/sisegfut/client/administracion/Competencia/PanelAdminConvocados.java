@@ -547,6 +547,7 @@ public class PanelAdminConvocados extends LayoutContainer {
         btnGuardarConvocados.disable();
         btnEditar.enable();
         adminPestComp.tabItemSituaciones.enable();
+        adminPestComp.getTabpanel().setSelection(adminPestComp.tabItemSituaciones);
         adminPestComp.tabItemControlJuego.enable();
         adminPestComp.tabItemSituaciones.focus();
     }

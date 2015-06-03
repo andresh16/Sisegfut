@@ -30,6 +30,14 @@ public class PanelAdminPestComp extends LayoutContainer {
 
     TabPanel tabpanel = new TabPanel();
 
+    public TabPanel getTabpanel() {
+        return tabpanel;
+    }
+
+    public void setTabpanel(TabPanel tabpanel) {
+        this.tabpanel = tabpanel;
+    }
+
     public PanelAdminPestComp() {
         panelAdminConvocados = new PanelAdminConvocados(this);
         tabpanel.setLayoutData(new FillLayout());

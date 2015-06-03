@@ -160,7 +160,7 @@ public class PanelAdminSituaciones extends ContentPanel {
     private Button btnReiniciar;
     private Long IdCompetencia;
     private ContentPanel cp;
-    
+
     private Main myConstants = (Main) GWT.create(Main.class);
 
     @Override
@@ -189,7 +189,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         btnReiniciar.setIconAlign(Style.IconAlign.LEFT);
         btnReiniciar.setIcon(Resources.ICONS.iconoModificar());
         btnReiniciar.setEnabled(false);
-        
+
         //Agrego boton al panel principal que permite desplegar la ayuda.
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
@@ -251,7 +251,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition1.setEquipoSituacion("Politecnico JIC");
         situaAnfrition1.setTiempoSituacion(1);
 
-    /// Seteo las situaciones del primer tiempo del anfitrion
+        /// Seteo las situaciones del primer tiempo del anfitrion
         situaAnfrition1.setFaltaZona1(nFz1Primer.getValue().intValue());
         situaAnfrition1.setFaltaZona2(nFz2Primer.getValue().intValue());
         situaAnfrition1.setFaltaZona3(nFz3Primer.getValue().intValue());
@@ -268,7 +268,6 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition1.setCentrolLateral(0);
         situaAnfrition1.setRemates(nRePrimer.getValue().intValue());
         situaAnfrition1.setEntregasErradas(nEePrimer.getValue().intValue());
-        
 
         return situaAnfrition1;
     }
@@ -279,7 +278,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition2.setEquipoSituacion("Politecnico JIC");
         situaAnfrition2.setTiempoSituacion(2);
 
-    /// Seteo las situaciones del segundo tiempo del anfitrion
+        /// Seteo las situaciones del segundo tiempo del anfitrion
         situaAnfrition2.setFaltaZona1(nFz1Segun.getValue().intValue());
         situaAnfrition2.setFaltaZona2(nFz2Segun.getValue().intValue());
         situaAnfrition2.setFaltaZona3(nFz3Segun.getValue().intValue());
@@ -296,7 +295,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition2.setCentrolLateral(0);
         situaAnfrition2.setRemates(nReSegun.getValue().intValue());
         situaAnfrition2.setEntregasErradas(nEeSegun.getValue().intValue());
-        
+
         return situaAnfrition2;
     }
 
@@ -305,7 +304,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaRival1.setIdCompetencia(new Competencia(IdCompetencia));
         situaRival1.setEquipoSituacion("Rival");
         situaRival1.setTiempoSituacion(1);
-        
+
         /// Seteo las situaciones del primer tiempo del Rival
         situaRival1.setFaltaZona1(nFz1PrimerR.getValue().intValue());
         situaRival1.setFaltaZona2(nFz2PrimerR.getValue().intValue());
@@ -570,15 +569,15 @@ public class PanelAdminSituaciones extends ContentPanel {
         cpSituacionesJuego.setLayout(new FillLayout());
 
         tableAnfitrion = new FlexTable();
-        tableAnfitrion.getElement().getStyle().setProperty("margin", "0.5px");
-        tableAnfitrion.setCellSpacing(6);
-        tableAnfitrion.setCellPadding(4);
-//        tableAnfitrion.getCellFormatter();
-        tableAnfitrion.getColumnFormatter().setWidth(1, "5px");
-        tableAnfitrion.getColumnFormatter().setWidth(2, "5px");
-        tableAnfitrion.getColumnFormatter().setWidth(3, "5px");
-        tableAnfitrion.getColumnFormatter().setWidth(4, "5px");
+        tableAnfitrion.setWidth("50px");
+//        tableAnfitrion.setCellSpacing(6);
+//        tableAnfitrion.setCellPadding(4);
 
+//        tableAnfitrion.getCellFormatter();
+//        tableAnfitrion.getColumnFormatter().setWidth(1, "5px");
+//        tableAnfitrion.getColumnFormatter().setWidth(2, "300");
+//        tableAnfitrion.getColumnFormatter().setWidth(3, "5px");
+//        tableAnfitrion.getColumnFormatter().setWidth(4, "5px");
         SelectionListener<ButtonEvent> sl = new SelectionListener<ButtonEvent>() {
 
             @Override
@@ -621,191 +620,268 @@ public class PanelAdminSituaciones extends ContentPanel {
 
             }
         };
-
+       int anchotbtn=150;
         Button btnFz1 = new Button("Falta zona 1", sl);
+        btnFz1.setWidth(anchotbtn);
         Button btnFz2 = new Button("Falta zona 2", sl);
+        btnFz2.setWidth(anchotbtn);
         Button btnFz3 = new Button("Falta zona 3", sl);
+        btnFz3.setWidth(anchotbtn);
         Button btnRb1 = new Button("Recuperación balon Zona 1", sl);
+        btnRb1.setWidth(anchotbtn);
         Button btnRb2 = new Button("Recuperación balon Zona 2", sl);
+        btnRb2.setWidth(anchotbtn);
         Button btnRb3 = new Button("Recuperación balon Zona 3", sl);
+        btnRb3.setWidth(anchotbtn);
         Button btnTl1 = new Button("Tiro libre Zona 1", sl);
+        btnTl1.setWidth(anchotbtn);
         Button btnTl2 = new Button("Tiro libre Zona 2", sl);
+        btnTl2.setWidth(anchotbtn);
         Button btnTl3 = new Button("Tiro libre Zona 3", sl);
+        btnTl3.setWidth(anchotbtn);
         Button btnFl = new Button("Fuera de lugar", sl);
+        btnFl.setWidth(anchotbtn);
         Button btnTe = new Button("Tiro esquina", sl);
+        btnTe.setWidth(anchotbtn);
         Button btnOg = new Button("Opciones gol", sl);
+        btnOg.setWidth(anchotbtn);
         Button btnRe = new Button("Remates", sl);
+        btnRe.setWidth(anchotbtn);
         Button btnPe = new Button("Penalty", sl);
+        btnPe.setWidth(anchotbtn);
         Button btnEe = new Button("Entregas erradas", sl);
+        btnEe.setWidth(anchotbtn);
         Button btnAg = new Button("Asistencias gol", sl);
-
+        btnAg.setWidth(anchotbtn);
+        int ancho = 30;
         nFz1Primer = new NumberField();
         nFz1Primer.setValue(0);
-//        nFz1Primer.setWidth(50);
+        nFz1Primer.setWidth(ancho);
         nFz1Segun = new NumberField();
         nFz1Segun.setValue(0);
-//        nFz1Segun.setWidth(50);
+        nFz1Segun.setWidth(ancho);
 
         nFz2Primer = new NumberField();
         nFz2Primer.setValue(0);
+        nFz2Primer.setWidth(ancho);
         nFz2Segun = new NumberField();
         nFz2Segun.setValue(0);
+        nFz2Segun.setWidth(ancho);
 
         nFz3Primer = new NumberField();
         nFz3Primer.setValue(0);
+        nFz3Primer.setWidth(ancho);
         nFz3Segun = new NumberField();
         nFz3Segun.setValue(0);
+        nFz3Segun.setWidth(ancho);
 
         nRbz1Primer = new NumberField();
         nRbz1Primer.setValue(0);
+        nRbz1Primer.setWidth(ancho);
         nRbz1Segun = new NumberField();
         nRbz1Segun.setValue(0);
+        nRbz1Segun.setWidth(ancho);
 
         nRbz2Primer = new NumberField();
         nRbz2Primer.setValue(0);
+        nRbz2Primer.setWidth(ancho);
         nRbz2Segun = new NumberField();
         nRbz2Segun.setValue(0);
+        nRbz2Segun.setWidth(ancho);
 
         nRbz3Primer = new NumberField();
         nRbz3Primer.setValue(0);
+        nRbz3Primer.setWidth(ancho);
         nRbz3Segun = new NumberField();
         nRbz3Segun.setValue(0);
+        nRbz3Segun.setWidth(ancho);
 
         nTlz1Primer = new NumberField();
         nTlz1Primer.setValue(0);
+        nTlz1Primer.setWidth(ancho);
         nTlz1Segun = new NumberField();
         nTlz1Segun.setValue(0);
+        nTlz1Segun.setWidth(ancho);
 
         nTlz2Primer = new NumberField();
         nTlz2Primer.setValue(0);
+        nTlz2Primer.setWidth(ancho);
         nTlz2Segun = new NumberField();
         nTlz2Segun.setValue(0);
+        nTlz2Segun.setWidth(ancho);
 
         nTlz3Primer = new NumberField();
         nTlz3Primer.setValue(0);
+        nTlz3Primer.setWidth(ancho);
         nTlz3Segun = new NumberField();
         nTlz3Segun.setValue(0);
+        nTlz3Segun.setWidth(ancho);
 
         nFlPrimer = new NumberField();
         nFlPrimer.setValue(0);
+        nFlPrimer.setWidth(ancho);
         nFlSegun = new NumberField();
         nFlSegun.setValue(0);
+        nFlSegun.setWidth(ancho);
 
         nTePrimer = new NumberField();
         nTePrimer.setValue(0);
+        nTePrimer.setWidth(ancho);
         nTeSegun = new NumberField();
-        nTeSegun.setValue(0);
+        nTeSegun.setWidth(ancho);
 
         nOgPrimer = new NumberField();
         nOgPrimer.setValue(0);
+        nOgPrimer.setWidth(ancho);
         nOgSegun = new NumberField();
         nOgSegun.setValue(0);
+        nOgSegun.setWidth(ancho);
 
         nRePrimer = new NumberField();
         nRePrimer.setValue(0);
+        nRePrimer.setWidth(ancho);
         nReSegun = new NumberField();
         nReSegun.setValue(0);
+        nReSegun.setWidth(ancho);
 
         nPePrimer = new NumberField();
         nPePrimer.setValue(0);
+        nPePrimer.setWidth(ancho);
         nPeSegun = new NumberField();
         nPeSegun.setValue(0);
+        nPeSegun.setWidth(ancho);
 
         nEePrimer = new NumberField();
         nEePrimer.setValue(0);
+        nEePrimer.setWidth(ancho);
         nEeSegun = new NumberField();
         nEeSegun.setValue(0);
+        nEeSegun.setWidth(ancho);
 
         nAgPrimer = new NumberField();
         nAgPrimer.setValue(0);
+        nAgPrimer.setWidth(ancho);
         nAgSegun = new NumberField();
         nAgSegun.setValue(0);
+        nAgSegun.setWidth(ancho);
         ///////////////////////////////////////////////////////////
         /////////////////// inicialicacion variables de campos del rival ///////////////////////
         nFz1PrimerR = new NumberField();
         nFz1PrimerR.setValue(0);
-//        nFz1PrimerR.setWidth(50);
+        nFz1PrimerR.setWidth(ancho);
         nFz1SegunR = new NumberField();
         nFz1SegunR.setValue(0);
-//        nFz1SegunR.setWidth(50);
+        nFz1SegunR.setWidth(ancho);
 
         nFz2PrimerR = new NumberField();
         nFz2PrimerR.setValue(0);
+        nFz2PrimerR.setWidth(ancho);
         nFz2SegunR = new NumberField();
         nFz2SegunR.setValue(0);
+        nFz2SegunR.setWidth(ancho);
 
         nFz3PrimerR = new NumberField();
         nFz3PrimerR.setValue(0);
+        nFz3PrimerR.setWidth(ancho);
         nFz3SegunR = new NumberField();
         nFz3SegunR.setValue(0);
+        nFz3SegunR.setWidth(ancho);
 
         nRbz1PrimerR = new NumberField();
         nRbz1PrimerR.setValue(0);
+        nRbz1PrimerR.setWidth(ancho);
         nRbz1SegunR = new NumberField();
         nRbz1SegunR.setValue(0);
+        nRbz1SegunR.setWidth(ancho);
 
         nRbz2PrimerR = new NumberField();
         nRbz2PrimerR.setValue(0);
+        nRbz2PrimerR.setWidth(ancho);
         nRbz2SegunR = new NumberField();
         nRbz2SegunR.setValue(0);
+        nRbz2SegunR.setWidth(ancho);
 
         nRbz3PrimerR = new NumberField();
         nRbz3PrimerR.setValue(0);
+        nRbz3PrimerR.setWidth(ancho);
         nRbz3SegunR = new NumberField();
         nRbz3SegunR.setValue(0);
+        nRbz3SegunR.setWidth(ancho);
 
         nTlz1PrimerR = new NumberField();
         nTlz1PrimerR.setValue(0);
+        nTlz1PrimerR.setWidth(ancho);
         nTlz1SegunR = new NumberField();
         nTlz1SegunR.setValue(0);
+        nTlz1SegunR.setWidth(ancho);
 
         nTlz2PrimerR = new NumberField();
         nTlz2PrimerR.setValue(0);
+        nTlz2PrimerR.setWidth(ancho);
         nTlz2SegunR = new NumberField();
         nTlz2SegunR.setValue(0);
+        nTlz2SegunR.setWidth(ancho);
 
         nTlz3PrimerR = new NumberField();
         nTlz3PrimerR.setValue(0);
+        nTlz3PrimerR.setWidth(ancho);
         nTlz3SegunR = new NumberField();
         nTlz3SegunR.setValue(0);
+        nTlz3SegunR.setWidth(ancho);
 
         nFlPrimerR = new NumberField();
         nFlPrimerR.setValue(0);
+        nFlPrimerR.setWidth(ancho);
         nFlSegunR = new NumberField();
         nFlSegunR.setValue(0);
+        nFlSegunR.setWidth(ancho);
 
         nTePrimerR = new NumberField();
         nTePrimerR.setValue(0);
+        nTePrimerR.setWidth(ancho);
         nTeSegunR = new NumberField();
         nTeSegunR.setValue(0);
+        nTeSegunR.setWidth(ancho);
 
         nOgPrimerR = new NumberField();
         nOgPrimerR.setValue(0);
+        nOgPrimerR.setWidth(ancho);
+        nOgPrimerR.setWidth(ancho);
         nOgSegunR = new NumberField();
         nOgSegunR.setValue(0);
+        nOgSegunR.setWidth(ancho);
 
         nRePrimerR = new NumberField();
         nRePrimerR.setValue(0);
+        nRePrimerR.setWidth(ancho);
         nReSegunR = new NumberField();
         nReSegunR.setValue(0);
+        nReSegunR.setWidth(ancho);
 
         nPePrimerR = new NumberField();
         nPePrimerR.setValue(0);
+        nPePrimerR.setWidth(ancho);
         nPeSegunR = new NumberField();
         nPeSegunR.setValue(0);
+        nPeSegunR.setWidth(ancho);
 
         nEePrimerR = new NumberField();
         nEePrimerR.setValue(0);
+        nEePrimerR.setWidth(ancho);
         nEeSegunR = new NumberField();
         nEeSegunR.setValue(0);
+        nEeSegunR.setWidth(ancho);
 
         nAgPrimerR = new NumberField();
         nAgPrimerR.setValue(0);
+        nAgPrimerR.setWidth(ancho);
         nAgSegunR = new NumberField();
         nAgSegunR.setValue(0);
+        nAgSegunR.setWidth(ancho);
 //      /////////////////////////////////////////////////////////////////////////////////////////
 
-        tableAnfitrion.setHTML(0, 0, "<div style='font-size: 12px;'><b>Situación Juego</b></span>");
+//        tableAnfitrion.setHTML(0, 0, "<div style='font-size: 12px;'><b>Situación Juego</b></span>");
+        tableAnfitrion.setHTML(0, 0, "<b>Situación</b>");
         tableAnfitrion.setHTML(0, 1, "<div style='font-size: 12px;'><b>1er Poli</b></span>");
         tableAnfitrion.setHTML(0, 2, "<div style='font-size: 12px;'><b>2do Poli</b></span>");
         tableAnfitrion.setHTML(0, 3, "<div style='font-size: 12px;'><b>1er Rival</b></span>");
@@ -991,6 +1067,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         endpoint.setServiceEntryPoint("services/RPCAdminSituacionesJuego");
         return svc;
     }
+
     /**
      * Abre ventana de ayuda.
      */
@@ -1008,5 +1085,5 @@ public class PanelAdminSituaciones extends ContentPanel {
 
         simple.show();
     }
-    
+
 }
