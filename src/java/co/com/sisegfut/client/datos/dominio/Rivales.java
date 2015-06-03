@@ -44,6 +44,12 @@ public class Rivales extends EntidadPerpetua implements BeanModelTag, Serializab
     public Rivales() {
     }
 
+    public Rivales(Long Id) {
+        this.Id = Id;
+    }
+    
+    
+
     public Rivales(Long Id, String nombreRival, Torneos torneo) {
         this.Id = Id;
         this.nombreRival = nombreRival;

@@ -49,6 +49,11 @@ public class Torneos extends EntidadPerpetua implements BeanModelTag, Serializab
         
     }
 
+    public Torneos(Long Id) {
+        this.Id = Id;
+    }
+    
+
     public Torneos(Long Id, String nombreTorneo, String anno, Categoria categoria) {
         this.Id = Id;
         this.nombreTorneo = nombreTorneo;

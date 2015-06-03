@@ -18,10 +18,12 @@ import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.BaseFilterPagingLoadConfig;
+import com.extjs.gxt.ui.client.data.BaseListLoader;
 import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.data.BeanModelReader;
+import com.extjs.gxt.ui.client.data.ListLoadResult;
 import com.extjs.gxt.ui.client.data.ListLoader;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.PagingLoadConfig;
@@ -46,6 +48,8 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
@@ -74,8 +78,10 @@ import java.util.Map;
 public class PanelAdminConvocados extends LayoutContainer {
 
     ///Grid Convocados
-    private Grid<BeanModel> gridTitulares;
-    private Grid<BeanModel> gridSuplentes;
+    public Grid<BeanModel> gridTitulares;
+     ListLoader<ListLoadResult<ModelData>> loaderTitulares;
+    public Grid<BeanModel> gridSuplentes;
+     ListLoader<ListLoadResult<ModelData>> loaderSuplentes;
     //// Fin Grid Convocados
 
     ///Grid Jugadores
@@ -94,6 +100,10 @@ public class PanelAdminConvocados extends LayoutContainer {
     private Long idCompetencia = null;
     PanelAdminPestComp adminPestComp;
     private Main myConstants;
+    
+    TabItem tabItemTitulares = new TabItem("Titulates");
+    TabItem tabItemSuplentes = new TabItem("Suplentes");
+    TabPanel tabpanelConvocados = new TabPanel();
 
 //    PanelAdminPestComp adminPestComp = new PanelAdminPestComp();
     public PanelAdminConvocados(PanelAdminPestComp adminPestana) {
@@ -109,6 +119,7 @@ public class PanelAdminConvocados extends LayoutContainer {
         panelSelecConvocados.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         panelSelecConvocados.setSize(500, 500);
         panelSelecConvocados.setFrame(true);
+        panelSelecConvocados.disable();
         panelSelecConvocados.setHeaderVisible(false);
         ContentPanel jugadores = crearGridJugadores();
 
@@ -172,6 +183,8 @@ public class PanelAdminConvocados extends LayoutContainer {
             }
         };
 
+//        loaderSituaciones= new 
+        
         loaderJugadores = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, new BeanModelReader()) {
 
             @Override
@@ -313,13 +326,28 @@ public class PanelAdminConvocados extends LayoutContainer {
         panelConvocados.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         panelConvocados.setSize(250, 250);
         panelConvocados.setFrame(true);
-        panelConvocados.setHeaderVisible(false);
+        panelConvocados.setHeaderVisible(true);
 
-        ContentPanel cpTitulares = crearTitulares();
-        ContentPanel cpSuplentes = crearSuplentes();
+//        final ContentPanel cpTitulares = crearTitulares();
+//        final ContentPanel cpSuplentes = crearSuplentes();
+        
+        tabpanelConvocados.setLayoutData(new FillLayout());
+        tabpanelConvocados.setHeight(600);
+        
+        tabItemTitulares.setLayout(new FillLayout());
+        tabItemTitulares.add(crearTitulares());
+        tabItemTitulares.setIcon(Resources.ICONS.table());
+        tabItemSuplentes.setLayout(new FillLayout());
+        tabItemSuplentes.setIcon(Resources.ICONS.table());
+        tabItemSuplentes.add(crearSuplentes());
+        
+        tabpanelConvocados.add(tabItemTitulares);
+        tabpanelConvocados.add(tabItemSuplentes);
+        tabpanelConvocados.setTabScroll(true);
 
-        panelConvocados.add(cpTitulares, new RowData(1, 0.6, new Margins(0)));
-        panelConvocados.add(cpSuplentes, new RowData(1, 0.7, new Margins(0)));
+//        panelConvocados.add(cpTitulares, new RowData(1, 0.6, new Margins(0)));
+//        panelConvocados.add(cpSuplentes, new RowData(1, 0.7, new Margins(0)));
+        panelConvocados.add(tabpanelConvocados, new RowData(1, 1, new Margins(0)));
 
         lcConvocados.add(panelConvocados);
 
@@ -328,8 +356,17 @@ public class PanelAdminConvocados extends LayoutContainer {
             public void handleEvent(final BoxComponentEvent event) {
                 panelConvocados.setWidth(event.getWidth());
                 panelConvocados.setHeight(event.getHeight());
+                tabpanelConvocados.setWidth(event.getWidth());
+                tabpanelConvocados.setHeight(event.getHeight()-20);
             }
         });
+        
+//         panelConvocados.addListener(Events.Resize, new Listener<BoxComponentEvent>() {
+//            @Override
+//            public void handleEvent(final BoxComponentEvent event) {
+//                cpSuplentes.setHeight(event.getWidth()-cpTitulares.getHeight());
+//            }
+//        });
 
         return lcConvocados;
     }
@@ -341,7 +378,23 @@ public class PanelAdminConvocados extends LayoutContainer {
     }
 
     public ContentPanel crearTitulares() {
-        ListStore<BeanModel> storeTitulares = new ListStore<BeanModel>();
+        
+        final RPCAdminConvocadosCompAsync svc = (RPCAdminConvocadosCompAsync) GWT.create(RPCAdminConvocadosComp.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) svc;
+        endpoint.setServiceEntryPoint("services/RPCAdminConvocadosComp");
+        
+        
+         RpcProxy<List<Deportista>> proxy = new RpcProxy<List<Deportista>>() {  
+      @Override  
+      public void load(Object loadConfig, AsyncCallback<List<Deportista>> callback) {  
+        svc.getConvocadosXTipo(idCompetencia,"t",callback);  
+      }  
+    };  
+    // loader and store  
+    loaderTitulares = new BaseListLoader<ListLoadResult<ModelData>>(proxy, new BeanModelReader());
+        
+        
+        ListStore<BeanModel> storeTitulares = new ListStore<BeanModel>(loaderTitulares);
 
         //Configuro las columnas de la tabla
         List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
@@ -367,43 +420,58 @@ public class PanelAdminConvocados extends LayoutContainer {
         gridTitulares.getView().setForceFit(true);
         gridTitulares.setTrackMouseOver(false);
 
-//        gridTitulares.addListener(Events.c, new Listener<BaseEvent>() {
-//            @Override
-//            public void handleEvent(BaseEvent be) {
-//                
-//            }
-//        });
         new GridDragSource(gridTitulares);
         GridDropTarget t1 = new GridDropTarget(gridTitulares) {
             @Override
             protected void onDragEnter(DNDEvent e) {
-                if (gridTitulares.getStore().getModels().size() >= 11) {
+                List<Deportista> deportistas = e.getData();
+                
+                int cantidad=gridTitulares.getStore().getModels().size()+deportistas.size();
+                
+                if (gridTitulares.getStore().getModels().size() >= 11 || deportistas.size()>11 || cantidad>11) {
                     e.preventDefault();
                     e.setCancelled(true);
-                    MessageBox.alert("Error", "Excedió la cantidad de titulares permitidos",null);
+                    MessageBox.alert("Advertencia", "¡Excedió la cantidad de titulares permitidos (11)!",null);
                     return;
                 }
+//                MessageBox.alert("Error", "E data: "+deportistas.size(),null);;
 
                 super.onDragEnter(e); //To change body of generated methods, choose Tools | Templates.
             }
+            
 
         };
         t1.setFeedback(DND.Feedback.INSERT);
-//        t1.
 
         ContentPanel cp = new ContentPanel();
         cp.setBodyBorder(true);
         cp.setScrollMode(Style.Scroll.AUTO);
-        cp.setIcon(Resources.ICONS.table());
-        cp.setHeaderVisible(true);
-        cp.setHeading("Titulares");
+//        cp.setIcon(Resources.ICONS.table());
+        cp.setHeaderVisible(false);
+//        cp.setHeading("Titulares");
         cp.setLayout(new FillLayout());
         cp.add(gridTitulares);
         return cp;
     }
 
     public ContentPanel crearSuplentes() {
-        ListStore<BeanModel> storeSuplentes = new ListStore<BeanModel>();
+        
+        final RPCAdminConvocadosCompAsync svc = (RPCAdminConvocadosCompAsync) GWT.create(RPCAdminConvocadosComp.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) svc;
+        endpoint.setServiceEntryPoint("services/RPCAdminConvocadosComp");
+        
+        
+         RpcProxy<List<Deportista>> proxy = new RpcProxy<List<Deportista>>() {  
+      @Override  
+      public void load(Object loadConfig, AsyncCallback<List<Deportista>> callback) {  
+        svc.getConvocadosXTipo(idCompetencia,"t",callback);  
+      }  
+    };  
+  
+    // loader and store  
+     loaderSuplentes = new BaseListLoader<ListLoadResult<ModelData>>(proxy, new BeanModelReader());
+        
+        ListStore<BeanModel> storeSuplentes = new ListStore<BeanModel>(loaderSuplentes);
 
         //Configuro las columnas de la tabla
         List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
@@ -432,10 +500,14 @@ public class PanelAdminConvocados extends LayoutContainer {
         GridDropTarget t1 = new GridDropTarget(gridSuplentes) {
             @Override
             protected void onDragEnter(DNDEvent e) {
-                if (gridSuplentes.getStore().getModels().size() >= 15) {
+                List<Deportista> deportistas = e.getData();
+                
+                int cantidad=gridSuplentes.getStore().getModels().size()+deportistas.size();
+                
+                if (gridSuplentes.getStore().getModels().size() >= 15 || deportistas.size()>15 || cantidad>15) {
                     e.preventDefault();
                     e.setCancelled(true);
-                    MessageBox.alert("Error", "Excedió la cantidad de suplentes permitidos", null);
+                    MessageBox.alert("Error", "Excedió la cantidad de suplentes permitidos (15)", null);
                     return;
                 }
 
@@ -445,30 +517,33 @@ public class PanelAdminConvocados extends LayoutContainer {
         };
         t1.setFeedback(DND.Feedback.INSERT);
 
-        gridSuplentes.addListener(Events.Drop, new Listener<BaseEvent>() {
-
-            @Override
-            public void handleEvent(BaseEvent be) {
-
-            }
-        });
-
-        gridSuplentes.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
-            @Override
-            public void handleEvent(BaseEvent be) {
-//                Info.display("Categoria", "Filtro por la categoria " + cbxCategoria.getCategoriaElegida().getNombrecategoria());
-                cargarJugadoresXCategoria(cbxCategoria.getCategoriaElegida().getId());
-            }
-        });
+//        gridSuplentes.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
+//
+//            @Override
+//            public void handleEvent(BaseEvent be) {
+//               
+//                
+//            }
+//        });
+//
+//        gridSuplentes.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
+//            @Override
+//            public void handleEvent(BaseEvent be) {
+////                Info.display("Categoria", "Filtro por la categoria " + cbxCategoria.getCategoriaElegida().getNombrecategoria());
+//                cargarJugadoresXCategoria(cbxCategoria.getCategoriaElegida().getId());
+//            }
+//        });
 
         ContentPanel cp = new ContentPanel();
         cp.setBodyBorder(true);
         cp.setScrollMode(Style.Scroll.AUTO);
-        cp.setIcon(Resources.ICONS.table());
-        cp.setHeaderVisible(true);
-        cp.setHeading("Suplentes");
+//        cp.setIcon(Resources.ICONS.table());
+        cp.setHeaderVisible(false);
+//        cp.setHeading("Suplentes");
         cp.setLayout(new FillLayout());
         cp.add(gridSuplentes);
+        
+        
         return cp;
     }
 
@@ -543,7 +618,8 @@ public class PanelAdminConvocados extends LayoutContainer {
     }
 
     public void habilitarCampos() {
-        panelConvocados.setEnabled(false);
+        gridTitulares.setEnabled(false);
+        gridSuplentes.setEnabled(false);
         btnGuardarConvocados.disable();
         btnEditar.enable();
         adminPestComp.tabItemSituaciones.enable();
@@ -558,4 +634,23 @@ public class PanelAdminConvocados extends LayoutContainer {
         endpoint.setServiceEntryPoint("services/RPCAdminConvocadosComp");
         return svc;
     }
+    
+    public void cargarGridTitulares(){
+    loaderTitulares.load();
+    }
+    public void cargarGridSuplente(){
+    loaderSuplentes.load();
+    }
+    
+    public void cargarConvocadosCompetencia(Long idCompetencia,boolean habilitar){
+    
+        setIdCompetencia(idCompetencia);
+        cargarGridSuplente();
+        cargarGridTitulares();
+        gridTitulares.setEnabled(habilitar);
+        gridSuplentes.setEnabled(habilitar);
+        btnGuardarConvocados.setEnabled(habilitar);
+    
+    }
+    
 }

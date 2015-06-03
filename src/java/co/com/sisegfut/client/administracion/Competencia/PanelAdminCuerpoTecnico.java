@@ -292,5 +292,12 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         loaderCuerpoTecComp.load(0, 50);
         loaderCuerpoTecComp.load(0, 50);
     }
+    
+    public void cargarCuerpoTecnicoCompetencia(Long IdCompetencia, boolean habilitar){
+        setIdCompetencia(idCompetencia);
+        cargarGridCuerpoTecComp();
+        btnAgregar.setEnabled(habilitar);
+        btnEliminar.setEnabled(habilitar);
+    }
 
 }

@@ -28,21 +28,21 @@ public class PanelAdminPestComp extends LayoutContainer {
     PanelAdminSituaciones panelAdminSituaciones = new PanelAdminSituaciones();
     PanelAdminControlJuego panelAdminControlDisciplinario = new PanelAdminControlJuego();
 
-    TabPanel tabpanel = new TabPanel();
+    TabPanel tabpanelCompetencia = new TabPanel();
 
     public TabPanel getTabpanel() {
-        return tabpanel;
+        return tabpanelCompetencia;
     }
 
     public void setTabpanel(TabPanel tabpanel) {
-        this.tabpanel = tabpanel;
+        this.tabpanelCompetencia = tabpanel;
     }
 
     public PanelAdminPestComp() {
         panelAdminConvocados = new PanelAdminConvocados(this);
-        tabpanel.setLayoutData(new FillLayout());
-        tabpanel.setHeight(600);
-        tabpanel.disable();
+        tabpanelCompetencia.setLayoutData(new FillLayout());
+        tabpanelCompetencia.setHeight(600);
+        tabpanelCompetencia.disable();
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
         setScrollMode(Style.Scroll.AUTOY);
@@ -59,19 +59,19 @@ public class PanelAdminPestComp extends LayoutContainer {
         tabItemControlJuego.setEnabled(false);
         tabItemControlJuego.add(panelAdminControlDisciplinario);
 
-        tabpanel.add(tabItemConvocados);
-        tabpanel.add(tabItemSituaciones);
-        tabpanel.add(tabItemControlJuego);
-        tabpanel.setTabScroll(true);
+        tabpanelCompetencia.add(tabItemConvocados);
+        tabpanelCompetencia.add(tabItemSituaciones);
+        tabpanelCompetencia.add(tabItemControlJuego);
+        tabpanelCompetencia.setTabScroll(true);
 
         addListener(Events.Resize, new Listener<BoxComponentEvent>() {
             public void handleEvent(final BoxComponentEvent event) {
-                tabpanel.setWidth(event.getWidth());
-                tabpanel.setHeight(event.getHeight());
+                tabpanelCompetencia.setWidth(event.getWidth());
+                tabpanelCompetencia.setHeight(event.getHeight());
             }
         });
 
-        panel.add(tabpanel);
+        panel.add(tabpanelCompetencia);
         add(panel);
     }
 

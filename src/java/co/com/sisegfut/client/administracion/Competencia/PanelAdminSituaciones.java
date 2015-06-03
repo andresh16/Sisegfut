@@ -49,7 +49,26 @@ public class PanelAdminSituaciones extends ContentPanel {
 
     private Grid<DTOSituacionJuegoComp> gridSituaciones;
     Integer tiempo = 0;
+    ////////////////////////////// Botones de situaciones de Juego //////////////////////////////
 
+    private Button btnFz1;
+    private Button btnFz2;
+    private Button btnFz3;
+    private Button btnRb1;
+    private Button btnRb2;
+    private Button btnRb3;
+    private Button btnTl1;
+    private Button btnTl2;
+    private Button btnTl3;
+    private Button btnFl;
+    private Button btnTe;
+    private Button btnOg;
+    private Button btnRe;
+    private Button btnPe;
+    private Button btnEe;
+    private Button btnAg;
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
     private List<DTOSituacionJuegoComp> listaValoresJuego;
 ////////////////////////////// campos de 1er y 2do de anfitrion /////////////////////////////////
 
@@ -210,20 +229,55 @@ public class PanelAdminSituaciones extends ContentPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                SituacionesJuegoCompe situaAnfrition1 = getSituacionesAnfrition1();
-                SituacionesJuegoCompe situaAnfrition2 = getSituacionesAnfrition2();
-                SituacionesJuegoCompe situaRival1 = getSituacionesRival1();
-                SituacionesJuegoCompe situaRival2 = getSituacionesRival2();
+                getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
-                List<SituacionesJuegoCompe> listSituaciones = new ArrayList<SituacionesJuegoCompe>();
-                listSituaciones.add(situaAnfrition1);
-                listSituaciones.add(situaAnfrition2);
-                listSituaciones.add(situaRival1);
-                listSituaciones.add(situaRival2);
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
 
-                for (SituacionesJuegoCompe listSituacione : listSituaciones) {
-                    guardarSituaciones(listSituacione);
-                }
+                    @Override
+                    public void onSuccess(List<SituacionesJuegoCompe> result) {
+
+                        SituacionesJuegoCompe situaAnfrition1 = null;
+                        SituacionesJuegoCompe situaAnfrition2 = null;
+                        SituacionesJuegoCompe situaRival1 = null;
+                        SituacionesJuegoCompe situaRival2 = null;
+
+                        if (result.size() != 0 || !result.isEmpty()) {
+
+                            for (SituacionesJuegoCompe SituacionesJuego : result) {
+                                if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 1) {
+                                    situaAnfrition1 = getSituacionesAnfrition1(SituacionesJuego.getId());
+                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 2) {
+                                    situaAnfrition2 = getSituacionesAnfrition1(SituacionesJuego.getId());
+                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 1) {
+                                    situaRival1 = getSituacionesRival1(SituacionesJuego.getId());
+                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 2) {
+                                    situaRival2 = getSituacionesRival2(SituacionesJuego.getId());
+                                }
+                            }
+                        } else {
+                            situaAnfrition1 = getSituacionesAnfrition1(null);
+                            situaAnfrition2 = getSituacionesAnfrition2(null);
+                            situaRival1 = getSituacionesRival1(null);
+                            situaRival2 = getSituacionesRival2(null);
+                        }
+
+                        List<SituacionesJuegoCompe> listSituaciones = new ArrayList<SituacionesJuegoCompe>();
+
+                        listSituaciones.add(situaAnfrition1);
+                        listSituaciones.add(situaAnfrition2);
+                        listSituaciones.add(situaRival1);
+                        listSituaciones.add(situaRival2);
+
+                        for (SituacionesJuegoCompe listSituacione : listSituaciones) {
+                            guardarSituaciones(listSituacione);
+                        }
+                        Info.display("Exito", "Se guardaron correctamente las situaciones de juego");
+                    }
+                });
+
             }
         };
 
@@ -239,18 +293,19 @@ public class PanelAdminSituaciones extends ContentPanel {
 
             @Override
             public void onSuccess(RespuestaRPC<SituacionesJuegoCompe> result) {
-                Info.display("Exito", "Se guardaron correctamente las situaciones de juego");
+                System.out.println("Exito, se guardaron correctamente las situaciones de juego");
             }
         });
 
     }
 
-    public SituacionesJuegoCompe getSituacionesAnfrition1() {
+    public SituacionesJuegoCompe getSituacionesAnfrition1(Long idSituacion) {
         SituacionesJuegoCompe situaAnfrition1 = new SituacionesJuegoCompe();
-        situaAnfrition1.setIdCompetencia(new Competencia(IdCompetencia));
-        situaAnfrition1.setEquipoSituacion("Politecnico JIC");
-        situaAnfrition1.setTiempoSituacion(1);
 
+        situaAnfrition1.setId(idSituacion);
+        situaAnfrition1.setIdCompetencia(new Competencia(IdCompetencia));
+        situaAnfrition1.setEquipoSituacion("POLITECNICO JIC");
+        situaAnfrition1.setTiempoSituacion(1);
         /// Seteo las situaciones del primer tiempo del anfitrion
         situaAnfrition1.setFaltaZona1(nFz1Primer.getValue().intValue());
         situaAnfrition1.setFaltaZona2(nFz2Primer.getValue().intValue());
@@ -272,10 +327,11 @@ public class PanelAdminSituaciones extends ContentPanel {
         return situaAnfrition1;
     }
 
-    public SituacionesJuegoCompe getSituacionesAnfrition2() {
+    public SituacionesJuegoCompe getSituacionesAnfrition2(Long idSituacion) {
         SituacionesJuegoCompe situaAnfrition2 = new SituacionesJuegoCompe();
+        situaAnfrition2.setId(idSituacion);
         situaAnfrition2.setIdCompetencia(new Competencia(IdCompetencia));
-        situaAnfrition2.setEquipoSituacion("Politecnico JIC");
+        situaAnfrition2.setEquipoSituacion("POLITECNICO JIC");
         situaAnfrition2.setTiempoSituacion(2);
 
         /// Seteo las situaciones del segundo tiempo del anfitrion
@@ -299,8 +355,9 @@ public class PanelAdminSituaciones extends ContentPanel {
         return situaAnfrition2;
     }
 
-    public SituacionesJuegoCompe getSituacionesRival1() {
+    public SituacionesJuegoCompe getSituacionesRival1(Long idSituacion) {
         SituacionesJuegoCompe situaRival1 = new SituacionesJuegoCompe();
+        situaRival1.setId(idSituacion);
         situaRival1.setIdCompetencia(new Competencia(IdCompetencia));
         situaRival1.setEquipoSituacion("Rival");
         situaRival1.setTiempoSituacion(1);
@@ -326,8 +383,9 @@ public class PanelAdminSituaciones extends ContentPanel {
         return situaRival1;
     }
 
-    public SituacionesJuegoCompe getSituacionesRival2() {
+    public SituacionesJuegoCompe getSituacionesRival2(Long idSituacion) {
         SituacionesJuegoCompe situaRival2 = new SituacionesJuegoCompe();
+        situaRival2.setId(idSituacion);
         situaRival2.setIdCompetencia(new Competencia(IdCompetencia));
         situaRival2.setEquipoSituacion("Rival");
         situaRival2.setTiempoSituacion(2);
@@ -620,7 +678,7 @@ public class PanelAdminSituaciones extends ContentPanel {
 
             }
         };
-       int anchotbtn=150;
+        int anchotbtn = 150;
         Button btnFz1 = new Button("Falta zona 1", sl);
         btnFz1.setWidth(anchotbtn);
         Button btnFz2 = new Button("Falta zona 2", sl);
@@ -728,6 +786,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nTePrimer.setValue(0);
         nTePrimer.setWidth(ancho);
         nTeSegun = new NumberField();
+        nTeSegun.setValue(0);
         nTeSegun.setWidth(ancho);
 
         nOgPrimer = new NumberField();
@@ -1019,11 +1078,11 @@ public class PanelAdminSituaciones extends ContentPanel {
         simple.add(radioGroup, formData);
 
         rdAnfitrion = new Radio();
-        rdAnfitrion.setBoxLabel("Politecnico");
+        rdAnfitrion.setBoxLabel("POLITÉCNICO JIC");
         rdAnfitrion.setValue(true);
 
         rdRival = new Radio();
-        rdRival.setBoxLabel("Rival");
+        rdRival.setBoxLabel("RIVAL");
 
         RadioGroup radioGroup2 = new RadioGroup();
         radioGroup2.setFieldLabel("Equipo");
@@ -1084,6 +1143,192 @@ public class PanelAdminSituaciones extends ContentPanel {
         //simple.setSize(550, 255);
 
         simple.show();
+    }
+    
+    public void buscarSituacionesxCompetencia(Long idCompetencia, final boolean habilitar){
+    
+        getServiceSituaciones().getSituacionesXCompetencia(idCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
+
+            @Override
+            public void onFailure(Throwable caught) {
+                System.out.println("No fue posible consultar las situaciones");
+            }
+
+            @Override
+            public void onSuccess(List<SituacionesJuegoCompe> result) {
+                cargarSitucionesJuego(result, habilitar);
+                habilitarBotonesSituaciones(habilitar);
+            }
+        });
+    
+    
+    }
+
+    public void cargarSitucionesJuego(List<SituacionesJuegoCompe> situacionesJuegoCompes, boolean habitados) {
+
+        for (SituacionesJuegoCompe situacionesJuegoCompe : situacionesJuegoCompes) {
+            if (situacionesJuegoCompe.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC")) {
+                if (situacionesJuegoCompe.getTiempoSituacion().intValue() == 1) {
+                    nFz1Primer.setValue(situacionesJuegoCompe.getFaltaZona1());
+                    nFz1Primer.setEnabled(habitados);
+                    nFz2Primer.setValue(situacionesJuegoCompe.getFaltaZona2());
+                    nFz2Primer.setEnabled(habitados);
+                    nFz3Primer.setValue(situacionesJuegoCompe.getFaltaZona3());
+                    nFz3Primer.setEnabled(habitados);
+                    nRbz1Primer.setValue(situacionesJuegoCompe.getRecuperacionZona1());
+                    nRbz1Primer.setEnabled(habitados);
+                    nRbz2Primer.setValue(situacionesJuegoCompe.getRecuperacionZona2());
+                    nRbz2Primer.setEnabled(habitados);
+                    nRbz3Primer.setValue(situacionesJuegoCompe.getRecuperacionZona3());
+                    nRbz3Primer.setEnabled(habitados);
+                    nTlz1Primer.setValue(situacionesJuegoCompe.getTiroLibreZona1());
+                    nTlz1Primer.setEnabled(habitados);
+                    nTlz2Primer.setValue(situacionesJuegoCompe.getTiroLibreZona2());
+                    nTlz2Primer.setEnabled(habitados);
+                    nTlz3Primer.setValue(situacionesJuegoCompe.getTiroLibreZona3());
+                    nTlz3Primer.setEnabled(habitados);
+                    nTePrimer.setValue(situacionesJuegoCompe.getTiroEsquina());
+                    nTePrimer.setEnabled(habitados);
+                    nFlPrimer.setValue(situacionesJuegoCompe.getFueraLugar());
+                    nFlPrimer.setEnabled(habitados);
+                    nPePrimer.setValue(situacionesJuegoCompe.getPenalty());
+                    nPePrimer.setEnabled(habitados);
+                    nOgPrimer.setValue(situacionesJuegoCompe.getOpcionGol());
+                    nOgPrimer.setEnabled(habitados);
+//                    situaAnfrition1.setCentrolLateral(0);
+                    nRePrimer.setValue(situacionesJuegoCompe.getRemates());
+                    nRePrimer.setEnabled(habitados);
+                    nEePrimer.setValue(situacionesJuegoCompe.getEntregasErradas());
+                    nEePrimer.setEnabled(habitados);
+                } else {
+
+                    nFz1Segun.setValue(situacionesJuegoCompe.getFaltaZona1());
+                    nFz1Segun.setEnabled(habitados);
+                    nFz2Segun.setValue(situacionesJuegoCompe.getFaltaZona2());
+                    nFz2Segun.setEnabled(habitados);
+                    nFz3Segun.setValue(situacionesJuegoCompe.getFaltaZona3());
+                    nFz3Segun.setEnabled(habitados);
+                    nRbz1Segun.setValue(situacionesJuegoCompe.getRecuperacionZona1());
+                    nRbz1Segun.setEnabled(habitados);
+                    nRbz2Segun.setValue(situacionesJuegoCompe.getRecuperacionZona2());
+                    nRbz2Segun.setEnabled(habitados);
+                    nRbz3Segun.setValue(situacionesJuegoCompe.getRecuperacionZona3());
+                    nRbz3Segun.setEnabled(habitados);
+                    nTlz1Segun.setValue(situacionesJuegoCompe.getTiroLibreZona1());
+                    nTlz1Segun.setEnabled(habitados);
+                    nTlz2Segun.setValue(situacionesJuegoCompe.getTiroLibreZona2());
+                    nTlz2Segun.setEnabled(habitados);
+                    nTlz3Segun.setValue(situacionesJuegoCompe.getTiroLibreZona3());
+                    nTlz3Segun.setEnabled(habitados);
+                    nTeSegun.setValue(situacionesJuegoCompe.getTiroEsquina());
+                    nTeSegun.setEnabled(habitados);
+                    nFlSegun.setValue(situacionesJuegoCompe.getFueraLugar());
+                    nFlSegun.setEnabled(habitados);
+                    nPeSegun.setValue(situacionesJuegoCompe.getPenalty());
+                    nPeSegun.setEnabled(habitados);
+                    nOgSegun.setValue(situacionesJuegoCompe.getOpcionGol());
+                    nOgSegun.setEnabled(habitados);
+//                    situaAnfrition1.setCentrolLateral(0);
+                    nReSegun.setValue(situacionesJuegoCompe.getRemates());
+                    nReSegun.setEnabled(habitados);
+                    nEeSegun.setValue(situacionesJuegoCompe.getEntregasErradas());
+                    nEeSegun.setEnabled(habitados);
+                }
+            } else if (situacionesJuegoCompe.getEquipoSituacion().equalsIgnoreCase("RIVAL")) {
+                if (situacionesJuegoCompe.getTiempoSituacion().intValue() == 1) {
+
+                    nFz1PrimerR.setValue(situacionesJuegoCompe.getFaltaZona1());
+                    nFz1PrimerR.setEnabled(habitados);
+                    nFz2PrimerR.setValue(situacionesJuegoCompe.getFaltaZona2());
+                    nFz2PrimerR.setEnabled(habitados);
+                    nFz3PrimerR.setValue(situacionesJuegoCompe.getFaltaZona3());
+                    nFz3PrimerR.setEnabled(habitados);
+                    nRbz1PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona1());
+                    nRbz1PrimerR.setEnabled(habitados);
+                    nRbz2PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona2());
+                    nRbz2PrimerR.setEnabled(habitados);
+                    nRbz3PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona3());
+                    nRbz3PrimerR.setEnabled(habitados);
+                    nTlz1PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona1());
+                    nTlz1PrimerR.setEnabled(habitados);
+                    nTlz2PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona2());
+                    nTlz2PrimerR.setEnabled(habitados);
+                    nTlz3PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona3());
+                    nTlz3PrimerR.setEnabled(habitados);
+                    nTePrimerR.setValue(situacionesJuegoCompe.getTiroEsquina());
+                    nTePrimerR.setEnabled(habitados);
+                    nFlPrimerR.setValue(situacionesJuegoCompe.getFueraLugar());
+                    nFlPrimerR.setEnabled(habitados);
+                    nPePrimerR.setValue(situacionesJuegoCompe.getPenalty());
+                    nPePrimerR.setEnabled(habitados);
+                    nOgPrimerR.setValue(situacionesJuegoCompe.getOpcionGol());
+                    nOgPrimerR.setEnabled(habitados);
+//                    situaAnfrition1.setCentrolLateral(0);
+                    nRePrimerR.setValue(situacionesJuegoCompe.getRemates());
+                    nRePrimerR.setEnabled(habitados);
+                    nEePrimerR.setValue(situacionesJuegoCompe.getEntregasErradas());
+                    nEePrimerR.setEnabled(habitados);
+
+                } else {
+
+                    nFz1SegunR.setValue(situacionesJuegoCompe.getFaltaZona1());
+                    nFz1SegunR.setEnabled(habitados);
+                    nFz2SegunR.setValue(situacionesJuegoCompe.getFaltaZona2());
+                    nFz2SegunR.setEnabled(habitados);
+                    nFz3SegunR.setValue(situacionesJuegoCompe.getFaltaZona3());
+                    nFz3SegunR.setEnabled(habitados);
+                    nRbz1SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona1());
+                    nRbz1SegunR.setEnabled(habitados);
+                    nRbz2SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona2());
+                    nRbz2SegunR.setEnabled(habitados);
+                    nRbz3SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona3());
+                    nRbz3SegunR.setEnabled(habitados);
+                    nTlz1SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona1());
+                    nTlz1SegunR.setEnabled(habitados);
+                    nTlz2SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona2());
+                    nTlz2SegunR.setEnabled(habitados);
+                    nTlz3SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona3());
+                    nTlz3SegunR.setEnabled(habitados);
+                    nTeSegunR.setValue(situacionesJuegoCompe.getTiroEsquina());
+                    nTeSegunR.setEnabled(habitados);
+                    nFlSegunR.setValue(situacionesJuegoCompe.getFueraLugar());
+                    nFlSegunR.setEnabled(habitados);
+                    nPeSegunR.setValue(situacionesJuegoCompe.getPenalty());
+                    nPeSegunR.setEnabled(habitados);
+                    nOgSegunR.setValue(situacionesJuegoCompe.getOpcionGol());
+                    nOgSegunR.setEnabled(habitados);
+//                    situaAnfrition1.setCentrolLateral(0);
+                    nReSegunR.setValue(situacionesJuegoCompe.getRemates());
+                    nReSegunR.setEnabled(habitados);
+                    nEeSegunR.setValue(situacionesJuegoCompe.getEntregasErradas());
+                    nEeSegunR.setEnabled(habitados);
+
+                }
+            }
+        }
+
+    }
+
+    public void habilitarBotonesSituaciones(boolean habilitar) {
+
+        btnFz1.setEnabled(habilitar);
+        btnFz2.setEnabled(habilitar);
+        btnFz3.setEnabled(habilitar);
+        btnRb1.setEnabled(habilitar);
+        btnRb2.setEnabled(habilitar);
+        btnRb3.setEnabled(habilitar);
+        btnTl1.setEnabled(habilitar);
+        btnTl2.setEnabled(habilitar);
+        btnTl3.setEnabled(habilitar);
+        btnFl.setEnabled(habilitar);
+        btnTe.setEnabled(habilitar);
+        btnOg.setEnabled(habilitar);
+        btnRe.setEnabled(habilitar);
+        btnPe.setEnabled(habilitar);
+        btnEe.setEnabled(habilitar);
+        btnAg.setEnabled(habilitar);
+        btnGuardarSituaciones.setEnabled(habilitar);
+
     }
 
 }

@@ -13,8 +13,8 @@ import java.util.Date;
  *
  * @author Andres Hurtado
  */
-public class DTOCompetencia implements BeanModelTag, Serializable{
-    
+public class DTOCompetencia implements BeanModelTag, Serializable {
+
     private Date fecha;
     private String compromiso;
     private String lugar;
@@ -23,11 +23,40 @@ public class DTOCompetencia implements BeanModelTag, Serializable{
     private Long idCompetencia;
     private Long idJugadorComodin;
 
+    private String observaciones;
+    private Long idRival;
+    private Long idtorneo;
+
     public DTOCompetencia() {
     }
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public Long getIdtorneo() {
+        return idtorneo;
+    }
+
+    public void setIdtorneo(Long idtorneo) {
+        this.idtorneo = idtorneo;
+    }
+    
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Long getIdRival() {
+        return idRival;
+    }
+
+    public void setIdRival(Long idRival) {
+        this.idRival = idRival;
     }
 
     public void setFecha(Date fecha) {
@@ -82,9 +111,4 @@ public class DTOCompetencia implements BeanModelTag, Serializable{
         this.torneo = torneo;
     }
 
- 
-    
-    
-    
-    
 }

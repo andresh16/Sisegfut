@@ -198,12 +198,12 @@ public class PanelAdminDeportista extends LayoutContainer {
         ColumnModel cm = new ColumnModel(columns);
         GridFilters filters = new GridFilters();
 
-        StringFilter nombreFilter = new StringFilter("label");
+        StringFilter nombreFilter = new StringFilter("nombres");
 //        NumericFilter numberfilter = new NumericFilter("peso");  
         ListStore<BeanModel> listacategoria = cbxCategoria.getStore();
 
         ListFilter listFilter = new ListFilter("categoria.nombrecategoria", listacategoria);
-        listFilter.setDisplayProperty("categoria.nombrecategoria");
+        listFilter.setDisplayProperty("nombrecategoria");
 
         //StringFilter documentoFilter = new StringFilter("documento");
         filters.addFilter(nombreFilter);

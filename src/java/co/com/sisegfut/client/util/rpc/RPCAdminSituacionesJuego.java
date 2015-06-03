@@ -7,11 +7,14 @@
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe;
+import java.util.List;
 
 /**
  *
  * @author anfeh_000
  */
 public interface RPCAdminSituacionesJuego extends RPCMaestro<SituacionesJuegoCompe>{
+    
+    public List<SituacionesJuegoCompe> getSituacionesXCompetencia(Long idCompetencia);
     
 }

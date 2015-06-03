@@ -85,6 +85,9 @@ public class RPCAdminCompetenciaImpl extends RPCMaestroImpl<Competencia> impleme
                     agg.setFinalizo(valorCompentencia.isFinalizaCompentcia() ? "SI" : "NO");
                     agg.setIdCompetencia(valorCompentencia.getId());
                     agg.setIdJugadorComodin(valorCompentencia.getRival().getJugadorComodin().getId());
+                    agg.setIdRival(valorCompentencia.getRival().getId());
+                    agg.setObservaciones(valorCompentencia.getObservacion());
+                    agg.setIdtorneo(valorCompentencia.getTorneo().getId());
                     listaRetorno.add(agg);
                 }
             }

@@ -1021,15 +1021,6 @@ public class PanelAdminControlJuego extends LayoutContainer {
         return svc;
     }
 
-    public void cargarGridCambios() {
-        loaderCambios.load(0, 50);
-        loaderCambios.load(0, 50);
-    }
-
-    public void cargarGridGoles() {
-        loaderGoles.load(0, 50);
-        loaderGoles.load(0, 50);
-    }
 
     public void agregarGolCompetencia(Long idCompetencia, boolean golAnfitrion) {
         getServiceCompetencia().agregarGolCompetencia(idCompetencia, golAnfitrion, new AsyncCallback<Void>() {
@@ -1072,4 +1063,35 @@ public class PanelAdminControlJuego extends LayoutContainer {
         loaderTarjetas.load(0, 50);
         loaderTarjetas.load(0, 50);
     }
+    
+     public void cargarGridCambios() {
+        loaderCambios.load(0, 50);
+        loaderCambios.load(0, 50);
+    }
+
+    public void cargarGridGoles() {
+        loaderGoles.load(0, 50);
+        loaderGoles.load(0, 50);
+    }
+    
+    
+    public void cargarControlJuego(Long IdCompetencia,Long idComodin,boolean habilitar){
+    
+        this.setIdCompetencia(idCompetencia);
+        this.setIdJugadorComodin(idComodin);
+        cargarGridTarjetas();
+        cargarGridCambios();
+        cargarGridGoles();
+        
+        btnCrearCambios.setEnabled(habilitar);
+        btnCrearGol.setEnabled(habilitar);
+        btnCrearTarjeta.setEnabled(habilitar);
+        btnEliminarCambio.setEnabled(habilitar);
+        btnEliminarGol.setEnabled(habilitar);
+        btnEliminarTarjeta.setEnabled(habilitar);
+    
+    }
+    
+    
+    
 }
