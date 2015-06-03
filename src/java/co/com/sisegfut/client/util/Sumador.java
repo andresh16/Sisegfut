@@ -6,7 +6,7 @@ package co.com.sisegfut.client.util;
 
 /**
  *
- * @author Juan David Botero <jdbotero@gmail.com>
+ * @author 
  */
 public class Sumador
 {

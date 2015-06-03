@@ -39,7 +39,7 @@ import java.util.Date;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class PanelBase extends LayoutContainer {
 

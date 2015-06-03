@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author jdbotero
+ * @author 
  */
 public class Formatos {
 

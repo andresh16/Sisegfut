@@ -6,7 +6,7 @@ package co.com.sisegfut.client.util;
 
 /**
  *
- * @author agomez
+ * @author 
  */
 public class RellenarCeros {
 

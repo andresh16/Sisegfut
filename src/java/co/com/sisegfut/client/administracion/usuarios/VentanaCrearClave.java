@@ -39,7 +39,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @author josorio
+ * @
  */
 public class VentanaCrearClave extends Window implements AsyncCallback<RespuestaRPC<Integer>>{
 //    private PanelInformativo pnlInformativo;
@@ -280,7 +280,9 @@ public class VentanaCrearClave extends Window implements AsyncCallback<Respuesta
         txtUsuario.setValue(""+usuarioTrabajo.getNombreCompleto());  
     }
     
-    //cierra la ventana
+    /**
+     * cierra la ventana
+     */
     private void cerrarVentana(){
         this.hide();
     }

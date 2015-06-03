@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author dpareja
+ * @author 
  */
 public class Cifrado {
 

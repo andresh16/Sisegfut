@@ -2,7 +2,7 @@ package co.com.sisegfut.client.util;
 
 /**
  * Plantillas para las diferentes presentaciones del sistema
- * @author Juan David Botero <jdbotero@gmail.com>
+ * @author 
  */
 public class Plantillas 
 {

@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author agomez
+ * @author 
  */
 public class ImageUtil {
 

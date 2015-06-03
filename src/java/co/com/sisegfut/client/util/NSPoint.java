@@ -6,7 +6,7 @@ package co.com.sisegfut.client.util;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class NSPoint {
 

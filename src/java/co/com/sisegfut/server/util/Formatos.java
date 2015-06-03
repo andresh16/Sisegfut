@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author jdbotero@gmail.com
+ * @author 
  */
 public class Formatos 
 {

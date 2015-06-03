@@ -1,12 +1,8 @@
 /**
-* PaginGridUsuarios
-* Versión 1.0
-* 15/09/2013
+* 
 *
-* Copyright(c) 2007-2012, Boos IT.
-* admin@boos.com.co
 *
-* http://boos.com.co/license
+* 
 **/
 
 package co.com.sisegfut.client.administracion.usuarios;
@@ -28,7 +24,7 @@ import java.util.List;
 
 /**
  *
- * @author josorio
+ * @
  */
 public class PaginGridUsuarios extends PaginGridEntidades<Usuarios>{
    

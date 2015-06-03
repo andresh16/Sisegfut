@@ -1,6 +1,6 @@
 /*
-  PanelMenu
- 
+ * PanelMenu
+ *
  */
 package co.com.sisegfut.client.base;
 
@@ -47,7 +47,7 @@ import com.google.gwt.user.client.ui.*;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class PanelMenu extends LayoutContainer {
 

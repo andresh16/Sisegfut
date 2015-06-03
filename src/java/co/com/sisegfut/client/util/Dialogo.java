@@ -13,7 +13,7 @@ import com.google.gwt.core.client.GWT;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class Dialogo extends MessageBox {
 

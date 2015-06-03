@@ -1,10 +1,10 @@
 /**
- * PanelAdminstracionUsuarios Versión 1.0 15/09/2013
+ * PanelAdminstracionUsuarios 
+ *
  * 
-* Copyright(c) 2007-2012, Boos IT. admin@boos.com.co
  * 
-* http://boos.com.co/license
-*
+ * 
+ *
  */
 package co.com.sisegfut.client.administracion.usuarios;
 
@@ -28,7 +28,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @author josorio
+ * @
  */
 public class PanelAdminstracionUsuarios extends PanelAdministracionEntidades<Usuarios> {
 

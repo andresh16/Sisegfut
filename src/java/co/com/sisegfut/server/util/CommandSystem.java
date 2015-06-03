@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class CommandSystem {
     //Esta funcion devuelve un proceso que es la ejecucion del comando

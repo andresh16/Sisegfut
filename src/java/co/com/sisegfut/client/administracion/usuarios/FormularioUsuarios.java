@@ -18,7 +18,7 @@ import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 
 /**
  *
- * @author josorio
+ *
  */
 public class FormularioUsuarios extends FormularioCRUD<Usuarios> {
 

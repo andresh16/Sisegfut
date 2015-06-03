@@ -1,12 +1,10 @@
 /**
 * VentanaRecuperarUsuario
-* Versión 1.0
-* 15/09/2013
+* 
+* 
 *
-* Copyright(c) 2007-2012, Boos IT.
-* admin@boos.com.co
 *
-* http://boos.com.co/license
+* 
 **/
 
 package co.com.sisegfut.client.administracion.usuarios;
@@ -21,7 +19,7 @@ import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 
 /**
  *
- * @author josorio
+ * @
  */
 public class VentanaRecuperarUsuario extends VentanaRecuperar<Usuarios>{
 
@@ -34,7 +32,10 @@ public class VentanaRecuperarUsuario extends VentanaRecuperar<Usuarios>{
         super(listenerGuardado, titulo);
     }
     
-    
+    /**
+     * 
+     * @return 
+     */
     @Override
     protected ComboBoxEntidades<Usuarios> crearComboInactivos(){
         cmbEntidad = new ComboBoxUsuarios(EntidadPerpetua.TIPO_DELETED); 
@@ -44,7 +45,10 @@ public class VentanaRecuperarUsuario extends VentanaRecuperar<Usuarios>{
         
         return cmbEntidad;
     }
-
+    /**
+     * 
+     * @return 
+     */
     @Override
     protected String getAyuda() {
         return myConstants.ayudaReactivarUsuario();

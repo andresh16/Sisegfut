@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  *
  * @param <T> 
- * @author jdbotero
+ * @author 
  */
 public class RespuestaRPC<T extends Serializable> implements Serializable
 {

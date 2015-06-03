@@ -1,10 +1,16 @@
+/**
+ * PanelErrores
+ */
 package co.com.sisegfut.client.util;
 
 import com.extjs.gxt.ui.client.widget.Html;
 
 
 
-
+/**
+ * 
+ * @author ManuelAlejandro
+ */
 public class PanelErrores extends Html
 {
     private StringBuffer errores;

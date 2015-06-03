@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author jdbotero
+ * @author
  */
 public interface ListenerGuardado<T extends Serializable>
 {

@@ -15,7 +15,7 @@ import org.codehaus.jackson.map.SerializerProvider;
 
 /**
  *
- * @author jdbotero
+ * @author 
  */
 public class FechaJsonSerializer extends JsonSerializer<Date>
 {

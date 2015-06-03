@@ -22,7 +22,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class FormularioSolicitud extends FormPanel{
     /**

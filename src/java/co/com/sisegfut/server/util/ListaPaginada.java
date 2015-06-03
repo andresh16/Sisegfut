@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author agomez
+ * @author 
  */
 public class ListaPaginada<T extends Serializable> {
 

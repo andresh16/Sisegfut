@@ -1,10 +1,10 @@
 /*
- * Para Boos IT
- * Ext GWT 2.2.5 - Ext for GWT
- * Copyright(c) 2007-2010, Ext JS, LLC.
- * licensing@extjs.com
  * 
- * http://extjs.com/license
+ * PanelRecuperacion
+ * 
+ * 
+ * 
+ * 
  */
 package co.com.sisegfut.client.ingreso.recuperacionclave;
 
@@ -14,7 +14,7 @@ import com.google.gwt.user.client.Element;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class PanelRecuperacion extends LayoutContainer{
     

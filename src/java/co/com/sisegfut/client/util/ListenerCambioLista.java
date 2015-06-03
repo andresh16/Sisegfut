@@ -7,7 +7,7 @@ package co.com.sisegfut.client.util;
 
 /**
  *
- * @author jdbotero@gmail.com
+ * @author 
  */
 public interface ListenerCambioLista
 {

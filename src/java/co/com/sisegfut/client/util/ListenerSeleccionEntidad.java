@@ -2,7 +2,7 @@ package co.com.sisegfut.client.util;
 
 /**
  *
- * @author jdbotero
+ * @author 
  */
 public interface ListenerSeleccionEntidad
 {

@@ -39,7 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author jdbotero
+ * @author 
  */
 @Controller
 //@RequestMapping("/foto")

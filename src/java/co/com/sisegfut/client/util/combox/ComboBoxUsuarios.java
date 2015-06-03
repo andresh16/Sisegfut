@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public class ComboBoxUsuarios extends ComboBoxEntidades<Usuarios> {
 

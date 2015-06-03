@@ -6,7 +6,10 @@ package co.com.sisegfut.client.util;
 
 import co.com.sisegfut.client.util.iconos.Iconos;
 import com.google.gwt.core.client.GWT;
-
+/**
+ * 
+ * @author ManuelAlejandro
+ */
 public class Resources {
 
     public static final Iconos ICONS = GWT.create(Iconos.class);

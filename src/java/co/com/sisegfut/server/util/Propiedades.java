@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  *
- * @author jdbotero@gmail.com
+ * @author 
  */
 public class Propiedades
 {

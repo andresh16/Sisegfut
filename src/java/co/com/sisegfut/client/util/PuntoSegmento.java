@@ -7,7 +7,7 @@ package co.com.sisegfut.client.util;
 
 /**
  * Distancia entre un punto y un segmento del plano cartesiano.
- * @author josorio
+ * @author 
  */
 public class PuntoSegmento {
     private NSPoint A;

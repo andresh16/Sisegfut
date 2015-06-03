@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 
 /**
  * Boton con la funcion especifica de abrir un dialogo con un texto de ayuda.
- * @author josorio
+ * @author 
  */
 public class BotonAyudaH extends Button{
     

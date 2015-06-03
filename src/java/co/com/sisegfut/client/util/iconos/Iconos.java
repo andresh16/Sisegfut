@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
 /**
  *
- * @author josorio
+ * @author 
  */
 public interface Iconos extends XImages {
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  *
- * @author jdbotero
+ * @author 
  */
 public interface ServicioSMS
 {  
