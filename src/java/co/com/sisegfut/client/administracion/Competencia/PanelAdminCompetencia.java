@@ -937,10 +937,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     public void limpiarCompetencia() {
         this.mask("Reiniciando competencia....");
         idCompetencia = null;
-        adminCuerpoTecnico.cargarGridCuerpoTecComp();
-        adminCuerpoTecnico.cbxPersonal.recargar();
         binding.addButton(btnGuardarComp);
-
         fpCompromiso.setEnabled(true);
         DtFecha.reset();
         comboBoxTorneo.recargar();
@@ -950,15 +947,23 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cpCuerpoTecCom.setEnabled(false);
         btnGuardarComp.setEnabled(true);
         btnGuardarCompetencia.disable();
-        adminCuerpoTecnico.cbxPersonal.recargar();
+        
         adminCuerpoTecnico.setIdCompetencia(null);
-        adminPestComp.panelAdminConvocados.setIdCompetencia(null);
-        adminPestComp.panelAdminConvocados.limpiarGrids();
-//        adminPestComp.panelAdminConvocados.gridTitulares.enable();
-//        adminPestComp.panelAdminConvocados.gridSuplentes.enable();
-        adminPestComp.panelAdminControlDisciplinario.setIdCompetencia(null);
-        adminPestComp.panelAdminControlDisciplinario.setIdJugadorComodin(null);
+        adminCuerpoTecnico.cbxPersonal.recargar();
+        adminCuerpoTecnico.cargarGridCuerpoTecComp();
+        
+        
+        adminPestComp.panelAdminConvocados.reiniciarConvocados();
+        adminPestComp.panelAdminControlDisciplinario.reiniciarControlJuego();
+        
         adminPestComp.panelAdminSituaciones.setIdCompetencia(null);
+        
+        adminPestComp.panelAdminConvocados.disable();
+        
+        adminPestComp.tabItemSituaciones.disable();
+        adminPestComp.tabItemControlJuego.disable();
+        adminPestComp.getTabpanel().setSelection(adminPestComp.tabItemConvocados);
+        
 //        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
 
         this.unmask();

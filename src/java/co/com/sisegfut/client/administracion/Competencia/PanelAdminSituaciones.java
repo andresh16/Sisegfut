@@ -23,9 +23,11 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.Radio;
@@ -72,7 +74,7 @@ public class PanelAdminSituaciones extends ContentPanel {
     private List<DTOSituacionJuegoComp> listaValoresJuego;
 ////////////////////////////// campos de 1er y 2do de anfitrion /////////////////////////////////
 
-    private FlexTable tableAnfitrion;
+    private FlexTable tableSituaciones;
     private NumberField nFz1Primer;
     private NumberField nFz1Segun;
 
@@ -178,7 +180,7 @@ public class PanelAdminSituaciones extends ContentPanel {
     private Button btnGuardarSituaciones;
     private Button btnReiniciar;
     private Long IdCompetencia;
-    private ContentPanel cp;
+    private FormPanel cp;
 
     private Main myConstants = (Main) GWT.create(Main.class);
 
@@ -216,8 +218,11 @@ public class PanelAdminSituaciones extends ContentPanel {
                 abrirVentana(myConstants.ayudaPanelSituacionesCompetencia());
             }
         }));
-
+//        FormButtonBinding binding2 = new FormButtonBinding(cp);
+//        binding2.addButton(btnGuardarSituaciones);
+//
         cp.addButton(btnGuardarSituaciones);
+
         cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         add(cp);
@@ -229,54 +234,58 @@ public class PanelAdminSituaciones extends ContentPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
+                if (cp.isValid()) {
+                    getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            Info.display("Error", "No Se guardaron las situaciones de juego");
+                        }
 
-                    @Override
-                    public void onSuccess(List<SituacionesJuegoCompe> result) {
+                        @Override
+                        public void onSuccess(List<SituacionesJuegoCompe> result) {
 
-                        SituacionesJuegoCompe situaAnfrition1 = null;
-                        SituacionesJuegoCompe situaAnfrition2 = null;
-                        SituacionesJuegoCompe situaRival1 = null;
-                        SituacionesJuegoCompe situaRival2 = null;
+                            SituacionesJuegoCompe situaAnfrition1 = null;
+                            SituacionesJuegoCompe situaAnfrition2 = null;
+                            SituacionesJuegoCompe situaRival1 = null;
+                            SituacionesJuegoCompe situaRival2 = null;
 
-                        if (result.size() != 0 || !result.isEmpty()) {
+                            if (result.size() != 0 || !result.isEmpty()) {
 
-                            for (SituacionesJuegoCompe SituacionesJuego : result) {
-                                if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 1) {
-                                    situaAnfrition1 = getSituacionesAnfrition1(SituacionesJuego.getId());
-                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 2) {
-                                    situaAnfrition2 = getSituacionesAnfrition1(SituacionesJuego.getId());
-                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 1) {
-                                    situaRival1 = getSituacionesRival1(SituacionesJuego.getId());
-                                } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 2) {
-                                    situaRival2 = getSituacionesRival2(SituacionesJuego.getId());
+                                for (SituacionesJuegoCompe SituacionesJuego : result) {
+                                    if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 1) {
+                                        situaAnfrition1 = getSituacionesAnfrition1(SituacionesJuego.getId());
+                                    } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC") && SituacionesJuego.getTiempoSituacion() == 2) {
+                                        situaAnfrition2 = getSituacionesAnfrition1(SituacionesJuego.getId());
+                                    } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 1) {
+                                        situaRival1 = getSituacionesRival1(SituacionesJuego.getId());
+                                    } else if (SituacionesJuego.getEquipoSituacion().equalsIgnoreCase("RIVAL") && SituacionesJuego.getTiempoSituacion() == 2) {
+                                        situaRival2 = getSituacionesRival2(SituacionesJuego.getId());
+                                    }
                                 }
+                            } else {
+                                situaAnfrition1 = getSituacionesAnfrition1(null);
+                                situaAnfrition2 = getSituacionesAnfrition2(null);
+                                situaRival1 = getSituacionesRival1(null);
+                                situaRival2 = getSituacionesRival2(null);
                             }
-                        } else {
-                            situaAnfrition1 = getSituacionesAnfrition1(null);
-                            situaAnfrition2 = getSituacionesAnfrition2(null);
-                            situaRival1 = getSituacionesRival1(null);
-                            situaRival2 = getSituacionesRival2(null);
+
+                            List<SituacionesJuegoCompe> listSituaciones = new ArrayList<SituacionesJuegoCompe>();
+
+                            listSituaciones.add(situaAnfrition1);
+                            listSituaciones.add(situaAnfrition2);
+                            listSituaciones.add(situaRival1);
+                            listSituaciones.add(situaRival2);
+
+                            for (SituacionesJuegoCompe listSituacione : listSituaciones) {
+                                guardarSituaciones(listSituacione);
+                            }
+                            Info.display("Exito", "Se guardaron correctamente las situaciones de juego");
                         }
-
-                        List<SituacionesJuegoCompe> listSituaciones = new ArrayList<SituacionesJuegoCompe>();
-
-                        listSituaciones.add(situaAnfrition1);
-                        listSituaciones.add(situaAnfrition2);
-                        listSituaciones.add(situaRival1);
-                        listSituaciones.add(situaRival2);
-
-                        for (SituacionesJuegoCompe listSituacione : listSituaciones) {
-                            guardarSituaciones(listSituacione);
-                        }
-                        Info.display("Exito", "Se guardaron correctamente las situaciones de juego");
-                    }
-                });
+                    });
+                }else{
+                    MessageBox.info("Error", "Verifique los datos", null);
+                }
 
             }
         };
@@ -617,17 +626,20 @@ public class PanelAdminSituaciones extends ContentPanel {
 //
 //        return cpSituacionesJuego;
 //    }
-    private ContentPanel crearSituacionesJuego() {
+    private FormPanel crearSituacionesJuego() {
 
-        ContentPanel cpSituacionesJuego = new ContentPanel();
+        FormPanel cpSituacionesJuego = new FormPanel();
         cpSituacionesJuego.setBodyBorder(true);
         cpSituacionesJuego.setScrollMode(Style.Scroll.AUTO);
         cpSituacionesJuego.setIcon(Resources.ICONS.table());
         cpSituacionesJuego.setHeaderVisible(false);
         cpSituacionesJuego.setLayout(new FillLayout());
 
-        tableAnfitrion = new FlexTable();
-        tableAnfitrion.setWidth("50px");
+//        FormButtonBinding binding2 = new FormButtonBinding(cpSituacionesJuego);
+//        binding2.addButton(btnGuardarSituaciones);
+
+        tableSituaciones = new FlexTable();
+//        tableSituaciones.setWidth("50px");
 //        tableAnfitrion.setCellSpacing(6);
 //        tableAnfitrion.setCellPadding(4);
 
@@ -642,7 +654,7 @@ public class PanelAdminSituaciones extends ContentPanel {
             public void componentSelected(ButtonEvent ce) {
                 String txt = ce.getButton().getText();
                 tiempo = 0;
-                if (txt.equals("Falta zona 1")) {
+                if (txt.equals("<b>Falta zona 1<b/>")) {
                     preguntaTiempoEquipo(nFz1Primer, nFz1Segun, nFz1PrimerR, nFz1SegunR, txt);
                 } else if (txt.equals("Falta zona 2")) {
                     preguntaTiempoEquipo(nFz2Primer, nFz2Segun, nFz2PrimerR, nFz2SegunR, txt);
@@ -678,46 +690,57 @@ public class PanelAdminSituaciones extends ContentPanel {
 
             }
         };
-        int anchotbtn = 150;
-        Button btnFz1 = new Button("Falta zona 1", sl);
+        int anchotbtn = 200;
+//        Button btnFz1 = new Button("<b>Falta zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        
+        Button btnFz1 = new Button("<b>Falta zona 1<b/>", sl);
         btnFz1.setWidth(anchotbtn);
-        Button btnFz2 = new Button("Falta zona 2", sl);
+        
+        Button btnFz2 = new Button("<b>Falta zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFz2.setWidth(anchotbtn);
-        Button btnFz3 = new Button("Falta zona 3", sl);
+        Button btnFz3 = new Button("<b>Falta zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFz3.setWidth(anchotbtn);
-        Button btnRb1 = new Button("Recuperación balon Zona 1", sl);
+        Button btnRb1 = new Button("<b>Recuperación balon Zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb1.setWidth(anchotbtn);
-        Button btnRb2 = new Button("Recuperación balon Zona 2", sl);
+        Button btnRb2 = new Button("<b>Recuperación balon Zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb2.setWidth(anchotbtn);
-        Button btnRb3 = new Button("Recuperación balon Zona 3", sl);
+        Button btnRb3 = new Button("<b>Recuperación balon Zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb3.setWidth(anchotbtn);
-        Button btnTl1 = new Button("Tiro libre Zona 1", sl);
+        Button btnTl1 = new Button("<b>Tiro libre Zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl1.setWidth(anchotbtn);
-        Button btnTl2 = new Button("Tiro libre Zona 2", sl);
+        Button btnTl2 = new Button("<b>Tiro libre Zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl2.setWidth(anchotbtn);
-        Button btnTl3 = new Button("Tiro libre Zona 3", sl);
+        Button btnTl3 = new Button("<b>Tiro libre Zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl3.setWidth(anchotbtn);
-        Button btnFl = new Button("Fuera de lugar", sl);
+        Button btnFl = new Button("<b>Fuera de lugar<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFl.setWidth(anchotbtn);
-        Button btnTe = new Button("Tiro esquina", sl);
+        Button btnTe = new Button("<b>Tiro esquina<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTe.setWidth(anchotbtn);
-        Button btnOg = new Button("Opciones gol", sl);
+        Button btnOg = new Button("<b>Opciones gol<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnOg.setWidth(anchotbtn);
-        Button btnRe = new Button("Remates", sl);
+        Button btnRe = new Button("<b>Remates<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRe.setWidth(anchotbtn);
-        Button btnPe = new Button("Penalty", sl);
+        Button btnPe = new Button("<b>Penalty<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnPe.setWidth(anchotbtn);
-        Button btnEe = new Button("Entregas erradas", sl);
+        Button btnEe = new Button("<b>Entregas erradas<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnEe.setWidth(anchotbtn);
-        Button btnAg = new Button("Asistencias gol", sl);
+        Button btnAg = new Button("<b>Asistencias gol<b/>", Resources.ICONS.iconoNuevaCita(), sl);
         btnAg.setWidth(anchotbtn);
-        int ancho = 30;
+        int ancho = 50;
+
         nFz1Primer = new NumberField();
         nFz1Primer.setValue(0);
         nFz1Primer.setWidth(ancho);
+        nFz1Primer.setMaxValue(130);
+        nFz1Primer.setMaxLength(3);
+        nFz1Primer.setAllowDecimals(false);
+        nFz1Primer.setAllowNegative(false);
+        nFz1Primer.setAllowBlank(false);
+
         nFz1Segun = new NumberField();
         nFz1Segun.setValue(0);
         nFz1Segun.setWidth(ancho);
+        
 
         nFz2Primer = new NumberField();
         nFz2Primer.setValue(0);
@@ -939,112 +962,112 @@ public class PanelAdminSituaciones extends ContentPanel {
         nAgSegunR.setWidth(ancho);
 //      /////////////////////////////////////////////////////////////////////////////////////////
 
-//        tableAnfitrion.setHTML(0, 0, "<div style='font-size: 12px;'><b>Situación Juego</b></span>");
-        tableAnfitrion.setHTML(0, 0, "<b>Situación</b>");
-        tableAnfitrion.setHTML(0, 1, "<div style='font-size: 12px;'><b>1er Poli</b></span>");
-        tableAnfitrion.setHTML(0, 2, "<div style='font-size: 12px;'><b>2do Poli</b></span>");
-        tableAnfitrion.setHTML(0, 3, "<div style='font-size: 12px;'><b>1er Rival</b></span>");
-        tableAnfitrion.setHTML(0, 4, "<div style='font-size: 12px;'><b>2do Rival</b></span>");
+        tableSituaciones.setHTML(0, 0, "<div style='font-size: 13px;'><center><b>Situación Juego</b></center></span>");
+//        tableSituaciones.setHTML(0, 0, "<b>Situación</b>");
+        tableSituaciones.setHTML(0, 1, "<div style='font-size: 13px;'><b>1er Poli</b></span>");
+        tableSituaciones.setHTML(0, 2, "<div style='font-size: 13px;'><b>2do Poli</b></span>");
+        tableSituaciones.setHTML(0, 3, "<div style='font-size: 13px;'><b>1er Rival</b></span>");
+        tableSituaciones.setHTML(0, 4, "<div style='font-size: 13px;'><b>2do Rival</b></span>");
 
-        tableAnfitrion.setWidget(1, 0, btnFz1);
-        tableAnfitrion.setWidget(1, 1, nFz1Primer);
-        tableAnfitrion.setWidget(1, 2, nFz1Segun);
-        tableAnfitrion.setWidget(1, 3, nFz1PrimerR);
-        tableAnfitrion.setWidget(1, 4, nFz1SegunR);
+        tableSituaciones.setWidget(1, 0, btnFz1);
+        tableSituaciones.setWidget(1, 1, nFz1Primer);
+        tableSituaciones.setWidget(1, 2, nFz1Segun);
+        tableSituaciones.setWidget(1, 3, nFz1PrimerR);
+        tableSituaciones.setWidget(1, 4, nFz1SegunR);
 
-        tableAnfitrion.setWidget(2, 0, btnFz2);
-        tableAnfitrion.setWidget(2, 1, nFz2Primer);
-        tableAnfitrion.setWidget(2, 2, nFz2Segun);
-        tableAnfitrion.setWidget(2, 3, nFz2PrimerR);
-        tableAnfitrion.setWidget(2, 4, nFz2SegunR);
+        tableSituaciones.setWidget(2, 0, btnFz2);
+        tableSituaciones.setWidget(2, 1, nFz2Primer);
+        tableSituaciones.setWidget(2, 2, nFz2Segun);
+        tableSituaciones.setWidget(2, 3, nFz2PrimerR);
+        tableSituaciones.setWidget(2, 4, nFz2SegunR);
 
-        tableAnfitrion.setWidget(3, 0, btnFz3);
-        tableAnfitrion.setWidget(3, 1, nFz3Primer);
-        tableAnfitrion.setWidget(3, 2, nFz3Segun);
-        tableAnfitrion.setWidget(3, 3, nFz3PrimerR);
-        tableAnfitrion.setWidget(3, 4, nFz3SegunR);
+        tableSituaciones.setWidget(3, 0, btnFz3);
+        tableSituaciones.setWidget(3, 1, nFz3Primer);
+        tableSituaciones.setWidget(3, 2, nFz3Segun);
+        tableSituaciones.setWidget(3, 3, nFz3PrimerR);
+        tableSituaciones.setWidget(3, 4, nFz3SegunR);
 
-        tableAnfitrion.setWidget(4, 0, btnRb1);
-        tableAnfitrion.setWidget(4, 1, nRbz1Primer);
-        tableAnfitrion.setWidget(4, 2, nRbz1Segun);
-        tableAnfitrion.setWidget(4, 3, nRbz1PrimerR);
-        tableAnfitrion.setWidget(4, 4, nRbz1SegunR);
+        tableSituaciones.setWidget(4, 0, btnRb1);
+        tableSituaciones.setWidget(4, 1, nRbz1Primer);
+        tableSituaciones.setWidget(4, 2, nRbz1Segun);
+        tableSituaciones.setWidget(4, 3, nRbz1PrimerR);
+        tableSituaciones.setWidget(4, 4, nRbz1SegunR);
 
-        tableAnfitrion.setWidget(5, 0, btnRb2);
-        tableAnfitrion.setWidget(5, 1, nRbz2Primer);
-        tableAnfitrion.setWidget(5, 2, nRbz2Segun);
-        tableAnfitrion.setWidget(5, 3, nRbz2PrimerR);
-        tableAnfitrion.setWidget(5, 4, nRbz2SegunR);
+        tableSituaciones.setWidget(5, 0, btnRb2);
+        tableSituaciones.setWidget(5, 1, nRbz2Primer);
+        tableSituaciones.setWidget(5, 2, nRbz2Segun);
+        tableSituaciones.setWidget(5, 3, nRbz2PrimerR);
+        tableSituaciones.setWidget(5, 4, nRbz2SegunR);
 
-        tableAnfitrion.setWidget(6, 0, btnRb3);
-        tableAnfitrion.setWidget(6, 1, nRbz3Primer);
-        tableAnfitrion.setWidget(6, 2, nRbz3Segun);
-        tableAnfitrion.setWidget(6, 3, nRbz3PrimerR);
-        tableAnfitrion.setWidget(6, 4, nRbz3SegunR);
+        tableSituaciones.setWidget(6, 0, btnRb3);
+        tableSituaciones.setWidget(6, 1, nRbz3Primer);
+        tableSituaciones.setWidget(6, 2, nRbz3Segun);
+        tableSituaciones.setWidget(6, 3, nRbz3PrimerR);
+        tableSituaciones.setWidget(6, 4, nRbz3SegunR);
 
-        tableAnfitrion.setWidget(7, 0, btnTl1);
-        tableAnfitrion.setWidget(7, 1, nTlz1Primer);
-        tableAnfitrion.setWidget(7, 2, nTlz1Segun);
-        tableAnfitrion.setWidget(7, 3, nTlz1PrimerR);
-        tableAnfitrion.setWidget(7, 4, nTlz1SegunR);
+        tableSituaciones.setWidget(7, 0, btnTl1);
+        tableSituaciones.setWidget(7, 1, nTlz1Primer);
+        tableSituaciones.setWidget(7, 2, nTlz1Segun);
+        tableSituaciones.setWidget(7, 3, nTlz1PrimerR);
+        tableSituaciones.setWidget(7, 4, nTlz1SegunR);
 
-        tableAnfitrion.setWidget(8, 0, btnTl2);
-        tableAnfitrion.setWidget(8, 1, nTlz2Primer);
-        tableAnfitrion.setWidget(8, 2, nTlz2Segun);
-        tableAnfitrion.setWidget(8, 3, nTlz2PrimerR);
-        tableAnfitrion.setWidget(8, 4, nTlz2SegunR);
+        tableSituaciones.setWidget(8, 0, btnTl2);
+        tableSituaciones.setWidget(8, 1, nTlz2Primer);
+        tableSituaciones.setWidget(8, 2, nTlz2Segun);
+        tableSituaciones.setWidget(8, 3, nTlz2PrimerR);
+        tableSituaciones.setWidget(8, 4, nTlz2SegunR);
 
-        tableAnfitrion.setWidget(9, 0, btnTl3);
-        tableAnfitrion.setWidget(9, 1, nTlz3Primer);
-        tableAnfitrion.setWidget(9, 2, nTlz3Segun);
-        tableAnfitrion.setWidget(9, 3, nTlz3PrimerR);
-        tableAnfitrion.setWidget(9, 4, nTlz3SegunR);
+        tableSituaciones.setWidget(9, 0, btnTl3);
+        tableSituaciones.setWidget(9, 1, nTlz3Primer);
+        tableSituaciones.setWidget(9, 2, nTlz3Segun);
+        tableSituaciones.setWidget(9, 3, nTlz3PrimerR);
+        tableSituaciones.setWidget(9, 4, nTlz3SegunR);
 
-        tableAnfitrion.setWidget(10, 0, btnFl);
-        tableAnfitrion.setWidget(10, 1, nFlPrimer);
-        tableAnfitrion.setWidget(10, 2, nFlSegun);
-        tableAnfitrion.setWidget(10, 3, nFlPrimerR);
-        tableAnfitrion.setWidget(10, 4, nFlSegunR);
+        tableSituaciones.setWidget(10, 0, btnFl);
+        tableSituaciones.setWidget(10, 1, nFlPrimer);
+        tableSituaciones.setWidget(10, 2, nFlSegun);
+        tableSituaciones.setWidget(10, 3, nFlPrimerR);
+        tableSituaciones.setWidget(10, 4, nFlSegunR);
 
-        tableAnfitrion.setWidget(11, 0, btnTe);
-        tableAnfitrion.setWidget(11, 1, nTePrimer);
-        tableAnfitrion.setWidget(11, 2, nTeSegun);
-        tableAnfitrion.setWidget(11, 3, nTePrimerR);
-        tableAnfitrion.setWidget(11, 4, nTeSegunR);
+        tableSituaciones.setWidget(11, 0, btnTe);
+        tableSituaciones.setWidget(11, 1, nTePrimer);
+        tableSituaciones.setWidget(11, 2, nTeSegun);
+        tableSituaciones.setWidget(11, 3, nTePrimerR);
+        tableSituaciones.setWidget(11, 4, nTeSegunR);
 
-        tableAnfitrion.setWidget(12, 0, btnOg);
-        tableAnfitrion.setWidget(12, 1, nOgPrimer);
-        tableAnfitrion.setWidget(12, 2, nOgSegun);
-        tableAnfitrion.setWidget(12, 3, nOgPrimerR);
-        tableAnfitrion.setWidget(12, 4, nOgSegunR);
+        tableSituaciones.setWidget(12, 0, btnOg);
+        tableSituaciones.setWidget(12, 1, nOgPrimer);
+        tableSituaciones.setWidget(12, 2, nOgSegun);
+        tableSituaciones.setWidget(12, 3, nOgPrimerR);
+        tableSituaciones.setWidget(12, 4, nOgSegunR);
 
-        tableAnfitrion.setWidget(13, 0, btnRe);
-        tableAnfitrion.setWidget(13, 1, nRePrimer);
-        tableAnfitrion.setWidget(13, 2, nReSegun);
-        tableAnfitrion.setWidget(13, 3, nRePrimerR);
-        tableAnfitrion.setWidget(13, 4, nReSegunR);
+        tableSituaciones.setWidget(13, 0, btnRe);
+        tableSituaciones.setWidget(13, 1, nRePrimer);
+        tableSituaciones.setWidget(13, 2, nReSegun);
+        tableSituaciones.setWidget(13, 3, nRePrimerR);
+        tableSituaciones.setWidget(13, 4, nReSegunR);
 
-        tableAnfitrion.setWidget(14, 0, btnPe);
-        tableAnfitrion.setWidget(14, 1, nPePrimer);
-        tableAnfitrion.setWidget(14, 2, nPeSegun);
-        tableAnfitrion.setWidget(14, 3, nPePrimerR);
-        tableAnfitrion.setWidget(14, 4, nPeSegunR);
+        tableSituaciones.setWidget(14, 0, btnPe);
+        tableSituaciones.setWidget(14, 1, nPePrimer);
+        tableSituaciones.setWidget(14, 2, nPeSegun);
+        tableSituaciones.setWidget(14, 3, nPePrimerR);
+        tableSituaciones.setWidget(14, 4, nPeSegunR);
 
-        tableAnfitrion.setWidget(15, 0, btnEe);
-        tableAnfitrion.setWidget(15, 1, nEePrimer);
-        tableAnfitrion.setWidget(15, 2, nEeSegun);
-        tableAnfitrion.setWidget(15, 3, nEePrimerR);
-        tableAnfitrion.setWidget(15, 4, nEeSegunR);
+        tableSituaciones.setWidget(15, 0, btnEe);
+        tableSituaciones.setWidget(15, 1, nEePrimer);
+        tableSituaciones.setWidget(15, 2, nEeSegun);
+        tableSituaciones.setWidget(15, 3, nEePrimerR);
+        tableSituaciones.setWidget(15, 4, nEeSegunR);
 
-        tableAnfitrion.setWidget(16, 0, btnAg);
-        tableAnfitrion.setWidget(16, 1, nAgPrimer);
-        tableAnfitrion.setWidget(16, 2, nAgSegun);
-        tableAnfitrion.setWidget(16, 3, nAgPrimerR);
-        tableAnfitrion.setWidget(16, 4, nAgSegunR);
+        tableSituaciones.setWidget(16, 0, btnAg);
+        tableSituaciones.setWidget(16, 1, nAgPrimer);
+        tableSituaciones.setWidget(16, 2, nAgSegun);
+        tableSituaciones.setWidget(16, 3, nAgPrimerR);
+        tableSituaciones.setWidget(16, 4, nAgSegunR);
 ////////////////////////////////////////////////////////////////////////////////
 //     
 //        tabItemAnfitrion.add(new Text("Hola"));
-        cpSituacionesJuego.add(tableAnfitrion);
+        cpSituacionesJuego.add(tableSituaciones);
 
         return cpSituacionesJuego;
     }
@@ -1144,9 +1167,9 @@ public class PanelAdminSituaciones extends ContentPanel {
 
         simple.show();
     }
-    
-    public void buscarSituacionesxCompetencia(Long idCompetencia, final boolean habilitar){
-    
+
+    public void buscarSituacionesxCompetencia(Long idCompetencia, final boolean habilitar) {
+
         getServiceSituaciones().getSituacionesXCompetencia(idCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
             @Override
@@ -1160,8 +1183,7 @@ public class PanelAdminSituaciones extends ContentPanel {
                 habilitarBotonesSituaciones(habilitar);
             }
         });
-    
-    
+
     }
 
     public void cargarSitucionesJuego(List<SituacionesJuegoCompe> situacionesJuegoCompes, boolean habitados) {
@@ -1328,6 +1350,10 @@ public class PanelAdminSituaciones extends ContentPanel {
         btnEe.setEnabled(habilitar);
         btnAg.setEnabled(habilitar);
         btnGuardarSituaciones.setEnabled(habilitar);
+
+    }
+
+    public void reiniciarSituaciones() {
 
     }
 

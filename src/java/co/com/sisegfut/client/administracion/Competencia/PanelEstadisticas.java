@@ -15,7 +15,7 @@ public class PanelEstadisticas {
     
     private FramedPanel panel;
 
-    public PanelEstadisticas() {
+    public PanelEstadisticas(Long idCompetencia) {
     }
     
     
