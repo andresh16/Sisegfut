@@ -160,6 +160,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Goles>> callback) {
                 if (idCompetencia != null) {
                     svc.getGolesXCompetencia(idCompetencia, callback);
+                } else {
+                    svc.getGolesXCompetencia(0l, callback);
                 }
             }
         };
@@ -267,6 +269,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<CambiosCompe>> callback) {
                 if (idCompetencia != null) {
                     svc.getCambiosXCompetenciaGrid(idCompetencia, callback);
+                } else {
+                    svc.getCambiosXCompetenciaGrid(0l, callback);
                 }
             }
         };
@@ -370,6 +374,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<ControlDisciplinarioCompe>> callback) {
                 if (idCompetencia != null) {
                     svc.getTarjetasXCompetencia(idCompetencia, callback);
+                } else {
+                    svc.getTarjetasXCompetencia(0l, callback);
                 }
             }
         };
@@ -1061,18 +1067,15 @@ public class PanelAdminControlJuego extends LayoutContainer {
     public void cargarGridTarjetas() {
         gridTarjetas.getStore().removeAll();
         loaderTarjetas.load(0, 50);
-        loaderTarjetas.load(0, 50);
     }
 
     public void cargarGridCambios() {
         gridCambios.getStore().removeAll();
         loaderCambios.load(0, 50);
-        loaderCambios.load(0, 50);
     }
 
     public void cargarGridGoles() {
         gridGoles.getStore().removeAll();
-        loaderGoles.load(0, 50);
         loaderGoles.load(0, 50);
     }
 

@@ -416,11 +416,6 @@ public class PanelAdminConvocados extends LayoutContainer {
         columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
 
         ColumnModel cm = new ColumnModel(columns);
-        GridFilters filters = new GridFilters();
-
-        StringFilter nombreFilter = new StringFilter("label");
-
-        filters.addFilter(nombreFilter);
 
         gridTitulares = new Grid<BeanModel>(storeTitulares, cm);
 
@@ -429,7 +424,6 @@ public class PanelAdminConvocados extends LayoutContainer {
         gridTitulares.setLoadMask(true);
         gridTitulares.setBorders(true);
         gridTitulares.addPlugin(r);
-        gridTitulares.addPlugin(filters);
         gridTitulares.getView().setForceFit(true);
         gridTitulares.setTrackMouseOver(false);
 
@@ -499,11 +493,6 @@ public class PanelAdminConvocados extends LayoutContainer {
         columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
 
         ColumnModel cm = new ColumnModel(columns);
-        GridFilters filters = new GridFilters();
-
-        StringFilter nombreFilter = new StringFilter("label");
-
-        filters.addFilter(nombreFilter);
 
         gridSuplentes = new Grid<BeanModel>(storeSuplentes, cm);
 
@@ -512,7 +501,6 @@ public class PanelAdminConvocados extends LayoutContainer {
         gridSuplentes.setLoadMask(true);
         gridSuplentes.setBorders(true);
         gridSuplentes.addPlugin(r);
-        gridSuplentes.addPlugin(filters);
         gridSuplentes.getView().setForceFit(true);
         gridSuplentes.setTrackMouseOver(false);
         new GridDragSource(gridSuplentes);
@@ -665,10 +653,13 @@ public class PanelAdminConvocados extends LayoutContainer {
     public void cargarConvocadosCompetencia(Long idCompetencia, boolean habilitar) {
 
         setIdCompetencia(idCompetencia);
+        
+//        adminPestComp.panelAdminConvocados.cbxCategoria.seleccionar(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
         cargarGridSuplente();
         cargarGridTitulares();
         gridTitulares.setEnabled(habilitar);
         gridSuplentes.setEnabled(habilitar);
+        
         btnGuardarConvocados.setEnabled(habilitar);
 
     }

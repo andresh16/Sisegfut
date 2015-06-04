@@ -298,6 +298,9 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         cargarGridCuerpoTecComp();
         btnAgregar.setEnabled(habilitar);
         btnEliminar.setEnabled(habilitar);
+        cbxPersonal.setIdCompetencia(IdCompetencia);
+        cbxPersonal.recargar();
+        
     }
 
 }

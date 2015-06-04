@@ -114,7 +114,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     PanelAdminCuerpoTecnico adminCuerpoTecnico = new PanelAdminCuerpoTecnico();
     private ContentPanel cp;
     private ContentPanel cp2;
-    private Button btnGuardarComp;
+    private Button btnGuardarCompromiso;
     private Button btnEditar;
     private Button btnBuscarComp;
     private Button btnGuardarCompetencia;
@@ -164,9 +164,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         fpCompromiso = crearFormulario();
 
-        btnGuardarComp = new Button("Guardar Siguiente", listenerGuardarCompromiso());
-        btnGuardarComp.setIconAlign(IconAlign.RIGHT);
-        btnGuardarComp.setIcon(Resources.ICONS.iconoLogin());
+        btnGuardarCompromiso = new Button("Guardar Siguiente", listenerGuardarCompromiso());
+        btnGuardarCompromiso.setIconAlign(IconAlign.RIGHT);
+        btnGuardarCompromiso.setIcon(Resources.ICONS.iconoLogin());
 
         btnBuscarComp = new Button("Buscar Competencia", listenerBuscar());
         btnBuscarComp.setIcon(Resources.ICONS.iconoBuscar());
@@ -178,11 +178,11 @@ public class PanelAdminCompetencia extends LayoutContainer {
 //        fpCompromiso.setTopComponent(toolBar);    
 
         binding = new FormButtonBinding(fpCompromiso);
-        binding.addButton(btnGuardarComp);
+        binding.addButton(btnGuardarCompromiso);
 
 //        fpCompromiso.addButton(btnEditar);
         fpCompromiso.addButton(btnBuscarComp);
-        fpCompromiso.addButton(btnGuardarComp);
+        fpCompromiso.addButton(btnGuardarCompromiso);
 
         fpCompromiso.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
@@ -547,7 +547,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 //                            Info.display("Competencia", "Se entrega el id competencia" + idCompetencia);
 
                             adminPestComp.panelAdminConvocados.setIdCompetencia(idCompetencia);
-                            adminPestComp.panelAdminConvocados.cbxCategoria.seleccionar(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
+//                            adminPestComp.panelAdminConvocados.setIdCompetencia(1l);
                             adminPestComp.panelAdminControlDisciplinario.setIdCompetencia(idCompetencia);
                             adminPestComp.panelAdminControlDisciplinario.setIdJugadorComodin(cbxRival.getRivalElegido().getJugadorComodin().getId());
                             adminPestComp.panelAdminSituaciones.setIdCompetencia(idCompetencia);
@@ -563,13 +563,16 @@ public class PanelAdminCompetencia extends LayoutContainer {
     }
 
     public void habilitarPaneles() {
-        binding.removeButton(btnGuardarComp);
+        binding.removeButton(btnGuardarCompromiso);
         adminPestComp.tabpanelCompetencia.setEnabled(true);
         adminPestComp.tabItemSituaciones.disable();
         adminPestComp.tabItemControlJuego.disable();
+        adminPestComp.panelAdminConvocados.cargarGridSuplente();
+        adminPestComp.panelAdminConvocados.cargarGridTitulares();
+        adminPestComp.panelAdminConvocados.cbxCategoria.seleccionar(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
         fpCompromiso.setEnabled(false);
         cpCuerpoTecCom.setEnabled(true);
-        btnGuardarComp.setEnabled(false);
+        btnGuardarCompromiso.setEnabled(false);
         btnGuardarCompetencia.enable();
         adminCuerpoTecnico.cbxPersonal.recargar();
     }
@@ -937,7 +940,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     public void limpiarCompetencia() {
         this.mask("Reiniciando competencia....");
         idCompetencia = null;
-        binding.addButton(btnGuardarComp);
+        binding.addButton(btnGuardarCompromiso);
         fpCompromiso.setEnabled(true);
         DtFecha.reset();
         comboBoxTorneo.recargar();
@@ -945,27 +948,25 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cbxRival.setIdTorneoElegido(null);
         txtLugar.reset();
         cpCuerpoTecCom.setEnabled(false);
-        btnGuardarComp.setEnabled(true);
+        btnGuardarCompromiso.setEnabled(true);
         btnGuardarCompetencia.disable();
-        
+
         adminCuerpoTecnico.setIdCompetencia(null);
         adminCuerpoTecnico.cbxPersonal.recargar();
         adminCuerpoTecnico.cargarGridCuerpoTecComp();
-        
-        
+
         adminPestComp.panelAdminConvocados.reiniciarConvocados();
         adminPestComp.panelAdminControlDisciplinario.reiniciarControlJuego();
-        
+
         adminPestComp.panelAdminSituaciones.setIdCompetencia(null);
-        
+
         adminPestComp.panelAdminConvocados.disable();
-        
+
         adminPestComp.tabItemSituaciones.disable();
         adminPestComp.tabItemControlJuego.disable();
         adminPestComp.getTabpanel().setSelection(adminPestComp.tabItemConvocados);
-        
-//        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
 
+//        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
         this.unmask();
     }
 
@@ -1001,7 +1002,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cbxRival.seleccionar(competencia.getRival().getId());
         txtLugar.setValue(competencia.getLugar());
         setIdCompetencia(competencia.getId());
-        txtObservaciones.setValue(competencia.getObservacion());
+//        txtObservaciones.setValue(competencia.getObservacion());
     }
 
     public void setIdCompetencia(Long idCompetencia) {
@@ -1015,22 +1016,22 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 wBuscar.hide();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
-                
-                Competencia competencia= new Competencia();
+
+                Competencia competencia = new Competencia();
                 competencia.setId(dTOCompetencia.getIdCompetencia());
                 competencia.setFecha(dTOCompetencia.getFecha());
                 competencia.setLugar(dTOCompetencia.getLugar());
                 competencia.setRival(new Rivales(dTOCompetencia.getIdRival()));
                 competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
                 competencia.setObservacion(dTOCompetencia.getObservaciones());
-                
+                cbxRival.setIdTorneoElegido(dTOCompetencia.getIdtorneo());
                 cargarDatosCompetencia(competencia);
                 adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), false);
-                adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), false);
-                adminPestComp.panelAdminSituaciones.buscarSituacionesxCompetencia(dTOCompetencia.getIdCompetencia(), false);
+//                adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), false);
+//                adminPestComp.panelAdminSituaciones.buscarSituacionesxCompetencia(dTOCompetencia.getIdCompetencia(), false);
                 adminCuerpoTecnico.cargarCuerpoTecnicoCompetencia(dTOCompetencia.getIdCompetencia(), false);
-                adminCuerpoTecnico.cbxPersonal.setIdCompetencia(dTOCompetencia.getIdCompetencia());
-                habilitarPanelesBusqueda();
+
+                habilitarPanelesBusqueda(false);
                 boxWait.close();
             }
         };
@@ -1047,16 +1048,16 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
     }
 
-    public void habilitarPanelesBusqueda() {
-        binding.removeButton(btnGuardarComp);
-        adminPestComp.tabpanelCompetencia.setEnabled(true);
+    public void habilitarPanelesBusqueda(boolean habilitar) {
+//        binding.removeButton(btnGuardarCompromiso);
+
+        adminPestComp.tabpanelCompetencia.enable();
         adminPestComp.tabItemSituaciones.enable();
         adminPestComp.tabItemControlJuego.enable();
-        fpCompromiso.setEnabled(true);
-        cpCuerpoTecCom.setEnabled(true);
-        btnGuardarComp.setEnabled(false);
-        btnGuardarCompetencia.enable();
-        adminCuerpoTecnico.cbxPersonal.recargar();
+        fpCompromiso.enable();
+        cpCuerpoTecCom.enable();
+        btnGuardarCompromiso.setEnabled(habilitar);
+        btnGuardarCompetencia.setEnabled(habilitar);
     }
 
 }
