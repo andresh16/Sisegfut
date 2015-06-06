@@ -83,6 +83,7 @@ public class SituacionesJuegoCompe implements BeanModelTag, Serializable{
 
     @Column(name = "entregas_erradas", nullable = false)
     private Integer entregasErradas;
+    
 
     public SituacionesJuegoCompe() {
     }

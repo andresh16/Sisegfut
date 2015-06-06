@@ -290,15 +290,14 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
     public void cargarGridCuerpoTecComp() {
         gridCuerpoTecnico.getStore().removeAll();
         loaderCuerpoTecComp.load(0, 50);
-        loaderCuerpoTecComp.load(0, 50);
     }
     
-    public void cargarCuerpoTecnicoCompetencia(Long IdCompetencia, boolean habilitar){
-        setIdCompetencia(idCompetencia);
+    public void cargarCuerpoTecnicoCompetencia(Long IdCompe, boolean habilitar){
+        setIdCompetencia(IdCompe);
         cargarGridCuerpoTecComp();
         btnAgregar.setEnabled(habilitar);
         btnEliminar.setEnabled(habilitar);
-        cbxPersonal.setIdCompetencia(IdCompetencia);
+        cbxPersonal.setIdCompetencia(IdCompe);
         cbxPersonal.recargar();
         
     }

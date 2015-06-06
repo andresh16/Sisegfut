@@ -653,6 +653,8 @@ public class PanelAdminConvocados extends LayoutContainer {
     public void cargarConvocadosCompetencia(Long idCompetencia, boolean habilitar) {
 
         setIdCompetencia(idCompetencia);
+        gridTitulares.setEnabled(habilitar);
+        gridSuplentes.setEnabled(habilitar);
         
 //        adminPestComp.panelAdminConvocados.cbxCategoria.seleccionar(comboBoxTorneo.getTorneosElegido().getCategoria().getId());
         cargarGridSuplente();
@@ -660,7 +662,7 @@ public class PanelAdminConvocados extends LayoutContainer {
         gridTitulares.setEnabled(habilitar);
         gridSuplentes.setEnabled(habilitar);
         
-        btnGuardarConvocados.setEnabled(habilitar);
+        btnGuardarConvocados.setVisible(habilitar);
 
     }
 
@@ -668,9 +670,14 @@ public class PanelAdminConvocados extends LayoutContainer {
 
         gridTitulares.enable();
         gridSuplentes.enable();
-        btnGuardarConvocados.enable();
-        setIdCompetencia(null);
         limpiarGrids();
+        cargarGridJugadores();
+        cargarGridSuplente();
+        cargarGridTitulares();
+        btnGuardarConvocados.enable();
+        btnGuardarConvocados.setVisible(true);
+        setIdCompetencia(null);
+        
 
     }
 

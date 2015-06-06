@@ -25,8 +25,8 @@ public class PanelAdminPestComp extends LayoutContainer {
     TabItem tabItemSituaciones = new TabItem("Situaciones Juego");
     TabItem tabItemControlJuego = new TabItem("Control Juego");
     PanelAdminConvocados panelAdminConvocados;
-    PanelAdminSituaciones panelAdminSituaciones = new PanelAdminSituaciones();
-    PanelAdminControlJuego panelAdminControlDisciplinario = new PanelAdminControlJuego();
+    PanelAdminSituaciones panelAdminSituaciones;
+    PanelAdminControlJuego panelAdminControlDisciplinario;
 
     TabPanel tabpanelCompetencia = new TabPanel();
 
@@ -40,6 +40,8 @@ public class PanelAdminPestComp extends LayoutContainer {
 
     public PanelAdminPestComp() {
         panelAdminConvocados = new PanelAdminConvocados(this);
+        panelAdminSituaciones = new PanelAdminSituaciones();
+        panelAdminControlDisciplinario = new PanelAdminControlJuego();
         tabpanelCompetencia.setLayoutData(new FillLayout());
         tabpanelCompetencia.setHeight(600);
         tabpanelCompetencia.disable();
@@ -52,12 +54,12 @@ public class PanelAdminPestComp extends LayoutContainer {
         tabItemConvocados.add(panelAdminConvocados);
 
         tabItemSituaciones.setLayout(new FillLayout());
-        tabItemSituaciones.setEnabled(false);
         tabItemSituaciones.add(panelAdminSituaciones);
+         tabItemSituaciones.setEnabled(false);
 
         tabItemControlJuego.setLayout(new FillLayout());
-        tabItemControlJuego.setEnabled(false);
         tabItemControlJuego.add(panelAdminControlDisciplinario);
+        tabItemControlJuego.setEnabled(false);
 
         tabpanelCompetencia.add(tabItemConvocados);
         tabpanelCompetencia.add(tabItemSituaciones);

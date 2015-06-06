@@ -83,6 +83,7 @@ public class ComboBoxRival extends ComboBox<BeanModel> {
 
     public void setIdTorneoElegido(Long idTorneoElegido) {
         this.idTorneoElegido = idTorneoElegido;
+        recargar();
     }
     
 
@@ -90,9 +91,6 @@ public class ComboBoxRival extends ComboBox<BeanModel> {
      * Recarga el store del combobox
      */
     public void recargar() {
-        clearSelections();
-        // removeEmptyText();
-        storeCombo.removeAll();
         loader.load();
     }
 

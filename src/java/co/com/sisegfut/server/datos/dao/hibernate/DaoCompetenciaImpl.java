@@ -63,7 +63,7 @@ public class DaoCompetenciaImpl extends DaoGenericoImpl<Competencia> implements 
             condicionFiltro += " and rival=" + idRival;
         }
 
-        String sql = "select c.* from competencia as c where " + condicionFiltro;
+        String sql = "select c.* from competencia as c where " + condicionFiltro+" order by fecha desc";
         try {
             competencias = (List<Competencia>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

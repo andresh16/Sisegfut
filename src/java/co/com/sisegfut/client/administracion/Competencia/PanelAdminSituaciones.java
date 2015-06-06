@@ -68,7 +68,7 @@ public class PanelAdminSituaciones extends ContentPanel {
     private Button btnRe;
     private Button btnPe;
     private Button btnEe;
-    private Button btnAg;
+    private Button btnCl;
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     private List<DTOSituacionJuegoComp> listaValoresJuego;
@@ -120,8 +120,8 @@ public class PanelAdminSituaciones extends ContentPanel {
     private NumberField nEePrimer;
     private NumberField nEeSegun;
 
-    private NumberField nAgPrimer;
-    private NumberField nAgSegun;
+    private NumberField nClPrimer;
+    private NumberField nClSegun;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////campos 1er y 2do tiempo para el rival //////////////////////////////////
@@ -170,8 +170,8 @@ public class PanelAdminSituaciones extends ContentPanel {
     private NumberField nEePrimerR;
     private NumberField nEeSegunR;
 
-    private NumberField nAgPrimerR;
-    private NumberField nAgSegunR;
+    private NumberField nClPrimerR;
+    private NumberField nClSegunR;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     private Radio rd1Tiempo;
     private Radio rd2Tiempo;
@@ -184,10 +184,8 @@ public class PanelAdminSituaciones extends ContentPanel {
 
     private Main myConstants = (Main) GWT.create(Main.class);
 
-    @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
-//        setScrollMode(Style.Scroll.AUTOY);
+    public PanelAdminSituaciones() {
+        //        setScrollMode(Style.Scroll.AUTOY);
         setHeaderVisible(false);
         setLayout(new FillLayout());
         setBodyBorder(true);
@@ -283,7 +281,7 @@ public class PanelAdminSituaciones extends ContentPanel {
                             Info.display("Exito", "Se guardaron correctamente las situaciones de juego");
                         }
                     });
-                }else{
+                } else {
                     MessageBox.info("Error", "Verifique los datos", null);
                 }
 
@@ -332,7 +330,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition1.setCentrolLateral(0);
         situaAnfrition1.setRemates(nRePrimer.getValue().intValue());
         situaAnfrition1.setEntregasErradas(nEePrimer.getValue().intValue());
-
+        situaAnfrition1.setCentrolLateral(nClPrimer.getValue().intValue());
         return situaAnfrition1;
     }
 
@@ -360,6 +358,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaAnfrition2.setCentrolLateral(0);
         situaAnfrition2.setRemates(nReSegun.getValue().intValue());
         situaAnfrition2.setEntregasErradas(nEeSegun.getValue().intValue());
+        situaAnfrition2.setCentrolLateral(nClSegun.getValue().intValue());
 
         return situaAnfrition2;
     }
@@ -388,6 +387,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaRival1.setCentrolLateral(0);
         situaRival1.setRemates(nRePrimerR.getValue().intValue());
         situaRival1.setEntregasErradas(nEePrimerR.getValue().intValue());
+        situaRival1.setCentrolLateral(nClPrimerR.getValue().intValue());
 
         return situaRival1;
     }
@@ -415,6 +415,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         situaRival2.setCentrolLateral(0);
         situaRival2.setRemates(nReSegunR.getValue().intValue());
         situaRival2.setEntregasErradas(nEeSegunR.getValue().intValue());
+        situaRival2.setCentrolLateral(nClSegunR.getValue().intValue());
 
         return situaRival2;
     }
@@ -637,7 +638,6 @@ public class PanelAdminSituaciones extends ContentPanel {
 
 //        FormButtonBinding binding2 = new FormButtonBinding(cpSituacionesJuego);
 //        binding2.addButton(btnGuardarSituaciones);
-
         tableSituaciones = new FlexTable();
 //        tableSituaciones.setWidth("50px");
 //        tableAnfitrion.setCellSpacing(6);
@@ -654,78 +654,77 @@ public class PanelAdminSituaciones extends ContentPanel {
             public void componentSelected(ButtonEvent ce) {
                 String txt = ce.getButton().getText();
                 tiempo = 0;
-                if (txt.equals("<b>Falta zona 1<b/>")) {
+                if (txt.equals("<b>Falta zona 1</b>")) {
                     preguntaTiempoEquipo(nFz1Primer, nFz1Segun, nFz1PrimerR, nFz1SegunR, txt);
-                } else if (txt.equals("Falta zona 2")) {
+                } else if (txt.equals("<b>Falta zona 2</b>")) {
                     preguntaTiempoEquipo(nFz2Primer, nFz2Segun, nFz2PrimerR, nFz2SegunR, txt);
-                } else if (txt.equals("Falta zona 3")) {
+                } else if (txt.equals("<b>Falta zona 3</b>")) {
                     preguntaTiempoEquipo(nFz3Primer, nFz3Segun, nFz3PrimerR, nFz3SegunR, txt);
-                } else if (txt.equals("Recuperación balon Zona 1")) {
+                } else if (txt.equals("<b>Recuperación balon Zona 1</b>")) {
                     preguntaTiempoEquipo(nRbz1Primer, nRbz1Segun, nRbz1PrimerR, nRbz1SegunR, txt);
-                } else if (txt.equals("Recuperación balon Zona 2")) {
+                } else if (txt.equals("<b>Recuperación balon Zona 2</b>")) {
                     preguntaTiempoEquipo(nRbz2Primer, nRbz2Segun, nRbz2PrimerR, nRbz2SegunR, txt);
-                } else if (txt.equals("Recuperación balon Zona 3")) {
+                } else if (txt.equals("<b>Recuperación balon Zona 3</b>")) {
                     preguntaTiempoEquipo(nRbz3Primer, nRbz3Segun, nRbz3PrimerR, nRbz3SegunR, txt);
-                } else if (txt.equals("Tiro libre Zona 1")) {
+                } else if (txt.equals("<b>Tiro libre Zona 1</b>")) {
                     preguntaTiempoEquipo(nTlz1Primer, nTlz1Segun, nTlz1PrimerR, nTlz1SegunR, txt);
-                } else if (txt.equals("Tiro libre Zona 2")) {
+                } else if (txt.equals("<b>Tiro libre Zona 2</b>")) {
                     preguntaTiempoEquipo(nTlz2Primer, nTlz2Segun, nTlz2PrimerR, nTlz2SegunR, txt);
-                } else if (txt.equals("Tiro libre Zona 3")) {
+                } else if (txt.equals("<b>Tiro libre Zona 3</b>")) {
                     preguntaTiempoEquipo(nTlz3Primer, nTlz3Segun, nTlz3PrimerR, nTlz3SegunR, txt);
-                } else if (txt.equals("Fuera de lugar")) {
+                } else if (txt.equals("<b>Fuera de lugar</b>")) {
                     preguntaTiempoEquipo(nFlPrimer, nFlSegun, nFlPrimerR, nFlSegunR, txt);
-                } else if (txt.equals("Tiro esquina")) {
+                } else if (txt.equals("<b>Tiro esquina</b>")) {
                     preguntaTiempoEquipo(nTePrimer, nTeSegun, nTePrimerR, nTeSegunR, txt);
-                } else if (txt.equals("Opciones gol")) {
+                } else if (txt.equals("<b>Opciones gol</b>")) {
                     preguntaTiempoEquipo(nOgPrimer, nOgSegun, nOgPrimerR, nOgSegunR, txt);
-                } else if (txt.equals("Remates")) {
+                } else if (txt.equals("<b>Remates</b>")) {
                     preguntaTiempoEquipo(nRePrimer, nReSegun, nRePrimerR, nReSegunR, txt);
-                } else if (txt.equals("Penalty")) {
+                } else if (txt.equals("<b>Penalty</b>")) {
                     preguntaTiempoEquipo(nPePrimer, nPeSegun, nPePrimerR, nPeSegunR, txt);
-                } else if (txt.equals("Entregas erradas")) {
+                } else if (txt.equals("<b>Entregas erradas</b>")) {
                     preguntaTiempoEquipo(nEePrimer, nEeSegun, nEePrimerR, nEeSegunR, txt);
-                } else if (txt.equals("Asistencias gol")) {
-                    preguntaTiempoEquipo(nAgPrimer, nAgSegun, nAgPrimerR, nAgSegunR, txt);
+                } else if (txt.equals("<b>Centro lateral</b>")) {
+                    preguntaTiempoEquipo(nClPrimer, nClSegun, nClPrimerR, nClSegunR, txt);
                 }
 
             }
         };
         int anchotbtn = 200;
 //        Button btnFz1 = new Button("<b>Falta zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
-        
-        Button btnFz1 = new Button("<b>Falta zona 1<b/>", sl);
+
+        btnFz1 = new Button("<b>Falta zona 1</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFz1.setWidth(anchotbtn);
-        
-        Button btnFz2 = new Button("<b>Falta zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnFz2 = new Button("<b>Falta zona 2</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFz2.setWidth(anchotbtn);
-        Button btnFz3 = new Button("<b>Falta zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnFz3 = new Button("<b>Falta zona 3</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFz3.setWidth(anchotbtn);
-        Button btnRb1 = new Button("<b>Recuperación balon Zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnRb1 = new Button("<b>Recuperación balon Zona 1</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb1.setWidth(anchotbtn);
-        Button btnRb2 = new Button("<b>Recuperación balon Zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnRb2 = new Button("<b>Recuperación balon Zona 2</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb2.setWidth(anchotbtn);
-        Button btnRb3 = new Button("<b>Recuperación balon Zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnRb3 = new Button("<b>Recuperación balon Zona 3</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRb3.setWidth(anchotbtn);
-        Button btnTl1 = new Button("<b>Tiro libre Zona 1<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnTl1 = new Button("<b>Tiro libre Zona 1</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl1.setWidth(anchotbtn);
-        Button btnTl2 = new Button("<b>Tiro libre Zona 2<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnTl2 = new Button("<b>Tiro libre Zona 2</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl2.setWidth(anchotbtn);
-        Button btnTl3 = new Button("<b>Tiro libre Zona 3<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnTl3 = new Button("<b>Tiro libre Zona 3</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTl3.setWidth(anchotbtn);
-        Button btnFl = new Button("<b>Fuera de lugar<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnFl = new Button("<b>Fuera de lugar</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnFl.setWidth(anchotbtn);
-        Button btnTe = new Button("<b>Tiro esquina<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnTe = new Button("<b>Tiro esquina</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnTe.setWidth(anchotbtn);
-        Button btnOg = new Button("<b>Opciones gol<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnOg = new Button("<b>Opciones gol</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnOg.setWidth(anchotbtn);
-        Button btnRe = new Button("<b>Remates<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnRe = new Button("<b>Remates</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnRe.setWidth(anchotbtn);
-        Button btnPe = new Button("<b>Penalty<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnPe = new Button("<b>Penalty</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnPe.setWidth(anchotbtn);
-        Button btnEe = new Button("<b>Entregas erradas<b/>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnEe = new Button("<b>Entregas erradas</b>", Resources.ICONS.iconoNuevaCita(), sl);
         btnEe.setWidth(anchotbtn);
-        Button btnAg = new Button("<b>Asistencias gol<b/>", Resources.ICONS.iconoNuevaCita(), sl);
-        btnAg.setWidth(anchotbtn);
+        btnCl = new Button("<b>Centro lateral</b>", Resources.ICONS.iconoNuevaCita(), sl);
+        btnCl.setWidth(anchotbtn);
         int ancho = 50;
 
         nFz1Primer = new NumberField();
@@ -740,112 +739,282 @@ public class PanelAdminSituaciones extends ContentPanel {
         nFz1Segun = new NumberField();
         nFz1Segun.setValue(0);
         nFz1Segun.setWidth(ancho);
-        
+        nFz1Segun.setMaxValue(130);
+        nFz1Segun.setMaxLength(3);
+        nFz1Segun.setAllowDecimals(false);
+        nFz1Segun.setAllowNegative(false);
+        nFz1Segun.setAllowBlank(false);
 
         nFz2Primer = new NumberField();
         nFz2Primer.setValue(0);
         nFz2Primer.setWidth(ancho);
+        nFz2Primer.setMaxValue(130);
+        nFz2Primer.setMaxLength(3);
+        nFz2Primer.setAllowDecimals(false);
+        nFz2Primer.setAllowNegative(false);
+        nFz2Primer.setAllowBlank(false);
+        
         nFz2Segun = new NumberField();
         nFz2Segun.setValue(0);
         nFz2Segun.setWidth(ancho);
+        nFz2Segun.setMaxValue(130);
+        nFz2Segun.setMaxLength(3);
+        nFz2Segun.setAllowDecimals(false);
+        nFz2Segun.setAllowNegative(false);
+        nFz2Segun.setAllowBlank(false);
 
         nFz3Primer = new NumberField();
         nFz3Primer.setValue(0);
         nFz3Primer.setWidth(ancho);
+        nFz3Primer.setMaxValue(130);
+        nFz3Primer.setMaxLength(3);
+        nFz3Primer.setAllowDecimals(false);
+        nFz3Primer.setAllowNegative(false);
+        nFz3Primer.setAllowBlank(false);
+        
         nFz3Segun = new NumberField();
         nFz3Segun.setValue(0);
         nFz3Segun.setWidth(ancho);
+        nFz3Segun.setMaxValue(130);
+        nFz3Segun.setMaxLength(3);
+        nFz3Segun.setAllowDecimals(false);
+        nFz3Segun.setAllowNegative(false);
+        nFz3Segun.setAllowBlank(false);
 
         nRbz1Primer = new NumberField();
         nRbz1Primer.setValue(0);
         nRbz1Primer.setWidth(ancho);
+        nRbz1Primer.setMaxValue(130);
+        nRbz1Primer.setMaxLength(3);
+        nRbz1Primer.setAllowDecimals(false);
+        nRbz1Primer.setAllowNegative(false);
+        nRbz1Primer.setAllowBlank(false);
+        
         nRbz1Segun = new NumberField();
         nRbz1Segun.setValue(0);
         nRbz1Segun.setWidth(ancho);
+        nRbz1Segun.setMaxValue(130);
+        nRbz1Segun.setMaxLength(3);
+        nRbz1Segun.setAllowDecimals(false);
+        nRbz1Segun.setAllowNegative(false);
+        nRbz1Segun.setAllowBlank(false);
 
         nRbz2Primer = new NumberField();
         nRbz2Primer.setValue(0);
         nRbz2Primer.setWidth(ancho);
+        nRbz2Primer.setMaxValue(130);
+        nRbz2Primer.setMaxLength(3);
+        nRbz2Primer.setAllowDecimals(false);
+        nRbz2Primer.setAllowNegative(false);
+        nRbz2Primer.setAllowBlank(false);
+        
         nRbz2Segun = new NumberField();
         nRbz2Segun.setValue(0);
         nRbz2Segun.setWidth(ancho);
+        nRbz2Segun.setMaxValue(130);
+        nRbz2Segun.setMaxLength(3);
+        nRbz2Segun.setAllowDecimals(false);
+        nRbz2Segun.setAllowNegative(false);
+        nRbz2Segun.setAllowBlank(false);
+        
 
         nRbz3Primer = new NumberField();
         nRbz3Primer.setValue(0);
         nRbz3Primer.setWidth(ancho);
+        nRbz3Primer.setMaxValue(130);
+        nRbz3Primer.setMaxLength(3);
+        nRbz3Primer.setAllowDecimals(false);
+        nRbz3Primer.setAllowNegative(false);
+        nRbz3Primer.setAllowBlank(false);
+        
         nRbz3Segun = new NumberField();
         nRbz3Segun.setValue(0);
         nRbz3Segun.setWidth(ancho);
+        nRbz3Segun.setMaxValue(130);
+        nRbz3Segun.setMaxLength(3);
+        nRbz3Segun.setAllowDecimals(false);
+        nRbz3Segun.setAllowNegative(false);
+        nRbz3Segun.setAllowBlank(false);
 
         nTlz1Primer = new NumberField();
         nTlz1Primer.setValue(0);
         nTlz1Primer.setWidth(ancho);
+        nTlz1Primer.setMaxValue(130);
+        nTlz1Primer.setMaxLength(3);
+        nTlz1Primer.setAllowDecimals(false);
+        nTlz1Primer.setAllowNegative(false);
+        nTlz1Primer.setAllowBlank(false);
+        
         nTlz1Segun = new NumberField();
         nTlz1Segun.setValue(0);
         nTlz1Segun.setWidth(ancho);
+        nTlz1Segun.setMaxValue(130);
+        nTlz1Segun.setMaxLength(3);
+        nTlz1Segun.setAllowDecimals(false);
+        nTlz1Segun.setAllowNegative(false);
+        nTlz1Segun.setAllowBlank(false);
 
         nTlz2Primer = new NumberField();
         nTlz2Primer.setValue(0);
         nTlz2Primer.setWidth(ancho);
+        nTlz2Primer.setMaxValue(130);
+        nTlz2Primer.setMaxLength(3);
+        nTlz2Primer.setAllowDecimals(false);
+        nTlz2Primer.setAllowNegative(false);
+        nTlz2Primer.setAllowBlank(false);
+        
         nTlz2Segun = new NumberField();
         nTlz2Segun.setValue(0);
         nTlz2Segun.setWidth(ancho);
+        nTlz2Segun.setMaxValue(130);
+        nTlz2Segun.setMaxLength(3);
+        nTlz2Segun.setAllowDecimals(false);
+        nTlz2Segun.setAllowNegative(false);
+        nTlz2Segun.setAllowBlank(false);
 
         nTlz3Primer = new NumberField();
         nTlz3Primer.setValue(0);
         nTlz3Primer.setWidth(ancho);
+        nTlz3Primer.setMaxValue(130);
+        nTlz3Primer.setMaxLength(3);
+        nTlz3Primer.setAllowDecimals(false);
+        nTlz3Primer.setAllowNegative(false);
+        nTlz3Primer.setAllowBlank(false);
+        
         nTlz3Segun = new NumberField();
         nTlz3Segun.setValue(0);
         nTlz3Segun.setWidth(ancho);
+        nTlz3Segun.setMaxValue(130);
+        nTlz3Segun.setMaxLength(3);
+        nTlz3Segun.setAllowDecimals(false);
+        nTlz3Segun.setAllowNegative(false);
+        nTlz3Segun.setAllowBlank(false);
 
         nFlPrimer = new NumberField();
         nFlPrimer.setValue(0);
         nFlPrimer.setWidth(ancho);
+        nFlPrimer.setMaxValue(130);
+        nFlPrimer.setMaxLength(3);
+        nFlPrimer.setAllowDecimals(false);
+        nFlPrimer.setAllowNegative(false);
+        nFlPrimer.setAllowBlank(false);
+        
         nFlSegun = new NumberField();
         nFlSegun.setValue(0);
         nFlSegun.setWidth(ancho);
+        nFlSegun.setMaxValue(130);
+        nFlSegun.setMaxLength(3);
+        nFlSegun.setAllowDecimals(false);
+        nFlSegun.setAllowNegative(false);
+        nFlSegun.setAllowBlank(false);
 
         nTePrimer = new NumberField();
         nTePrimer.setValue(0);
         nTePrimer.setWidth(ancho);
+        nTePrimer.setMaxValue(130);
+        nTePrimer.setMaxLength(3);
+        nTePrimer.setAllowDecimals(false);
+        nTePrimer.setAllowNegative(false);
+        nTePrimer.setAllowBlank(false);
+        
         nTeSegun = new NumberField();
         nTeSegun.setValue(0);
         nTeSegun.setWidth(ancho);
+        nTeSegun.setMaxValue(130);
+        nTeSegun.setMaxLength(3);
+        nTeSegun.setAllowDecimals(false);
+        nTeSegun.setAllowNegative(false);
+        nTeSegun.setAllowBlank(false);
 
         nOgPrimer = new NumberField();
         nOgPrimer.setValue(0);
         nOgPrimer.setWidth(ancho);
+        nOgPrimer.setMaxValue(130);
+        nOgPrimer.setMaxLength(3);
+        nOgPrimer.setAllowDecimals(false);
+        nOgPrimer.setAllowNegative(false);
+        nOgPrimer.setAllowBlank(false);
+        
         nOgSegun = new NumberField();
         nOgSegun.setValue(0);
         nOgSegun.setWidth(ancho);
+        nOgSegun.setMaxValue(130);
+        nOgSegun.setMaxLength(3);
+        nOgSegun.setAllowDecimals(false);
+        nOgSegun.setAllowNegative(false);
+        nOgSegun.setAllowBlank(false);
 
         nRePrimer = new NumberField();
         nRePrimer.setValue(0);
         nRePrimer.setWidth(ancho);
+        nRePrimer.setMaxValue(130);
+        nRePrimer.setMaxLength(3);
+        nRePrimer.setAllowDecimals(false);
+        nRePrimer.setAllowNegative(false);
+        nRePrimer.setAllowBlank(false);
+        
         nReSegun = new NumberField();
         nReSegun.setValue(0);
         nReSegun.setWidth(ancho);
+        nReSegun.setMaxValue(130);
+        nReSegun.setMaxLength(3);
+        nReSegun.setAllowDecimals(false);
+        nReSegun.setAllowNegative(false);
+        nReSegun.setAllowBlank(false);
 
         nPePrimer = new NumberField();
         nPePrimer.setValue(0);
         nPePrimer.setWidth(ancho);
+        nPePrimer.setMaxValue(130);
+        nPePrimer.setMaxLength(3);
+        nPePrimer.setAllowDecimals(false);
+        nPePrimer.setAllowNegative(false);
+        nPePrimer.setAllowBlank(false);
+        
         nPeSegun = new NumberField();
         nPeSegun.setValue(0);
         nPeSegun.setWidth(ancho);
-
+        nPeSegun.setMaxValue(130);
+        nPeSegun.setMaxLength(3);
+        nPeSegun.setAllowDecimals(false);
+        nPeSegun.setAllowNegative(false);
+        nPeSegun.setAllowBlank(false);
+        
         nEePrimer = new NumberField();
         nEePrimer.setValue(0);
         nEePrimer.setWidth(ancho);
+        nEePrimer.setMaxValue(130);
+        nEePrimer.setMaxLength(3);
+        nEePrimer.setAllowDecimals(false);
+        nEePrimer.setAllowNegative(false);
+        nEePrimer.setAllowBlank(false);
+        
         nEeSegun = new NumberField();
         nEeSegun.setValue(0);
         nEeSegun.setWidth(ancho);
+        nEeSegun.setMaxValue(130);
+        nEeSegun.setMaxLength(3);
+        nEeSegun.setAllowDecimals(false);
+        nEeSegun.setAllowNegative(false);
+        nEeSegun.setAllowBlank(false);
 
-        nAgPrimer = new NumberField();
-        nAgPrimer.setValue(0);
-        nAgPrimer.setWidth(ancho);
-        nAgSegun = new NumberField();
-        nAgSegun.setValue(0);
-        nAgSegun.setWidth(ancho);
+        nClPrimer = new NumberField();
+        nClPrimer.setValue(0);
+        nClPrimer.setWidth(ancho);
+        nClPrimer.setMaxValue(130);
+        nClPrimer.setMaxLength(3);
+        nClPrimer.setAllowDecimals(false);
+        nClPrimer.setAllowNegative(false);
+        nClPrimer.setAllowBlank(false);
+        
+        nClSegun = new NumberField();
+        nClSegun.setValue(0);
+        nClSegun.setWidth(ancho);
+        nClSegun.setMaxValue(130);
+        nClSegun.setMaxLength(3);
+        nClSegun.setAllowDecimals(false);
+        nClSegun.setAllowNegative(false);
+        nClSegun.setAllowBlank(false);
         ///////////////////////////////////////////////////////////
         /////////////////// inicialicacion variables de campos del rival ///////////////////////
         nFz1PrimerR = new NumberField();
@@ -954,14 +1123,15 @@ public class PanelAdminSituaciones extends ContentPanel {
         nEeSegunR.setValue(0);
         nEeSegunR.setWidth(ancho);
 
-        nAgPrimerR = new NumberField();
-        nAgPrimerR.setValue(0);
-        nAgPrimerR.setWidth(ancho);
-        nAgSegunR = new NumberField();
-        nAgSegunR.setValue(0);
-        nAgSegunR.setWidth(ancho);
+        nClPrimerR = new NumberField();
+        nClPrimerR.setValue(0);
+        nClPrimerR.setWidth(ancho);
+        nClSegunR = new NumberField();
+        nClSegunR.setValue(0);
+        nClSegunR.setWidth(ancho);
 //      /////////////////////////////////////////////////////////////////////////////////////////
-
+ 
+        
         tableSituaciones.setHTML(0, 0, "<div style='font-size: 13px;'><center><b>Situación Juego</b></center></span>");
 //        tableSituaciones.setHTML(0, 0, "<b>Situación</b>");
         tableSituaciones.setHTML(0, 1, "<div style='font-size: 13px;'><b>1er Poli</b></span>");
@@ -1059,11 +1229,11 @@ public class PanelAdminSituaciones extends ContentPanel {
         tableSituaciones.setWidget(15, 3, nEePrimerR);
         tableSituaciones.setWidget(15, 4, nEeSegunR);
 
-        tableSituaciones.setWidget(16, 0, btnAg);
-        tableSituaciones.setWidget(16, 1, nAgPrimer);
-        tableSituaciones.setWidget(16, 2, nAgSegun);
-        tableSituaciones.setWidget(16, 3, nAgPrimerR);
-        tableSituaciones.setWidget(16, 4, nAgSegunR);
+        tableSituaciones.setWidget(16, 0, btnCl);
+        tableSituaciones.setWidget(16, 1, nClPrimer);
+        tableSituaciones.setWidget(16, 2, nClSegun);
+        tableSituaciones.setWidget(16, 3, nClPrimerR);
+        tableSituaciones.setWidget(16, 4, nClSegunR);
 ////////////////////////////////////////////////////////////////////////////////
 //     
 //        tabItemAnfitrion.add(new Text("Hola"));
@@ -1186,144 +1356,150 @@ public class PanelAdminSituaciones extends ContentPanel {
 
     }
 
-    public void cargarSitucionesJuego(List<SituacionesJuegoCompe> situacionesJuegoCompes, boolean habitados) {
+    public void cargarSitucionesJuego(List<SituacionesJuegoCompe> situacionesJuegoCompes, boolean habilitados) {
 
         for (SituacionesJuegoCompe situacionesJuegoCompe : situacionesJuegoCompes) {
             if (situacionesJuegoCompe.getEquipoSituacion().equalsIgnoreCase("POLITECNICO JIC")) {
                 if (situacionesJuegoCompe.getTiempoSituacion().intValue() == 1) {
                     nFz1Primer.setValue(situacionesJuegoCompe.getFaltaZona1());
-                    nFz1Primer.setEnabled(habitados);
+                    nFz1Primer.setEnabled(habilitados);
                     nFz2Primer.setValue(situacionesJuegoCompe.getFaltaZona2());
-                    nFz2Primer.setEnabled(habitados);
+                    nFz2Primer.setEnabled(habilitados);
                     nFz3Primer.setValue(situacionesJuegoCompe.getFaltaZona3());
-                    nFz3Primer.setEnabled(habitados);
+                    nFz3Primer.setEnabled(habilitados);
                     nRbz1Primer.setValue(situacionesJuegoCompe.getRecuperacionZona1());
-                    nRbz1Primer.setEnabled(habitados);
+                    nRbz1Primer.setEnabled(habilitados);
                     nRbz2Primer.setValue(situacionesJuegoCompe.getRecuperacionZona2());
-                    nRbz2Primer.setEnabled(habitados);
+                    nRbz2Primer.setEnabled(habilitados);
                     nRbz3Primer.setValue(situacionesJuegoCompe.getRecuperacionZona3());
-                    nRbz3Primer.setEnabled(habitados);
+                    nRbz3Primer.setEnabled(habilitados);
                     nTlz1Primer.setValue(situacionesJuegoCompe.getTiroLibreZona1());
-                    nTlz1Primer.setEnabled(habitados);
+                    nTlz1Primer.setEnabled(habilitados);
                     nTlz2Primer.setValue(situacionesJuegoCompe.getTiroLibreZona2());
-                    nTlz2Primer.setEnabled(habitados);
+                    nTlz2Primer.setEnabled(habilitados);
                     nTlz3Primer.setValue(situacionesJuegoCompe.getTiroLibreZona3());
-                    nTlz3Primer.setEnabled(habitados);
+                    nTlz3Primer.setEnabled(habilitados);
                     nTePrimer.setValue(situacionesJuegoCompe.getTiroEsquina());
-                    nTePrimer.setEnabled(habitados);
+                    nTePrimer.setEnabled(habilitados);
                     nFlPrimer.setValue(situacionesJuegoCompe.getFueraLugar());
-                    nFlPrimer.setEnabled(habitados);
+                    nFlPrimer.setEnabled(habilitados);
                     nPePrimer.setValue(situacionesJuegoCompe.getPenalty());
-                    nPePrimer.setEnabled(habitados);
+                    nPePrimer.setEnabled(habilitados);
                     nOgPrimer.setValue(situacionesJuegoCompe.getOpcionGol());
-                    nOgPrimer.setEnabled(habitados);
-//                    situaAnfrition1.setCentrolLateral(0);
+                    nOgPrimer.setEnabled(habilitados);
                     nRePrimer.setValue(situacionesJuegoCompe.getRemates());
-                    nRePrimer.setEnabled(habitados);
+                    nRePrimer.setEnabled(habilitados);
                     nEePrimer.setValue(situacionesJuegoCompe.getEntregasErradas());
-                    nEePrimer.setEnabled(habitados);
+                    nEePrimer.setEnabled(habilitados);
+                    nClPrimer.setValue(situacionesJuegoCompe.getCentrolLateral());
+                    nClPrimer.setEnabled(habilitados);
                 } else {
 
                     nFz1Segun.setValue(situacionesJuegoCompe.getFaltaZona1());
-                    nFz1Segun.setEnabled(habitados);
+                    nFz1Segun.setEnabled(habilitados);
                     nFz2Segun.setValue(situacionesJuegoCompe.getFaltaZona2());
-                    nFz2Segun.setEnabled(habitados);
+                    nFz2Segun.setEnabled(habilitados);
                     nFz3Segun.setValue(situacionesJuegoCompe.getFaltaZona3());
-                    nFz3Segun.setEnabled(habitados);
+                    nFz3Segun.setEnabled(habilitados);
                     nRbz1Segun.setValue(situacionesJuegoCompe.getRecuperacionZona1());
-                    nRbz1Segun.setEnabled(habitados);
+                    nRbz1Segun.setEnabled(habilitados);
                     nRbz2Segun.setValue(situacionesJuegoCompe.getRecuperacionZona2());
-                    nRbz2Segun.setEnabled(habitados);
+                    nRbz2Segun.setEnabled(habilitados);
                     nRbz3Segun.setValue(situacionesJuegoCompe.getRecuperacionZona3());
-                    nRbz3Segun.setEnabled(habitados);
+                    nRbz3Segun.setEnabled(habilitados);
                     nTlz1Segun.setValue(situacionesJuegoCompe.getTiroLibreZona1());
-                    nTlz1Segun.setEnabled(habitados);
+                    nTlz1Segun.setEnabled(habilitados);
                     nTlz2Segun.setValue(situacionesJuegoCompe.getTiroLibreZona2());
-                    nTlz2Segun.setEnabled(habitados);
+                    nTlz2Segun.setEnabled(habilitados);
                     nTlz3Segun.setValue(situacionesJuegoCompe.getTiroLibreZona3());
-                    nTlz3Segun.setEnabled(habitados);
+                    nTlz3Segun.setEnabled(habilitados);
                     nTeSegun.setValue(situacionesJuegoCompe.getTiroEsquina());
-                    nTeSegun.setEnabled(habitados);
+                    nTeSegun.setEnabled(habilitados);
                     nFlSegun.setValue(situacionesJuegoCompe.getFueraLugar());
-                    nFlSegun.setEnabled(habitados);
+                    nFlSegun.setEnabled(habilitados);
                     nPeSegun.setValue(situacionesJuegoCompe.getPenalty());
-                    nPeSegun.setEnabled(habitados);
+                    nPeSegun.setEnabled(habilitados);
                     nOgSegun.setValue(situacionesJuegoCompe.getOpcionGol());
-                    nOgSegun.setEnabled(habitados);
+                    nOgSegun.setEnabled(habilitados);
 //                    situaAnfrition1.setCentrolLateral(0);
                     nReSegun.setValue(situacionesJuegoCompe.getRemates());
-                    nReSegun.setEnabled(habitados);
+                    nReSegun.setEnabled(habilitados);
                     nEeSegun.setValue(situacionesJuegoCompe.getEntregasErradas());
-                    nEeSegun.setEnabled(habitados);
+                    nEeSegun.setEnabled(habilitados);
+                    nClSegun.setValue(situacionesJuegoCompe.getCentrolLateral());
+                    nClSegun.setEnabled(habilitados);
                 }
             } else if (situacionesJuegoCompe.getEquipoSituacion().equalsIgnoreCase("RIVAL")) {
                 if (situacionesJuegoCompe.getTiempoSituacion().intValue() == 1) {
 
                     nFz1PrimerR.setValue(situacionesJuegoCompe.getFaltaZona1());
-                    nFz1PrimerR.setEnabled(habitados);
+                    nFz1PrimerR.setEnabled(habilitados);
                     nFz2PrimerR.setValue(situacionesJuegoCompe.getFaltaZona2());
-                    nFz2PrimerR.setEnabled(habitados);
+                    nFz2PrimerR.setEnabled(habilitados);
                     nFz3PrimerR.setValue(situacionesJuegoCompe.getFaltaZona3());
-                    nFz3PrimerR.setEnabled(habitados);
+                    nFz3PrimerR.setEnabled(habilitados);
                     nRbz1PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona1());
-                    nRbz1PrimerR.setEnabled(habitados);
+                    nRbz1PrimerR.setEnabled(habilitados);
                     nRbz2PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona2());
-                    nRbz2PrimerR.setEnabled(habitados);
+                    nRbz2PrimerR.setEnabled(habilitados);
                     nRbz3PrimerR.setValue(situacionesJuegoCompe.getRecuperacionZona3());
-                    nRbz3PrimerR.setEnabled(habitados);
+                    nRbz3PrimerR.setEnabled(habilitados);
                     nTlz1PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona1());
-                    nTlz1PrimerR.setEnabled(habitados);
+                    nTlz1PrimerR.setEnabled(habilitados);
                     nTlz2PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona2());
-                    nTlz2PrimerR.setEnabled(habitados);
+                    nTlz2PrimerR.setEnabled(habilitados);
                     nTlz3PrimerR.setValue(situacionesJuegoCompe.getTiroLibreZona3());
-                    nTlz3PrimerR.setEnabled(habitados);
+                    nTlz3PrimerR.setEnabled(habilitados);
                     nTePrimerR.setValue(situacionesJuegoCompe.getTiroEsquina());
-                    nTePrimerR.setEnabled(habitados);
+                    nTePrimerR.setEnabled(habilitados);
                     nFlPrimerR.setValue(situacionesJuegoCompe.getFueraLugar());
-                    nFlPrimerR.setEnabled(habitados);
+                    nFlPrimerR.setEnabled(habilitados);
                     nPePrimerR.setValue(situacionesJuegoCompe.getPenalty());
-                    nPePrimerR.setEnabled(habitados);
+                    nPePrimerR.setEnabled(habilitados);
                     nOgPrimerR.setValue(situacionesJuegoCompe.getOpcionGol());
-                    nOgPrimerR.setEnabled(habitados);
+                    nOgPrimerR.setEnabled(habilitados);
 //                    situaAnfrition1.setCentrolLateral(0);
                     nRePrimerR.setValue(situacionesJuegoCompe.getRemates());
-                    nRePrimerR.setEnabled(habitados);
+                    nRePrimerR.setEnabled(habilitados);
                     nEePrimerR.setValue(situacionesJuegoCompe.getEntregasErradas());
-                    nEePrimerR.setEnabled(habitados);
+                    nEePrimerR.setEnabled(habilitados);
+                    nClPrimerR.setValue(situacionesJuegoCompe.getCentrolLateral());
+                    nClPrimerR.setEnabled(habilitados);
 
                 } else {
 
                     nFz1SegunR.setValue(situacionesJuegoCompe.getFaltaZona1());
-                    nFz1SegunR.setEnabled(habitados);
+                    nFz1SegunR.setEnabled(habilitados);
                     nFz2SegunR.setValue(situacionesJuegoCompe.getFaltaZona2());
-                    nFz2SegunR.setEnabled(habitados);
+                    nFz2SegunR.setEnabled(habilitados);
                     nFz3SegunR.setValue(situacionesJuegoCompe.getFaltaZona3());
-                    nFz3SegunR.setEnabled(habitados);
+                    nFz3SegunR.setEnabled(habilitados);
                     nRbz1SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona1());
-                    nRbz1SegunR.setEnabled(habitados);
+                    nRbz1SegunR.setEnabled(habilitados);
                     nRbz2SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona2());
-                    nRbz2SegunR.setEnabled(habitados);
+                    nRbz2SegunR.setEnabled(habilitados);
                     nRbz3SegunR.setValue(situacionesJuegoCompe.getRecuperacionZona3());
-                    nRbz3SegunR.setEnabled(habitados);
+                    nRbz3SegunR.setEnabled(habilitados);
                     nTlz1SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona1());
-                    nTlz1SegunR.setEnabled(habitados);
+                    nTlz1SegunR.setEnabled(habilitados);
                     nTlz2SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona2());
-                    nTlz2SegunR.setEnabled(habitados);
+                    nTlz2SegunR.setEnabled(habilitados);
                     nTlz3SegunR.setValue(situacionesJuegoCompe.getTiroLibreZona3());
-                    nTlz3SegunR.setEnabled(habitados);
+                    nTlz3SegunR.setEnabled(habilitados);
                     nTeSegunR.setValue(situacionesJuegoCompe.getTiroEsquina());
-                    nTeSegunR.setEnabled(habitados);
+                    nTeSegunR.setEnabled(habilitados);
                     nFlSegunR.setValue(situacionesJuegoCompe.getFueraLugar());
-                    nFlSegunR.setEnabled(habitados);
+                    nFlSegunR.setEnabled(habilitados);
                     nPeSegunR.setValue(situacionesJuegoCompe.getPenalty());
-                    nPeSegunR.setEnabled(habitados);
+                    nPeSegunR.setEnabled(habilitados);
                     nOgSegunR.setValue(situacionesJuegoCompe.getOpcionGol());
-                    nOgSegunR.setEnabled(habitados);
-//                    situaAnfrition1.setCentrolLateral(0);
+                    nOgSegunR.setEnabled(habilitados);
                     nReSegunR.setValue(situacionesJuegoCompe.getRemates());
-                    nReSegunR.setEnabled(habitados);
+                    nReSegunR.setEnabled(habilitados);
                     nEeSegunR.setValue(situacionesJuegoCompe.getEntregasErradas());
-                    nEeSegunR.setEnabled(habitados);
+                    nEeSegunR.setEnabled(habilitados);
+                    nClSegunR.setValue(situacionesJuegoCompe.getCentrolLateral());
+                    nClSegunR.setEnabled(habilitados);
 
                 }
             }
@@ -1348,12 +1524,88 @@ public class PanelAdminSituaciones extends ContentPanel {
         btnRe.setEnabled(habilitar);
         btnPe.setEnabled(habilitar);
         btnEe.setEnabled(habilitar);
-        btnAg.setEnabled(habilitar);
-        btnGuardarSituaciones.setEnabled(habilitar);
+        btnCl.setEnabled(habilitar);
+        btnGuardarSituaciones.setVisible(habilitar);
 
     }
 
     public void reiniciarSituaciones() {
+          boolean habilitado=true;
+        setIdCompetencia(null);
+        nFz1Primer.setEnabled(habilitado);
+        nFz1Primer.setValue(0);
+        nFz2Primer.setEnabled(habilitado);
+        nFz2Primer.setValue(0);
+        nFz3Primer.setEnabled(habilitado);
+        
+        nRbz1Primer.setEnabled(habilitado);
+        nRbz2Primer.setEnabled(habilitado);
+        nRbz3Primer.setEnabled(habilitado);
+        nTlz1Primer.setEnabled(habilitado);
+        nTlz2Primer.setEnabled(habilitado);
+        nTlz3Primer.setEnabled(habilitado);
+        nTePrimer.setEnabled(habilitado);
+        nFlPrimer.setEnabled(habilitado);
+        nPePrimer.setEnabled(habilitado);
+        nOgPrimer.setEnabled(habilitado);
+        nRePrimer.setEnabled(habilitado);
+        nEePrimer.setEnabled(habilitado);
+        nClPrimer.setEnabled(habilitado);
+        
+        nFz1Segun.setEnabled(habilitado);
+        nFz2Segun.setEnabled(habilitado);
+        nFz3Segun.setEnabled(habilitado);
+        nRbz1Segun.setEnabled(habilitado);
+        nRbz2Segun.setEnabled(habilitado);
+        nRbz3Segun.setEnabled(habilitado);
+        nTlz1Segun.setEnabled(habilitado);
+        nTlz2Segun.setEnabled(habilitado);
+        nTlz3Segun.setEnabled(habilitado);
+        nTeSegun.setEnabled(habilitado);
+        nFlSegun.setEnabled(habilitado);
+        nPeSegun.setEnabled(habilitado);
+        nOgSegun.setEnabled(habilitado);
+        nReSegun.setEnabled(habilitado);
+        nEeSegun.setEnabled(habilitado);
+        nClSegun.setEnabled(habilitado);
+        
+        nFz1PrimerR.setEnabled(habilitado);
+        nFz2PrimerR.setEnabled(habilitado);
+        nFz3PrimerR.setEnabled(habilitado);
+        nRbz1PrimerR.setEnabled(habilitado);
+        nRbz2PrimerR.setEnabled(habilitado);
+        nRbz3PrimerR.setEnabled(habilitado);
+        nTlz1PrimerR.setEnabled(habilitado);
+        nTlz2PrimerR.setEnabled(habilitado);
+        nTlz3PrimerR.setEnabled(habilitado);
+        nTePrimerR.setEnabled(habilitado);
+        nFlPrimerR.setEnabled(habilitado);
+        nPePrimerR.setEnabled(habilitado);
+        nOgPrimerR.setEnabled(habilitado);
+        nRePrimerR.setEnabled(habilitado);
+        nEePrimerR.setEnabled(habilitado);
+        nClPrimerR.setEnabled(habilitado);
+        
+        nFz1SegunR.setEnabled(habilitado);
+        nFz2SegunR.setEnabled(habilitado);
+        nFz3SegunR.setEnabled(habilitado);
+        nRbz1SegunR.setEnabled(habilitado);
+        nRbz2SegunR.setEnabled(habilitado);
+        nRbz3SegunR.setEnabled(habilitado);
+        nTlz1SegunR.setEnabled(habilitado);
+        nTlz2SegunR.setEnabled(habilitado);
+        nTlz3SegunR.setEnabled(habilitado);
+        nTeSegunR.setEnabled(habilitado);
+        nFlSegunR.setEnabled(habilitado);
+        nPeSegunR.setEnabled(habilitado);
+        nOgSegunR.setEnabled(habilitado);
+        nReSegunR.setEnabled(habilitado);
+        nEeSegunR.setEnabled(habilitado);
+        nClSegunR.setEnabled(habilitado);
+        
+        habilitarBotonesSituaciones(habilitado);
+        
+        btnGuardarSituaciones.setVisible(habilitado);
 
     }
 

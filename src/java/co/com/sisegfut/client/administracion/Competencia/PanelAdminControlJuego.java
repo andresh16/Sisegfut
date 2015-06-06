@@ -113,9 +113,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
     private Radio rdAnfitrion;
     private Radio rdRival;
 
-    @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
+    public PanelAdminControlJuego() {
         setScrollMode(Style.Scroll.AUTOY);
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
@@ -1079,10 +1077,11 @@ public class PanelAdminControlJuego extends LayoutContainer {
         loaderGoles.load(0, 50);
     }
 
-    public void cargarControlJuego(Long IdCompetencia, Long idComodin, boolean habilitar) {
+    public void cargarControlJuego(Long IdComp, Long idComodin, boolean habilitar) {
 
-        this.setIdCompetencia(idCompetencia);
+        this.setIdCompetencia(IdComp);
         this.setIdJugadorComodin(idComodin);
+        
         cargarGridTarjetas();
         cargarGridCambios();
         cargarGridGoles();
@@ -1099,9 +1098,18 @@ public class PanelAdminControlJuego extends LayoutContainer {
     public void reiniciarControlJuego() {
         this.setIdCompetencia(null);
         this.setIdJugadorComodin(null);
+        
         cargarGridCambios();
         cargarGridGoles();
         cargarGridTarjetas();
+        
+        btnCrearCambios.enable();
+        btnCrearGol.enable();
+        btnCrearTarjeta.enable();
+        
+        btnEliminarCambio.enable();
+        btnEliminarGol.enable();
+        btnEliminarTarjeta.enable();
     }
 
 }
