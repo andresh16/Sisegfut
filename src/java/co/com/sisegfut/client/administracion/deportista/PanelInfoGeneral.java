@@ -30,7 +30,6 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
@@ -54,6 +53,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Image;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -603,7 +603,7 @@ public final class PanelInfoGeneral extends FormPanel {
         Double imc;
 
         imc = peso / (Math.pow(estatura, 2));
-
+        
         //                Menor a 18 	 Peso bajo. Necesario valorar signos de desnutrición
         //18 a 24.9 	 Normal
         //25 a 26.9 	 Sobrepeso
@@ -613,14 +613,14 @@ public final class PanelInfoGeneral extends FormPanel {
         //Mayor a 40 	 Obesidad grado III Extrema o Mórbida. Riesgo relativo extremadamente alto para el desarrollo de enfermedades cardiovasculares
         String resultadoImc = null;
         if (imc < 18) {
-            resultadoImc = "PESO BAJO";
-        } else if (imc >= 18 && imc <= 24.9) {
-            resultadoImc = "NORMAL";
-        } else if (imc >= 25 && imc <= 26.9) {
+            resultadoImc = "Peso bajo";
+        } else if (imc >= 18 && imc < 25) {
+            resultadoImc = "Normal";
+        } else if (imc >= 25 && imc <27) {
             resultadoImc = "Sobrepeso";
-        } else if (imc >= 27 && imc <= 29.9) {
+        } else if (imc >= 27 && imc < 30) {
             resultadoImc = "Obesidad grado I";
-        } else if (imc >= 30 && imc <= 39.9) {
+        } else if (imc >= 30 && imc < 40) {
             resultadoImc = "Obesidad grado II";
         } else if (imc >= 40) {
             resultadoImc = "Obesidad grado III";

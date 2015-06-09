@@ -71,6 +71,7 @@ public class Bootstrap implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         inicializarUsuriosGrupos();
     }
+    
 
     private void inicializarUsuriosGrupos() {
         try {
@@ -238,8 +239,8 @@ public class Bootstrap implements InitializingBean {
             daoUsuario.guardar(usuarioAdmin);
 
 
-            log.info("Se inicializó los usuarios del sistema.");
-            System.out.println("Se inicializó los usuarios del sistema.");
+            log.info("Se inicializó las tablas maestras del sistema.");
+            System.out.println("Se inicializó las tablas maestras del sistema");
         } catch (Exception e) {
             System.out.println("No se inicializó el usuario del sistema."+e.getMessage());
             log.error("Error " + e.getMessage(), e);

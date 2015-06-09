@@ -232,6 +232,7 @@ public class PanelAdminSituaciones extends ContentPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
+                
                 if (cp.isValid()) {
                     getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
@@ -442,191 +443,6 @@ public class PanelAdminSituaciones extends ContentPanel {
         this.IdCompetencia = IdCompetencia;
     }
 
-//    public ContentPanel crearPanelSituacionesJuego() {
-//        ContentPanel cpSituacionesJuego = new ContentPanel();
-//        cpSituacionesJuego.setBodyBorder(true);
-//        cpSituacionesJuego.setScrollMode(Style.Scroll.AUTO);
-//        cpSituacionesJuego.setIcon(Resources.ICONS.table());
-//        cpSituacionesJuego.setHeaderVisible(true);
-//        cpSituacionesJuego.setHeading("Situaciones de juego");
-////        cpSituacionesJuego.setButtonAlign(HorizontalAlignment.CENTER);
-//        cpSituacionesJuego.setLayout(new FillLayout());
-////        cpSituacionesJuego.setSize(600, 300);
-//
-//        GridCellRenderer<DTOSituacionJuegoComp> buttonRenderer = new GridCellRenderer<DTOSituacionJuegoComp>() {
-//
-//            private boolean init;
-//
-//            @Override
-//            public Object render(final DTOSituacionJuegoComp model, final String property, ColumnData config, final int rowIndex,
-//                    final int colIndex, ListStore<DTOSituacionJuegoComp> store, final Grid<DTOSituacionJuegoComp> grid) {
-//                if (!init) {
-//                    init = true;
-////                    grid.addListener(Events.OnClick, new Listener<GridEvent<DTOSituacionJuegoComp>>() {
-////// espete esto no se para que lo utilizan
-////                        public void handleEvent(GridEvent<DTOSituacionJuegoComp> be) {
-////                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
-////                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
-////                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
-////                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
-////                                }
-////                            }
-////                        }
-////                    });
-//                }
-//
-//                Button b = new Button((String) model.get(property), Resources.ICONS.iconoNuevaCita(), new SelectionListener<ButtonEvent>() {
-//                    @Override
-//                    public void componentSelected(final ButtonEvent ce) {
-//                        String id = grid.getColumnModel().getColumn(colIndex+1).getId();
-//                        Integer val = model.get(id);
-//                        model.set(id,val+1);
-////                         model.setCantidadprimertiempolocal(model.getCantidadprimertiempolocal() + 1);
-//                         grid.getView().refresh(false);
-////                         Info.display("asdf", property+" PROP "+colIndex);
-////                         Info.display(model.getSituacion(), "<ul><li>Botón " + model.get(property).toString() + " Cantidad 1Local  ----></li>" + model.getCantidadprimertiempolocal() 
-////                                 + " -- store situacion--"+gridSituaciones.getStore().getLoadConfig());
-////                        System.out.println(gridSituaciones.getStore().getCount());
-////                        Info.display("prueba", "");
-//
-////                        MessageBox.confirm("Confirmación", "Desea agregar " + model.getSituacion() + " ?", new Listener<MessageBoxEvent>() {
-////                            @Override
-////                            public void handleEvent(MessageBoxEvent be) {
-////
-////                                String respb = be.getButtonClicked().getText();
-////
-////                                if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
-////                                    Info.display(model.getSituacion(), "<ul><li>Botón " + model.get(property).toString() + " ----></li>" + ce.getSource().toString() + "<-----");
-////                            
-////                                }
-////
-////                            }
-////                        });
-//                    }
-//                });
-//                b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
-//                b.setToolTip("Click for more information");
-//
-//                return b;
-//            }
-//
-//        };
-//        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-//
-//        ColumnConfig column = new ColumnConfig();
-//        column.setId("situacion");
-//        column.setHeader("<br><b><h3>Situación Juego</h3></b>");
-//        column.setWidth(150);
-//        column.setRowHeader(true);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setMenuDisabled(true);
-//        column.setResizable(false);
-//        column.setSortable(false);
-////        column.setRenderer(buttonRenderer);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setId("primertiempolocal");
-//        column.setHeader("");
-//        column.setMenuDisabled(true);
-//        column.setRenderer(buttonRenderer);
-//        column.setWidth(50);
-//        column.setSortable(false);
-//        column.setResizable(false);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setMenuDisabled(true);
-//        column.setId("cantidadprimertiempolocal");
-//        column.setHeader("#");
-//        column.setResizable(false);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setWidth(50);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setMenuDisabled(true);
-//        column.setId("segundotiempolocal");
-//        column.setRenderer(buttonRenderer);
-//        column.setHeader("");
-//        column.setSortable(false);
-//        column.setWidth(50);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setMenuDisabled(true);
-//        column.setId("cantidadsegundotiempolocal");
-//        column.setHeader("#");
-//        column.setWidth(50);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setMenuDisabled(true);
-//        column.setId("primertiemporival");
-//        column.setSortable(false);
-//        column.setHeader("+");
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setRenderer(buttonRenderer);
-//        column.setWidth(50);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setId("cantidadprimertiemporival");
-//        column.setHeader("#");
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setWidth(50);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setMenuDisabled(true);
-//        column.setSortable(false);
-//        column.setId("segundotiemporival");
-//        column.setHeader("+");
-//        column.setRenderer(buttonRenderer);
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setWidth(50);
-//        configs.add(column);
-//
-//        column = new ColumnConfig();
-//        column.setResizable(false);
-//        column.setMenuDisabled(true);
-//        column.setId("cantidadsegundotiemporival");
-//        column.setHeader("#");
-//        column.setAlignment(Style.HorizontalAlignment.CENTER);
-//        column.setWidth(55);
-//        configs.add(column);
-//
-//        final ListStore<DTOSituacionJuegoComp> store = new ListStore<DTOSituacionJuegoComp>();
-//        listaValoresJuego = SituacionesJuego.getSituacionesJuegoCompetencia();
-//        store.add(listaValoresJuego);
-//
-//        ColumnModel cm = new ColumnModel(configs);
-//        cm.addHeaderGroup(0, 1, new HeaderGroupConfig("POLITECNICO", 1, 4));
-//
-//        cm.addHeaderGroup(1, 1, new HeaderGroupConfig("1er tiempo", 1, 2));
-//        cm.addHeaderGroup(1, 3, new HeaderGroupConfig("2do tiempo", 1, 2));
-//
-//        cm.addHeaderGroup(0, 4, new HeaderGroupConfig("RIVAL", 1, 5));
-//
-//        cm.addHeaderGroup(1, 4, new HeaderGroupConfig("1er tiempo", 1, 2));
-//        cm.addHeaderGroup(1, 6, new HeaderGroupConfig("2do tiempo", 1, 3));
-//
-//        gridSituaciones = new Grid<DTOSituacionJuegoComp>(store, cm);
-//        gridSituaciones.setStyleAttribute("borderTop", "none");
-////        grid.setAutoExpandColumn("situacion");
-//        gridSituaciones.setBorders(true);
-//        cpSituacionesJuego.add(gridSituaciones);
-//
-//        return cpSituacionesJuego;
-//    }
     private FormPanel crearSituacionesJuego() {
 
         FormPanel cpSituacionesJuego = new FormPanel();
@@ -753,7 +569,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nFz2Primer.setAllowDecimals(false);
         nFz2Primer.setAllowNegative(false);
         nFz2Primer.setAllowBlank(false);
-        
+
         nFz2Segun = new NumberField();
         nFz2Segun.setValue(0);
         nFz2Segun.setWidth(ancho);
@@ -771,7 +587,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nFz3Primer.setAllowDecimals(false);
         nFz3Primer.setAllowNegative(false);
         nFz3Primer.setAllowBlank(false);
-        
+
         nFz3Segun = new NumberField();
         nFz3Segun.setValue(0);
         nFz3Segun.setWidth(ancho);
@@ -789,7 +605,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRbz1Primer.setAllowDecimals(false);
         nRbz1Primer.setAllowNegative(false);
         nRbz1Primer.setAllowBlank(false);
-        
+
         nRbz1Segun = new NumberField();
         nRbz1Segun.setValue(0);
         nRbz1Segun.setWidth(ancho);
@@ -807,7 +623,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRbz2Primer.setAllowDecimals(false);
         nRbz2Primer.setAllowNegative(false);
         nRbz2Primer.setAllowBlank(false);
-        
+
         nRbz2Segun = new NumberField();
         nRbz2Segun.setValue(0);
         nRbz2Segun.setWidth(ancho);
@@ -816,7 +632,6 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRbz2Segun.setAllowDecimals(false);
         nRbz2Segun.setAllowNegative(false);
         nRbz2Segun.setAllowBlank(false);
-        
 
         nRbz3Primer = new NumberField();
         nRbz3Primer.setValue(0);
@@ -826,7 +641,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRbz3Primer.setAllowDecimals(false);
         nRbz3Primer.setAllowNegative(false);
         nRbz3Primer.setAllowBlank(false);
-        
+
         nRbz3Segun = new NumberField();
         nRbz3Segun.setValue(0);
         nRbz3Segun.setWidth(ancho);
@@ -844,7 +659,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nTlz1Primer.setAllowDecimals(false);
         nTlz1Primer.setAllowNegative(false);
         nTlz1Primer.setAllowBlank(false);
-        
+
         nTlz1Segun = new NumberField();
         nTlz1Segun.setValue(0);
         nTlz1Segun.setWidth(ancho);
@@ -862,7 +677,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nTlz2Primer.setAllowDecimals(false);
         nTlz2Primer.setAllowNegative(false);
         nTlz2Primer.setAllowBlank(false);
-        
+
         nTlz2Segun = new NumberField();
         nTlz2Segun.setValue(0);
         nTlz2Segun.setWidth(ancho);
@@ -880,7 +695,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nTlz3Primer.setAllowDecimals(false);
         nTlz3Primer.setAllowNegative(false);
         nTlz3Primer.setAllowBlank(false);
-        
+
         nTlz3Segun = new NumberField();
         nTlz3Segun.setValue(0);
         nTlz3Segun.setWidth(ancho);
@@ -898,7 +713,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nFlPrimer.setAllowDecimals(false);
         nFlPrimer.setAllowNegative(false);
         nFlPrimer.setAllowBlank(false);
-        
+
         nFlSegun = new NumberField();
         nFlSegun.setValue(0);
         nFlSegun.setWidth(ancho);
@@ -916,7 +731,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nTePrimer.setAllowDecimals(false);
         nTePrimer.setAllowNegative(false);
         nTePrimer.setAllowBlank(false);
-        
+
         nTeSegun = new NumberField();
         nTeSegun.setValue(0);
         nTeSegun.setWidth(ancho);
@@ -934,7 +749,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nOgPrimer.setAllowDecimals(false);
         nOgPrimer.setAllowNegative(false);
         nOgPrimer.setAllowBlank(false);
-        
+
         nOgSegun = new NumberField();
         nOgSegun.setValue(0);
         nOgSegun.setWidth(ancho);
@@ -952,7 +767,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRePrimer.setAllowDecimals(false);
         nRePrimer.setAllowNegative(false);
         nRePrimer.setAllowBlank(false);
-        
+
         nReSegun = new NumberField();
         nReSegun.setValue(0);
         nReSegun.setWidth(ancho);
@@ -970,7 +785,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nPePrimer.setAllowDecimals(false);
         nPePrimer.setAllowNegative(false);
         nPePrimer.setAllowBlank(false);
-        
+
         nPeSegun = new NumberField();
         nPeSegun.setValue(0);
         nPeSegun.setWidth(ancho);
@@ -979,7 +794,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nPeSegun.setAllowDecimals(false);
         nPeSegun.setAllowNegative(false);
         nPeSegun.setAllowBlank(false);
-        
+
         nEePrimer = new NumberField();
         nEePrimer.setValue(0);
         nEePrimer.setWidth(ancho);
@@ -988,7 +803,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nEePrimer.setAllowDecimals(false);
         nEePrimer.setAllowNegative(false);
         nEePrimer.setAllowBlank(false);
-        
+
         nEeSegun = new NumberField();
         nEeSegun.setValue(0);
         nEeSegun.setWidth(ancho);
@@ -1006,7 +821,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nClPrimer.setAllowDecimals(false);
         nClPrimer.setAllowNegative(false);
         nClPrimer.setAllowBlank(false);
-        
+
         nClSegun = new NumberField();
         nClSegun.setValue(0);
         nClSegun.setWidth(ancho);
@@ -1020,118 +835,292 @@ public class PanelAdminSituaciones extends ContentPanel {
         nFz1PrimerR = new NumberField();
         nFz1PrimerR.setValue(0);
         nFz1PrimerR.setWidth(ancho);
+        nFz1PrimerR.setMaxValue(130);
+        nFz1PrimerR.setMaxLength(3);
+        nFz1PrimerR.setAllowDecimals(false);
+        nFz1PrimerR.setAllowNegative(false);
+        nFz1PrimerR.setAllowBlank(false);
+
         nFz1SegunR = new NumberField();
         nFz1SegunR.setValue(0);
         nFz1SegunR.setWidth(ancho);
+        nFz1SegunR.setMaxValue(130);
+        nFz1SegunR.setMaxLength(3);
+        nFz1SegunR.setAllowDecimals(false);
+        nFz1SegunR.setAllowNegative(false);
+        nFz1SegunR.setAllowBlank(false);
 
         nFz2PrimerR = new NumberField();
         nFz2PrimerR.setValue(0);
         nFz2PrimerR.setWidth(ancho);
+        nFz2PrimerR.setMaxValue(130);
+        nFz2PrimerR.setMaxLength(3);
+        nFz2PrimerR.setAllowDecimals(false);
+        nFz2PrimerR.setAllowNegative(false);
+        nFz2PrimerR.setAllowBlank(false);
+
         nFz2SegunR = new NumberField();
         nFz2SegunR.setValue(0);
         nFz2SegunR.setWidth(ancho);
+        nFz2SegunR.setMaxValue(130);
+        nFz2SegunR.setMaxLength(3);
+        nFz2SegunR.setAllowDecimals(false);
+        nFz2SegunR.setAllowNegative(false);
+        nFz2SegunR.setAllowBlank(false);
 
         nFz3PrimerR = new NumberField();
         nFz3PrimerR.setValue(0);
         nFz3PrimerR.setWidth(ancho);
+        nFz3PrimerR.setMaxValue(130);
+        nFz3PrimerR.setMaxLength(3);
+        nFz3PrimerR.setAllowDecimals(false);
+        nFz3PrimerR.setAllowNegative(false);
+        nFz3PrimerR.setAllowBlank(false);
+
         nFz3SegunR = new NumberField();
         nFz3SegunR.setValue(0);
         nFz3SegunR.setWidth(ancho);
+        nFz3SegunR.setMaxValue(130);
+        nFz3SegunR.setMaxLength(3);
+        nFz3SegunR.setAllowDecimals(false);
+        nFz3SegunR.setAllowNegative(false);
+        nFz3SegunR.setAllowBlank(false);
 
         nRbz1PrimerR = new NumberField();
         nRbz1PrimerR.setValue(0);
         nRbz1PrimerR.setWidth(ancho);
+        nRbz1PrimerR.setMaxValue(130);
+        nRbz1PrimerR.setMaxLength(3);
+        nRbz1PrimerR.setAllowDecimals(false);
+        nRbz1PrimerR.setAllowNegative(false);
+        nRbz1PrimerR.setAllowBlank(false);
+
         nRbz1SegunR = new NumberField();
         nRbz1SegunR.setValue(0);
         nRbz1SegunR.setWidth(ancho);
+        nRbz1SegunR.setMaxValue(130);
+        nRbz1SegunR.setMaxLength(3);
+        nRbz1SegunR.setAllowDecimals(false);
+        nRbz1SegunR.setAllowNegative(false);
+        nRbz1SegunR.setAllowBlank(false);
 
         nRbz2PrimerR = new NumberField();
         nRbz2PrimerR.setValue(0);
         nRbz2PrimerR.setWidth(ancho);
+        nRbz2PrimerR.setMaxValue(130);
+        nRbz2PrimerR.setMaxLength(3);
+        nRbz2PrimerR.setAllowDecimals(false);
+        nRbz2PrimerR.setAllowNegative(false);
+        nRbz2PrimerR.setAllowBlank(false);
+
         nRbz2SegunR = new NumberField();
         nRbz2SegunR.setValue(0);
         nRbz2SegunR.setWidth(ancho);
+        nRbz2SegunR.setMaxValue(130);
+        nRbz2SegunR.setMaxLength(3);
+        nRbz2SegunR.setAllowDecimals(false);
+        nRbz2SegunR.setAllowNegative(false);
+        nRbz2SegunR.setAllowBlank(false);
 
         nRbz3PrimerR = new NumberField();
         nRbz3PrimerR.setValue(0);
         nRbz3PrimerR.setWidth(ancho);
+        nRbz3PrimerR.setMaxValue(130);
+        nRbz3PrimerR.setMaxLength(3);
+        nRbz3PrimerR.setAllowDecimals(false);
+        nRbz3PrimerR.setAllowNegative(false);
+        nRbz3PrimerR.setAllowBlank(false);
+
         nRbz3SegunR = new NumberField();
         nRbz3SegunR.setValue(0);
         nRbz3SegunR.setWidth(ancho);
+        nRbz3SegunR.setMaxValue(130);
+        nRbz3SegunR.setMaxLength(3);
+        nRbz3SegunR.setAllowDecimals(false);
+        nRbz3SegunR.setAllowNegative(false);
+        nRbz3SegunR.setAllowBlank(false);
 
         nTlz1PrimerR = new NumberField();
         nTlz1PrimerR.setValue(0);
         nTlz1PrimerR.setWidth(ancho);
+        nTlz1PrimerR.setMaxValue(130);
+        nTlz1PrimerR.setMaxLength(3);
+        nTlz1PrimerR.setAllowDecimals(false);
+        nTlz1PrimerR.setAllowNegative(false);
+        nTlz1PrimerR.setAllowBlank(false);
+
         nTlz1SegunR = new NumberField();
         nTlz1SegunR.setValue(0);
         nTlz1SegunR.setWidth(ancho);
+        nTlz1SegunR.setMaxValue(130);
+        nTlz1SegunR.setMaxLength(3);
+        nTlz1SegunR.setAllowDecimals(false);
+        nTlz1SegunR.setAllowNegative(false);
+        nTlz1SegunR.setAllowBlank(false);
 
         nTlz2PrimerR = new NumberField();
         nTlz2PrimerR.setValue(0);
         nTlz2PrimerR.setWidth(ancho);
+        nTlz2PrimerR.setMaxValue(130);
+        nTlz2PrimerR.setMaxLength(3);
+        nTlz2PrimerR.setAllowDecimals(false);
+        nTlz2PrimerR.setAllowNegative(false);
+        nTlz2PrimerR.setAllowBlank(false);
+
         nTlz2SegunR = new NumberField();
         nTlz2SegunR.setValue(0);
         nTlz2SegunR.setWidth(ancho);
+        nTlz2SegunR.setMaxValue(130);
+        nTlz2SegunR.setMaxLength(3);
+        nTlz2SegunR.setAllowDecimals(false);
+        nTlz2SegunR.setAllowNegative(false);
+        nTlz2SegunR.setAllowBlank(false);
 
         nTlz3PrimerR = new NumberField();
         nTlz3PrimerR.setValue(0);
         nTlz3PrimerR.setWidth(ancho);
+        nTlz3PrimerR.setMaxValue(130);
+        nTlz3PrimerR.setMaxLength(3);
+        nTlz3PrimerR.setAllowDecimals(false);
+        nTlz3PrimerR.setAllowNegative(false);
+        nTlz3PrimerR.setAllowBlank(false);
+
         nTlz3SegunR = new NumberField();
         nTlz3SegunR.setValue(0);
         nTlz3SegunR.setWidth(ancho);
+        nTlz3SegunR.setMaxValue(130);
+        nTlz3SegunR.setMaxLength(3);
+        nTlz3SegunR.setAllowDecimals(false);
+        nTlz3SegunR.setAllowNegative(false);
+        nTlz3SegunR.setAllowBlank(false);
 
         nFlPrimerR = new NumberField();
         nFlPrimerR.setValue(0);
         nFlPrimerR.setWidth(ancho);
+        nFlPrimerR.setMaxValue(130);
+        nFlPrimerR.setMaxLength(3);
+        nFlPrimerR.setAllowDecimals(false);
+        nFlPrimerR.setAllowNegative(false);
+        nFlPrimerR.setAllowBlank(false);
+
         nFlSegunR = new NumberField();
         nFlSegunR.setValue(0);
         nFlSegunR.setWidth(ancho);
+        nFlSegunR.setMaxValue(130);
+        nFlSegunR.setMaxLength(3);
+        nFlSegunR.setAllowDecimals(false);
+        nFlSegunR.setAllowNegative(false);
+        nFlSegunR.setAllowBlank(false);
 
         nTePrimerR = new NumberField();
         nTePrimerR.setValue(0);
         nTePrimerR.setWidth(ancho);
+        nTePrimerR.setMaxValue(130);
+        nTePrimerR.setMaxLength(3);
+        nTePrimerR.setAllowDecimals(false);
+        nTePrimerR.setAllowNegative(false);
+        nTePrimerR.setAllowBlank(false);
+
         nTeSegunR = new NumberField();
         nTeSegunR.setValue(0);
         nTeSegunR.setWidth(ancho);
+        nTeSegunR.setMaxValue(130);
+        nTeSegunR.setMaxLength(3);
+        nTeSegunR.setAllowDecimals(false);
+        nTeSegunR.setAllowNegative(false);
+        nTeSegunR.setAllowBlank(false);
 
         nOgPrimerR = new NumberField();
         nOgPrimerR.setValue(0);
         nOgPrimerR.setWidth(ancho);
-        nOgPrimerR.setWidth(ancho);
+        nOgPrimerR.setMaxValue(130);
+        nOgPrimerR.setMaxLength(3);
+        nOgPrimerR.setAllowDecimals(false);
+        nOgPrimerR.setAllowNegative(false);
+        nOgPrimerR.setAllowBlank(false);
+        
         nOgSegunR = new NumberField();
         nOgSegunR.setValue(0);
         nOgSegunR.setWidth(ancho);
+        nOgSegunR.setMaxValue(130);
+        nOgSegunR.setMaxLength(3);
+        nOgSegunR.setAllowDecimals(false);
+        nOgSegunR.setAllowNegative(false);
+        nOgSegunR.setAllowBlank(false);
 
         nRePrimerR = new NumberField();
         nRePrimerR.setValue(0);
         nRePrimerR.setWidth(ancho);
+        nRePrimerR.setMaxValue(130);
+        nRePrimerR.setMaxLength(3);
+        nRePrimerR.setAllowDecimals(false);
+        nRePrimerR.setAllowNegative(false);
+        nRePrimerR.setAllowBlank(false);
+
         nReSegunR = new NumberField();
         nReSegunR.setValue(0);
         nReSegunR.setWidth(ancho);
+        nReSegunR.setMaxValue(130);
+        nReSegunR.setMaxLength(3);
+        nReSegunR.setAllowDecimals(false);
+        nReSegunR.setAllowNegative(false);
+        nReSegunR.setAllowBlank(false);
 
         nPePrimerR = new NumberField();
         nPePrimerR.setValue(0);
         nPePrimerR.setWidth(ancho);
+        nPePrimerR.setMaxValue(130);
+        nPePrimerR.setMaxLength(3);
+        nPePrimerR.setAllowDecimals(false);
+        nPePrimerR.setAllowNegative(false);
+        nPePrimerR.setAllowBlank(false);
+
         nPeSegunR = new NumberField();
         nPeSegunR.setValue(0);
         nPeSegunR.setWidth(ancho);
+        nPeSegunR.setMaxValue(130);
+        nPeSegunR.setMaxLength(3);
+        nPeSegunR.setAllowDecimals(false);
+        nPeSegunR.setAllowNegative(false);
+        nPeSegunR.setAllowBlank(false);
 
         nEePrimerR = new NumberField();
         nEePrimerR.setValue(0);
         nEePrimerR.setWidth(ancho);
+        nEePrimerR.setMaxValue(130);
+        nEePrimerR.setMaxLength(3);
+        nEePrimerR.setAllowDecimals(false);
+        nEePrimerR.setAllowNegative(false);
+        nEePrimerR.setAllowBlank(false);
+
         nEeSegunR = new NumberField();
         nEeSegunR.setValue(0);
         nEeSegunR.setWidth(ancho);
+        nEeSegunR.setMaxValue(130);
+        nEeSegunR.setMaxLength(3);
+        nEeSegunR.setAllowDecimals(false);
+        nEeSegunR.setAllowNegative(false);
+        nEeSegunR.setAllowBlank(false);
 
         nClPrimerR = new NumberField();
         nClPrimerR.setValue(0);
         nClPrimerR.setWidth(ancho);
+        nClPrimerR.setMaxValue(130);
+        nClPrimerR.setMaxLength(3);
+        nClPrimerR.setAllowDecimals(false);
+        nClPrimerR.setAllowNegative(false);
+        nClPrimerR.setAllowBlank(false);
+
         nClSegunR = new NumberField();
         nClSegunR.setValue(0);
         nClSegunR.setWidth(ancho);
+        nClSegunR.setMaxValue(130);
+        nClSegunR.setMaxLength(3);
+        nClSegunR.setAllowDecimals(false);
+        nClSegunR.setAllowNegative(false);
+        nClSegunR.setAllowBlank(false);
 //      /////////////////////////////////////////////////////////////////////////////////////////
- 
-        
+
         tableSituaciones.setHTML(0, 0, "<div style='font-size: 13px;'><center><b>Situación Juego</b></center></span>");
 //        tableSituaciones.setHTML(0, 0, "<b>Situación</b>");
         tableSituaciones.setHTML(0, 1, "<div style='font-size: 13px;'><b>1er Poli</b></span>");
@@ -1264,11 +1253,11 @@ public class PanelAdminSituaciones extends ContentPanel {
         rd2Tiempo = new Radio();
         rd2Tiempo.setBoxLabel("2do Tiempo");
 
-        RadioGroup radioGroup = new RadioGroup();
-        radioGroup.setFieldLabel("Tiempo");
-        radioGroup.add(rd1Tiempo);
-        radioGroup.add(rd2Tiempo);
-        simple.add(radioGroup, formData);
+        RadioGroup radioGroupTiepo = new RadioGroup();
+        radioGroupTiepo.setFieldLabel("Tiempo");
+        radioGroupTiepo.add(rd1Tiempo);
+        radioGroupTiepo.add(rd2Tiempo);
+        simple.add(radioGroupTiepo, formData);
 
         rdAnfitrion = new Radio();
         rdAnfitrion.setBoxLabel("POLITÉCNICO JIC");
@@ -1277,11 +1266,20 @@ public class PanelAdminSituaciones extends ContentPanel {
         rdRival = new Radio();
         rdRival.setBoxLabel("RIVAL");
 
-        RadioGroup radioGroup2 = new RadioGroup();
-        radioGroup2.setFieldLabel("Equipo");
-        radioGroup2.add(rdAnfitrion);
-        radioGroup2.add(rdRival);
-        simple.add(radioGroup2, formData);
+        RadioGroup radioGroupEquipo = new RadioGroup();
+        radioGroupEquipo.setFieldLabel("Equipo");
+        radioGroupEquipo.add(rdAnfitrion);
+        radioGroupEquipo.add(rdRival);
+        simple.add(radioGroupEquipo, formData);
+        
+        NumberField nCantidad = new NumberField();
+        nCantidad.setValue(0);
+        nCantidad.setMaxValue(130);
+        nCantidad.setMaxLength(3);
+        nCantidad.setAllowDecimals(false);
+        nCantidad.setAllowNegative(false);
+        nCantidad.setAllowBlank(false);
+        
         window.add(simple);
         window.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
@@ -1530,14 +1528,14 @@ public class PanelAdminSituaciones extends ContentPanel {
     }
 
     public void reiniciarSituaciones() {
-          boolean habilitado=true;
+        boolean habilitado = true;
         setIdCompetencia(null);
         nFz1Primer.setEnabled(habilitado);
         nFz1Primer.setValue(0);
         nFz2Primer.setEnabled(habilitado);
         nFz2Primer.setValue(0);
         nFz3Primer.setEnabled(habilitado);
-        
+
         nRbz1Primer.setEnabled(habilitado);
         nRbz2Primer.setEnabled(habilitado);
         nRbz3Primer.setEnabled(habilitado);
@@ -1551,7 +1549,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRePrimer.setEnabled(habilitado);
         nEePrimer.setEnabled(habilitado);
         nClPrimer.setEnabled(habilitado);
-        
+
         nFz1Segun.setEnabled(habilitado);
         nFz2Segun.setEnabled(habilitado);
         nFz3Segun.setEnabled(habilitado);
@@ -1568,7 +1566,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nReSegun.setEnabled(habilitado);
         nEeSegun.setEnabled(habilitado);
         nClSegun.setEnabled(habilitado);
-        
+
         nFz1PrimerR.setEnabled(habilitado);
         nFz2PrimerR.setEnabled(habilitado);
         nFz3PrimerR.setEnabled(habilitado);
@@ -1585,7 +1583,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nRePrimerR.setEnabled(habilitado);
         nEePrimerR.setEnabled(habilitado);
         nClPrimerR.setEnabled(habilitado);
-        
+
         nFz1SegunR.setEnabled(habilitado);
         nFz2SegunR.setEnabled(habilitado);
         nFz3SegunR.setEnabled(habilitado);
@@ -1602,11 +1600,196 @@ public class PanelAdminSituaciones extends ContentPanel {
         nReSegunR.setEnabled(habilitado);
         nEeSegunR.setEnabled(habilitado);
         nClSegunR.setEnabled(habilitado);
-        
+
         habilitarBotonesSituaciones(habilitado);
-        
+
         btnGuardarSituaciones.setVisible(habilitado);
 
     }
 
+//    public ContentPanel crearPanelSituacionesJuego() {
+//        ContentPanel cpSituacionesJuego = new ContentPanel();
+//        cpSituacionesJuego.setBodyBorder(true);
+//        cpSituacionesJuego.setScrollMode(Style.Scroll.AUTO);
+//        cpSituacionesJuego.setIcon(Resources.ICONS.table());
+//        cpSituacionesJuego.setHeaderVisible(true);
+//        cpSituacionesJuego.setHeading("Situaciones de juego");
+////        cpSituacionesJuego.setButtonAlign(HorizontalAlignment.CENTER);
+//        cpSituacionesJuego.setLayout(new FillLayout());
+////        cpSituacionesJuego.setSize(600, 300);
+//
+//        GridCellRenderer<DTOSituacionJuegoComp> buttonRenderer = new GridCellRenderer<DTOSituacionJuegoComp>() {
+//
+//            private boolean init;
+//
+//            @Override
+//            public Object render(final DTOSituacionJuegoComp model, final String property, ColumnData config, final int rowIndex,
+//                    final int colIndex, ListStore<DTOSituacionJuegoComp> store, final Grid<DTOSituacionJuegoComp> grid) {
+//                if (!init) {
+//                    init = true;
+////                    grid.addListener(Events.OnClick, new Listener<GridEvent<DTOSituacionJuegoComp>>() {
+////// espete esto no se para que lo utilizan
+////                        public void handleEvent(GridEvent<DTOSituacionJuegoComp> be) {
+////                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+////                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+////                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+////                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+////                                }
+////                            }
+////                        }
+////                    });
+//                }
+//
+//                Button b = new Button((String) model.get(property), Resources.ICONS.iconoNuevaCita(), new SelectionListener<ButtonEvent>() {
+//                    @Override
+//                    public void componentSelected(final ButtonEvent ce) {
+//                        String id = grid.getColumnModel().getColumn(colIndex+1).getId();
+//                        Integer val = model.get(id);
+//                        model.set(id,val+1);
+////                         model.setCantidadprimertiempolocal(model.getCantidadprimertiempolocal() + 1);
+//                         grid.getView().refresh(false);
+////                         Info.display("asdf", property+" PROP "+colIndex);
+////                         Info.display(model.getSituacion(), "<ul><li>Botón " + model.get(property).toString() + " Cantidad 1Local  ----></li>" + model.getCantidadprimertiempolocal() 
+////                                 + " -- store situacion--"+gridSituaciones.getStore().getLoadConfig());
+////                        System.out.println(gridSituaciones.getStore().getCount());
+////                        Info.display("prueba", "");
+//
+////                        MessageBox.confirm("Confirmación", "Desea agregar " + model.getSituacion() + " ?", new Listener<MessageBoxEvent>() {
+////                            @Override
+////                            public void handleEvent(MessageBoxEvent be) {
+////
+////                                String respb = be.getButtonClicked().getText();
+////
+////                                if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
+////                                    Info.display(model.getSituacion(), "<ul><li>Botón " + model.get(property).toString() + " ----></li>" + ce.getSource().toString() + "<-----");
+////                            
+////                                }
+////
+////                            }
+////                        });
+//                    }
+//                });
+//                b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+//                b.setToolTip("Click for more information");
+//
+//                return b;
+//            }
+//
+//        };
+//        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+//
+//        ColumnConfig column = new ColumnConfig();
+//        column.setId("situacion");
+//        column.setHeader("<br><b><h3>Situación Juego</h3></b>");
+//        column.setWidth(150);
+//        column.setRowHeader(true);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setMenuDisabled(true);
+//        column.setResizable(false);
+//        column.setSortable(false);
+////        column.setRenderer(buttonRenderer);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setId("primertiempolocal");
+//        column.setHeader("");
+//        column.setMenuDisabled(true);
+//        column.setRenderer(buttonRenderer);
+//        column.setWidth(50);
+//        column.setSortable(false);
+//        column.setResizable(false);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setMenuDisabled(true);
+//        column.setId("cantidadprimertiempolocal");
+//        column.setHeader("#");
+//        column.setResizable(false);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setWidth(50);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setMenuDisabled(true);
+//        column.setId("segundotiempolocal");
+//        column.setRenderer(buttonRenderer);
+//        column.setHeader("");
+//        column.setSortable(false);
+//        column.setWidth(50);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setMenuDisabled(true);
+//        column.setId("cantidadsegundotiempolocal");
+//        column.setHeader("#");
+//        column.setWidth(50);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setMenuDisabled(true);
+//        column.setId("primertiemporival");
+//        column.setSortable(false);
+//        column.setHeader("+");
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setRenderer(buttonRenderer);
+//        column.setWidth(50);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setId("cantidadprimertiemporival");
+//        column.setHeader("#");
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setWidth(50);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setMenuDisabled(true);
+//        column.setSortable(false);
+//        column.setId("segundotiemporival");
+//        column.setHeader("+");
+//        column.setRenderer(buttonRenderer);
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setWidth(50);
+//        configs.add(column);
+//
+//        column = new ColumnConfig();
+//        column.setResizable(false);
+//        column.setMenuDisabled(true);
+//        column.setId("cantidadsegundotiemporival");
+//        column.setHeader("#");
+//        column.setAlignment(Style.HorizontalAlignment.CENTER);
+//        column.setWidth(55);
+//        configs.add(column);
+//
+//        final ListStore<DTOSituacionJuegoComp> store = new ListStore<DTOSituacionJuegoComp>();
+//        listaValoresJuego = SituacionesJuego.getSituacionesJuegoCompetencia();
+//        store.add(listaValoresJuego);
+//
+//        ColumnModel cm = new ColumnModel(configs);
+//        cm.addHeaderGroup(0, 1, new HeaderGroupConfig("POLITECNICO", 1, 4));
+//
+//        cm.addHeaderGroup(1, 1, new HeaderGroupConfig("1er tiempo", 1, 2));
+//        cm.addHeaderGroup(1, 3, new HeaderGroupConfig("2do tiempo", 1, 2));
+//
+//        cm.addHeaderGroup(0, 4, new HeaderGroupConfig("RIVAL", 1, 5));
+//
+//        cm.addHeaderGroup(1, 4, new HeaderGroupConfig("1er tiempo", 1, 2));
+//        cm.addHeaderGroup(1, 6, new HeaderGroupConfig("2do tiempo", 1, 3));
+//
+//        gridSituaciones = new Grid<DTOSituacionJuegoComp>(store, cm);
+//        gridSituaciones.setStyleAttribute("borderTop", "none");
+////        grid.setAutoExpandColumn("situacion");
+//        gridSituaciones.setBorders(true);
+//        cpSituacionesJuego.add(gridSituaciones);
+//
+//        return cpSituacionesJuego;
+//    }
 }

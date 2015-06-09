@@ -930,8 +930,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         fpCompromiso.setEnabled(true);
         DtFecha.reset();
         comboBoxTorneo.recargar();
-        cbxRival.recargar();
         cbxRival.setIdTorneoElegido(null);
+        cbxRival.recargar();
         txtLugar.reset();
         cpCuerpoTecCom.setEnabled(false);
         btnGuardarCompromiso.setEnabled(true);
