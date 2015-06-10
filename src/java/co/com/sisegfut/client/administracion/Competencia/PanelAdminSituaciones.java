@@ -1535,85 +1535,195 @@ public class PanelAdminSituaciones extends ContentPanel {
 
         nFz3Primer.setEnabled(habilitado);
         nFz3Primer.setValue(0);
-       //Manuel Ayuda 
-        //Para continuar setiando el valor cero a todos los demas campos, para reiniciarlos.
 
         nRbz1Primer.setEnabled(habilitado);
+        nRbz1Primer.setValue(0);
         
         nRbz2Primer.setEnabled(habilitado);
+        nRbz2Primer.setValue(0);
         
         nRbz3Primer.setEnabled(habilitado);
-        
+        nRbz3Primer.setValue(0);
+                
         nTlz1Primer.setEnabled(habilitado);
+        nTlz1Primer.setValue(0);
         
         nTlz2Primer.setEnabled(habilitado);
+        nTlz2Primer.setValue(0);
         
         nTlz3Primer.setEnabled(habilitado);
+        nTlz3Primer.setValue(0);
+        
         nTePrimer.setEnabled(habilitado);
+        nTePrimer.setValue(0);
+        
         nFlPrimer.setEnabled(habilitado);
+        nFlPrimer.setValue(0);
+        
         nPePrimer.setEnabled(habilitado);
+        nPePrimer.setValue(0);
+        
         nOgPrimer.setEnabled(habilitado);
+        nOgPrimer.setValue(0);
+        
         nRePrimer.setEnabled(habilitado);
+        nRePrimer.setValue(0);
+        
         nEePrimer.setEnabled(habilitado);
+        nEePrimer.setValue(0);
+        
         nClPrimer.setEnabled(habilitado);
+        nClPrimer.setValue(0);
 
         nFz1Segun.setEnabled(habilitado);
+        nFz1Segun.setValue(0);
+        
         nFz2Segun.setEnabled(habilitado);
+        nFz2Segun.setValue(0);
+        
         nFz3Segun.setEnabled(habilitado);
+        nFz3Segun.setValue(0);
+        
         nRbz1Segun.setEnabled(habilitado);
+        nRbz1Segun.setValue(0);
+        
         nRbz2Segun.setEnabled(habilitado);
+        nRbz2Segun.setValue(0);
+        
         nRbz3Segun.setEnabled(habilitado);
+        nRbz3Segun.setValue(0);
+        
         nTlz1Segun.setEnabled(habilitado);
+        nTlz1Segun.setValue(0);
+        
         nTlz2Segun.setEnabled(habilitado);
+        nTlz2Segun.setValue(0);
+        
         nTlz3Segun.setEnabled(habilitado);
+        nTlz3Segun.setValue(0);
+        
         nTeSegun.setEnabled(habilitado);
+        nTeSegun.setValue(0);
+        
         nFlSegun.setEnabled(habilitado);
+        nFlSegun.setValue(0);
+        
         nPeSegun.setEnabled(habilitado);
+        nPeSegun.setValue(0);
+        
         nOgSegun.setEnabled(habilitado);
+        nOgSegun.setValue(0);
+        
         nReSegun.setEnabled(habilitado);
+        nReSegun.setValue(0);
+        
         nEeSegun.setEnabled(habilitado);
+        nEeSegun.setValue(0);
+        
         nClSegun.setEnabled(habilitado);
+        nClSegun.setValue(0);
 
         nFz1PrimerR.setEnabled(habilitado);
+        nFz1PrimerR.setValue(0);
+        
         nFz2PrimerR.setEnabled(habilitado);
+        nFz2PrimerR.setValue(0);
+        
         nFz3PrimerR.setEnabled(habilitado);
+        nFz3PrimerR.setValue(0);
+        
         nRbz1PrimerR.setEnabled(habilitado);
+        nRbz1PrimerR.setValue(0);
+        
         nRbz2PrimerR.setEnabled(habilitado);
+        nRbz2PrimerR.setValue(0);
+        
         nRbz3PrimerR.setEnabled(habilitado);
+        nRbz3PrimerR.setValue(0);
+        
         nTlz1PrimerR.setEnabled(habilitado);
+        nTlz1PrimerR.setValue(0);
+        
         nTlz2PrimerR.setEnabled(habilitado);
+        nTlz2PrimerR.setValue(0);
+        
         nTlz3PrimerR.setEnabled(habilitado);
+        nTlz3PrimerR.setValue(0);
+        
         nTePrimerR.setEnabled(habilitado);
+        nTePrimerR.setValue(0);
+        
         nFlPrimerR.setEnabled(habilitado);
+        nFlPrimerR.setValue(0);
+        
         nPePrimerR.setEnabled(habilitado);
+        nPePrimerR.setValue(0);
+        
         nOgPrimerR.setEnabled(habilitado);
+        nOgPrimerR.setValue(0);
+        
         nRePrimerR.setEnabled(habilitado);
+        nRePrimerR.setValue(0);
+        
         nEePrimerR.setEnabled(habilitado);
+        nEePrimerR.setValue(0);
+        
         nClPrimerR.setEnabled(habilitado);
+        nClPrimerR.setValue(0);
 
         nFz1SegunR.setEnabled(habilitado);
+        nFz1SegunR.setValue(0);
+        
         nFz2SegunR.setEnabled(habilitado);
+        nFz2SegunR.setValue(0);
+        
         nFz3SegunR.setEnabled(habilitado);
+        nFz3SegunR.setValue(0);
+        
         nRbz1SegunR.setEnabled(habilitado);
+        nRbz1SegunR.setValue(0);
+        
         nRbz2SegunR.setEnabled(habilitado);
+        nRbz2SegunR.setValue(0);
+        
         nRbz3SegunR.setEnabled(habilitado);
+        nRbz3SegunR.setValue(0);
+        
         nTlz1SegunR.setEnabled(habilitado);
+        nTlz1SegunR.setValue(0);
+        
         nTlz2SegunR.setEnabled(habilitado);
+        nTlz2SegunR.setValue(0);
+        
         nTlz3SegunR.setEnabled(habilitado);
+        nTlz3SegunR.setValue(0);
+        
         nTeSegunR.setEnabled(habilitado);
+        nTeSegunR.setValue(0);
+        
         nFlSegunR.setEnabled(habilitado);
+        nFlSegunR.setValue(0);
+        
         nPeSegunR.setEnabled(habilitado);
+        nPeSegunR.setValue(0);
+        
         nOgSegunR.setEnabled(habilitado);
+        nOgSegunR.setValue(0);
+        
         nReSegunR.setEnabled(habilitado);
+        nReSegunR.setValue(0);
+        
         nEeSegunR.setEnabled(habilitado);
+        nEeSegunR.setValue(0);
+        
         nClSegunR.setEnabled(habilitado);
+        nClSegunR.setValue(0);
 
         habilitarBotonesSituaciones(habilitado);
 
         btnGuardarSituaciones.setVisible(habilitado);
 
     }
-
 //    public ContentPanel crearPanelSituacionesJuego() {
 //        ContentPanel cpSituacionesJuego = new ContentPanel();
 //        cpSituacionesJuego.setBodyBorder(true);
