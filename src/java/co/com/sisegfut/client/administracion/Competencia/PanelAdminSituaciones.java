@@ -232,7 +232,6 @@ public class PanelAdminSituaciones extends ContentPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                
                 if (cp.isValid()) {
                     getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
@@ -1038,7 +1037,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nOgPrimerR.setAllowDecimals(false);
         nOgPrimerR.setAllowNegative(false);
         nOgPrimerR.setAllowBlank(false);
-        
+
         nOgSegunR = new NumberField();
         nOgSegunR.setValue(0);
         nOgSegunR.setWidth(ancho);
@@ -1271,7 +1270,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         radioGroupEquipo.add(rdAnfitrion);
         radioGroupEquipo.add(rdRival);
         simple.add(radioGroupEquipo, formData);
-        
+
         NumberField nCantidad = new NumberField();
         nCantidad.setValue(0);
         nCantidad.setMaxValue(130);
@@ -1279,7 +1278,7 @@ public class PanelAdminSituaciones extends ContentPanel {
         nCantidad.setAllowDecimals(false);
         nCantidad.setAllowNegative(false);
         nCantidad.setAllowBlank(false);
-        
+
         window.add(simple);
         window.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
@@ -1392,7 +1391,6 @@ public class PanelAdminSituaciones extends ContentPanel {
                     nClPrimer.setValue(situacionesJuegoCompe.getCentrolLateral());
                     nClPrimer.setEnabled(habilitados);
                 } else {
-
                     nFz1Segun.setValue(situacionesJuegoCompe.getFaltaZona1());
                     nFz1Segun.setEnabled(habilitados);
                     nFz2Segun.setValue(situacionesJuegoCompe.getFaltaZona2());
@@ -1419,7 +1417,6 @@ public class PanelAdminSituaciones extends ContentPanel {
                     nPeSegun.setEnabled(habilitados);
                     nOgSegun.setValue(situacionesJuegoCompe.getOpcionGol());
                     nOgSegun.setEnabled(habilitados);
-//                    situaAnfrition1.setCentrolLateral(0);
                     nReSegun.setValue(situacionesJuegoCompe.getRemates());
                     nReSegun.setEnabled(habilitados);
                     nEeSegun.setValue(situacionesJuegoCompe.getEntregasErradas());
@@ -1532,15 +1529,25 @@ public class PanelAdminSituaciones extends ContentPanel {
         setIdCompetencia(null);
         nFz1Primer.setEnabled(habilitado);
         nFz1Primer.setValue(0);
+
         nFz2Primer.setEnabled(habilitado);
         nFz2Primer.setValue(0);
+
         nFz3Primer.setEnabled(habilitado);
+        nFz3Primer.setValue(0);
+       //Manuel Ayuda 
+        //Para continuar setiando el valor cero a todos los demas campos, para reiniciarlos.
 
         nRbz1Primer.setEnabled(habilitado);
+        
         nRbz2Primer.setEnabled(habilitado);
+        
         nRbz3Primer.setEnabled(habilitado);
+        
         nTlz1Primer.setEnabled(habilitado);
+        
         nTlz2Primer.setEnabled(habilitado);
+        
         nTlz3Primer.setEnabled(habilitado);
         nTePrimer.setEnabled(habilitado);
         nFlPrimer.setEnabled(habilitado);

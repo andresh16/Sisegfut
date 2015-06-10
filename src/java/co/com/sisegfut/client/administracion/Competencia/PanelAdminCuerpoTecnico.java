@@ -70,8 +70,7 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
     private Long idPersonalCuerpoTec = null;
 
     public PanelAdminCuerpoTecnico() {
-        
-        
+
         setBodyBorder(true);
         setScrollMode(Style.Scroll.AUTO);
         setIcon(Resources.ICONS.table());
@@ -180,8 +179,6 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
 
                     idPersonalCuerpoTec = p.getId();
 
-                    Info.display("Personal", "Selecciono el personal " + p.getNombreCompleto() + " idpersonal" + idPersonalCuerpoTec);
-
                 } else {
                 }
             }
@@ -199,7 +196,6 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
     public void setIdCompetencia(Long idCompetencia) {
         this.idCompetencia = idCompetencia;
     }
-    
 
     protected SelectionListener<ButtonEvent> listenerAgregarCuerpoTecnico() {
         return new SelectionListener<ButtonEvent>() {
@@ -291,15 +287,28 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         gridCuerpoTecnico.getStore().removeAll();
         loaderCuerpoTecComp.load(0, 50);
     }
-    
-    public void cargarCuerpoTecnicoCompetencia(Long IdCompe, boolean habilitar){
+
+    public void cargarCuerpoTecnicoCompetencia(Long IdCompe, boolean habilitar) {
         setIdCompetencia(IdCompe);
         cargarGridCuerpoTecComp();
         btnAgregar.setEnabled(habilitar);
         btnEliminar.setEnabled(habilitar);
+        cbxPersonal.setEnabled(habilitar);
         cbxPersonal.setIdCompetencia(IdCompe);
         cbxPersonal.recargar();
-        
+    }
+
+    public void reiniciarCuerpoTecnicoCompe() {
+        setIdCompetencia(null);
+        cargarGridCuerpoTecComp();
+        btnAgregar.enable();
+        btnEliminar.enable();
+        cbxPersonal.setIdCompetencia(null);
+        cbxPersonal.enable();
+        cbxPersonal.recargar();
+        cbxPersonal.reset();
+        cbxPersonal.repaint();
+
     }
 
 }

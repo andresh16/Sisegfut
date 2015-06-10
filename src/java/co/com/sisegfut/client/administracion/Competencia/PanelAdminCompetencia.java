@@ -132,6 +132,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Long idJugadorComodin = null;
     private Button btnEditarCompetencia;
     private Button btnConsularCompetencia;
+    private Button btnEstadisticaCompetencia;
+    private PanelEstadisticas panelEstadisticas = new PanelEstadisticas();
 
     private Main myConstants;
     private String observacionesCompetencia;
@@ -608,6 +610,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 btnEditarCompetencia.disable();
                 btnConsularCompetencia = new Button("Consultar", listenerConsultarCompetencia());
                 btnConsularCompetencia.disable();
+                
+                
                 Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
 
                     @Override
@@ -623,6 +627,18 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                     }
                 });
+                
+                
+                
+                 btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
+
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+                        panelEstadisticas.setIdCompetencia(dTOCompetencia.getIdCompetencia());
+                        panelEstadisticas.show();
+                    }
+                });
+                 btnEstadisticaCompetencia.disable();
 
                 wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
                     @Override
@@ -630,6 +646,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                         abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaBuscar());
                     }
                 }));
+                wBuscar.addButton(btnEstadisticaCompetencia);
                 wBuscar.addButton(btnEditarCompetencia);
                 wBuscar.addButton(btnConsularCompetencia);
                 wBuscar.addButton(btnCancelarBusCompetencia);
@@ -827,9 +844,11 @@ public class PanelAdminCompetencia extends LayoutContainer {
                     if (dTOCompetencia.getFinalizo().equalsIgnoreCase("SI")) {
                         btnConsularCompetencia.enable();
                         btnEditarCompetencia.disable();
+                        btnEstadisticaCompetencia.enable();
                     } else {
                         btnConsularCompetencia.disable();
                         btnEditarCompetencia.enable();
+                         btnEstadisticaCompetencia.disable();
                     }
 
 //                    idLesion = dTOLesiones.getIdLesion();
@@ -937,10 +956,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         btnGuardarCompromiso.setEnabled(true);
         btnGuardarCompetencia.disable();
 
-        adminCuerpoTecnico.setIdCompetencia(null);
-        adminCuerpoTecnico.cbxPersonal.recargar();
-        adminCuerpoTecnico.cargarGridCuerpoTecComp();
-        adminCuerpoTecnico.cargarCuerpoTecnicoCompetencia(null, true);
+        adminCuerpoTecnico.reiniciarCuerpoTecnicoCompe();
+        
         adminPestComp.panelAdminConvocados.reiniciarConvocados();
         adminPestComp.panelAdminControlDisciplinario.reiniciarControlJuego();
         adminPestComp.panelAdminSituaciones.reiniciarSituaciones();
@@ -950,7 +967,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         adminPestComp.getTabpanel().setSelection(adminPestComp.tabItemConvocados);
         btnGuardarCompromiso.setVisible(true);
         limpiarPanelBuscarCompetencia();
-
+        cbxRival.recargar();
+        cbxRival.disable();
 //        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
         this.unmask();
     }
@@ -1043,7 +1061,26 @@ public class PanelAdminCompetencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
+ wBuscar.hide();
+                MessageBox boxWait = MessageBox.wait("Competencia",
+                        "Cargando los datos, por favor espere...", "Cargando...");
 
+                Competencia competencia = new Competencia();
+                competencia.setId(dTOCompetencia.getIdCompetencia());
+                competencia.setFecha(dTOCompetencia.getFecha());
+                competencia.setLugar(dTOCompetencia.getLugar());
+                competencia.setRival(new Rivales(dTOCompetencia.getIdRival()));
+                competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
+                competencia.setObservacion(dTOCompetencia.getObservaciones());
+
+                cargarDatosCompetencia(competencia, true);
+                habilitarPanelesBusqueda(true);
+                adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), true);
+                adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), true);
+                adminPestComp.panelAdminSituaciones.buscarSituacionesxCompetencia(dTOCompetencia.getIdCompetencia(), true);
+                adminCuerpoTecnico.cargarCuerpoTecnicoCompetencia(dTOCompetencia.getIdCompetencia(), true);
+
+                boxWait.close();
             }
         };
 

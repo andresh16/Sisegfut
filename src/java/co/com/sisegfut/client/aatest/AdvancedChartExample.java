@@ -21,6 +21,7 @@ import com.extjs.gxt.charts.client.model.Legend.Position;
 import com.extjs.gxt.charts.client.model.charts.BarChart;
 import com.extjs.gxt.charts.client.model.charts.LineChart;
 import com.extjs.gxt.charts.client.model.charts.BarChart.BarStyle;
+import com.extjs.gxt.charts.client.model.charts.HorizontalBarChart;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.Style.Orientation;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -105,9 +106,12 @@ public class AdvancedChartExample extends LayoutContainer {
         ChartModel model = new ChartModel("Team Sales by Month",
                 "font-size: 14px; font-family: Verdana; text-align: center;");
         model.setBackgroundColour("#fefefe");
-        model.setLegend(new Legend(Position.TOP, true));
+        model.setLegend(new Legend(Position.RIGHT, true));
         model.setScaleProvider(ScaleProvider.ROUNDED_NEAREST_SCALE_PROVIDER);
 
+        HorizontalBarChart barh= new HorizontalBarChart();
+        barh.setColour("#00aa00");
+        
         BarChart bar = new BarChart(BarStyle.GLASS);
         bar.setColour("#00aa00");
         BarDataProvider barProvider = new BarDataProvider("alphasales", "month");
@@ -124,13 +128,13 @@ public class AdvancedChartExample extends LayoutContainer {
         bar.addChartListener(listener);
         model.addChartConfig(bar);
 
-        bar = new BarChart(BarStyle.GLASS);
-        bar.setColour("#ff6600");
-        barProvider = new BarDataProvider("gammasales");
-        barProvider.bind(store);
-        bar.setDataProvider(barProvider);
-        bar.addChartListener(listener);
-        model.addChartConfig(bar);
+//        bar = new BarChart(BarStyle.GLASS);
+//        bar.setColour("#ff6600");
+//        barProvider = new BarDataProvider("gammasales");
+//        barProvider.bind(store);
+//        bar.setDataProvider(barProvider);
+//        bar.addChartListener(listener);
+//        model.addChartConfig(bar);
 
         LineChart line = new LineChart();
         line.setAnimateOnShow(true);
@@ -140,9 +144,7 @@ public class AdvancedChartExample extends LayoutContainer {
         lineProvider.bind(store);
         line.setDataProvider(lineProvider);
         model.addChartConfig(line);
-
-        chart.setChartModel(model);
-
+        
         // grid
         NumberPropertyEditor npe = new NumberPropertyEditor(Integer.class);
         ArrayList<ColumnConfig> cols = new ArrayList<ColumnConfig>();

@@ -268,6 +268,9 @@ public class TestData {
 
   private static final String[] months = new String[] {
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+  
+  private static final String[] situaciones = new String[] {
+      "Gol", "Falta z1", "Falta z2", "Falta z3", "Tiro libre Z1","Tiro libre Z2", "Tiro libre Z", "Fuera Lugar", "Penalty", "Opcion Gol", "Centro Lateral"};
 
   public static String[] getMonths() {
     return months;
@@ -569,9 +572,20 @@ public class TestData {
 
   }
 
+//  public static List<TeamSales> getTeamSales() {
+//    List<TeamSales> teamsales = new ArrayList<TeamSales>();
+//    for (String m : months) {
+//      int upper = 50;
+//      int a = Random.nextInt(upper);
+//      int b = Random.nextInt(upper);
+//      int c = Random.nextInt(upper);
+//      teamsales.add(new TeamSales(m, a, b, c));
+//    }
+//    return teamsales;
+//  }
   public static List<TeamSales> getTeamSales() {
     List<TeamSales> teamsales = new ArrayList<TeamSales>();
-    for (String m : months) {
+    for (String m : situaciones) {
       int upper = 50;
       int a = Random.nextInt(upper);
       int b = Random.nextInt(upper);
