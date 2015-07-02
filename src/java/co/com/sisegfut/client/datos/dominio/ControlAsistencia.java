@@ -6,6 +6,7 @@
 
 package co.com.sisegfut.client.datos.dominio;
 
+import com.extjs.gxt.ui.client.data.BaseModelData;
 import com.extjs.gxt.ui.client.data.BeanModelTag;
 import java.io.Serializable;
 import java.util.Date;
@@ -28,7 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "control_asistencia")
-public class ControlAsistencia  implements BeanModelTag, Serializable{
+public class ControlAsistencia  extends BaseModelData implements BeanModelTag, Serializable{
      @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_control_asistencia")
     @SequenceGenerator(name = "gen_control_asistencia", sequenceName = "control_asistencia_id_seq")
