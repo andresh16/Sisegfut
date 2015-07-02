@@ -5,6 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.ControlAsistencia;
 
+import co.com.sisegfut.client.aaI18N.Main;
 import static co.com.sisegfut.client.administracion.deportista.PanelInfoGeneral.ACTIVOS;
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Deportista;
@@ -134,6 +135,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     private String actividad = "Entrenamiento";
     private FormButtonBinding bindingFormFiltros;
     private boolean consultarPlanillaasistencia = false;
+    
+    private Main myConstants;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -146,6 +149,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
         cp.setScrollMode(Style.Scroll.AUTO);
+        myConstants = (Main) GWT.create(Main.class);
 
         btnBuscarAsistencia = new Button("Buscar Planilla Asistencia", listenerBuscar());
         btnBuscarAsistencia.setIcon(Resources.ICONS.iconoBuscar());
@@ -418,7 +422,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         panel2.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana("Control de asistencia");
+                abrirVentana(myConstants.ayudaPanelAsistencia());
             }
         }));
 
@@ -466,7 +470,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-//                        abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaBuscar());
+                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
             }
         }));
         wBuscar.addButton(btnVerCtrolAsistencia);
@@ -570,7 +574,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 store.commitChanges();
                 limpiarCampos();
                 panel2.unmask();
-                Info.display("Guardar", "Se guardo correctamente la planilla de asistencia");
+                Info.display("Guardar", "Se guardó correctamente la planilla de asistencia");
             }
 
         });
@@ -968,6 +972,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
+    
 
 }
