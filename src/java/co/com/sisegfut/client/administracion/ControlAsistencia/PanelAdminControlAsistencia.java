@@ -9,10 +9,13 @@ import static co.com.sisegfut.client.administracion.deportista.PanelInfoGeneral.
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
 import co.com.sisegfut.client.util.BeansLocales;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxCategoria;
+import co.com.sisegfut.client.util.combox.ComboBoxRival;
+import co.com.sisegfut.client.util.combox.ComboBoxTorneo;
 import co.com.sisegfut.client.util.rpc.RPCAdminAsistencia;
 import co.com.sisegfut.client.util.rpc.RPCAdminAsistenciaAsync;
 import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistencia;
@@ -31,6 +34,7 @@ import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -46,32 +50,45 @@ import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.Radio;
+import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
+import com.extjs.gxt.ui.client.widget.grid.BufferView;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.grid.CheckColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.grid.filters.GridFilters;
 import com.extjs.gxt.ui.client.widget.grid.filters.StringFilter;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FillLayout;
+import com.extjs.gxt.ui.client.widget.layout.FormData;
+import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -101,6 +118,24 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     ContentPanel cp;
     private Long IdCategoriaElegida;
 
+    private Window wBuscar;
+    private DTOControlAsistencia dTOControlAsistencia;
+    private Button btnBuscarAsistencia;
+    private Button btnVerCtrolAsistencia;
+    private PagingLoader<PagingLoadResult<ModelData>> loaderControlAsistencia;
+    private ListStore<ControlAsistencia> storeCtrlAsistencia;
+    private PagingToolBar PgtoolBarCtrolAsitencia = new PagingToolBar(50);
+    private Grid<ControlAsistencia> gridCtrlAsistencia;
+
+    private DateField DtFechaInicio = new DateField();
+    ;
+    private DateField DtFechaFin = new DateField();
+    ;
+    private ComboBoxCategoria cbxCategoria2 = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
+    private Radio rdCompetencia = new Radio();
+    private Radio rdEntrenamiento = new Radio();
+    private RadioGroup radioGroup = new RadioGroup();
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -112,6 +147,9 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
         cp.setScrollMode(Style.Scroll.AUTO);
+
+        btnBuscarAsistencia = new Button("Buscar Planilla Asistencia", listenerBuscar());
+        btnBuscarAsistencia.setIcon(Resources.ICONS.iconoBuscar());
 
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
@@ -372,6 +410,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         panel2.setButtonAlign(Style.HorizontalAlignment.CENTER);
         panel2.addButton(btnGuardar);
         panel2.addButton(btnLimpiar);
+        panel2.addButton(btnBuscarAsistencia);
 
         panel2.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
@@ -441,8 +480,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             asistio = jugador.get("asistio");
             asistio = asistio != null && asistio;
             if (!asistio && jugador.get("falto") == null) {
-                
-                        MessageBox.alert("Error!", "Debe especificar por que no asistio el jugador "+jugador.get("label"), null);
+
+                MessageBox.alert("Error!", "Debe especificar por que no asistio el jugador " + jugador.get("label"), null);
                 return false;
             }
         }
@@ -549,4 +588,343 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         cp.setHeading("Asistencia  <b>" + fecha.toUpperCase() + "</b>");
     }
+
+    protected SelectionListener<ButtonEvent> listenerBuscar() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                wBuscar = new Window();
+                wBuscar.setSize(700, 550);
+                wBuscar.setPlain(true);
+                wBuscar.setModal(true);
+                wBuscar.setClosable(false);
+                wBuscar.setBlinkModal(true);
+                wBuscar.setHeading("Buscar planilla asistencia");
+                wBuscar.setLayout(new FillLayout());
+
+                wBuscar.add(crearGriControlAsistencia());
+
+                btnVerCtrolAsistencia = new Button("Ver");
+//                btnEditarCompetencia.disable();
+
+                Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
+
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+                        wBuscar.hide();
+//                        fechaFiltroComp = null;
+//                        DtFecha2.reset();
+//                        IdTorneo = null;
+//                        comboBoxTorneo2.recargar();
+//                        idRival = null;
+//                        cbxRival2.recargar();
+//                        cargarGridCompetencia();
+
+                    }
+                });
+
+//                btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
+//
+//                    @Override
+//                    public void componentSelected(ButtonEvent ce) {
+//                        panelEstadisticas.setIdCompetencia(dTOCompetencia.getIdCompetencia());
+//                        panelEstadisticas.show();
+//                    }
+//                });
+//                btnEstadisticaCompetencia.disable();
+                wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+                    @Override
+                    public void componentSelected(IconButtonEvent ce) {
+//                        abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaBuscar());
+                    }
+                }));
+                wBuscar.addButton(btnVerCtrolAsistencia);
+                wBuscar.addButton(btnCancelarBusCompetencia);
+//                
+                wBuscar.setButtonAlign(Style.HorizontalAlignment.CENTER);
+//                
+                wBuscar.setFocusWidget(wBuscar.getButtonBar().getItem(0));
+
+                wBuscar.show();
+
+            }
+        };
+
+    }
+
+    public LayoutContainer crearGriControlAsistencia() {
+
+        LayoutContainer lcPanelBuscarCompetencia = new LayoutContainer();
+        lcPanelBuscarCompetencia.setScrollMode(Style.Scroll.AUTOY);
+        lcPanelBuscarCompetencia.setLayoutData(new FillLayout());
+        lcPanelBuscarCompetencia.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+
+        final RPCAdminControlAsistenciaAsync svc = (RPCAdminControlAsistenciaAsync) GWT.create(RPCAdminControlAsistencia.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) svc;
+        endpoint.setServiceEntryPoint("services/RPCAdminControlAsistencia");
+
+        //Valido que el servicio RPC este activo.
+        if (svc == null) {
+            MessageBox box = new MessageBox();
+            box.setButtons(MessageBox.OK);
+            box.setIcon(MessageBox.INFO);
+            box.setTitle("Lesiones");
+            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.show();
+//            return;
+        }
+        //Llamo el servicio RPC que se usara como proxy para cargar los datos de la entidad indicada
+        RpcProxy<PagingLoadResult<DTOControlAsistencia>> proxy = new RpcProxy<PagingLoadResult<DTOControlAsistencia>>() {
+            @Override
+            protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<DTOControlAsistencia>> callback) {
+//                svc.obtenerCompetenciaFiltro(fechaFiltroComp, IdTorneo, idRival, callback);
+            }
+        };
+
+        loaderControlAsistencia = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, new BeanModelReader()) {
+            @Override
+            protected Object newLoadConfig() {
+                BasePagingLoadConfig config = new BaseFilterPagingLoadConfig();
+                return config;
+            }
+        };
+        loaderControlAsistencia.setRemoteSort(true);
+
+        storeCtrlAsistencia = new ListStore<ControlAsistencia>(loaderControlAsistencia);
+//        store.setMonitorChanges(true);
+
+        PgtoolBar.bind(loaderControlAsistencia);
+//        
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+        ColumnConfig column = new ColumnConfig();
+        column.setId("fecha");
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
+        column.setHeader("Fecha ");
+        column.setWidth(50);
+        column.setDateTimeFormat(DateTimeFormat.getFormat("dd MMMM yyyy HH mm"));
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId("categoria");
+        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setHeader("Categoría");
+        column.setWidth(80);
+        column.setRenderer(new GridCellRenderer() {
+
+            @Override
+            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
+                String categoria = model.get("categoria");
+                if (categoria == null) {
+                    return "";
+                } else {
+                    return categoria;
+                }
+            }
+        });
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId("actividad");
+        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setHeader("Actividad");
+        column.setWidth(80);
+        column.setRenderer(new GridCellRenderer() {
+
+            @Override
+            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
+                String actividad = model.get("actividad");
+                if (actividad == null) {
+                    return "";
+                } else {
+                    return actividad;
+                }
+            }
+        });
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId("lugar");
+        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setHeader("Lugar");
+        column.setWidth(120);
+        column.setRenderer(new GridCellRenderer() {
+
+            @Override
+            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
+                String lugar = model.get("lugar");
+                if (lugar == null) {
+                    return "";
+                } else {
+                    return lugar;
+                }
+            }
+        });
+        configs.add(column);
+
+        ColumnModel cm = new ColumnModel(configs);
+
+        ContentPanel cpGrid = new ContentPanel();
+        cpGrid.setHeaderVisible(false);
+        cpGrid.setLayout(new FillLayout(Style.Orientation.VERTICAL));
+        cpGrid.setFrame(true);
+        cpGrid.setBodyBorder(false);
+        cpGrid.setBorders(false);
+        cpGrid.setIcon(Resources.ICONS.table());
+
+        ContentPanel cpForm = new ContentPanel();
+        cpForm.setHeaderVisible(false);
+        cpForm.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+        cpForm.setFrame(true);
+        cpForm.setBodyBorder(false);
+        cpForm.setBorders(false);
+
+        FormPanel panel = crearFormularioBusqueda();
+        cpForm.add(panel);
+
+        gridCtrlAsistencia = new Grid<ControlAsistencia>(storeCtrlAsistencia, cm);
+        gridCtrlAsistencia.setView(new BufferView());
+
+        gridCtrlAsistencia.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+
+        /**
+         * Escucho cuando se seleciona un movimiento para cargar el formulario
+         * manualmente
+         */
+        gridCtrlAsistencia.getSelectionModel().addListener(Events.SelectionChange, new Listener<SelectionChangedEvent<BeanModel>>() {
+            @Override
+            public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                // formBindings.unbind();
+                if (be.getSelection().size() > 0) {
+
+                    dTOControlAsistencia = (DTOControlAsistencia) be.getSelectedItem().getBean();
+
+                } else {
+                    formBindings.unbind();
+                }
+            }
+        });
+
+        gridCtrlAsistencia.addListener(Events.Attach, new Listener<GridEvent<BeanModel>>() {
+            @Override
+            public void handleEvent(GridEvent<BeanModel> be) {
+                PagingLoadConfig config = new BaseFilterPagingLoadConfig();
+                config.setOffset(0);
+                config.setLimit(50);
+
+                Map<String, Object> state = gridCtrlAsistencia.getState();
+                if (state.containsKey("offset")) {
+                    int offset = (Integer) state.get("offset");
+                    int limit = (Integer) state.get("limit");
+                    config.setOffset(offset);
+                    config.setLimit(limit);
+                }
+
+                loaderControlAsistencia.load(config);
+            }
+        });
+        gridCtrlAsistencia.setLoadMask(true);
+        gridCtrlAsistencia.setBorders(true);
+        gridCtrlAsistencia.getView().setForceFit(true);
+
+        gridCtrlAsistencia.setStateId("pagingGridExample");
+        gridCtrlAsistencia.setStateful(true);
+
+        cpGrid.add(gridCtrlAsistencia);
+
+        lcPanelBuscarCompetencia.add(cpForm, new RowData(1, 0.4, new Margins(0)));
+        lcPanelBuscarCompetencia.add(cpGrid, new RowData(1, 0.6, new Margins(0)));
+
+        return lcPanelBuscarCompetencia;
+    }
+
+    public FormPanel crearFormularioBusqueda() {
+
+        FormPanel fpCompromiso = new FormPanel();
+        fpCompromiso.setScrollMode(Style.Scroll.AUTO);
+        fpCompromiso.setFrame(true);
+        fpCompromiso.setHeaderVisible(false);
+//        form.setPadding(5);
+        fpCompromiso.setSize("100%", "100%");
+
+        // Layout Main que contiene todas las columnas 
+        FormData formData = new FormData("-10");
+        LayoutContainer main = new LayoutContainer();
+        main.setLayout(new ColumnLayout());
+        // main.setHeight(100);
+        main.setAutoHeight(true);
+        ///////////////////// Columna 1 ////////////////////////////  
+        LayoutContainer Columna1 = new LayoutContainer();
+        Columna1.setStyleAttribute("padding", "10px");
+
+        FormLayout layout = new FormLayout();
+        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
+        Columna1.setLayout(layout);
+
+        DtFechaInicio.setName("fechaInicio");
+        DtFechaInicio.setValue(new Date());
+        DtFechaInicio.setFieldLabel("<font color='red'>*</font> Fecha Inicio");
+        DtFechaInicio.setAllowBlank(false);
+        Columna1.add(DtFechaInicio, formData);
+        DtFechaInicio.setFormatValue(true);
+//        DtFecha2.setFormatValue(true);
+
+        Columna1.add(DtFechaFin, formData);
+        DtFechaFin.setName("fechaFin");
+        DtFechaFin.setValue(new Date());
+        DtFechaFin.setFieldLabel("<font color='red'>*</font> Fecha Fin");
+        DtFechaFin.setAllowBlank(false);
+//        DtFecha2.setFormatValue(true);
+        Columna1.add(DtFechaFin, formData);
+
+        ///////////////////// Columna 2 //////////////////////////// 
+        LayoutContainer Columna2 = new LayoutContainer();
+        Columna2.setStyleAttribute("padding", "10px");
+        layout = new FormLayout();
+        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
+        Columna2.setLayout(layout);
+
+        cbxCategoria2.setEditable(false);
+        cbxCategoria2.setLabelSeparator("<font color='red'>*</font> Categor&iacute;a");
+        cbxCategoria2.setForceSelection(true);
+        cbxCategoria2.setAllowBlank(false);
+        Columna2.add(cbxCategoria2, formData);
+
+        rdEntrenamiento.setBoxLabel("Entrenamiento");
+        rdEntrenamiento.setValue(true);
+
+        rdCompetencia.setBoxLabel("Competencia");
+//        rdCompetencia.setValue(true);
+
+        radioGroup.setFieldLabel("<font color='red'>*</font> Actividad");
+        radioGroup.add(rdCompetencia);
+        radioGroup.add(rdEntrenamiento);
+        Columna2.add(radioGroup, formData);
+
+        main.add(Columna1, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.5));
+        main.add(Columna2, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.5));
+
+        fpCompromiso.add(main, new FormData("100%"));
+
+        Button btnBuscarCompetencia = new Button("Buscar", new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+            }
+        });
+        Button btnLimpiarForCompetencia = new Button("Limpiar", new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+            }
+        });
+        fpCompromiso.addButton(btnBuscarCompetencia);
+        fpCompromiso.addButton(btnLimpiarForCompetencia);
+        fpCompromiso.setButtonAlign(Style.HorizontalAlignment.CENTER);
+
+        return fpCompromiso;
+
+    }
+
 }
