@@ -6,6 +6,7 @@
 package co.com.sisegfut.client.aatest;
 
 
+import co.com.sisegfut.client.aatest.model.Data;
 import com.extjs.gxt.ui.client.widget.layout.MarginData;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor.Path;
@@ -40,7 +41,6 @@ import com.sencha.gxt.widget.core.client.event.ExpandEvent.ExpandHandler;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 import com.sencha.gxt.widget.core.client.toolbar.ToolBar;
-import javax.xml.crypto.Data;
 
 /**
  *

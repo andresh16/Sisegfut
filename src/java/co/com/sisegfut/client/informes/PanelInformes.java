@@ -24,38 +24,44 @@ public class PanelInformes extends Window {
 
     private InformeCuenta infoCuenta;
     private InformeDeportista informeDeportista;
+    private InformeTest informeTest;
     TabItem tabInfoCategoria = new TabItem("Informe por categoria");
     TabItem tabInfoCuenta = new TabItem("Informe por cuenta");
+    TabItem tabInfoTest = new TabItem("Informe tests");
 
     public PanelInformes() {
-        
 
-        setSize(330, 260);
+        setSize(330, 200);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
         setHeading("Informes");
         setLayout(new FillLayout());
         setResizable(false);
-        
-
 
         TabPanel panel = new TabPanel();
         panel.setBorders(false);
-        
-        infoCuenta=new InformeCuenta();
-        informeDeportista= new InformeDeportista();
-        
+        panel.setLayoutData(new FitLayout());
+
+        infoCuenta = new InformeCuenta();
+        informeDeportista = new InformeDeportista();
+        informeTest = new InformeTest();
+
         tabInfoCuenta.add(infoCuenta);
         tabInfoCuenta.addStyleName("pad-text");
-       // panel.add(tabInfoCuenta);
+        // panel.add(tabInfoCuenta);
 
-        tabInfoCategoria.setLayout(new FitLayout());
+        tabInfoCategoria.setLayout(new FillLayout());
         tabInfoCategoria.addStyleName("pad-text");
         tabInfoCategoria.add(informeDeportista);
         panel.add(tabInfoCategoria);
+
+        tabInfoTest.setLayout(new FitLayout());
+        tabInfoTest.addStyleName("pad-text");
+        tabInfoTest.setAutoHeight(true);
+        tabInfoTest.add(informeTest);
+        panel.add(tabInfoTest);
         add(panel, new MarginData(0));
-       
 
         setFocusWidget(this.getButtonBar().getItem(0));
 

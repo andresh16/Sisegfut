@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="75"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -99,11 +99,11 @@
 	<title>
 		<band height="505" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="60" y="45" width="463" height="40" backcolor="#000033" uuid="549298e4-67c7-4741-826d-575d560e16c0"/>
+				<reportElement stretchType="RelativeToTallestObject" x="127" y="44" width="463" height="40" backcolor="#000033" uuid="549298e4-67c7-4741-826d-575d560e16c0"/>
 				<textElement markup="styled">
-					<font fontName="Serif" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
+					<font fontName="Arial" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[Hoja de vida del deportista]]></text>
+				<text><![CDATA[HOJA DE VIDA DEL DEPORTISTA]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="618" y="0" width="184" height="20" uuid="3b336fcc-215c-4623-ac6e-3c1a5cbdcb00"/>
@@ -208,7 +208,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Genero]]></text>
+				<text><![CDATA[Género]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="341" y="272" width="101" height="23" uuid="561f18f6-5797-43d9-bd74-992f38c7c848"/>
@@ -257,7 +257,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Télofono]]></text>
+				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="17" y="149" width="110" height="20" uuid="5e6fe616-31de-4303-a4a4-02f7feacf4e7"/>

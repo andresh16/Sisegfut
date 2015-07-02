@@ -66,8 +66,7 @@ public class Personal extends EntidadPerpetua implements BeanModelTag, Serializa
     private String telefono;
     
     @Column(name = "celular", nullable = true, length = 150)
-    private String celular;
-    
+    private String celular;    
         
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cargos", nullable = false)

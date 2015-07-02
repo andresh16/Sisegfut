@@ -100,11 +100,12 @@ public class PanelInfoPersonal extends LayoutContainer {
             panelInfoGeneral.rdFemenino.setValue(true);
         }
         panelInfoGeneral.txtTelefono.setValue(per.getTelefono());
+        panelInfoGeneral.txtCelular.setValue(per.getCelular());
         panelInfoGeneral.txtDireccion.setValue(per.getDireccion());
         panelInfoGeneral.txtCorreo.setValue(per.getCorreoElectronico());
         panelInfoGeneral.txtBarrio.setValue(per.getBarrio());
         panelInfoGeneral.cbxCargo.seleccionar(per.getCargo().getId());
-        panelInfoGeneral.cbxNivelEdu.seleccionar(per.getNivelEducativo().getId());
+        panelInfoGeneral.cbxNivelEdu.seleccionar(per.getNivelEducativo().getId());        
         panelInfoGeneral.chLunes.setValue(per.getLunes());
         panelInfoGeneral.chMartes.setValue(per.getMartes());
         panelInfoGeneral.chMiercoles.setValue(per.getMiercoles());
@@ -115,10 +116,6 @@ public class PanelInfoPersonal extends LayoutContainer {
         panelInfoGeneral.tmHoraFin.setDateValue(per.getHoraFin());
         panelInfoGeneral.muestraFoto(per.getId());
         panelInfoGeneral.setNombreCompleto(per.getNombreCompleto());
-        
-        
-        
-        
         
         panelEstudiosRealizados.setId(per.getId());
         panelExperiencia.setId(per.getId());

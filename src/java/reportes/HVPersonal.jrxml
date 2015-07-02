@@ -32,7 +32,7 @@
 				<textElement markup="styled">
 					<font fontName="Arial" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[HOJA DE VIDA]]></text>
+				<text><![CDATA[HOJA DE VIDA ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="43" y="132" width="130" height="20" uuid="ca43ac9f-88a9-4a08-81e0-16d7a3e0dd4a"/>

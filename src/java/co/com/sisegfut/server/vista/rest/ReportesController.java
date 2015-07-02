@@ -7,15 +7,22 @@ package co.com.sisegfut.server.vista.rest;
 import co.com.sisegfut.client.datos.dominio.AntecedentesDeportivos;
 import co.com.sisegfut.client.datos.dominio.Lesiones;
 import co.com.sisegfut.client.datos.dominio.Deportista;
+import co.com.sisegfut.client.datos.dominio.EstudiosRealizados;
+import co.com.sisegfut.client.datos.dominio.Experiencia;
 import co.com.sisegfut.client.datos.dominio.LogrosDeportivos;
+import co.com.sisegfut.client.datos.dominio.Personal;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
+import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoLesiones;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
+import co.com.sisegfut.server.datos.dao.DaoEstudiosRealizados;
+import co.com.sisegfut.server.datos.dao.DaoExperiencia;
 import co.com.sisegfut.server.datos.dao.DaoLogrosDeportivos;
+import co.com.sisegfut.server.datos.dao.DaoPersonal;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +45,7 @@ public class ReportesController {
 
     private static Logger log = Logger.getLogger(ReportesController.class);
     @Autowired
-    private Usuarios usuarioSession;
+    private Usuarios usuarioSession;    
     @Autowired
     private DaoDeportista daoDeportista;
     @Autowired
@@ -47,6 +54,12 @@ public class ReportesController {
     private DaoLogrosDeportivos daoLogrosDeportivos;
     @Autowired
     private DaoLesiones daoLesiones;
+    @Autowired
+    private DaoPersonal daoPersonal;
+    @Autowired
+    private DaoEstudiosRealizados daoEstudiosRealizados;
+    @Autowired
+    private DaoExperiencia daoExperiencia;
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
@@ -277,5 +290,113 @@ public class ReportesController {
             return retorno;
         }
     }
+    
+    @RequestMapping(value = "/HVPersonal/{idPersonal}",
+            method = RequestMethod.GET)         
+    public ModelAndView doReportHVPersonal(
+            @PathVariable Long idPersonal,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
 
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte personal HV");
+            Personal per = daoPersonal.getById(idPersonal);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("documento", per.getDocumento());
+            parameterMap.put("tipoDocumento", per.getTipoDocumento().getNombreTipoDocumento());
+            parameterMap.put("nombres", per.getNombres());
+            parameterMap.put("apellidos", per.getApellidos());
+            parameterMap.put("fechaNacimiento", Formatos.fecha2(per.getFechaNacimiento()));
+            parameterMap.put("correo", per.getCorreoElectronico());
+            parameterMap.put("direccion", per.getDireccion());
+            parameterMap.put("celular", per.getCelular());
+            parameterMap.put("telefono", per.getTelefono());
+            parameterMap.put("barrio", per.getBarrio());
+            parameterMap.put("cargo", per.getCargo().getNombrecargo());
+            parameterMap.put("genero", per.getGenero());
+            parameterMap.put("nivelEducativo", per.getNivelEducativo().getNombreNivelEducativo());
+
+            List<EstudiosRealizados> listEst = new ArrayList<EstudiosRealizados>();
+            List<Experiencia> listExp = new ArrayList<Experiencia>();
+
+            List<DTOHVDeportista> listaRetorno = new ArrayList<DTOHVDeportista>();
+            List<DTOHVPersonal> listaRetornoPersonal = new ArrayList<DTOHVPersonal>();
+
+            listEst = daoEstudiosRealizados.EstudiosRealizadosxPersonal(idPersonal);
+            listExp = daoExperiencia.ExperienciaxPersonal(idPersonal);
+
+            int valorMayor = 0;
+            if (listEst.size() > listExp.size()) {
+                    valorMayor = listEst.size();
+                }
+             else {
+                valorMayor = listExp.size();
+            }
+            
+
+            for (int i = 0; i < valorMayor; i++) {
+                DTOHVPersonal agg = new DTOHVPersonal();
+
+                if (listEst.size() > i) {
+                    if (listEst.get(i) != null) {
+                        agg.setTitulo(listEst.get(i).getTitulo());
+                        agg.setInstitucionEducativa(listEst.get(i).getInstitucion());
+                        agg.setEscolaridad(listEst.get(i).getNivelEducativo().getNombreNivelEducativo());
+                        agg.setAnnoGraduacion(listEst.get(i).getAnioGraduacion());
+                    }
+                } else {
+                    agg.setTitulo("");
+                    agg.setInstitucionEducativa("");
+                    agg.setEscolaridad("");
+                    agg.setAnnoGraduacion("");
+
+                }
+                if (listExp.size() > i) {
+                    if (listExp.get(i) != null) {
+                        agg.setEmpresa(listExp.get(i).getEmpresa());
+                        agg.setCargo(listExp.get(i).getCargo().getNombrecargo());
+                        agg.setTiempoLaborado(listExp.get(i).getTiempoLaborado());
+                    }
+                } else {
+                    agg.setEmpresa("");
+                    agg.setCargo("");
+                    agg.setTiempoLaborado("");
+                }
+                listaRetornoPersonal.add(agg);
+
+            }
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetornoPersonal));
+
+            modelAndView = new ModelAndView("pdfReporteHVPersonal", parameterMap);
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.\n" + e);
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    } 
+    
 }

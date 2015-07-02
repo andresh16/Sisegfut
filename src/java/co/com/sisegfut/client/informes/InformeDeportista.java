@@ -26,7 +26,7 @@ import com.google.gwt.core.client.GWT;
  *
  * @author fhurtado
  */
-public class InformeDeportista extends Window {
+public class InformeDeportista extends FormPanel {
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
@@ -36,12 +36,7 @@ public class InformeDeportista extends Window {
 
     public InformeDeportista() {
         
-        setPlain(true);
-        setModal(true);
-        setBlinkModal(true);
         setHeaderVisible(false);
-        setLayout(new FillLayout());
-        setResizable(false);
         setLayout(new FitLayout());
 
         FormData formData = new FormData("-20");

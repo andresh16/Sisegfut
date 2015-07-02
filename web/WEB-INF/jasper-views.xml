@@ -65,7 +65,22 @@
             </props>
         </property>
     </bean>
+    
+        <!--Reporte de Personal-->
         
+    <bean id="pdfReporteHVPersonal"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/HVPersonal.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=hojaDeVidaPersonal.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>    
         
                 
 	 

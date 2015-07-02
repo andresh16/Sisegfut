@@ -219,7 +219,7 @@ public class Bootstrap implements InitializingBean {
             daoCargos.guardar(cargos);
             
             cargos = new Cargos();
-            cargos.setNombrecargo("Entrenador Técnico");
+            cargos.setNombrecargo("Preparador Físico");
             daoCargos.guardar(cargos);
             
             cargos = new Cargos();

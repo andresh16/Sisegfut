@@ -61,7 +61,5 @@ public class DTODeportistaxCategoria {
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
-
-    
-    
+        
 }

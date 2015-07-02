@@ -69,6 +69,7 @@ public final class PanelInfoGeneral extends FormPanel {
     TextField<String> txtDireccion = new TextField<String>();
     TextField<String> txtCorreo = new TextField<String>();
     TextField<String> txtTelefono = new TextField<String>();
+    TextField<String> txtCelular = new TextField<String>();
     TextField<String> txtBarrio = new TextField<String>();
     TimeField tmHoraInicio = new TimeField();
     TimeField tmHoraFin = new TimeField();
@@ -204,7 +205,15 @@ public final class PanelInfoGeneral extends FormPanel {
         txtTelefono.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
         ColumnaDias.add(txtTelefono, formData);
-
+        
+        txtCelular.setName("celular");
+        txtCelular.setAllowBlank(false);
+        txtCelular.setFieldLabel("<font color='red'>*</font>Celular");
+        txtCelular.setRegex("^[.0-9]*$");
+        txtCelular.setEmptyText("");
+        txtCelular.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
+        ColumnaDias.add(txtCelular, formData);
+        
         txtDireccion.setName("direccion");
         txtDireccion.setAllowBlank(false);
         txtDireccion.setFieldLabel("<font color='red'>*</font>Dirección");
@@ -213,15 +222,6 @@ public final class PanelInfoGeneral extends FormPanel {
 //        txtNombres.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
         ColumnaDias.add(txtDireccion, formData);
-
-        txtCorreo.setMaxLength(100);
-        txtCorreo.setEmptyText("ejem. ejemplo@dominio.com");
-        txtCorreo.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico"));
-        txtCorreo.setFieldLabel("<font color='red'>*</font>Correo");
-        txtCorreo.setRegex("^(\\w+)([-+.][\\w]+)*@(\\w[-\\w]*\\.){1,5}([A-Za-z]){2,4}$");
-        txtCorreo.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
-        txtCorreo.setAllowBlank(false);
-        ColumnaDias.add(txtCorreo, formData);
 
         txtBarrio.setName("barrio");
         txtBarrio.setFieldLabel("<font color='red'>*</font>Barrio");
@@ -282,10 +282,19 @@ public final class PanelInfoGeneral extends FormPanel {
         cbxCargo = new ComboBoxCargos(ComboBoxCargos.ACTIVOS);
         cbxCargo.setName("cargo.nombrecargo");
         cbxCargo.setToolTip(new ToolTipConfig("Cargos", "Elija un cargo"));
-        cbxCargo.setLabelSeparator("Cargo");
+        cbxCargo.setLabelSeparator("<font color='red'>*</font>Cargo");
         cbxCargo.setAllowBlank(false);
         Columna2.add(cbxCargo, formData);
-
+        
+        txtCorreo.setMaxLength(100);
+        txtCorreo.setEmptyText("ejem. ejemplo@dominio.com");
+        txtCorreo.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico"));
+        txtCorreo.setFieldLabel("<font color='red'>*</font>Correo");
+        txtCorreo.setRegex("^(\\w+)([-+.][\\w]+)*@(\\w[-\\w]*\\.){1,5}([A-Za-z]){2,4}$");
+        txtCorreo.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
+        txtCorreo.setAllowBlank(false);
+        Columna2.add(txtCorreo, formData);
+        
         main.add(ColumnaDias, new ColumnData(.5));
         main.add(Columna2, new ColumnData(.5));
 //        main.add(Columna3, new ColumnData(.25));
@@ -496,6 +505,7 @@ public final class PanelInfoGeneral extends FormPanel {
         personal.setFechaNacimiento(DtFecha.getValue());
         personal.setDireccion(txtDireccion.getValue());
         personal.setTelefono(txtTelefono.getValue());
+        personal.setCelular(txtCelular.getValue());
         personal.setCorreoElectronico(txtCorreo.getValue());
         personal.setBarrio(txtBarrio.getValue());
         String genero;

@@ -121,6 +121,10 @@ public class PanelAdminPersonal extends LayoutContainer {
         toolBar.add(btnFoto);
         toolBar.add(new SeparatorToolItem());
         
+        Button btnReporte = new Button("Generar PDF", ListenerGenerarReporte());
+        btnReporte.setIcon(Resources.ICONS.iconoPDF());
+        toolBar.add(btnReporte);
+        
 //        Button btnReporte = new Button("Generar PDF", ListenerGenerarReporte());
 //        btnReporte.setIcon(Resources.ICONS.iconoPDF());
 //        toolBar.add(btnReporte);
@@ -396,26 +400,25 @@ public class PanelAdminPersonal extends LayoutContainer {
         };
 
     }
+    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+                if (per != null) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/HVPersonal/";
+                    // deportista seleccionado
+                    redireccionarA(base + per.getId());
+
+                } else {
+                    MessageBox.alert("Alerta", "Debe seleccionar primero un personal", null);
+                }
+
+            }
+        };
+    }
     
-    
-//      public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
-//        return new SelectionListener<ButtonEvent>() {
-//            @Override
-//            public void componentSelected(ButtonEvent ce) {
-//
-//                if (per != null) {
-//                    
-//                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaHV/";
-//                    // deportista seleccionado
-//                    redireccionarA(base + per.getId());
-//                   
-//                } else {
-//                    MessageBox.alert("Alerta", "Debe seleccionar primero un personal", null);
-//                }
-//
-//            }
-//        };
-//    }
 
     public void eliminar(Personal personal) {
 
