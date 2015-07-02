@@ -7,11 +7,17 @@
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import java.util.Date;
 
 /**
  *
  * @author fhurtado
  */
 public interface RPCAdminControlAsistenciaAsync extends RPCMaestroAsync<ControlAsistencia>{
+    
+    public void obtenerCtlAsistenciaFiltro(Date fechaInicial, Date fechaFinal, Long idCategoria, String actividad, AsyncCallback<PagingLoadResult<DTOControlAsistencia>> callback);
     
 }

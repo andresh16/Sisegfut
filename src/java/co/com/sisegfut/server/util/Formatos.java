@@ -358,6 +358,22 @@ public class Formatos
         return edad;
 
     }
+        public static String ceroHoras(Date fecha){
+        Calendar current = Calendar.getInstance();
+        current.set(current.get(Calendar.YEAR),current.get(Calendar.MONTH),current.get(Calendar.DATE),0,0,0);
+        fecha.setTime(current.getTime().getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
+        return sdf.format( fecha );
+        }
+        
+        public static String Horas23(Date fecha){
+        Calendar current = Calendar.getInstance();
+        current.set(current.get(Calendar.YEAR),current.get(Calendar.MONTH),current.get(Calendar.DATE),23,0,0);
+        fecha.setTime(current.getTime().getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
+        return sdf.format( fecha );
+        }
+        
         public static Double calcularFCM(Integer edad){
         Double fcm=0.0;
         

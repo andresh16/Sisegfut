@@ -16,6 +16,7 @@ import java.util.Date;
 public class DTOControlAsistencia implements BeanModelTag, Serializable{
     
     private Long IdCategoria;
+    private Long IdPlanillaAsistencia;
     private Date fecha;
     private String lugar;
     private String actividad;
@@ -25,6 +26,14 @@ public class DTOControlAsistencia implements BeanModelTag, Serializable{
     public DTOControlAsistencia() {
     }
 
+    public Long getIdPlanillaAsistencia() {
+        return IdPlanillaAsistencia;
+    }
+
+    public void setIdPlanillaAsistencia(Long IdPlanillaAsistencia) {
+        this.IdPlanillaAsistencia = IdPlanillaAsistencia;
+    }
+    
     public Long getIdCategoria() {
         return IdCategoria;
     }

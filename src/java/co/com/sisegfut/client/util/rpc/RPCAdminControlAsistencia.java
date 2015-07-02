@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
+import java.util.Date;
 
 /**
  *
  * @author fhurtado
  */
-public interface RPCAdminControlAsistencia extends RPCMaestro<ControlAsistencia>{
-    
+public interface RPCAdminControlAsistencia extends RPCMaestro<ControlAsistencia> {
+
+    public PagingLoadResult<DTOControlAsistencia> obtenerCtlAsistenciaFiltro(Date fechaInicial, Date fechaFinal, Long idCategoria, String actividad);
+
 }

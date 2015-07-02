@@ -8,9 +8,14 @@ package co.com.sisegfut.server.rpc.administracion;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
 import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistencia;
-import co.com.sisegfut.server.datos.dao.DaoAsistencia;
 import co.com.sisegfut.server.datos.dao.DaoControlAsistencia;
+import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -32,5 +37,31 @@ public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsisten
     public void setDaoAntDep(DaoControlAsistencia daoControlAsistencia) {
         this.daoControlAsistencia = daoControlAsistencia;
         super.setDaoGenerico(daoControlAsistencia); 
+    }
+
+    @Override
+    public PagingLoadResult<DTOControlAsistencia> obtenerCtlAsistenciaFiltro(Date fechaInicial, Date fechaFinal, Long idCategoria, String actividad) {
+
+        List<ControlAsistencia> listPlanillasAsistencia = new ArrayList<ControlAsistencia>();
+        List<DTOControlAsistencia> listaRetorno = new ArrayList<DTOControlAsistencia>();
+
+            listPlanillasAsistencia = daoControlAsistencia.obtenerPlanillaAsistenciaFiltro(fechaInicial, fechaFinal, idCategoria, actividad);
+            if (listPlanillasAsistencia != null) {
+                for (ControlAsistencia ctrlAsistencia : listPlanillasAsistencia) {
+                    DTOControlAsistencia agg = new DTOControlAsistencia();
+                    agg.setIdPlanillaAsistencia(ctrlAsistencia.getId());
+                    agg.setIdCategoria(idCategoria);
+                    agg.setCategoria(ctrlAsistencia.getCategoria().getNombrecategoria());
+                    agg.setActividad(ctrlAsistencia.getActividad());
+                    agg.setLugar(ctrlAsistencia.getLugar());
+                    agg.setObservaciones(ctrlAsistencia.getObservaciones());
+                    agg.setFecha(ctrlAsistencia.getFecha());
+                    listaRetorno.add(agg);
+                }
+            }
+
+        PagingLoadResult<DTOControlAsistencia> loadResult = new BasePagingLoadResult<DTOControlAsistencia>(listaRetorno, 1, 100);
+        return loadResult;
+    
     }
 }

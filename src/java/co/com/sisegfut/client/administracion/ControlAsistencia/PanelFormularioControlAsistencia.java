@@ -7,27 +7,25 @@ package co.com.sisegfut.client.administracion.ControlAsistencia;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.util.Formatos;
-import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxCategoria;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.core.El;
 import com.extjs.gxt.ui.client.core.XDOM;
 import com.extjs.gxt.ui.client.event.BaseEvent;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ComponentPlugin;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.Radio;
 import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.Time;
 import com.extjs.gxt.ui.client.widget.form.TimeField;
 import com.extjs.gxt.ui.client.widget.layout.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
@@ -116,19 +114,23 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         Columna1.add(DtFecha, formData);
 
         tmHora.setFieldLabel("<font color='red'>*</font> Hora");
-        tmHora.addPlugin(plugin);
-        tmHora.setData("text", "Seleccione la hora");
+//        tmHora.addPlugin(plugin);
+//        tmHora.setData("text", "Seleccione la hora");
+        tmHora.setEmptyText("Seleccione la hora");
         DateTimeFormat fmt = DateTimeFormat.getFormat("hh:mm aa");
         tmHora.setFormat(fmt);
-        tmHora.setIncrement(5);
+        tmHora.setIncrement(30);
+        tmHora.setForceSelection(true);
         tmHora.setEnabled(false);
+        tmHora.setTriggerAction(ComboBox.TriggerAction.ALL);
+        tmHora.setEditable(false);
         tmHora.setAllowBlank(false);
         Columna1.add(tmHora, formData);
 
         cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-
+           if(!cbxCategoria.getValue().equals("") || !cbxCategoria.getValueField().equals("")) {
                 adminControlAsistencia.cargar(cbxCategoria.getCategoriaElegida().getId());
                 adminControlAsistencia.fechaAsistencia(Formatos.fechaLarga2(new Date()));
                 DtFecha.setEnabled(true);
@@ -137,6 +139,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
                 radioGroup.setEnabled(true);
                 txtLugar.setEnabled(true);
                 txtObservacion.setEnabled(true);
+           }
             }
         });
 
@@ -221,13 +224,20 @@ public class PanelFormularioControlAsistencia extends FormPanel {
     }
 
     public void limpiar() {
-        reset();
+        
         id = null;
         DtFecha.setEnabled(false);
+        DtFecha.setValue(new Date());
         tmHora.setEnabled(false);
+        tmHora.setValue(new Time());
         radioGroup.setEnabled(false);
         txtLugar.setEnabled(false);
+        txtLugar.setValue("");
         txtObservacion.setEnabled(false);
+        txtObservacion.setValue(null);
+        cbxCategoria.reset();
+        cbxCategoria.recargar();
+//        reset();
 
     }
 

@@ -7,11 +7,16 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
+import java.util.Date;
+import java.util.List;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
  * @author fhurtado
  */
 public interface DaoControlAsistencia extends DaoGenerico<ControlAsistencia>{
+    
+    public List<ControlAsistencia> obtenerPlanillaAsistenciaFiltro(Date fechaInicial,Date fechaFinal, Long idCategoria, String actividad) throws DataAccessException;
     
 }
