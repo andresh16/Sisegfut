@@ -360,6 +360,7 @@ public class Formatos
     }
         public static String ceroHoras(Date fecha){
         Calendar current = Calendar.getInstance();
+        current.setTime(fecha);
         current.set(current.get(Calendar.YEAR),current.get(Calendar.MONTH),current.get(Calendar.DATE),0,0,0);
         fecha.setTime(current.getTime().getTime());
         SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
@@ -368,6 +369,7 @@ public class Formatos
         
         public static String Horas23(Date fecha){
         Calendar current = Calendar.getInstance();
+        current.setTime(fecha);
         current.set(current.get(Calendar.YEAR),current.get(Calendar.MONTH),current.get(Calendar.DATE),23,0,0);
         fecha.setTime(current.getTime().getTime());
         SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );

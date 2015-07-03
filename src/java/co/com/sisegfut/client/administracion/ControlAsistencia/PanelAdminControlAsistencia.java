@@ -470,7 +470,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
+//                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
             }
         }));
         wBuscar.addButton(btnVerCtrolAsistencia);
@@ -504,6 +504,10 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                         //mostrar mensaje
                         return;
                     }
+                    if (!validarFalto()) {
+                        //mostrar mensaje
+                        return;
+                    }
 
                     getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
 
@@ -534,6 +538,21 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             if (!asistio && jugador.get("falto") == null) {
 
                 MessageBox.alert("Error!", "Debe especificar por que no asistio el jugador " + jugador.get("label"), null);
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean validarFalto() {
+        Boolean asistio;
+        String falto;
+        for (BeanModel jugador : grid.getStore().getModels()) {
+            asistio = jugador.get("asistio");
+            falto=jugador.get("falto");
+            asistio = asistio != null && asistio;
+            if (asistio && jugador.get("falto") != null) {
+
+                MessageBox.alert("Error!", "Debe deschulear la asistencia para el jugador " + jugador.get("label")+" ya que esta marcado como "+jugador.get("falto"), null);
                 return false;
             }
         }
@@ -615,21 +634,6 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        loader.load(0, 50);
     }
 
-//    /**
-//     * Escucha el boton limpiar
-//     *
-//     * @return
-//     */
-//    protected SelectionListener<ButtonEvent> listenerlimpiar() {
-//        return new SelectionListener<ButtonEvent>() {
-//            @Override
-//            public void componentSelected(ButtonEvent ce) {
-//                System.out.println("Ingrese al limpiar");
-//                limpiar();
-//
-//            }
-//        };
-//    }
     public RPCAdminControlAsistenciaAsync getServiceControlAsistencia() {
         RPCAdminControlAsistenciaAsync svc = (RPCAdminControlAsistenciaAsync) GWT.create(RPCAdminControlAsistencia.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;

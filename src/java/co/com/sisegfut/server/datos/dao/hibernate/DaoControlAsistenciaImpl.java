@@ -35,8 +35,8 @@ public class DaoControlAsistenciaImpl  extends DaoGenericoImpl<ControlAsistencia
 
         if (fechaInicial != null && fechaFinal!=null) {
         
-//        fechaInicial.setTime(0000);
-//        fechaFinal.setTime(240000);
+//        fechaInicial.setTime(1435640400000);
+//        fechaFinal.setTime(1435953514352);
             
             condicionFiltro += "fecha between '" + Formatos.ceroHoras(fechaInicial)+"' and '"+ Formatos.Horas23(fechaFinal)+"'";
         }
