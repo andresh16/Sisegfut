@@ -435,7 +435,7 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
 //            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
-            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxDeportista(tipo);
+            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxCategoria(tipo);
             List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
             List<DTOAntropometricoxCategoria> listaDeportistaAntReport = new ArrayList<DTOAntropometricoxCategoria>();
 
