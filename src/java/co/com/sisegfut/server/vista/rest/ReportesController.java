@@ -5,6 +5,7 @@
 package co.com.sisegfut.server.vista.rest;
 
 import co.com.sisegfut.client.datos.dominio.AntecedentesDeportivos;
+import co.com.sisegfut.client.datos.dominio.Antropometrico;
 import co.com.sisegfut.client.datos.dominio.Lesiones;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EstudiosRealizados;
@@ -12,17 +13,22 @@ import co.com.sisegfut.client.datos.dominio.Experiencia;
 import co.com.sisegfut.client.datos.dominio.LogrosDeportivos;
 import co.com.sisegfut.client.datos.dominio.Personal;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometricoxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
+import co.com.sisegfut.server.datos.dao.DaoAntropometrico;
+import co.com.sisegfut.server.datos.dao.DaoControlTecnico;
 import co.com.sisegfut.server.datos.dao.DaoLesiones;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import co.com.sisegfut.server.datos.dao.DaoEstudiosRealizados;
 import co.com.sisegfut.server.datos.dao.DaoExperiencia;
 import co.com.sisegfut.server.datos.dao.DaoLogrosDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoPersonal;
+import co.com.sisegfut.server.datos.dao.DaoTestCooper;
+import co.com.sisegfut.server.datos.dao.DaoTestKarvonen;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,6 +66,14 @@ public class ReportesController {
     private DaoEstudiosRealizados daoEstudiosRealizados;
     @Autowired
     private DaoExperiencia daoExperiencia;
+    @Autowired
+    private DaoTestCooper daoTestCooper;
+    @Autowired
+    private DaoTestKarvonen daoTestKarvonen;
+    @Autowired
+    private DaoAntropometrico daoAntropometrico;
+    @Autowired
+    private DaoControlTecnico daoControlTecnico;
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
@@ -331,7 +345,6 @@ public class ReportesController {
             List<EstudiosRealizados> listEst = new ArrayList<EstudiosRealizados>();
             List<Experiencia> listExp = new ArrayList<Experiencia>();
 
-            List<DTOHVDeportista> listaRetorno = new ArrayList<DTOHVDeportista>();
             List<DTOHVPersonal> listaRetornoPersonal = new ArrayList<DTOHVPersonal>();
 
             listEst = daoEstudiosRealizados.EstudiosRealizadosxPersonal(idPersonal);
@@ -398,5 +411,113 @@ public class ReportesController {
             return retorno;
         }
     } 
+    
+    //Reporte Antropometrico Deportistas X Categoria
+    @RequestMapping(value = "/ReporteAntropometrico/{nombreCategoria}/{categoria}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportAntropometrico(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+//            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
+            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxDeportista(tipo);
+            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
+            List<DTOAntropometricoxCategoria> listaDeportistaAntReport = new ArrayList<DTOAntropometricoxCategoria>();
+
+            List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
+
+            for (Deportista deportista : listaDep) {
+
+                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
+
+                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
+                dtoDeportista.setNombres(deportista.getNombres());
+                dtoDeportista.setApellidos(deportista.getApellidos());
+                dtoDeportista.setIdentificacion(deportista.getDocumento());
+                
+                for (Antropometrico antropometrico : listAnt) {
+                    DTOAntropometricoxCategoria dtoAntropometrico = new DTOAntropometricoxCategoria();
+                    
+                    dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha()));
+                    dtoAntropometrico.setPerabdominal(antropometrico.getPerabdominal().toString());
+                    dtoAntropometrico.setPerbrazorelajado(antropometrico.getPerbrazorelajado().toString());
+                    dtoAntropometrico.setPercadera(antropometrico.getPercadera().toString());
+                    dtoAntropometrico.setPerpantorrilla(antropometrico.getPerpantorrilla().toString());
+                    dtoAntropometrico.setPliabdominal(antropometrico.getPliabdominal().toString());
+                    dtoAntropometrico.setPlisubescapular(antropometrico.getPlisubescapular().toString());
+                    dtoAntropometrico.setPlisupraescapular(antropometrico.getPlisupraescapular().toString());
+                    dtoAntropometrico.setPlitricipital(antropometrico.getPlitricipital().toString());
+                    
+                    listaDeportistaAntReport.add(dtoAntropometrico);
+                    
+                }
+
+                listaDeportistaReport.add(dtoDeportista);
+            }
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTODeportistaxCategoria());
+            }
+            if (listaDeportistaAntReport.isEmpty()) {
+                listaDeportistaAntReport.add(new DTOAntropometricoxCategoria());
+            }
+            System.out.println("nombre cat" + nombreCategoria);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("categoria", nombreCategoria);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+
+//            parameterMap.put("documento", dep.getDocumento());
+//            parameterMap.put("nombres", dep.getNombres());
+//            parameterMap.put("apellidos", dep.getApellidos());
+//            parameterMap.put("fecha", ant.getFecha());
+//            parameterMap.put("perbrazorelajado", ant.getPerbrazorelajado());
+//            parameterMap.put("perabdominal", ant.getPerabdominal());
+//            parameterMap.put("percadera", ant.getPercadera());
+//            parameterMap.put("perpantorrilla", ant.getPerpantorrilla());
+//            parameterMap.put("plisubescapular", ant.getPlisubescapular());
+//            parameterMap.put("plitricipital", ant.getPlitricipital());
+//            parameterMap.put("plisupraescapular", ant.getPlisupraescapular());
+//            parameterMap.put("pliabdominal", ant.getPliabdominal());
+//            parameterMap.put("porcentajeGrasa", ant.getPorcentajeGrasa());        
+           
     
 }

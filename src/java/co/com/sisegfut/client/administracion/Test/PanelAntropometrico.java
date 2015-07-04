@@ -112,6 +112,7 @@ public final class PanelAntropometrico extends LayoutContainer {
     Long idDeportista = null;
     int cifras = (int) Math.pow(10, 2);//sirve para mostrar solo 2 decimales
     private Image foto = new Image();
+    private Deportista dep;
 
     FormPanel form = new FormPanel();
 
@@ -879,6 +880,25 @@ public final class PanelAntropometrico extends LayoutContainer {
     
     
     }
+    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+                if (dep != null) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaAntropometrico/";
+                    // deportista seleccionado
+                    redireccionarA(base + dep.getId());
+
+                } else {
+                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
+                }
+
+            }
+        };
+    }
+    
     public RPCAdminDeportistaAsync getServiceDeportista() {
         RPCAdminDeportistaAsync svc = (RPCAdminDeportistaAsync) GWT.create(RPCAdminDeportista.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
@@ -972,4 +992,14 @@ public final class PanelAntropometrico extends LayoutContainer {
 
         simple.show();
     }
+      /**
+     * Mediante una llamada nativa redirecciona el browser a la dirección
+     * especificada, en el caso de descargar archivos el contenido del browser
+     * se conserva y simplemente lanza el archivo ;)
+     *
+     * @param url URL a ser cargada
+     */
+    private static native void redireccionarA(String url)/*-{
+     $wnd.location = url;
+     }-*/;
 }
