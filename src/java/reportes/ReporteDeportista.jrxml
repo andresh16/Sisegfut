@@ -95,13 +95,6 @@
 	<detail>
 		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="540" y="0" width="120" height="20" uuid="406cf5b4-190b-408f-80cc-0f2212217a48"/>
-				<textElement>
-					<font fontName="Tahoma" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{posicion}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="403" y="0" width="123" height="20" uuid="2a90e741-a46e-43f8-83c2-ab52d95a325e"/>
 				<textElement>
 					<font fontName="Tahoma" size="12"/>
@@ -132,6 +125,13 @@
 			<line>
 				<reportElement x="0" y="20" width="660" height="1" uuid="e2cb2180-811c-44a5-845e-ab494a4a33c3"/>
 			</line>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="540" y="0" width="120" height="20" uuid="406cf5b4-190b-408f-80cc-0f2212217a48"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{posicion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -140,27 +140,29 @@
 	<pageFooter>
 		<band height="24">
 			<elementGroup>
-				<frame>
-					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="2" y="0" width="658" height="24" forecolor="#339900" backcolor="#99FF99" uuid="5eecf97d-8508-48b4-80f6-ddc6c662fe36">
-						<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
-					</reportElement>
-					<textField pattern="EEEEE dd MMMMM yyyy">
-						<reportElement x="2" y="4" width="184" height="20" uuid="ba7fca21-f2b0-4d06-a312-ad6e1ae9b8e8"/>
-						<textElement>
-							<font size="12"/>
-						</textElement>
-						<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-					</textField>
-					<textField>
-						<reportElement x="504" y="4" width="80" height="20" uuid="ab70402f-cd77-4cae-8aee-c04aa22fdef6"/>
-						<textElement textAlignment="Right"/>
-						<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-					</textField>
-					<textField evaluationTime="Report">
-						<reportElement x="584" y="4" width="40" height="20" uuid="0dba674e-ac43-4cfd-9efa-27f93680ec8d"/>
-						<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-					</textField>
-				</frame>
+				<elementGroup>
+					<frame>
+						<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="2" y="0" width="658" height="24" forecolor="#339900" backcolor="#99FF99" uuid="5eecf97d-8508-48b4-80f6-ddc6c662fe36">
+							<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+						</reportElement>
+						<textField pattern="EEEEE dd MMMMM yyyy">
+							<reportElement x="2" y="4" width="184" height="20" uuid="ba7fca21-f2b0-4d06-a312-ad6e1ae9b8e8"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="504" y="4" width="80" height="20" uuid="ab70402f-cd77-4cae-8aee-c04aa22fdef6"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+						</textField>
+						<textField evaluationTime="Report">
+							<reportElement x="584" y="4" width="40" height="20" uuid="0dba674e-ac43-4cfd-9efa-27f93680ec8d"/>
+							<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+						</textField>
+					</frame>
+				</elementGroup>
 			</elementGroup>
 		</band>
 	</pageFooter>

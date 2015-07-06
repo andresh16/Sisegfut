@@ -355,7 +355,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
                 if (idDeportista != null) {
                     AntecedentesDeportivos antecedentesDeportivos = new AntecedentesDeportivos();
                     antecedentesDeportivos.setId(idAntecedente);
-                    antecedentesDeportivos.setClubAnterior(txtClubAnterior.getValue());
+                    antecedentesDeportivos.setClubAnterior(txtClubAnterior.getValue().toUpperCase());
                     antecedentesDeportivos.setCategoriaAnterior(cbxCategoria.getCategoriaElegida());
                     antecedentesDeportivos.setAnno(comboAnios.getSimpleValue());
                     antecedentesDeportivos.setIdDeportista(new Deportista(idDeportista));

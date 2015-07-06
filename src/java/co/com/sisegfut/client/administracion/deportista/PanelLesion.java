@@ -314,7 +314,7 @@ public class PanelLesion extends LayoutContainer {
                 
                 Lesiones lesiones = new Lesiones();
                 lesiones.setId(idLesion);
-                lesiones.setNombreLesion(txtLesion.getValue());
+                lesiones.setNombreLesion(txtLesion.getValue().toUpperCase());
                 lesiones.setFechaLesion(dtFechaLesion.getValue());
                 lesiones.setIdDeportista(new Deportista(idDeportista));
                 getServiceLesion().guardarEntidad(lesiones, new AsyncCallback<RespuestaRPC<Lesiones>>() {

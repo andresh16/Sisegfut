@@ -368,10 +368,10 @@ public class PanelEstudiosRealizados extends LayoutContainer {
                 
                 EstudiosRealizados estudiosRealizados = new EstudiosRealizados();
                 estudiosRealizados.setId(idEstudiosRealizados);
-                estudiosRealizados.setTitulo(txtTitulo.getValue());
+                estudiosRealizados.setTitulo(txtTitulo.getValue().toUpperCase());
                 estudiosRealizados.setAnioGraduacion(comboAnios.getSimpleValue());
 //                estudiosRealizados.setInstitucion(cbxInsEducativa.getInstEducativaElegida());
-                estudiosRealizados.setInstitucion(txtInsEducativa.getValue());
+                estudiosRealizados.setInstitucion(txtInsEducativa.getValue().toUpperCase());
                 estudiosRealizados.setNivelEducativo(cbxNEducativo.getNivelEducativoElegido());
                 estudiosRealizados.setIdPersonal(new Personal(idPersonal));
                 getServiceEstudiosRealizados().guardarEntidad(estudiosRealizados, new AsyncCallback<RespuestaRPC<EstudiosRealizados>>() {

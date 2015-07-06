@@ -123,9 +123,11 @@ public class InformeTest extends FormPanel {
     }
     public void generarTestAntropometrico(Long idCategoria){
         System.out.println("Test Antropometrico "+idCategoria);
-//        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportista/";
-//                    // usuarioSession
-//                    redireccionarA(base +"/"+idCategoria);
+        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
+                    // usuarioSession
+                    redireccionarA(base +nombreCategoria + "/"+idCategoria+"/");
         
     }
     public void generarTestControlTecnico(Long idCategoria){

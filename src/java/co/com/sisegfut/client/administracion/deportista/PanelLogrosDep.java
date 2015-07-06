@@ -348,7 +348,7 @@ public class PanelLogrosDep extends LayoutContainer {
                 if (idDeportista != null) {
                     LogrosDeportivos logroDepo = new LogrosDeportivos();
                     logroDepo.setId(idLogro);
-                    logroDepo.setLogroDeportivo(txtLogro.getValue());
+                    logroDepo.setLogroDeportivo(txtLogro.getValue().toUpperCase());
                     logroDepo.setCategoriaLogro(cbxCategoria.getCategoriaElegida());
                     logroDepo.setAnioLogro(comboAnios.getSimpleValue());
                     logroDepo.setIdDeportista(new Deportista(idDeportista));

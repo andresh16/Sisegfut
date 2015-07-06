@@ -133,7 +133,7 @@ public class PanelModificarCategoria extends LayoutContainer {
 
             Categoria categoria = new Categoria();
             categoria.setId(cbxCategoria.getCategoriaElegida().getId());
-            categoria.setNombrecategoria(txtCategoria.getValue());
+            categoria.setNombrecategoria(txtCategoria.getValue().toUpperCase());
 
             getServiceCategoria().guardarEntidad(categoria, new AsyncCallback() {
 

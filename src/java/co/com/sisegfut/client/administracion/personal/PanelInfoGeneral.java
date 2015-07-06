@@ -500,14 +500,14 @@ public final class PanelInfoGeneral extends FormPanel {
 
         personal.setTipoDocumento(cbxTipoDocumento.getTipoDocumentoElegido());
         personal.setDocumento(txtDocumento.getValue());
-        personal.setNombres(txtNombres.getValue());
-        personal.setApellidos(txtApellidos.getValue());
+        personal.setNombres(txtNombres.getValue().toUpperCase());
+        personal.setApellidos(txtApellidos.getValue().toUpperCase());
         personal.setFechaNacimiento(DtFecha.getValue());
         personal.setDireccion(txtDireccion.getValue());
         personal.setTelefono(txtTelefono.getValue());
         personal.setCelular(txtCelular.getValue());
         personal.setCorreoElectronico(txtCorreo.getValue());
-        personal.setBarrio(txtBarrio.getValue());
+        personal.setBarrio(txtBarrio.getValue().toUpperCase());
         String genero;
         if (rdMasculino.getValue()) {
             genero = "Masculino";

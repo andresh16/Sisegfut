@@ -82,6 +82,20 @@
         </property>
     </bean>    
         
-                
+     <!--Reporte de Antropometrico-->
+        
+    <bean id="pdfReporteAntropometrico"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/Antropometrico.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=AntropometricoXCategoria.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>             
 	 
 </beans>

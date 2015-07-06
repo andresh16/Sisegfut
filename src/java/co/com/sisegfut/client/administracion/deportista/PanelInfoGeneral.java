@@ -668,7 +668,7 @@ public final class PanelInfoGeneral extends FormPanel {
                         @Override
                         public void onSuccess(Deportista result) {
                             result.getFoto();
-                            Info.display("Guardar", "Guardo correctamente el deportista");
+                            Info.display("Guardar", "Guardó correctamente el deportista");
                             limpiar();
 
                         }
@@ -689,19 +689,19 @@ public final class PanelInfoGeneral extends FormPanel {
 
         deportista.setTipoDocumento(cbxTipoDocumento.getTipoDocumentoElegido());
         deportista.setDocumento(txtDocumento.getValue());
-        deportista.setNombres(txtNombres.getValue());
-        deportista.setApellidos(txtApellidos.getValue());
+        deportista.setNombres(txtNombres.getValue().toUpperCase());
+        deportista.setApellidos(txtApellidos.getValue().toUpperCase());
         deportista.setFechaNacimiento(DtFecha.getValue());
         deportista.setDireccion(txtDireccion.getValue());
         deportista.setTelefono(txtTelefono.getValue());
         deportista.setCorreoElectronico(txtCorreo.getValue());
-        deportista.setNombreMadre(txtNombreMadre.getValue());
-        deportista.setNombrePadre(txtNombrePadre.getValue());
+        deportista.setNombreMadre(txtNombreMadre.getValue().toUpperCase());
+        deportista.setNombrePadre(txtNombrePadre.getValue().toUpperCase());
         deportista.setNumeroMadre(txtNumeroMadre.getValue());
         deportista.setNumeroPadre(txtNumeroPadre.getValue());
         deportista.setNumeroCamisa(txtNumCamisa.getValue());
         deportista.setCategoria(cbxCategoria.getCategoriaElegida());
-        deportista.setBarrio(txtBarrio.getValue());
+        deportista.setBarrio(txtBarrio.getValue().toUpperCase());
         deportista.setEstatura(txtEstatura.getValue());
         deportista.setImc(calcularImc(Double.parseDouble(txtPeso.getValue()), Double.parseDouble(txtEstatura.getValue())));
         deportista.setPeso(txtPeso.getValue());

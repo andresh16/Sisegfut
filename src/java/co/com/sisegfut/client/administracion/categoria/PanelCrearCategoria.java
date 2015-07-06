@@ -119,7 +119,7 @@ public class PanelCrearCategoria extends LayoutContainer {
 
         if (panel.isValid()) {
             Categoria categoria = new Categoria();
-            categoria.setNombrecategoria(txtCategoria.getValue());
+            categoria.setNombrecategoria(txtCategoria.getValue().toUpperCase());
 
             getServiceCategoria().guardarEntidad(categoria, new AsyncCallback() {
 

@@ -103,23 +103,23 @@ public class Bootstrap implements InitializingBean {
             Inicializo el maestro de Tipo de documento
             */       
             TipoDocumento tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento("Cédula de ciudadanía");
+            tipoDocumento.setNombreTipoDocumento("CÉDULA DE CUIDADANÍA");
             daoTipoDocumento.guardar(tipoDocumento);
             
             tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento("Tarjeta de identidad");
+            tipoDocumento.setNombreTipoDocumento("tARJETA DE IDENTIDAD");
             daoTipoDocumento.guardar(tipoDocumento);
             
             tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento("Pasaporte");
+            tipoDocumento.setNombreTipoDocumento("PASAPORTE");
             daoTipoDocumento.guardar(tipoDocumento);
             
             tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento("Cédula de extranjería");
+            tipoDocumento.setNombreTipoDocumento("CÉDULA DE EXTRANJERÍA");
             daoTipoDocumento.guardar(tipoDocumento);
             
             /*
-            
+            Eps
             */
             Eps eps = new Eps();
             eps.setNombreEps("SALUDCOOP");
@@ -155,75 +155,79 @@ public class Bootstrap implements InitializingBean {
 
             
             NivelEducativo nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Primaria");
+            nivelEducativo.setNombreNivelEducativo("PRIMARIA");
             daoNivelEducativo.guardar(nivelEducativo);
             
             nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Bachiller");
+            nivelEducativo.setNombreNivelEducativo("BACHILLER");
             daoNivelEducativo.guardar(nivelEducativo);
             
             nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Universitario");
+            nivelEducativo.setNombreNivelEducativo("UNIVERSITARIO");
             daoNivelEducativo.guardar(nivelEducativo);
             
             nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Técnico");
+            nivelEducativo.setNombreNivelEducativo("TÉCNICO");
             daoNivelEducativo.guardar(nivelEducativo);
             
             nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Tecnólogo");
+            nivelEducativo.setNombreNivelEducativo("TECNÓLOGO");
             daoNivelEducativo.guardar(nivelEducativo);
             
             nivelEducativo = new NivelEducativo();
-            nivelEducativo.setNombreNivelEducativo("Profesional");
+            nivelEducativo.setNombreNivelEducativo("PROFESIONAL");
             daoNivelEducativo.guardar(nivelEducativo);
             
             InstEducativa instEducativa = new InstEducativa();
-            instEducativa.setNombreInstEducativa("Politécnico Colombiano JIC");
+            instEducativa.setNombreInstEducativa("POLITÉCNICO COLOMBIANO JIC");
             daoInstEducativa.guardar(instEducativa);
             
             Posiciones posiciones = new Posiciones();
-            posiciones.setNombrePosicion("Delantero");
+            posiciones.setNombrePosicion("DELANTERO");
             daoPosiciones.guardar(posiciones);
             
             posiciones = new Posiciones();
-            posiciones.setNombrePosicion("Volante");
+            posiciones.setNombrePosicion("VOLANTE");
             daoPosiciones.guardar(posiciones);
             
             posiciones = new Posiciones();
-            posiciones.setNombrePosicion("Defensa");
+            posiciones.setNombrePosicion("DEFENSA");
             daoPosiciones.guardar(posiciones);
             
             posiciones = new Posiciones();
-            posiciones.setNombrePosicion("Portero");
+            posiciones.setNombrePosicion("PORTERO");
             daoPosiciones.guardar(posiciones);
             
             Categoria categoria = new Categoria();
-            categoria.setNombrecategoria("Primera C");
+            categoria.setNombrecategoria("PRIMERA C");
             daoCategoria.guardar(categoria);
             
             categoria = new Categoria();
-            categoria.setNombrecategoria("Primera B");
+            categoria.setNombrecategoria("PRIMERA B");
             daoCategoria.guardar(categoria);
             
             categoria = new Categoria();
-            categoria.setNombrecategoria("Pony");
+            categoria.setNombrecategoria("PRIMERA A");
             daoCategoria.guardar(categoria);
             
             categoria = new Categoria();
-            categoria.setNombrecategoria("Pre Pony");
+            categoria.setNombrecategoria("PONY");
+            daoCategoria.guardar(categoria);
+            
+            categoria = new Categoria();
+            categoria.setNombrecategoria("PRE PONY");
             daoCategoria.guardar(categoria);
             
             Cargos cargos = new Cargos();
-            cargos.setNombrecargo("Director Técnico");
+            cargos.setNombrecargo("DIRECTOR TÉCNICO");
             daoCargos.guardar(cargos);
             
             cargos = new Cargos();
-            cargos.setNombrecargo("Preparador Físico");
+            cargos.setNombrecargo("PREPARADOR FÍSICO");
             daoCargos.guardar(cargos);
             
             cargos = new Cargos();
-            cargos.setNombrecargo("Fisioterapeuta");
+            cargos.setNombrecargo("FISIOTERAPEUTA");
             daoCargos.guardar(cargos);
 
             
@@ -247,6 +251,5 @@ public class Bootstrap implements InitializingBean {
 
         }
     }
-
     
 }

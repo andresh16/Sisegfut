@@ -163,7 +163,7 @@ public class PanelModificarTorneos extends LayoutContainer {
             Torneos torneo = new Torneos();
             torneo.setId(cbxTorneo.getTorneosElegido().getId());
             torneo.setCategoria(cbxCategoria.getCategoriaElegida());
-            torneo.setNombreTorneo(txtTorneo.getValue().toUpperCase());
+            torneo.setNombreTorneo(txtTorneo.getValue().toUpperCase().toUpperCase());
             torneo.setAnno(txtAnno.getValue());
 
             getServiceTorneos().guardarEntidad(torneo, new AsyncCallback() {

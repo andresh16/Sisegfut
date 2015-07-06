@@ -347,9 +347,9 @@ public class PanelExperiencia extends LayoutContainer {
                 if (idPersonal != null) {
                     Experiencia experiencia = new Experiencia();
                     experiencia.setId(idExperiencia);
-                    experiencia.setEmpresa(txtEmpresa.getValue());
+                    experiencia.setEmpresa(txtEmpresa.getValue().toUpperCase());
                     experiencia.setCargo(cbxCargo.getCargoElegido());
-                    experiencia.setTiempoLaborado(txtTiempoLaborado.getValue());
+                    experiencia.setTiempoLaborado(txtTiempoLaborado.getValue().toUpperCase());
                     experiencia.setIdPersonal(new Personal(idPersonal));
 
                     getServiceExperiencia().guardarEntidad(experiencia, new AsyncCallback<RespuestaRPC<Experiencia>>() {
