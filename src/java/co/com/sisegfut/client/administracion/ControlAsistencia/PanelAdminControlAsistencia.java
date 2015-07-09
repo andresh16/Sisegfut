@@ -135,7 +135,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     private String actividad = "Entrenamiento";
     private FormButtonBinding bindingFormFiltros;
     private boolean consultarPlanillaasistencia = false;
-    
+
     private Main myConstants;
 
     @Override
@@ -497,31 +497,34 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-
-                if (panelFormularioControlAsistencia.isValid()) {
+                if (!grid.getStore().getModels().isEmpty()) {
+                    if (panelFormularioControlAsistencia.isValid()) {
 //                     panel2.mask("Guardando..");
-                    if (!validarAsistencia()) {
-                        //mostrar mensaje
-                        return;
-                    }
-                    if (!validarFalto()) {
-                        //mostrar mensaje
-                        return;
-                    }
-
-                    getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
-
-                        @Override
-                        public void onFailure(Throwable caught) {
-                            MessageBox.alert("Error!", "No guardo Grid de asistencia", null);
+                        if (!validarAsistencia()) {
+                            //mostrar mensaje
+                            return;
+                        }
+                        if (!validarFalto()) {
+                            //mostrar mensaje
+                            return;
                         }
 
-                        @Override
-                        public void onSuccess(RespuestaRPC<ControlAsistencia> result) {
+                        getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
+
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                MessageBox.alert("Error!", "No guardo Grid de asistencia", null);
+                            }
+
+                            @Override
+                            public void onSuccess(RespuestaRPC<ControlAsistencia> result) {
 //                            Info.display("Exito!", "Se guardo correctamente el control de asistencia");
-                            guardarGridAsistencia(result.getObjetoRespuesta().getId());
-                        }
-                    });
+                                guardarGridAsistencia(result.getObjetoRespuesta().getId());
+                            }
+                        });
+                    }
+                } else {
+                MessageBox.alert("Guardar", "Debe seleccionar una categoria con deportistas", null);
                 }
 ////                
 //              
@@ -543,16 +546,17 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         }
         return true;
     }
+
     private boolean validarFalto() {
         Boolean asistio;
         String falto;
         for (BeanModel jugador : grid.getStore().getModels()) {
             asistio = jugador.get("asistio");
-            falto=jugador.get("falto");
+            falto = jugador.get("falto");
             asistio = asistio != null && asistio;
             if (asistio && jugador.get("falto") != null) {
 
-                MessageBox.alert("Error!", "Debe deschulear la asistencia para el jugador " + jugador.get("label")+" ya que esta marcado como "+jugador.get("falto"), null);
+                MessageBox.alert("Error!", "Debe deschulear la asistencia para el jugador " + jugador.get("label") + " ya que esta marcado como " + jugador.get("falto"), null);
                 return false;
             }
         }
@@ -592,8 +596,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             public void onSuccess(Void result) {
                 store.commitChanges();
                 limpiarCampos();
-                panel2.unmask();
                 Info.display("Guardar", "Se guardó correctamente la planilla de asistencia");
+                panel2.unmask();
             }
 
         });
@@ -976,8 +980,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
 
 }

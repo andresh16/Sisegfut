@@ -61,7 +61,7 @@ public class ComboBoxCategoria extends ComboBox<BeanModel>{
 
         recargar();        
         
-        setEmptyText("Seleccione una categoria");
+        setEmptyText("Seleccione una categoría");
         setDisplayField("nombrecategoria");
         setWidth(150);
         setStore(storeCombo);

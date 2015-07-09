@@ -226,17 +226,19 @@ public class PanelFormularioControlAsistencia extends FormPanel {
     public void limpiar() {
         
         id = null;
-        DtFecha.setEnabled(false);
+        
+        cbxCategoria.recargar();
         DtFecha.setValue(new Date());
-        tmHora.setEnabled(false);
         tmHora.setValue(new Time());
+        txtLugar.setValue("");
+        txtObservacion.setValue("");
+        
         radioGroup.setEnabled(false);
         txtLugar.setEnabled(false);
-        txtLugar.setValue("");
+        tmHora.setEnabled(false);
+        DtFecha.setEnabled(false);
         txtObservacion.setEnabled(false);
-        txtObservacion.setValue(null);
-        cbxCategoria.reset();
-        cbxCategoria.recargar();
+        
 //        reset();
 
     }

@@ -164,7 +164,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cp2.setLayout(new FillLayout());
         cp2.setScrollMode(Style.Scroll.AUTO);
 //        cp2.setEnabled(false);
-//        adminPestComp.tabpanelCompetencia.setEnabled(false);
+        adminPestComp.tabpanelCompetencia.setEnabled(false);
 
         fpCompromiso = crearFormulario();
 
@@ -610,8 +610,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 btnEditarCompetencia.disable();
                 btnConsularCompetencia = new Button("Consultar", listenerConsultarCompetencia());
                 btnConsularCompetencia.disable();
-                
-                
+
                 Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
 
                     @Override
@@ -627,10 +626,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                     }
                 });
-                
-                
-                
-                 btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
+
+                btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
 
                     @Override
                     public void componentSelected(ButtonEvent ce) {
@@ -638,7 +635,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                         panelEstadisticas.show();
                     }
                 });
-                 btnEstadisticaCompetencia.disable();
+                btnEstadisticaCompetencia.disable();
 
                 wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
                     @Override
@@ -848,7 +845,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                     } else {
                         btnConsularCompetencia.disable();
                         btnEditarCompetencia.enable();
-                         btnEstadisticaCompetencia.disable();
+                        btnEstadisticaCompetencia.disable();
                     }
 
 //                    idLesion = dTOLesiones.getIdLesion();
@@ -957,7 +954,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         btnGuardarCompetencia.disable();
 
         adminCuerpoTecnico.reiniciarCuerpoTecnicoCompe();
-        
+
         adminPestComp.panelAdminConvocados.reiniciarConvocados();
         adminPestComp.panelAdminControlDisciplinario.reiniciarControlJuego();
         adminPestComp.panelAdminSituaciones.reiniciarSituaciones();
@@ -1061,7 +1058,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
- wBuscar.hide();
+                wBuscar.hide();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
 
