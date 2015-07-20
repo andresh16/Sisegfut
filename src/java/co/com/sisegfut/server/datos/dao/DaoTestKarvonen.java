@@ -17,5 +17,6 @@ import java.util.List;
 public interface DaoTestKarvonen extends DaoGenerico<TestKarvonen>{
     
     public List<TestKarvonen> TestKarvonenXDeportista(Long idDep)throws Exception;
+    public List<TestKarvonen> TestKarvonenXCategoria(Long idCategoria)throws Exception;
     
 }

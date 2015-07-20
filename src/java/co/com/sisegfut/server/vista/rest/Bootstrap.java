@@ -211,6 +211,10 @@ public class Bootstrap implements InitializingBean {
             daoCategoria.guardar(categoria);
             
             categoria = new Categoria();
+            categoria.setNombrecategoria("UNIVERSITARIO");
+            daoCategoria.guardar(categoria);
+            
+            categoria = new Categoria();
             categoria.setNombrecategoria("PONY");
             daoCategoria.guardar(categoria);
             

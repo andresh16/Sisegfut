@@ -24,6 +24,7 @@ public class DTOAntropometricoxCategoria {
     private String pliabdominal;
     private String porcentajeGrasa;
     private Long idAntropometrico;
+    private String identificacion;
     
     public DTOAntropometricoxCategoria() {
     }
@@ -115,7 +116,14 @@ public class DTOAntropometricoxCategoria {
     public void setIdAntropometrico(Long idAntropometrico) {
         this.idAntropometrico = idAntropometrico;
     }
-    
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
     
     
     

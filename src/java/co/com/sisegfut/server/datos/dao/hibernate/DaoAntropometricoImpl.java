@@ -23,6 +23,7 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
     public List<Antropometrico> AntropometricoxDeportista(Long idDep) throws Exception {
         List<Antropometrico> listaAntep = null;
         String sql = "Select * from antropometrico where id_deportista=" + idDep + " order by fecha desc";
+        
         try {
             listaAntep = (List<Antropometrico>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
@@ -33,5 +34,23 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
             return null;
         }
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Antropometrico> AntropometricoxCategoria(Long idCategoria) throws Exception {
+        List<Antropometrico> listaAntep = null;
+        String sql = "select id_deportista,max(fecha) from antropometrico where categoria ="+ idCategoria+ "group by id_deportista";
+        
+        try {
+            listaAntep = (List<Antropometrico>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("antropometrico", Antropometrico.class).list();
+            return listaAntep;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 
 }

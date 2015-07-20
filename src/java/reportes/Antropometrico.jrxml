@@ -2,11 +2,21 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
 	<property name="ireport.zoom" value="1.0000000000000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="42"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="identificacion" class="java.lang.String"/>
 	<field name="perabdominal" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
+	<field name="perbrazorelajado" class="java.lang.String"/>
+	<field name="percadera" class="java.lang.String"/>
+	<field name="perpantorrilla" class="java.lang.String"/>
+	<field name="plisubescapular" class="java.lang.String"/>
+	<field name="plitricipital" class="java.lang.String"/>
+	<field name="plisupraescapular" class="java.lang.String"/>
+	<field name="pliabdominal" class="java.lang.String"/>
+	<field name="fechaNacimiento" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -29,10 +39,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="136" splitType="Stretch">
+		<band height="48" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="126" height="36" uuid="4474b89a-8941-49d3-81b5-9a636406c8b2"/>
 				<textElement>
@@ -41,20 +48,83 @@
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="257" splitType="Stretch">
 			<textField>
-				<reportElement x="176" y="58" width="100" height="20" uuid="f0d6e85d-2c6a-4600-96c4-33f44299a04b"/>
+				<reportElement x="160" y="64" width="72" height="20" uuid="f0d6e85d-2c6a-4600-96c4-33f44299a04b"/>
 				<textFieldExpression><![CDATA[$F{perabdominal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="176" y="21" width="100" height="20" uuid="a879b007-5d6d-4fc4-988e-21bd0ab27ced"/>
+				<reportElement x="160" y="24" width="72" height="20" uuid="a879b007-5d6d-4fc4-988e-21bd0ab27ced"/>
 				<text><![CDATA[perabdominal]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="26" y="21" width="100" height="20" uuid="9cf27af7-6adf-45e6-bead-d4d157db89b6"/>
-				<textFieldExpression><![CDATA[$P{identificacion}]]></textFieldExpression>
+				<reportElement x="249" y="64" width="86" height="20" uuid="29459514-71db-4c59-a0b3-b9ca16bdbf98"/>
+				<textFieldExpression><![CDATA[$F{perbrazorelajado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="249" y="24" width="86" height="20" uuid="38a2798b-f722-4aa8-b409-06a6ed33f5c3"/>
+				<text><![CDATA[perbrazorelajado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="356" y="64" width="59" height="20" uuid="157fd86f-75b8-4ba8-a81f-8c6834be9461"/>
+				<textFieldExpression><![CDATA[$F{percadera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="356" y="24" width="59" height="20" uuid="bd4911d4-7699-4042-8886-cc53c750081d"/>
+				<text><![CDATA[percadera]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="133" width="89" height="20" uuid="fd0a579a-56cc-4aa1-a34a-adce52f2351f"/>
+				<textFieldExpression><![CDATA[$F{plisubescapular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="102" width="89" height="20" uuid="85b543fc-4f32-4608-98e1-4d56d85316ed"/>
+				<text><![CDATA[plisubescapular]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="256" y="133" width="79" height="20" uuid="aea8359b-7a99-41fc-b96e-66912aeaa018"/>
+				<textFieldExpression><![CDATA[$F{plitricipital}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="256" y="102" width="79" height="20" uuid="e30ddd94-5a9f-482c-89e9-6451e1732601"/>
+				<text><![CDATA[plitricipital]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="133" width="100" height="20" uuid="ff326015-3f2a-4f57-8885-7495e40b95e6"/>
+				<textFieldExpression><![CDATA[$F{plisupraescapular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="356" y="102" width="94" height="20" uuid="907aa39a-9b7b-4a4a-a4a5-287016b97d3f"/>
+				<text><![CDATA[plisupraescapular]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="64" width="69" height="20" uuid="9ee59641-2243-4e93-bb9d-ceb40e5b9c23"/>
+				<textFieldExpression><![CDATA[$F{perpantorrilla}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="24" width="69" height="20" uuid="dcbac0e3-7e37-461b-817b-050dd2e30f38"/>
+				<text><![CDATA[perpantorrilla]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="133" width="69" height="20" uuid="919ee83b-6739-4783-af0d-ae5ca8288586"/>
+				<textFieldExpression><![CDATA[$F{pliabdominal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="102" width="69" height="20" uuid="8a6380da-0c9a-4579-806a-140850cccf34"/>
+				<text><![CDATA[pliabdominal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="24" width="100" height="20" uuid="380f0503-700d-4897-ae58-d8b82181b725"/>
+				<text><![CDATA[identificacion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="44" width="100" height="20" uuid="998e3774-3bd7-478e-930e-80c928fbff00"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

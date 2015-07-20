@@ -73,7 +73,7 @@ public class Antropometrico extends BaseModelData implements BeanModelTag, Seria
     private String pesoGraso;
     
     
-      @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "Fecha", nullable = false, length = 50)
     private Date fecha;
 

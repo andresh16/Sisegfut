@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8162af83-9647-427f-b9f0-7514b7794e87">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="47"/>
+	<parameter name="velocidad" class="java.lang.String"/>
+	<parameter name="condicionFisica" class="java.lang.String"/>
+	<parameter name="documento" class="java.lang.String"/>
+	<parameter name="nombres" class="java.lang.String"/>
+	<parameter name="apellidos" class="java.lang.String"/>
+	<field name="velocidad" class="java.lang.String"/>
+	<field name="condicionFisica" class="java.lang.String"/>
+	<field name="consumOxigeno" class="java.lang.String"/>
+	<field name="distancia" class="java.lang.String"/>
+	<field name="vo2max" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="IdCooper" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="69" y="32" width="402" height="36" forecolor="#336600" uuid="8bf0a930-bead-491d-8664-32dfb46df46f"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Histórico del Test de Cooper]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="100" height="20" uuid="5c99cc1b-da5a-4748-806a-9c2e3ccd35a2"/>
+				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="100" height="20" uuid="1b15d869-a92b-435f-b0cb-e768564fc62d"/>
+				<textFieldExpression><![CDATA[$P{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="100" height="20" uuid="6f74bf1a-d467-4448-99d5-3257b62b8b39"/>
+				<textFieldExpression><![CDATA[$P{apellidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="405" y="59" width="60" height="20" uuid="eff1ef94-fd30-4320-bd05-f8bcb6616897"/>
+				<textFieldExpression><![CDATA[$F{velocidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="405" y="24" width="60" height="20" uuid="7cd90c58-f213-4662-9992-2d0121118a67"/>
+				<text><![CDATA[velocidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="59" width="100" height="20" uuid="728a24a9-2755-42aa-a744-f8a82b50f547"/>
+				<textFieldExpression><![CDATA[$F{condicionFisica}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="24" width="100" height="20" uuid="00019828-f294-4adf-ab73-8ac75c6d30b7"/>
+				<text><![CDATA[condicionFisica]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="59" width="62" height="20" uuid="e2332c81-039e-4dd5-829d-d84909f5d86e"/>
+				<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="24" width="62" height="20" uuid="eb9d844e-6cf0-48b3-80f6-66e072a6f13c"/>
+				<text><![CDATA[distancia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="262" y="59" width="84" height="20" uuid="70566f60-bd22-4421-9eb3-5aa74f46e3a2"/>
+				<textFieldExpression><![CDATA[$F{consumOxigeno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="262" y="24" width="84" height="20" uuid="245008fe-c9bf-4ca4-a856-902770dacad7"/>
+				<text><![CDATA[consumOxigeno]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="346" y="59" width="59" height="20" uuid="1589f440-88c2-45c6-9c0b-9a2196cf6a9b"/>
+				<textFieldExpression><![CDATA[$F{vo2max}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="346" y="24" width="59" height="20" uuid="ac289a71-2ace-4abb-8c21-b6287aace021"/>
+				<text><![CDATA[vo2max]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="59" width="100" height="20" uuid="820d86ba-19d2-47ea-bc5a-a6765f23f63c"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="24" width="100" height="20" uuid="9da9aafb-ecff-4c07-a224-026ccdf39b67"/>
+				<text><![CDATA[fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="465" y="59" width="51" height="20" uuid="fb79ab5e-f876-4475-bb99-80e457bc0dbd"/>
+				<textFieldExpression><![CDATA[$F{IdCooper}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="471" y="24" width="45" height="20" uuid="2343e7dc-3737-4b8d-855f-72b851c15a75"/>
+				<text><![CDATA[IdCooper]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

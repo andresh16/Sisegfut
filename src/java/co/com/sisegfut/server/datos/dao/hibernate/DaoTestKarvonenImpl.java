@@ -35,4 +35,21 @@ public class DaoTestKarvonenImpl extends DaoGenericoImpl<TestKarvonen> implement
         }
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<TestKarvonen> TestKarvonenXCategoria(Long idCategoria) throws Exception {
+        List<TestKarvonen> listaKarvonen = null;
+
+        String sql = "select id_deportista,max(fecha) from test_karvonen where categoria ="+ idCategoria+ "group by id_deportista";
+        try {
+            listaKarvonen = (List<TestKarvonen>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("test_karvonen", TestKarvonen.class).list();
+            return listaKarvonen;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

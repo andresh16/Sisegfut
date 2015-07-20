@@ -96,6 +96,35 @@
                 </prop>
             </props>
         </property>
-    </bean>             
-	 
+    </bean> 
+    
+    <bean id="xlsReporteAntropometrico"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/Antropometrico.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_AntropometricoXCategoria.xls
+                </prop>
+            </props>
+        </property>
+    </bean>                        
+	
+    <!--Histórico Test de Cooper x Deportista-->
+        
+    <bean id="pdfReporteTC"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/DeportistaTC.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=TestCooperXDeportista.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>      
+           
 </beans>

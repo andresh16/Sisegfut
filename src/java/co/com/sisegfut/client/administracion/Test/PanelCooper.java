@@ -297,6 +297,9 @@ public class PanelCooper extends LayoutContainer {
 
         Button btnEliminar = new Button("Eliminar", listenerEliminar());
         btnEliminar.setIcon(Resources.ICONS.iconoEliminar());
+        
+        Button btnReporte = new Button("Histórico", ListenerGenerarReporte());
+        btnReporte.setIcon(Resources.ICONS.iconoPDF());
 
         FormPanel panel = crearFormulario();
 //        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
@@ -363,6 +366,7 @@ public class PanelCooper extends LayoutContainer {
         toolBar.add(btnGuardar);
         toolBar.add(btnEliminar);
         toolBar.add(btnLimpiar);
+        toolBar.add(btnReporte);
         toolBar.add(lbNombreDep);
 
         cpForm.setTopComponent(toolBar);
@@ -560,7 +564,25 @@ public class PanelCooper extends LayoutContainer {
         };
 
     }
+    
+    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
 
+                if (idDeportista != null) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaTC/";
+                    // deportista seleccionado
+                    redireccionarA(base + idDeportista);
+
+                } else {
+                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
+                }
+
+            }
+        };
+    }
     public TestCooper obtenerDatosFormulario() {
 
         TestCooper testCooper = new TestCooper();
@@ -829,5 +851,14 @@ public class PanelCooper extends LayoutContainer {
 
         simple.show();
     }
-
+    /**
+     * Mediante una llamada nativa redirecciona el browser a la dirección
+     * especificada, en el caso de descargar archivos el contenido del browser
+     * se conserva y simplemente lanza el archivo ;)
+     *
+     * @param url URL a ser cargada
+     */
+    private static native void redireccionarA(String url)/*-{
+     $wnd.location = url;
+     }-*/;
 }

@@ -104,7 +104,7 @@ public class PanelAdminConvocados extends LayoutContainer {
     PanelAdminPestComp adminPestComp;
     private Main myConstants;
 
-    TabItem tabItemTitulares = new TabItem("Titulates");
+    TabItem tabItemTitulares = new TabItem("Titulares");
     TabItem tabItemSuplentes = new TabItem("Suplentes");
     TabPanel tabpanelConvocados = new TabPanel();
 

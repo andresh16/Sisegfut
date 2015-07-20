@@ -13,10 +13,13 @@ import co.com.sisegfut.client.datos.dominio.Experiencia;
 import co.com.sisegfut.client.datos.dominio.LogrosDeportivos;
 import co.com.sisegfut.client.datos.dominio.Personal;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
-import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometricoxCategoria;
+import co.com.sisegfut.client.datos.dominio.TestCooper;
+import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooper;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooperxDeportista;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoAntropometrico;
@@ -435,25 +438,26 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
 //            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
-            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxDeportista(tipo);
-            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
-            List<DTOAntropometricoxCategoria> listaDeportistaAntReport = new ArrayList<DTOAntropometricoxCategoria>();
+            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxCategoria(categoria);
+//            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
+            List<DTOAntropometrico> listaDeportistaAntReport = new ArrayList<DTOAntropometrico>();
 
-            List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
-
-            for (Deportista deportista : listaDep) {
-
-                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
-
-                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
-                dtoDeportista.setNombres(deportista.getNombres());
-                dtoDeportista.setApellidos(deportista.getApellidos());
-                dtoDeportista.setIdentificacion(deportista.getDocumento());
+//            List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
+//
+//            for (Deportista deportista : listaDep) {
+////
+//                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
+//
+//                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
+//                dtoDeportista.setNombres(deportista.getNombres());
+//                dtoDeportista.setApellidos(deportista.getApellidos());
+//                dtoDeportista.setIdentificacion(deportista.getDocumento());
                 
                 for (Antropometrico antropometrico : listAnt) {
-                    DTOAntropometricoxCategoria dtoAntropometrico = new DTOAntropometricoxCategoria();
+                    DTOAntropometrico dtoAntropometrico = new DTOAntropometrico();
                     
-                    dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha()));
+                    dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha().toString()));
+                    dtoAntropometrico.setIdentificacion(antropometrico.getIdDeportista().toString());
                     dtoAntropometrico.setPerabdominal(antropometrico.getPerabdominal().toString());
                     dtoAntropometrico.setPerbrazorelajado(antropometrico.getPerbrazorelajado().toString());
                     dtoAntropometrico.setPercadera(antropometrico.getPercadera().toString());
@@ -464,28 +468,26 @@ public class ReportesController {
                     dtoAntropometrico.setPlitricipital(antropometrico.getPlitricipital().toString());
                     
                     listaDeportistaAntReport.add(dtoAntropometrico);
-                    
+//                        listaDeportistaReport.add(dtoDeportista);   
                 }
 
-                listaDeportistaReport.add(dtoDeportista);
-            }
-            if (listaDeportistaReport.isEmpty()) {
-                listaDeportistaReport.add(new DTODeportistaxCategoria());
-            }
+//            if (listaDeportistaReport.isEmpty()) {
+//                listaDeportistaReport.add(new DTODeportistaxCategoria());
+//            }
             if (listaDeportistaAntReport.isEmpty()) {
-                listaDeportistaAntReport.add(new DTOAntropometricoxCategoria());
+                listaDeportistaAntReport.add(new DTOAntropometrico());
             }
             System.out.println("nombre cat" + nombreCategoria);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
 
-            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAntReport));
             parameterMap.put("categoria", nombreCategoria);
 
             if (tipo == TIPO_XLS) {
-                modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+                modelAndView = new ModelAndView("xlsReporteAntropometrico", parameterMap);
             } else {
-                modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+                modelAndView = new ModelAndView("pdfReporteAntropometrico", parameterMap);
             }
 
             return modelAndView;
@@ -519,5 +521,80 @@ public class ReportesController {
 //            parameterMap.put("pliabdominal", ant.getPliabdominal());
 //            parameterMap.put("porcentajeGrasa", ant.getPorcentajeGrasa());        
            
-    
+    @RequestMapping(value = "/ReporteDeportistaTC/{idDeportista}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportTestCooper(
+            @PathVariable Long idDeportista,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte histórico del test de cooper");
+            Deportista dep = daoDeportista.getById(idDeportista);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("documento", dep.getDocumento());
+            parameterMap.put("nombres", dep.getNombres());
+            parameterMap.put("apellidos", dep.getApellidos());
+//            parameterMap.put("categoria", dep.getCategoria().getNombrecategoria());
+            
+            List<TestCooper> listAnt =  new ArrayList<TestCooper>();
+
+            List<DTOTestCooperxDeportista> listaRetorno = new ArrayList<DTOTestCooperxDeportista>();
+
+            listAnt = daoTestCooper.TCXDeportista(idDeportista);
+            
+                DTOTestCooperxDeportista agg = new DTOTestCooperxDeportista();
+
+                if (listAnt.size() > 1) {
+                    if (listAnt.get(1) != null) {
+                        agg.setCondicionFisica(listAnt.get(1).getCondicionFisica());
+                        agg.setDistancia(listAnt.get(1).getDistancia().toString());
+                        agg.setConsumOxigeno(listAnt.get(1).getConsumOxigeno());
+                        agg.setFecha(listAnt.get(1).getFecha());
+                        agg.setVelocidad(listAnt.get(1).getVelocidad());
+                        agg.setVo2max(listAnt.get(1).getVo2max());
+                    }
+                } else {
+                    agg.setCondicionFisica("");
+                    agg.setDistancia("");
+                    agg.setConsumOxigeno("");
+                    agg.setFecha(null);
+                    agg.setVelocidad("");
+                    agg.setVo2max("");
+                }
+                
+                listaRetorno.add(agg);
+
+             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetorno));
+
+            modelAndView = new ModelAndView("pdfReporteTC", parameterMap);
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.\n" + e);
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
 }

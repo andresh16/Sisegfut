@@ -36,4 +36,21 @@ public class DaoControlTecnicoImpl extends DaoGenericoImpl<ControlTecnico> imple
         
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public List<ControlTecnico> CtrlTecXCategoria(Long idCategoria) throws Exception {
+         List<ControlTecnico> listaAntep = null;
+         
+         String sql = "select id_deportista,max(fecha) from control_tecnico where categoria ="+ idCategoria+ "group by id_deportista";
+         try {
+             listaAntep = (List<ControlTecnico>)sessionFactory.getCurrentSession()
+                     .createSQLQuery(sql)
+                     .addEntity("control_tecnico", ControlTecnico.class).list();
+             return listaAntep;
+         } catch (Exception e) {
+             e.printStackTrace();
+             return null;
+         }
+        
+    }
 }

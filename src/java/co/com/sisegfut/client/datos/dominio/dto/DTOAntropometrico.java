@@ -29,6 +29,7 @@ public class DTOAntropometrico implements BeanModelTag, Serializable{
     private String pesoGraso;
     private String pesoMacro;
     private Long idAntropometrico;
+    private String identificacion;
     
 
     public Date getFecha() {
@@ -135,6 +136,14 @@ public class DTOAntropometrico implements BeanModelTag, Serializable{
 
     public void setPesoMacro(String pesoMacro) {
         this.pesoMacro = pesoMacro;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
     
     

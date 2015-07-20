@@ -93,14 +93,19 @@ public class InformeTest extends FormPanel {
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Test de Cooper")){
                         generarTestCooper(idCategoria);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Medidas Antropométricas")){
-                        generarTestAntropometrico(idCategoria);
+//                        generarTestAntropometrico(idCategoria); 
+                        System.out.println("Test Antropometrico "+idCategoria);
+                        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
+                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ + tipo);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Control Técnico")){
                         generarTestControlTecnico(idCategoria);
                     }
                     panel.reset();
                 } else {
 
-                    MessageBox.alert("ERROR", "NO envio al redireccionar panel invalido", null);
+                    MessageBox.alert("ERROR", "No envio al redireccionar panel invalido", null);
                 }
 
             }
@@ -121,15 +126,15 @@ public class InformeTest extends FormPanel {
 //                    redireccionarA(base +"/"+idCategoria);
         
     }
-    public void generarTestAntropometrico(Long idCategoria){
-        System.out.println("Test Antropometrico "+idCategoria);
-        idCategoria = cbxCategoria.getCategoriaElegida().getId();
-        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
-        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
-                    // usuarioSession
-                    redireccionarA(base +nombreCategoria + "/"+idCategoria+"/");
-        
-    }
+//    public void generarTestAntropometrico(Long idCategoria){
+//        System.out.println("Test Antropometrico "+idCategoria);
+//        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+//        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+//        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
+//        // usuarioSession
+//        redireccionarA(base +nombreCategoria + "/"+idCategoria);
+//        
+//    }
     public void generarTestControlTecnico(Long idCategoria){
         System.out.println("Test Control Tecnico "+idCategoria);
 //        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportista/";

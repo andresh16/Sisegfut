@@ -15,5 +15,9 @@ import java.util.List;
 public interface DaoTestCooper extends DaoGenerico<TestCooper> {
 
     public List<TestCooper> TestCooperXDeportista(Long idDep) throws Exception;
+    
+    public List<TestCooper> TestCooperXCategoria(Long idCategoria) throws Exception;
+    
+    public List<TestCooper> TCXDeportista(Long idDep) throws Exception;
 
 }

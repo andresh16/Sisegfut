@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface DaoControlTecnico extends DaoGenerico<ControlTecnico>{
     public List<ControlTecnico> CtrlTecXDeportista(Long idDep)throws Exception;
+    public List<ControlTecnico>CtrlTecXCategoria(Long idCategoria)throws Exception;
 }

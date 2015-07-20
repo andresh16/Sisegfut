@@ -34,7 +34,41 @@ public class DaoTestCooperImpl extends DaoGenericoImpl<TestCooper> implements Da
             e.printStackTrace();
             return null;
         }
+//"select id_deportista,max(fecha) from test_cooper where categoria ="+ idCategoria+"group by id_deportista";
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<TestCooper> TestCooperXCategoria(Long idCategoria) throws Exception {
+        List<TestCooper> listaTestCooper = null;
 
+        String sql = "select id_deportista,max(fecha) from test_cooper where categoria ="+ idCategoria+ "group by id_deportista";
+        try {
+            listaTestCooper = (List<TestCooper>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("test_cooper", TestCooper.class).list();
+            return listaTestCooper;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+//"select id_deportista,max(fecha) from test_cooper where categoria ="+ idCategoria+"group by id_deportista";
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<TestCooper> TCXDeportista(Long idDep) throws Exception {
+        List<TestCooper> listaAntep = null;
+
+        String sql = "select d.documento,d.nombres, d.apellidos,tc.fecha, tc.condicion_fisica, tc.distancia,tc.consumo_oxigeno,tc.vo2max,tc.velocidad \n" +
+                     "from test_cooper as tc Inner Join Deportista as d On tc.id_deportista=d.id where id_deportista=" + idDep + " order by fecha desc";
+        try {
+            listaAntep = (List<TestCooper>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("test_cooper", TestCooper.class).list();
+            return listaAntep;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }}
 }

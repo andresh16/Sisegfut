@@ -524,7 +524,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                         });
                     }
                 } else {
-                MessageBox.alert("Guardar", "Debe seleccionar una categoria con deportistas", null);
+                MessageBox.alert("Guardar", "Debe seleccionar una categoría con deportistas", null);
                 }
 ////                
 //              
