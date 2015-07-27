@@ -7,6 +7,7 @@
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.Asistencia;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.List;
 
 /**
@@ -17,6 +18,10 @@ public interface RPCAdminAsistencia extends RPCMaestro<Asistencia>{
     
     
      public void guardarGridAsistencia(Long IdControlAsistencia,List<String[]> asistencias);
+     
+     public List<Asistencia> getAsistenciaxId(Long IdControlAsistencia);
+     
+     public PagingLoadResult<Asistencia> getDeportistasxCategoria(Long idCategoria);
      
      
 }

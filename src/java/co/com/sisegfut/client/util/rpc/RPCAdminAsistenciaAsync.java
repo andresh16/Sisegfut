@@ -6,6 +6,7 @@
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.Asistencia;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.List;
 
@@ -16,5 +17,9 @@ import java.util.List;
 public interface RPCAdminAsistenciaAsync extends RPCMaestroAsync<Asistencia> {
 
     public void guardarGridAsistencia(Long IdControlAsistencia, List<String[]> asistencias, AsyncCallback<Void> callback);
+    
+    public void getAsistenciaxId(Long IdControlAsistencia, AsyncCallback<List<Asistencia>> callback);
+    
+    public void getDeportistasxCategoria(Long IdCategoria, AsyncCallback<PagingLoadResult<Asistencia>> callback);
 
 }

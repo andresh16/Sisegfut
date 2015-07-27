@@ -6,6 +6,7 @@
 package co.com.sisegfut.server.datos.dao.hibernate;
 
 import co.com.sisegfut.client.datos.dominio.Antropometrico;
+import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
 import co.com.sisegfut.server.datos.dao.DaoAntropometrico;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
     public List<Antropometrico> AntropometricoxDeportista(Long idDep) throws Exception {
         List<Antropometrico> listaAntep = null;
         String sql = "Select * from antropometrico where id_deportista=" + idDep + " order by fecha desc";
-        
+
         try {
             listaAntep = (List<Antropometrico>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
@@ -34,13 +35,13 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
             return null;
         }
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public List<Antropometrico> AntropometricoxCategoria(Long idCategoria) throws Exception {
         List<Antropometrico> listaAntep = null;
-        String sql = "select id_deportista,max(fecha) from antropometrico where categoria ="+ idCategoria+ "group by id_deportista";
-        
+        String sql = "select ta.* from antropometrico as ta Inner Join Deportista as d On ta.id_deportista=d.id and d.categoria=" + idCategoria;
+
         try {
             listaAntep = (List<Antropometrico>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
@@ -51,6 +52,5 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
             return null;
         }
     }
-    
 
 }

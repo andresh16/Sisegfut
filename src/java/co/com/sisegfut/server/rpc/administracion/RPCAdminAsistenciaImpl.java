@@ -11,6 +11,7 @@ import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.util.rpc.RPCAdminAsistencia;
 import co.com.sisegfut.server.datos.dao.DaoAsistencia;
+import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
 
     private Usuarios usuarioSession;
     private DaoAsistencia daoAsistencia;
+    private DaoDeportista daoDeportista;
 
     @Autowired
     @Override
@@ -39,6 +41,11 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
     public void setDaoAsistencia(DaoAsistencia daoAsistencia) {
         this.daoAsistencia = daoAsistencia;
         super.setDaoGenerico(daoAsistencia);
+    }
+    
+    @Autowired
+    public void setDaoDeportista(DaoDeportista daoDeportista) {
+        this.daoDeportista = daoDeportista;
     }
 
     @Override
@@ -57,13 +64,49 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
             }else{
             asistio = false;
             }
-            nuevo.setAsistio(asistio);
-            nuevo.setFalto(asitencia[2]);
+//            nuevo.setAsistio(asistio);
+//            nuevo.setFalto(asitencia[2]);
             nuevo.setIdDeportista(new Deportista(Long.parseLong(asitencia[0])));
 
             daoAsistencia.guardar(nuevo);
         }
     }
+
+    @Override
+    public List<Asistencia> getAsistenciaxId(Long IdControlAsistencia) {
+        try {
+             return daoAsistencia.getAsistenciaxId(IdControlAsistencia);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+       
+        
+    }
+
+    @Override
+    public PagingLoadResult<Asistencia> getDeportistasxCategoria(Long idCategoria) {
+         List<Deportista> deportistas = new ArrayList<Deportista>();
+         List<Asistencia> listaRetorno = new ArrayList<Asistencia>();
+        try {
+            deportistas = daoDeportista.deportistaXCategoria(idCategoria);
+            
+            for (Deportista deportista : deportistas) {
+                Asistencia asistencia= new Asistencia();
+                asistencia.setEstado("ASISTE");
+                asistencia.setIdDeportista(deportista);
+                asistencia.setId_control_asistencia(null);
+                listaRetorno.add(asistencia);
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(RPCAdminAsistenciaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PagingLoadResult<Asistencia> loadResult = new BasePagingLoadResult<Asistencia>(listaRetorno, 1, 1000);
+        return loadResult;
+    }
+
+    
 
  
 }

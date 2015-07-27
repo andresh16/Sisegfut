@@ -98,7 +98,7 @@ public class InformeTest extends FormPanel {
                         idCategoria = cbxCategoria.getCategoriaElegida().getId();
                         String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
-                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ + tipo);
+                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Control Técnico")){
                         generarTestControlTecnico(idCategoria);
                     }

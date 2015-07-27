@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
 	<property name="ireport.zoom" value="1.0000000000000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="identificacion" class="java.lang.String"/>
-	<field name="perabdominal" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
+	<field name="nombreCompleto" class="java.lang.String"/>
+	<field name="perabdominal" class="java.lang.String"/>
 	<field name="perbrazorelajado" class="java.lang.String"/>
 	<field name="percadera" class="java.lang.String"/>
 	<field name="perpantorrilla" class="java.lang.String"/>
@@ -14,23 +16,23 @@
 	<field name="plitricipital" class="java.lang.String"/>
 	<field name="plisupraescapular" class="java.lang.String"/>
 	<field name="pliabdominal" class="java.lang.String"/>
-	<field name="fechaNacimiento" class="java.lang.String"/>
-	<field name="apellidos" class="java.lang.String"/>
-	<field name="nombres" class="java.lang.String"/>
+	<field name="pesoGraso" class="java.lang.String"/>
+	<field name="pesoMacro" class="java.lang.String"/>
+	<field name="porcentajeGrasa" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="11" y="33" width="402" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
+				<reportElement x="57" y="24" width="466" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte Antropometrico por la categoría]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="413" y="33" width="126" height="36" uuid="a2d786bd-c11f-4f0d-bb1b-4508647dbba3"/>
+				<reportElement x="536" y="24" width="183" height="36" uuid="a2d786bd-c11f-4f0d-bb1b-4508647dbba3"/>
 				<textElement>
 					<font size="20"/>
 				</textElement>
@@ -39,9 +41,9 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="48" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="126" height="36" uuid="4474b89a-8941-49d3-81b5-9a636406c8b2"/>
+				<reportElement x="24" y="0" width="198" height="36" uuid="4474b89a-8941-49d3-81b5-9a636406c8b2"/>
 				<textElement>
 					<font size="20"/>
 				</textElement>
@@ -50,91 +52,129 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="16" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="257" splitType="Stretch">
-			<textField>
-				<reportElement x="160" y="64" width="72" height="20" uuid="f0d6e85d-2c6a-4600-96c4-33f44299a04b"/>
-				<textFieldExpression><![CDATA[$F{perabdominal}]]></textFieldExpression>
-			</textField>
+		<band height="22" splitType="Stretch">
 			<staticText>
-				<reportElement x="160" y="24" width="72" height="20" uuid="a879b007-5d6d-4fc4-988e-21bd0ab27ced"/>
+				<reportElement x="0" y="0" width="57" height="20" uuid="a4fc7d95-7419-4b49-ac62-c8c207d047e5"/>
+				<text><![CDATA[fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="0" width="57" height="20" uuid="17240eb4-3edc-498e-8393-73a336b802a1"/>
+				<text><![CDATA[identificacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="0" width="57" height="20" uuid="25bd7ae6-6e56-477f-9bf0-d32598599b6f"/>
+				<text><![CDATA[nombreCompleto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="0" width="57" height="20" uuid="70a724f5-74ba-4bc9-a9fd-9b14ff3f835f"/>
 				<text><![CDATA[perabdominal]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="249" y="64" width="86" height="20" uuid="29459514-71db-4c59-a0b3-b9ca16bdbf98"/>
-				<textFieldExpression><![CDATA[$F{perbrazorelajado}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="249" y="24" width="86" height="20" uuid="38a2798b-f722-4aa8-b409-06a6ed33f5c3"/>
+				<reportElement x="228" y="0" width="57" height="20" uuid="562aee58-10c9-405c-bdbb-0efa3fcfa0de"/>
 				<text><![CDATA[perbrazorelajado]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="356" y="64" width="59" height="20" uuid="157fd86f-75b8-4ba8-a81f-8c6834be9461"/>
-				<textFieldExpression><![CDATA[$F{percadera}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="356" y="24" width="59" height="20" uuid="bd4911d4-7699-4042-8886-cc53c750081d"/>
+				<reportElement x="285" y="0" width="57" height="20" uuid="8e8e6ba4-cd64-494a-8822-027890fcd351"/>
 				<text><![CDATA[percadera]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="160" y="133" width="89" height="20" uuid="fd0a579a-56cc-4aa1-a34a-adce52f2351f"/>
-				<textFieldExpression><![CDATA[$F{plisubescapular}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="160" y="102" width="89" height="20" uuid="85b543fc-4f32-4608-98e1-4d56d85316ed"/>
-				<text><![CDATA[plisubescapular]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="256" y="133" width="79" height="20" uuid="aea8359b-7a99-41fc-b96e-66912aeaa018"/>
-				<textFieldExpression><![CDATA[$F{plitricipital}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="256" y="102" width="79" height="20" uuid="e30ddd94-5a9f-482c-89e9-6451e1732601"/>
-				<text><![CDATA[plitricipital]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="350" y="133" width="100" height="20" uuid="ff326015-3f2a-4f57-8885-7495e40b95e6"/>
-				<textFieldExpression><![CDATA[$F{plisupraescapular}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="356" y="102" width="94" height="20" uuid="907aa39a-9b7b-4a4a-a4a5-287016b97d3f"/>
-				<text><![CDATA[plisupraescapular]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="454" y="64" width="69" height="20" uuid="9ee59641-2243-4e93-bb9d-ceb40e5b9c23"/>
-				<textFieldExpression><![CDATA[$F{perpantorrilla}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="454" y="24" width="69" height="20" uuid="dcbac0e3-7e37-461b-817b-050dd2e30f38"/>
+				<reportElement x="342" y="0" width="57" height="20" uuid="edcec2fb-4f30-4361-9f25-d8fcb4e7ac9c"/>
 				<text><![CDATA[perpantorrilla]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="454" y="133" width="69" height="20" uuid="919ee83b-6739-4783-af0d-ae5ca8288586"/>
-				<textFieldExpression><![CDATA[$F{pliabdominal}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="454" y="102" width="69" height="20" uuid="8a6380da-0c9a-4579-806a-140850cccf34"/>
+				<reportElement x="399" y="0" width="57" height="20" uuid="fe7e503b-6d60-43ba-a1cb-daa88cb1f448"/>
+				<text><![CDATA[plisubescapular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="0" width="57" height="20" uuid="44bb0982-108f-4ac3-9484-a9c1c8b6e248"/>
+				<text><![CDATA[plitricipital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="0" width="57" height="20" uuid="2bd2127b-2ad1-4e24-85a3-893dff3e4c93"/>
+				<text><![CDATA[plisupraescapular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="570" y="0" width="57" height="20" uuid="c1f79ded-99c0-4cdd-ae2b-577f3cd48421"/>
 				<text><![CDATA[pliabdominal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="24" width="100" height="20" uuid="380f0503-700d-4897-ae58-d8b82181b725"/>
-				<text><![CDATA[identificacion]]></text>
+				<reportElement x="627" y="0" width="57" height="20" uuid="ff65904f-df0c-4910-8d9e-0c0df33ee4af"/>
+				<text><![CDATA[pesoGraso]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="684" y="0" width="57" height="20" uuid="17166fe3-56ed-4b29-a68b-cc6cffd42d60"/>
+				<text><![CDATA[pesoMacro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="741" y="0" width="57" height="20" uuid="35a03d53-32f1-4546-85a9-1ab2d360b1bb"/>
+				<text><![CDATA[porcentajeGrasa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="11" y="44" width="100" height="20" uuid="998e3774-3bd7-478e-930e-80c928fbff00"/>
+				<reportElement x="0" y="0" width="57" height="20" uuid="ede1060a-a9bc-46b5-9551-0138811dd55a"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="57" height="20" uuid="364eb062-4fe5-4328-8a89-d2576ad3dd48"/>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="0" width="57" height="20" uuid="86f9ab50-8c08-4c26-85fb-a5275f9dcfd8"/>
+				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="57" height="20" uuid="9893b5b8-2547-4703-bd23-fcacfd16511e"/>
+				<textFieldExpression><![CDATA[$F{perabdominal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="0" width="57" height="20" uuid="de16b01e-50e6-4362-a7e5-3afedd376b09"/>
+				<textFieldExpression><![CDATA[$F{perbrazorelajado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="57" height="20" uuid="002f66a8-621e-484b-8978-92eabf4af857"/>
+				<textFieldExpression><![CDATA[$F{percadera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="57" height="20" uuid="81de62b1-15d7-4813-97c1-ad9bc7552d39"/>
+				<textFieldExpression><![CDATA[$F{perpantorrilla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="0" width="57" height="20" uuid="57e65ac7-7fe2-4a60-aa81-2a8529750bc7"/>
+				<textFieldExpression><![CDATA[$F{plisubescapular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="0" width="57" height="20" uuid="6d378208-aebf-4fe8-851c-81500c7e5a2f"/>
+				<textFieldExpression><![CDATA[$F{plitricipital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="0" width="57" height="20" uuid="24b56a70-dda4-41fe-8d43-996357d8a40c"/>
+				<textFieldExpression><![CDATA[$F{plisupraescapular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="570" y="0" width="57" height="20" uuid="63332753-af25-48d0-b0e4-b8f446962910"/>
+				<textFieldExpression><![CDATA[$F{pliabdominal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="627" y="0" width="57" height="20" uuid="0c966e1b-8b57-46d1-ae9f-bb68fdc97a86"/>
+				<textFieldExpression><![CDATA[$F{pesoGraso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="684" y="0" width="57" height="20" uuid="a8cc35eb-37b1-4732-8a20-540e0d6bd02f"/>
+				<textFieldExpression><![CDATA[$F{pesoMacro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="741" y="0" width="57" height="20" uuid="22671b4f-7b36-4f48-bc48-2c4506cfcc6e"/>
+				<textFieldExpression><![CDATA[$F{porcentajeGrasa}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<frame>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="-10" y="16" width="565" height="24" forecolor="#339900" backcolor="#99FF99" uuid="0e37da4b-fe1d-4beb-adfd-427ac6026ff8">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="54" forecolor="#339900" backcolor="#99FF99" uuid="0e37da4b-fe1d-4beb-adfd-427ac6026ff8">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 				</reportElement>
 				<textField pattern="EEEEE dd MMMMM yyyy">
@@ -145,18 +185,15 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="423" y="4" width="80" height="20" uuid="3c5feea3-105b-47c1-a04b-28bd8cb83ef9"/>
+					<reportElement x="649" y="4" width="80" height="20" uuid="3c5feea3-105b-47c1-a04b-28bd8cb83ef9"/>
 					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="509" y="4" width="40" height="20" uuid="12659ada-a9f5-4744-b00d-fccea5ac1da1"/>
+					<reportElement x="735" y="4" width="40" height="20" uuid="12659ada-a9f5-4744-b00d-fccea5ac1da1"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

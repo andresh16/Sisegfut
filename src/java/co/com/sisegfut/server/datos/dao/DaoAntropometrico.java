@@ -7,6 +7,7 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.Antropometrico;
+import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
 import java.util.List;
 /**
  *

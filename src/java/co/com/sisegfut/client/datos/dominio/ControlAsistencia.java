@@ -55,8 +55,8 @@ public class ControlAsistencia  extends BaseModelData implements BeanModelTag, S
     public ControlAsistencia() {
     }
 
-    public ControlAsistencia(Long IdDep) {
-        this.Id=IdDep;
+    public ControlAsistencia(Long Id) {
+        this.Id=Id;
     }
 
     public Long getId() {

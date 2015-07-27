@@ -30,6 +30,7 @@ import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.CheckBoxGroup;
+import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FileUploadField;
@@ -205,7 +206,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtTelefono.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
         ColumnaDias.add(txtTelefono, formData);
-        
+
         txtCelular.setName("celular");
         txtCelular.setAllowBlank(false);
         txtCelular.setFieldLabel("<font color='red'>*</font>Celular");
@@ -213,7 +214,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtCelular.setEmptyText("");
         txtCelular.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
         ColumnaDias.add(txtCelular, formData);
-        
+
         txtDireccion.setName("direccion");
         txtDireccion.setAllowBlank(false);
         txtDireccion.setFieldLabel("<font color='red'>*</font>Dirección");
@@ -285,7 +286,7 @@ public final class PanelInfoGeneral extends FormPanel {
         cbxCargo.setLabelSeparator("<font color='red'>*</font>Cargo");
         cbxCargo.setAllowBlank(false);
         Columna2.add(cbxCargo, formData);
-        
+
         txtCorreo.setMaxLength(100);
         txtCorreo.setEmptyText("ejem. ejemplo@dominio.com");
         txtCorreo.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico"));
@@ -294,7 +295,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtCorreo.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
         txtCorreo.setAllowBlank(false);
         Columna2.add(txtCorreo, formData);
-        
+
         main.add(ColumnaDias, new ColumnData(.5));
         main.add(Columna2, new ColumnData(.5));
 //        main.add(Columna3, new ColumnData(.25));
@@ -318,12 +319,15 @@ public final class PanelInfoGeneral extends FormPanel {
 
         chLunes = new CheckBox();
         chLunes.setBoxLabel("Lunes");
+        chLunes.setValue(true);
 
         chMartes = new CheckBox();
         chMartes.setBoxLabel("Martes");
+        chMartes.setValue(true);
 
         chMiercoles = new CheckBox();
         chMiercoles.setBoxLabel("Miercoles");
+        chMiercoles.setValue(true);
 
         CheckBoxGroup chGroup1 = new CheckBoxGroup();
         chGroup1.setOrientation(Style.Orientation.HORIZONTAL);
@@ -342,9 +346,11 @@ public final class PanelInfoGeneral extends FormPanel {
 
         chJueves = new CheckBox();
         chJueves.setBoxLabel("Jueves");
+        chJueves.setValue(true);
 
         chViernes = new CheckBox();
         chViernes.setBoxLabel("Viernes");
+        chViernes.setValue(true);
 
         chSabado = new CheckBox();
         chSabado.setBoxLabel("Sábado");
@@ -370,7 +376,9 @@ public final class PanelInfoGeneral extends FormPanel {
         DateTimeFormat fmt = DateTimeFormat.getFormat("hh:mm aa");
         tmHoraInicio.setFormat(fmt);
         tmHoraInicio.setIncrement(30);
-        tmHoraInicio.setEnabled(true);
+        tmHoraInicio.setForceSelection(true);
+        tmHoraInicio.setTriggerAction(ComboBox.TriggerAction.ALL);
+        tmHoraInicio.setEditable(false);
         tmHoraInicio.setAllowBlank(false);
         ColumnaHoras.add(tmHoraInicio, formData);
 //        Columna1.add(tmHoraInicio, formData);
@@ -379,9 +387,11 @@ public final class PanelInfoGeneral extends FormPanel {
 //        tmHoraFin.addPlugin(plugin);
         tmHoraFin.setData("text", "Seleccione la hora");
         DateTimeFormat fmtt = DateTimeFormat.getFormat("hh:mm aa");
-        tmHoraFin.setFormat(fmtt);
+        tmHoraFin.setFormat(fmt);
         tmHoraFin.setIncrement(30);
-        tmHoraFin.setEnabled(true);
+        tmHoraFin.setForceSelection(true);
+        tmHoraFin.setTriggerAction(ComboBox.TriggerAction.ALL);
+        tmHoraFin.setEditable(false);
         tmHoraFin.setAllowBlank(false);
         ColumnaHoras.add(tmHoraFin, formData);
 
@@ -476,7 +486,7 @@ public final class PanelInfoGeneral extends FormPanel {
                                 @Override
                                 public void onSuccess(Personal result) {
                                     result.getFoto();
-                                    
+
                                     Info.display("Guardar", "Guardo correctamente el deportista");
                                     limpiar();
 
@@ -488,8 +498,8 @@ public final class PanelInfoGeneral extends FormPanel {
                             guardar(personal);
                         }
                     }
-                }else{
-                MessageBox.alert("Error Horario", "La hora de entrada debe ser menor a la hora de salida", null);
+                } else {
+                    MessageBox.alert("Error Horario", "La hora de entrada debe ser menor a la hora de salida", null);
                 }
             }
         };
@@ -517,8 +527,8 @@ public final class PanelInfoGeneral extends FormPanel {
         personal.setGenero(genero);
         personal.setNivelEducativo(cbxNivelEdu.getNivelEducativoElegido());
         personal.setCargo(cbxCargo.getCargoElegido());
-        
-         Date horaInicio = new Date();
+
+        Date horaInicio = new Date();
         horaInicio.setTime(tmHoraInicio.getDateValue().getTime());
         personal.setHoraInicio(horaInicio);
         Date horaFin = new Date();
@@ -531,11 +541,9 @@ public final class PanelInfoGeneral extends FormPanel {
         personal.setJueves(chJueves.getValue());
         personal.setViernes(chViernes.getValue());
         personal.setSabado(chSabado.getValue());
-        
-        
+
         return personal;
     }
-
 
     public RPCAdminPersonalAsync getServicePersonal() {
         RPCAdminPersonalAsync svc = (RPCAdminPersonalAsync) GWT.create(RPCAdminPersonal.class);

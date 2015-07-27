@@ -7,6 +7,7 @@ package co.com.sisegfut.client.administracion.ControlAsistencia;
 
 import co.com.sisegfut.client.aaI18N.Main;
 import static co.com.sisegfut.client.administracion.deportista.PanelInfoGeneral.ACTIVOS;
+import co.com.sisegfut.client.datos.dominio.Asistencia;
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
@@ -19,8 +20,6 @@ import co.com.sisegfut.client.util.rpc.RPCAdminAsistencia;
 import co.com.sisegfut.client.util.rpc.RPCAdminAsistenciaAsync;
 import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistencia;
 import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistenciaAsync;
-import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
-import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.data.BaseFilterPagingLoadConfig;
@@ -109,7 +108,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     BorderLayoutData dataCenter;
     ContentPanel panel2;
     private ComboBoxCategoria cbxCategoria;
-    RpcProxy<PagingLoadResult<Deportista>> proxy;
+    RpcProxy<PagingLoadResult<Asistencia>> proxy;
     ListStore<BeanModel> store;
     private EditorGrid<BeanModel> grid;
     private PanelFormularioControlAsistencia panelFormularioControlAsistencia;
@@ -176,9 +175,9 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        add(toolBar, new FlowData(0));
         usuarioLogeado = BeansLocales.getUsuario();
 
-        final RPCAdminDeportistaAsync svc = (RPCAdminDeportistaAsync) GWT.create(RPCAdminDeportista.class);
+        final RPCAdminAsistenciaAsync svc = (RPCAdminAsistenciaAsync) GWT.create(RPCAdminAsistencia.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
-        endpoint.setServiceEntryPoint("services/RPCAdminDeportista");
+        endpoint.setServiceEntryPoint("services/RPCAdminAsistencia");
 
         //Valido que el servicio RPC este activo.
         if (svc == null) {
@@ -191,13 +190,13 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             return;
         }
         //Llamo el servicio RPC que se usara como proxy para cargar los datos de la entidad indicada
-        proxy = new RpcProxy<PagingLoadResult<Deportista>>() {
+        proxy = new RpcProxy<PagingLoadResult<Asistencia>>() {
             @Override
-            protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Deportista>> callback) {
+            protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Asistencia>> callback) {
                 if (consultarPlanillaasistencia) {
 
                 } else {
-                    svc.getDeportistaxCategoria(IdCategoriaElegida, callback);
+                    svc.getDeportistasxCategoria(IdCategoriaElegida, callback);
                 }
             }
 
@@ -210,17 +209,16 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 return config;
             }
 
-            @Override
-            protected void onLoadSuccess(Object loadConfig, PagingLoadResult<ModelData> result) {
-
-                for (ModelData jug : result.getData()) {
-                    jug.set("asistio", true);
-                }
-
-                super.onLoadSuccess(loadConfig, result); //To change body of generated methods, choose Tools | Templates.
-
-            }
-
+//            @Override
+//            protected void onLoadSuccess(Object loadConfig, PagingLoadResult<ModelData> result) {
+//
+//                for (ModelData jug : result.getData()) {
+//                    jug.set("falto", "ASISTE");
+//                }
+//
+//                super.onLoadSuccess(loadConfig, result); //To change body of generated methods, choose Tools | Templates.
+//
+//            }
         };
         loader.setRemoteSort(false);
 
@@ -230,27 +228,15 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         PgtoolBar.bind(loader);
         //Configuro las columnas de la tabla
         List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
-        CheckBox checkBox = new CheckBox();
-
-//        ColumnConfig documento = new ColumnConfig("documento", "Documento", 50);
-//        documento.setDateTimeFormat(DateTimeFormat.getFormat("MM/dd/yyyy"));
-//        columns.add(documento);
-        CheckColumnConfig checkColumn = new CheckColumnConfig("asistio", "Asistio?", 30);
-        CellEditor checkBoxEditor = new CellEditor(checkBox);
-        checkColumn.setEditor(checkBoxEditor);
-        columns.add(checkColumn);
-        columns.add(new ColumnConfig("documento", "Documento ", 60));
-        columns.add(new ColumnConfig("label", "Nombre completo ", 120));
-        columns.add(new ColumnConfig("telefono", "Télefono", 50));
-        columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
 
         final SimpleComboBox<String> comboFalto = new SimpleComboBox<String>();
         comboFalto.setForceSelection(true);
         comboFalto.setTriggerAction(ComboBox.TriggerAction.ALL);
-        comboFalto.add("No Asiste");
-        comboFalto.add("Lesionado");
-        comboFalto.add("Permiso");
-        comboFalto.add("Tarjeta ROJA");
+        comboFalto.add("ASISTE");
+        comboFalto.add("NO ASISTE");
+        comboFalto.add("LESIONADO");
+        comboFalto.add("PERMISO");
+        comboFalto.add("TARJETA ROJA");
 
         CellEditor editor = new CellEditor(comboFalto) {
             @Override
@@ -272,13 +258,53 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             }
         };
 
-        ColumnConfig columnfalto = new ColumnConfig();
-        columnfalto.setId("falto");
-        columnfalto.setHeader("Si falto?");
-        columnfalto.setAlignment(Style.HorizontalAlignment.CENTER);
-        columnfalto.setWidth(70);
-        columnfalto.setEditor(editor);
-        columns.add(columnfalto);
+        ColumnConfig asistio = new ColumnConfig();
+        asistio.setId("estado");
+        asistio.setHeader("Asistio?");
+        asistio.setAlignment(Style.HorizontalAlignment.CENTER);
+        asistio.setWidth(70);
+        asistio.setEditor(editor);
+        columns.add(asistio);
+        asistio.setRenderer(new GridCellRenderer() {
+
+            @Override
+            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
+                String asiste = model.get("estado");
+                if (asiste == null) {
+                    return "";
+                } else {
+                    String style = "";
+                    if (asiste.equalsIgnoreCase("ASISTE")) {
+                        style = "green";
+                    } else if (asiste.equalsIgnoreCase("NO ASISTE")) {
+                        style = "red";
+                    } else if (asiste.equalsIgnoreCase("LESIONADO")) {
+                        style = "orange";
+                    } else if (asiste.equalsIgnoreCase("PERMISO")) {
+                        style = "gray";
+                    } else if (asiste.equalsIgnoreCase("TARJETA ROJA")) {
+                        style = "black";
+                    }
+                    return "<span style='color:" + style + "'><b>" + asiste + "</b></span>";
+                }
+            }
+
+        });
+
+//        CheckBox checkBox = new CheckBox();
+//        CheckColumnConfig checkColumn = new CheckColumnConfig("asistio", "Asistio?", 30);
+//        CellEditor checkBoxEditor = new CellEditor(checkBox);
+//        checkColumn.setEditor(checkBoxEditor);
+////        columns.add(checkColumn);
+        columns.add(new ColumnConfig("idDeportista.documento", "Documento ", 60));
+        columns.add(new ColumnConfig("idDeportista.label", "Nombre completo ", 120));
+        columns.add(new ColumnConfig("idDeportista.telefono", "Télefono", 50));
+        columns.add(new ColumnConfig("idDeportista.posicion.nombrePosicion", "Posición", 50));
+        ColumnConfig idDep = new ColumnConfig();
+        idDep.setId("idDeportista.id");
+        idDep.setWidth(20);
+        idDep.setHidden(true);
+        columns.add(idDep);
 
 //        columns.add(new ColumnConfig("fecha.nombrecategoria", "Categoria", 50));
 //
@@ -306,7 +332,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        filters.addFilter(listFilter);
         //filters.addFilter(documentoFilter);
         grid = new EditorGrid<BeanModel>(store, cm);
-        grid.addPlugin(checkColumn);
+//        grid.addPlugin(checkColumn);
 //        grid.addPlugin(columnfalto);
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -438,7 +464,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         wBuscar.add(crearGriControlAsistencia());
 
-        btnVerCtrolAsistencia = new Button("Ver");
+        btnVerCtrolAsistencia = new Button("Ver planilla", listenerVerPlanillaAsistencia());
 //                btnEditarCompetencia.disable();
 
         Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
@@ -493,6 +519,28 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
     }
 
+    protected SelectionListener<ButtonEvent> listenerVerPlanillaAsistencia() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                final List<Asistencia> planillaAsistencia = new ArrayList<Asistencia>();
+                getServiceAsistencia().getAsistenciaxId(IdCategoriaElegida, new AsyncCallback<List<Asistencia>>() {
+
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void onSuccess(List<Asistencia> result) {
+                        System.out.println("Lista planilla" + result);
+                    }
+                });
+            }
+        };
+
+    }
+
     protected SelectionListener<ButtonEvent> listenerGuardar() {
         return new SelectionListener<ButtonEvent>() {
             @Override
@@ -500,14 +548,14 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 if (!grid.getStore().getModels().isEmpty()) {
                     if (panelFormularioControlAsistencia.isValid()) {
 //                     panel2.mask("Guardando..");
-                        if (!validarAsistencia()) {
-                            //mostrar mensaje
-                            return;
-                        }
-                        if (!validarFalto()) {
-                            //mostrar mensaje
-                            return;
-                        }
+//                        if (!validarAsistencia()) {
+//                            //mostrar mensaje
+//                            return;
+//                        }
+//                        if (!validarFalto()) {
+//                            //mostrar mensaje
+//                            return;
+//                        }
 
                         getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
 
@@ -524,7 +572,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                         });
                     }
                 } else {
-                MessageBox.alert("Guardar", "Debe seleccionar una categoría con deportistas", null);
+                    MessageBox.alert("Guardar", "Debe seleccionar una categoría con deportistas", null);
                 }
 ////                
 //              
@@ -566,42 +614,29 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     public void guardarGridAsistencia(Long idControlAsistencia) {
 
 //        System.out.println(store.getModels().get(0).get("idDeportista"));
-        System.out.println(store.getModels().get(0).get("falto"));
         List<String[]> lista = new ArrayList<String[]>();
         for (BeanModel model : store.getModels()) {
-            String[] vector = new String[3];
+            Asistencia asistencia = new Asistencia();
+            asistencia.setId_control_asistencia(new ControlAsistencia(idControlAsistencia));
+            asistencia.setEstado(model.get("estado").toString());
+            asistencia.setIdDeportista(new Deportista((Long) model.get("idDeportista.id")));
+            getServiceAsistencia().guardarEntidad(asistencia, new AsyncCallback<RespuestaRPC<Asistencia>>() {
 
-            vector[0] = model.get("id").toString();
-            Boolean asistio = model.get("asistio", false);
-            String asist;
-            if (asistio == true) {
-                asist = "true";
-            } else {
-                asist = "false";
-            }
-            vector[1] = asist;
-            vector[2] = model.get("falto", "");
-            lista.add(vector);
-            System.out.println(lista.size());
+                @Override
+                public void onFailure(Throwable caught) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onSuccess(RespuestaRPC<Asistencia> result) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
         }
-        getServiceAsistencia().guardarGridAsistencia(idControlAsistencia, lista, new AsyncCallback<Void>() {
-
-            @Override
-            public void onFailure(Throwable caught) {
-                MessageBox.alert("Error!", "No guardo Grid de asistencia \n" + caught, null);
-                panel2.unmask();
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                store.commitChanges();
-                limpiarCampos();
-                Info.display("Guardar", "Se guardó correctamente la planilla de asistencia");
-                panel2.unmask();
-            }
-
-        });
-
+        store.commitChanges();
+        limpiarCampos();
+        Info.display("Guardar", "Se guardó correctamente la planilla de asistencia");
+        panel2.unmask();
     }
 
     public void limpiarCampos() {

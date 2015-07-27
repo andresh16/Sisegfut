@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -40,12 +41,10 @@ public class Asistencia implements BeanModelTag, Serializable{
     @JoinColumn(name = "id_control_asistencia", nullable = false)
     private ControlAsistencia id_control_asistencia;
     
-    @Column(name = "asistio", nullable = false, length = 80)
-    private boolean asistio;
+    @Column(name = "estado", nullable = false, length = 80)
+    private String estado;
     
-    @Column(name = "falto", nullable = true, length = 80)
-    private String falto;
-
+    
     public Asistencia() {
     }
 
@@ -65,20 +64,12 @@ public class Asistencia implements BeanModelTag, Serializable{
         this.idDeportista = idDeportista;
     }
 
-    public boolean isAsistio() {
-        return asistio;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setAsistio(boolean asistio) {
-        this.asistio = asistio;
-    }
-
-    public String getFalto() {
-        return falto;
-    }
-
-    public void setFalto(String falto) {
-        this.falto = falto;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public ControlAsistencia getId_control_asistencia() {
@@ -88,6 +79,8 @@ public class Asistencia implements BeanModelTag, Serializable{
     public void setId_control_asistencia(ControlAsistencia id_control_asistencia) {
         this.id_control_asistencia = id_control_asistencia;
     }
+    
+   
     
     
     

@@ -18,7 +18,6 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
-import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooper;
 import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooperxDeportista;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
@@ -235,6 +234,8 @@ public class ReportesController {
             listLogros = daoLogrosDeportivos.LogroDepxDeportista(idDeportista);
             listLesion = daoLesiones.AnteOsteoMuscularxDeportista(idDeportista);
 
+            
+            
             int valorMayor = 0;
             if (listAnt.size() > listLogros.size()) {
                 if (listAnt.size() > listLesion.size()) {
@@ -438,50 +439,49 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
 //            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
-            List <Antropometrico> listAnt = daoAntropometrico.AntropometricoxCategoria(categoria);
+            List <Antropometrico> listaDeportistaAntReport = daoAntropometrico.AntropometricoxCategoria(categoria);
 //            List<Deportista> listaDep = daoDeportista.deportistaXCategoria(categoria);
-            List<DTOAntropometrico> listaDeportistaAntReport = new ArrayList<DTOAntropometrico>();
-
-//            List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
-//
-//            for (Deportista deportista : listaDep) {
-////
-//                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
-//
-//                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
-//                dtoDeportista.setNombres(deportista.getNombres());
-//                dtoDeportista.setApellidos(deportista.getApellidos());
-//                dtoDeportista.setIdentificacion(deportista.getDocumento());
-                
-                for (Antropometrico antropometrico : listAnt) {
+           List<DTOAntropometrico> listaDeportistaAnt = new ArrayList<DTOAntropometrico>();
+                String cat = null;
+                for (Antropometrico antropometrico : listaDeportistaAntReport) {
                     DTOAntropometrico dtoAntropometrico = new DTOAntropometrico();
                     
                     dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha().toString()));
-                    dtoAntropometrico.setIdentificacion(antropometrico.getIdDeportista().toString());
+                    dtoAntropometrico.setIdentificacion(antropometrico.getIdDeportista().getDocumento());
+                    dtoAntropometrico.setNombreCompleto(antropometrico.getIdDeportista().getLabel());
+                    
                     dtoAntropometrico.setPerabdominal(antropometrico.getPerabdominal().toString());
                     dtoAntropometrico.setPerbrazorelajado(antropometrico.getPerbrazorelajado().toString());
                     dtoAntropometrico.setPercadera(antropometrico.getPercadera().toString());
                     dtoAntropometrico.setPerpantorrilla(antropometrico.getPerpantorrilla().toString());
+                    
                     dtoAntropometrico.setPliabdominal(antropometrico.getPliabdominal().toString());
                     dtoAntropometrico.setPlisubescapular(antropometrico.getPlisubescapular().toString());
                     dtoAntropometrico.setPlisupraescapular(antropometrico.getPlisupraescapular().toString());
                     dtoAntropometrico.setPlitricipital(antropometrico.getPlitricipital().toString());
                     
-                    listaDeportistaAntReport.add(dtoAntropometrico);
-//                        listaDeportistaReport.add(dtoDeportista);   
+                    dtoAntropometrico.setPorcentajeGrasa(antropometrico.getPorcentajeGrasa());
+                    dtoAntropometrico.setPesoGraso(antropometrico.getPesoGraso());
+                    dtoAntropometrico.setPesoMacro(antropometrico.getPesoMacro());
+                    
+                    
+                    listaDeportistaAnt.add(dtoAntropometrico);
+                    
+                    
+                    cat=antropometrico.getIdDeportista().getCategoria().getNombrecategoria();
                 }
 
 //            if (listaDeportistaReport.isEmpty()) {
 //                listaDeportistaReport.add(new DTODeportistaxCategoria());
 //            }
-            if (listaDeportistaAntReport.isEmpty()) {
-                listaDeportistaAntReport.add(new DTOAntropometrico());
-            }
-            System.out.println("nombre cat" + nombreCategoria);
+//            if (listaDeportistaAntReport.isEmpty()) {
+//                listaDeportistaAntReport.add(new DTOAntropometrico());
+//            }
+            System.out.println("nombre cat" + cat);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
 
-            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAntReport));
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAnt));
             parameterMap.put("categoria", nombreCategoria);
 
             if (tipo == TIPO_XLS) {
