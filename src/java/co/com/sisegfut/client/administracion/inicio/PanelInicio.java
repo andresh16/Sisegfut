@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
+import com.extjs.gxt.ui.client.widget.layout.FillLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
@@ -42,9 +43,10 @@ public class PanelInicio extends LayoutContainer {
         setScrollMode(Style.Scroll.AUTOY);
 //        setScrollMode(Style.Scroll.AUTOY);
         setTitle("Categorías");
+        setLayout(new FillLayout());
         ContentPanel cp = new ContentPanel();
 
-       // setLayout(new FlowLayout(10));
+        // setLayout(new FlowLayout(10));
         // cp.setLayout(new FillLayout(Orientation.VERTICAL));
         cp.setHeading("Categorías del club");
 
@@ -55,61 +57,18 @@ public class PanelInicio extends LayoutContainer {
         cp.setLayout(new AccordionLayout());
 
         cp1 = new ContentPanel();
-        
-        cp4 = new ContentPanel();
-        cp4.setLayout(new FitLayout());
-        cp4.setFrame(true);
-        cp4.setHeading("Primera B");
-        cp4.setWidth("750px");
-        cp4.setHeight("540px");
-        img4 = new Image("imagenes/example/primera.jpg");
-        img4.setWidth("750px");
-        img4.setHeight("540px");
-        cp4.setLayout(new CenterLayout());
-        cp4.add(img4);
-        cp.add(cp4);
-        
         cp1.setAnimCollapse(false);
-        cp1.setLayout(new FitLayout());
-        cp1.setHeading("Pony");
+//        cp1.setLayout(new FitLayout());
+        cp1.setHeading("Primera B");
         cp1.setFrame(true);
-        cp1.setWidth("750px");
+        cp1.setWidth("550px");
         cp1.setHeight("540px");
-        img1 = new Image("imagenes/example/pony.jpg");
+        img1 = new Image("imagenes/example/primera.jpg");
         img1.setWidth("750px");
         img1.setHeight("540px");
         cp1.add(img1);
-        cp1.setLayout(new CenterLayout());
+//        cp1.setLayout(new CenterLayout());
         cp.add(cp1);
-        
-        cp6 = new ContentPanel();
-        cp6.setAnimCollapse(false);
-        cp6.setLayout(new FitLayout());
-        cp6.setHeading("Sub 15");
-        cp6.setFrame(true);
-        cp6.setWidth("750px");
-        cp6.setHeight("540px");
-        img6 = new Image("imagenes/example/sub15.jpg");
-        img6.setWidth("750px");
-        img6.setHeight("540px");
-        cp6.add(img6);
-        cp6.setLayout(new CenterLayout());
-        cp.add(cp6);
-        
-        cp5 = new ContentPanel();
-        cp5.setLayout(new FitLayout());
-        cp5.setFrame(true);
-        cp5.setHeading("Universitario");
-        cp5.setWidth("750px");
-        cp5.setHeight("540px");
-        img5 = new Image("imagenes/example/primerab.jpg");
-        img5.setWidth("750px");
-        img5.setHeight("540px");
-        cp5.setLayout(new CenterLayout());
-        cp5.add(img5);
-        cp.add(cp5);
-
-        
 
         cp2 = new ContentPanel();
         cp2.setLayout(new FitLayout());
@@ -137,7 +96,49 @@ public class PanelInicio extends LayoutContainer {
         cp3.add(img3);
         cp.add(cp3);
 
-        add(cp);
+        cp4 = new ContentPanel();
+        cp4.setLayout(new FitLayout());
+        cp4.setFrame(true);
+        cp4.setHeading("Universitario");
+        cp4.setWidth("750px");
+        cp4.setHeight("540px");
+        img4 = new Image("imagenes/example/primerab.jpg");
+        img4.setWidth("750px");
+        img4.setHeight("540px");
+        cp4.setLayout(new CenterLayout());
+        cp4.add(img4);
+        cp.add(cp4);
+        
+        cp5 = new ContentPanel();
+        cp5.setLayout(new FitLayout());
+        cp5.setFrame(true);
+        cp5.setHeading("Pony");
+        cp5.setWidth("750px");
+        cp5.setHeight("540px");
+        img5 = new Image("imagenes/example/pony.jpg");
+        img5.setWidth("750px");
+        img5.setHeight("540px");
+        cp5.setLayout(new CenterLayout());
+        cp5.add(img5);
+        cp.add(cp5);
+
+        cp6 = new ContentPanel();
+        cp6.setAnimCollapse(false);
+        cp6.setLayout(new FitLayout());
+        cp6.setHeading("Sub 15");
+        cp6.setFrame(true);
+        cp6.setWidth("750px");
+        cp6.setHeight("540px");
+        img6 = new Image("imagenes/example/sub15.jpg");
+        img6.setWidth("550px");
+        img6.setHeight("540px");
+        cp6.add(img6);
+        cp6.setLayout(new CenterLayout());
+        cp.add(cp6);
+
+        
+
+        add(img1);
 
         //Agrego un listener para escuchar el cambio de tamanio del panel
         this.addListener(Events.Resize, new Listener<BoxComponentEvent>() {

@@ -11,18 +11,16 @@ package co.com.sisegfut.client.ingreso.login;
 import co.com.sisegfut.client.ingreso.recuperacionclave.PanelRecuperacion;
 import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.util.IconHelper;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.TabPanel;
-import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
+import com.extjs.gxt.ui.client.widget.layout.BoxLayout.BoxLayoutPack;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
-import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
-import com.extjs.gxt.ui.client.widget.layout.RowLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout.HBoxLayoutAlign;
+import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.VBoxLayout.VBoxLayoutAlign;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 
@@ -55,45 +53,76 @@ public class PanelAcceso extends LayoutContainer {
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
-        setLayout(new CenterLayout());
-        setStyleName("elLogin"); 
-        setScrollMode(Style.Scroll.AUTOY); 
+        setStyleName("elLogin");
+        setScrollMode(Style.Scroll.AUTOY);
+         VBoxLayout layout2 = new VBoxLayout();  
+        layout2.setPadding(new Padding(5));  
+        layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
+        layout2.setPack(BoxLayoutPack.START);  
+        
+        setLayout(layout2);
 
         // Construcción del logo
 //        logoLogin = new Image("imagenes/misfinanzas.jpg");
 //        logoLogin.setSize("440", "164");
-
         formularioLogin = new FormularioLogin();
         panelRecuperacion = new PanelRecuperacion();
 
-        TabPanel panel = new TabPanel();
-        panel.setPlain(true);
-        panel.setWidth(440); 
-        panel.setSize(440, 240);
-        panel.setAutoHeight(true);
+//        TabPanel panel = new TabPanel();
+//        panel.setPlain(true);
+//        panel.setWidth(440);
+//        panel.setSize(440, 240);
+//        panel.setAutoHeight(true);
+//
+//        TabItem login = new TabItem("INICIAR SESIÓN");
+//        login.setBorders(false);
+//        login.setIcon(Resources.ICONS.iconoLogin());
+//        login.add(formularioLogin);
+//        panel.add(login);
+//
+//        TabItem recuperacion = new TabItem("RECUPERAR CONTRASEÑA");
+//        recuperacion.setIcon(Resources.ICONS.iconoClave());
+//        recuperacion.add(panelRecuperacion);
+//        panel.add(recuperacion);
+        ContentPanel panel = new ContentPanel();
 
-        TabItem login = new TabItem("INICIAR SESIÓN");
+        panel.setLayout(new AccordionLayout());
+        panel.setWidth(440);
+//        panel.setSize(440, 240);
+        panel.setAutoHeight(true);
+        panel.setHeaderVisible(false);
+//        panel.setIcon(Resources.ICONS.);
+
+        ContentPanel login = new ContentPanel();
+        login.setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=2 FACE='courier new' Color='black'><b>INICIAR SESIÓN</b></font></center>");
+        login.setAnimCollapse(true);
+        login.setHeight(240);
+        login.setAutoHeight(true);
         login.setBorders(false);
         login.setIcon(Resources.ICONS.iconoLogin());
-        login.add(formularioLogin); 
+        login.add(formularioLogin);
         panel.add(login);
-        
-        TabItem recuperacion = new TabItem("RECUPERAR CONTRASEÑA");
+
+        ContentPanel recuperacion = new ContentPanel();
+        recuperacion.setHeading("<FONT SIZE=2 FACE='courier new' Color='blue'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECUPERAR CONTRASEÑA</b></font></center>");
         recuperacion.setIcon(Resources.ICONS.iconoClave());
-        recuperacion.add(panelRecuperacion); 
+        recuperacion.add(panelRecuperacion);
         panel.add(recuperacion);
 
-        ContentPanel panelContenedor = new ContentPanel();
-        panelContenedor.setBodyBorder(false);
-        panelContenedor.setHeaderVisible(false);
-        panelContenedor.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        panelContenedor.setHeading("<center>Bienvenido</center> ");
-        panelContenedor.setFrame(true); 
 
+//        ContentPanel panelContenedor = new ContentPanel();
+//        panelContenedor.setBodyBorder(false);
+//        panelContenedor.setHeaderVisible(false);
+//        panelContenedor.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+//        panelContenedor.setHeading("<center>Bienvenido</center> ");
+//        panelContenedor.setFrame(true);
         //panelContenedor.add(logoLogin);
-        panelContenedor.add(panel);
-        panelContenedor.setWidth(443); 
-
-        add(panelContenedor);
+//        BorderLayoutData eastData = new BorderLayoutData(LayoutRegion.CENTER, 443);
+//        eastData.setSplit(true);
+//        eastData.setCollapsible(true);
+//        eastData.setMargins(new Margins(0, 0, 0, 5));
+//        panelContenedor.add(panel);
+//        panelContenedor.setWidth(443);
+        add(panel);
     }
 }

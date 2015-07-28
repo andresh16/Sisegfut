@@ -90,7 +90,7 @@ public class FormularioLogin extends FormPanel {
         pnlErrores = new PanelErrores();
         pnlExito = new PanelExito();
 
-        add(pnlInformativo);
+//        add(pnlInformativo);
         add(pnlErrores);
         add(pnlExito);
 
@@ -98,7 +98,7 @@ public class FormularioLogin extends FormPanel {
         FormLayout layout = new FormLayout();
         layout = new FormLayout();
 //        layout.setLabelWidth(60);
-        layout.setLabelAlign(LabelAlign.RIGHT);
+        layout.setLabelAlign(LabelAlign.TOP);
         layout.setLabelSeparator("");
         
         setLayout(layout);
@@ -109,8 +109,8 @@ public class FormularioLogin extends FormPanel {
         txtUsuario.addPlugin(plugin);
         txtUsuario.setData("text", "Ejem. ejemplo@dominio.com");
 //        txtUsuario.setEmptyText("ejem. ejemplo@dominio.com");
-        txtUsuario.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico"));
-        txtUsuario.setFieldLabel("<center><b>CORREO</b></center>");
+        txtUsuario.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico, ejem. ejemplo@dominio.com"));
+        txtUsuario.setFieldLabel("<center><FONT SIZE=3 FACE='courier new'><b>Usuario</b></font></center>");
         txtUsuario.setRegex("^(\\w+)([-+.][\\w]+)*@(\\w[-\\w]*\\.){1,5}([A-Za-z]){2,4}$");
         txtUsuario.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
         txtUsuario.setAllowBlank(false);
@@ -121,8 +121,8 @@ public class FormularioLogin extends FormPanel {
         txtPassword.setMaxLength(100);
         txtPassword.addPlugin(plugin);
         txtPassword.setData("text", "Campo sensible a las mayusculas");
-        txtPassword.setToolTip(new ToolTipConfig("Contraseña", "Digite la contraseña"));
-        txtPassword.setFieldLabel("<center><b>CONTRASEÑA</b></center>");
+        txtPassword.setToolTip(new ToolTipConfig("Contraseña", "Digite la contraseña, campo sensible a las mayusculas"));
+        txtPassword.setFieldLabel("<center><FONT SIZE=3 FACE='courier new'><b>Contraseña</b></font></center>");
         txtPassword.setAllowBlank(false);
         txtPassword.setPassword(true);
         add(txtPassword, formData);

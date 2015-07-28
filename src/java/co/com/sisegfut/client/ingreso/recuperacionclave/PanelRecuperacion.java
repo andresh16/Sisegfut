@@ -29,7 +29,7 @@ public class PanelRecuperacion extends LayoutContainer{
             "Esta funcionalidad le permite definir una nueva contraseña si olvidó la que tenía, por favor primero solicite la llave para el cambio de contraseña, a su correo y luego con esta llave defina su nueva contraseña en el cuadro que está mas abajo",null);
         
         
-        add(pnlInformativo); 
+//        add(pnlInformativo); 
         
         FormularioSolicitud formularioSolicitud = new FormularioSolicitud();        
         add(formularioSolicitud); 

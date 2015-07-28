@@ -515,12 +515,14 @@
     }
     .elLogin
     {
+        /*background-color: #77BC71;
         /*height: 850px;*/
         background:url("../imagenes/fondo.png") no-repeat fixed center ;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
+        
         
         /* Para IE7 ponemos una imagen de otro formato*/ 
         *background-image: url("../imagenes/fondo.jpg");
