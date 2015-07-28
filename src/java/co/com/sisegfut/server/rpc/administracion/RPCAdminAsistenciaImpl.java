@@ -73,13 +73,17 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
     }
 
     @Override
-    public List<Asistencia> getAsistenciaxId(Long IdControlAsistencia) {
+    public PagingLoadResult<Asistencia> getAsistenciaxId(Long IdControlAsistencia) {
+         List<Asistencia> listaRetorno=new ArrayList<>();
         try {
-             return daoAsistencia.getAsistenciaxId(IdControlAsistencia);
+            
+            listaRetorno= daoAsistencia.getAsistenciaxId(IdControlAsistencia);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+         PagingLoadResult<Asistencia> loadResult = new BasePagingLoadResult<Asistencia>(listaRetorno, 1, 100);
+        return loadResult;
        
         
     }
@@ -93,6 +97,7 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
             
             for (Deportista deportista : deportistas) {
                 Asistencia asistencia= new Asistencia();
+                asistencia.setId(null);
                 asistencia.setEstado("ASISTE");
                 asistencia.setIdDeportista(deportista);
                 asistencia.setId_control_asistencia(null);
@@ -102,7 +107,7 @@ public class RPCAdminAsistenciaImpl extends RPCMaestroImpl<Asistencia> implement
         } catch (Exception ex) {
             Logger.getLogger(RPCAdminAsistenciaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        PagingLoadResult<Asistencia> loadResult = new BasePagingLoadResult<Asistencia>(listaRetorno, 1, 1000);
+        PagingLoadResult<Asistencia> loadResult = new BasePagingLoadResult<Asistencia>(listaRetorno, 1, 100);
         return loadResult;
     }
 

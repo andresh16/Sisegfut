@@ -28,8 +28,6 @@ import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
-import com.extjs.gxt.ui.client.dnd.GridDragSource;
-import com.extjs.gxt.ui.client.dnd.GridDropTarget;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -156,10 +154,11 @@ public class PanelAdminDeportista extends LayoutContainer {
         RpcProxy<PagingLoadResult<Deportista>> proxy = new RpcProxy<PagingLoadResult<Deportista>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Deportista>> callback) {
-//                FilterPagingLoadConfig f = (FilterPagingLoadConfig) loadConfig;
-//                f.setSortDir(null);
-                svc.getDeportistas(callback);
+                FilterPagingLoadConfig f = (FilterPagingLoadConfig) loadConfig;
+                f.setSortDir(null);
+                svc.getConsulta(f,callback);
             }
+           
         };
 
         loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, new BeanModelReader()) {

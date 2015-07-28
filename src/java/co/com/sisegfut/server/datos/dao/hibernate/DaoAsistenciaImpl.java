@@ -23,7 +23,7 @@ public class DaoAsistenciaImpl extends DaoGenericoImpl<Asistencia> implements Da
     @Override
     public List<Asistencia> getAsistenciaxId(Long idControlAsistencia) throws DataAccessException {
         List<Asistencia> listaRetorno = null;
-        String sql = "select a.* from asistencia as a inner join control_asistencia as ca on a.id_control_asistencia=ca.id and ca.id=" + idControlAsistencia;
+        String sql = "select a.* from asistencia as a inner join control_asistencia as ca on a.id_control_asistencia=ca.id and ca.id=" + idControlAsistencia+" order by a.id asc";
         try {
             listaRetorno = (List<Asistencia>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

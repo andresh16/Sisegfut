@@ -19,7 +19,7 @@ public interface RPCAdminAsistencia extends RPCMaestro<Asistencia>{
     
      public void guardarGridAsistencia(Long IdControlAsistencia,List<String[]> asistencias);
      
-     public List<Asistencia> getAsistenciaxId(Long IdControlAsistencia);
+     public PagingLoadResult<Asistencia> getAsistenciaxId(Long IdControlAsistencia);
      
      public PagingLoadResult<Asistencia> getDeportistasxCategoria(Long idCategoria);
      

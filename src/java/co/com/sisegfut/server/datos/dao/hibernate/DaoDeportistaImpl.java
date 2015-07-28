@@ -199,7 +199,7 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
     @Override
     public List<Deportista> deportistaXCategoria(Long idCategoria) throws Exception {
         List<Deportista> listaReporte = null;
-        String sql = "Select d.* from deportista d where jugador_comodin=false and categoria=" + idCategoria + " and fechainactivado is null order by apellidos asc";
+        String sql = "Select d.* from deportista d where jugador_comodin=false and categoria=" + idCategoria + " and fechainactivado is null order by nombres asc";
         try {
             listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
@@ -215,7 +215,7 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
     @Override
     public List<Deportista> getDeportistas() throws Exception {
         List<Deportista> listaReporte = null;
-        String sql = "Select d.* from deportista d where jugador_comodin=false and fechainactivado is null order by apellidos asc";
+        String sql = "Select d.* from deportista d where jugador_comodin=false and fechainactivado is null order by nombres asc";
         try {
             listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

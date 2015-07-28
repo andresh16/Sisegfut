@@ -130,16 +130,17 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-           if(!cbxCategoria.getValue().equals("") || !cbxCategoria.getValueField().equals("")) {
-                adminControlAsistencia.cargar(cbxCategoria.getCategoriaElegida().getId());
-                adminControlAsistencia.fechaAsistencia(Formatos.fechaLarga2(new Date()));
-                DtFecha.setEnabled(true);
-                tmHora.setEnabled(true);
-
-                radioGroup.setEnabled(true);
-                txtLugar.setEnabled(true);
-                txtObservacion.setEnabled(true);
-           }
+                if (!cbxCategoria.getValue().equals("") || !cbxCategoria.getValueField().equals("")) {
+                    if (id == null) {
+                        adminControlAsistencia.cargar(cbxCategoria.getCategoriaElegida().getId());
+                        adminControlAsistencia.fechaAsistencia(Formatos.fechaLarga2(new Date()));
+                    }
+                    DtFecha.setEnabled(true);
+                    tmHora.setEnabled(true);
+                    radioGroup.setEnabled(true);
+                    txtLugar.setEnabled(true);
+                    txtObservacion.setEnabled(true);
+                }
             }
         });
 
@@ -188,35 +189,11 @@ public class PanelFormularioControlAsistencia extends FormPanel {
 //        main.add(Columna3, new ColumnData(.25));
 //        main.add(Columna4, new ColumnData(.25));
         add(main, new FormData("100%"));
-
-////        //   panel.setTopComponent(toolBar);
-////        Button btnGuardar = new Button(" Guardar");
-////        btnGuardar.setIcon(Resources.ICONS.iconoGuardar());
-////
-////        Button btnLimpiar = new Button("Nuevo", listenerLimpiar());
-////        btnLimpiar.setIcon(Resources.ICONS.iconoNuevaCita());
-//
-////        FormButtonBinding binding = new FormButtonBinding(this);
-////        binding.addButton(btnGuardar);
-////
-////        setButtonAlign(Style.HorizontalAlignment.CENTER);
-////        addButton(btnGuardar);
-////        addButton(btnLimpiar);
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
-//    protected SelectionListener<ButtonEvent> listenerLimpiar() {
-//        return new SelectionListener<ButtonEvent>() {
-//            @Override
-//            public void componentSelected(ButtonEvent ce) {
-//                limpiar();
-//            }
-//        };
-//
-//    }
 
     public void setidDeportista(Long id) {
         this.id = id;
@@ -224,34 +201,35 @@ public class PanelFormularioControlAsistencia extends FormPanel {
     }
 
     public void limpiar() {
-        
-        id = null;
-        
-        cbxCategoria.recargar();
-        DtFecha.setValue(new Date());
-        tmHora.setValue(new Time());
-        txtLugar.setValue("");
-        txtObservacion.setValue("");
-        
-        radioGroup.setEnabled(false);
-        txtLugar.setEnabled(false);
-        tmHora.setEnabled(false);
-        DtFecha.setEnabled(false);
-        txtObservacion.setEnabled(false);
-        
-//        reset();
 
+        id = null;
+        cbxCategoria.recargar();
+        DtFecha.reset();
+        
+        tmHora.reset();
+        txtLugar.reset();
+        txtObservacion.reset();
+        radioGroup.reset();
+        
+        cbxCategoria.enable();
+        DtFecha.disable();
+        radioGroup.disable();
+        tmHora.disable();
+        txtLugar.disable();
+        txtObservacion.disable();
+
+//        reset();
     }
 
     public ControlAsistencia ObtenerFormulario(ControlAsistencia controlAsistencia) {
-
+        controlAsistencia.setId(id);
         controlAsistencia.setCategoria(cbxCategoria.getCategoriaElegida());
         ////////////////////////////////////////////////////
         fechaActividad = DtFecha.getValue();
         System.out.println("hora actividad" + Formatos.Hora(tmHora.getDateValue()));
         fechaActividad.setTime(tmHora.getDateValue().getTime());
         System.out.println("fecha  " + fechaActividad);
-        controlAsistencia.setFecha(fechaActual);
+        controlAsistencia.setFecha(fechaActividad);
         ///////////////////////////////////////////////////
         String actividad = "";
         if (rdCompetencia.getValue() == true) {
@@ -266,5 +244,27 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         return controlAsistencia;
     }
 
-  
+    public void cargarDatos(ControlAsistencia controlAsistencia) {
+
+        id = controlAsistencia.getId();
+        DtFecha.setValue(controlAsistencia.getFecha());
+        tmHora.setDateValue(controlAsistencia.getFecha());
+        cbxCategoria.seleccionar(controlAsistencia.getCategoria().getId());
+        txtLugar.setValue(controlAsistencia.getLugar());
+        txtObservacion.setValue(controlAsistencia.getObservaciones());
+
+        if (controlAsistencia.getActividad().equalsIgnoreCase("Entrenamiento")) {
+            rdEntrenamiento.setValue(true);
+        } else {
+            rdCompetencia.setValue(true);
+        }
+        radioGroup.setEnabled(true);
+        txtLugar.setEnabled(true);
+        tmHora.setEnabled(true);
+        DtFecha.setEnabled(true);
+        txtObservacion.setEnabled(true);
+        cbxCategoria.disable();
+
+    }
+
 }

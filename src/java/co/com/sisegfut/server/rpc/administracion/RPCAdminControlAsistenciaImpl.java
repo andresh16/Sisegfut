@@ -50,7 +50,7 @@ public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsisten
                 for (ControlAsistencia ctrlAsistencia : listPlanillasAsistencia) {
                     DTOControlAsistencia agg = new DTOControlAsistencia();
                     agg.setIdPlanillaAsistencia(ctrlAsistencia.getId());
-                    agg.setIdCategoria(idCategoria);
+                    agg.setIdCategoria(ctrlAsistencia.getCategoria().getId());
                     agg.setCategoria(ctrlAsistencia.getCategoria().getNombrecategoria());
                     agg.setActividad(ctrlAsistencia.getActividad());
                     agg.setLugar(ctrlAsistencia.getLugar());
