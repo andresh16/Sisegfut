@@ -16,4 +16,6 @@ public interface RPCAdminGoles extends RPCMaestro<Goles>{
     
     public PagingLoadResult<Goles> getGolesXCompetencia(Long idCompetencia);
     
+    public Boolean validarMinutoGolCompetencia(Long idCompetencia, Integer Minuto);
+    
 }

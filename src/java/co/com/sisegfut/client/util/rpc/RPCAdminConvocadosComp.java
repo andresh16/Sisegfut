@@ -19,7 +19,11 @@ public interface RPCAdminConvocadosComp extends RPCMaestro<ConvocadosCompe>{
     
     public List<Deportista> getConvocadosXTipo(Long idCompetencia, String tipoConvado);
     
+    public List<Deportista> getConvocadosXTipoGrids(Long idCompetencia, String tipoConvado);
+    
     public List<Deportista> getConvocados(Long idCompetencia);
+    
+    public Boolean validarConsultarConvocados(Long idCompetencia);
     
     
 }

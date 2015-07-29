@@ -41,6 +41,7 @@ import com.extjs.gxt.ui.client.event.DNDEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
@@ -394,9 +395,9 @@ public class PanelAdminConvocados extends LayoutContainer {
             @Override
             public void load(Object loadConfig, AsyncCallback<List<Deportista>> callback) {
                 if (idCompetencia != null) {
-                    svc.getConvocadosXTipo(idCompetencia, "t", callback);
+                    svc.getConvocadosXTipoGrids(idCompetencia, "t", callback);
                 } else {
-                    svc.getConvocadosXTipo(0l, "t", callback);
+                    svc.getConvocadosXTipoGrids(0l, "t", callback);
                 }
             }
         };
@@ -410,11 +411,17 @@ public class PanelAdminConvocados extends LayoutContainer {
         final RowNumberer r = new RowNumberer();
 
         columns.add(r);
-        columns.add(new ColumnConfig("numeroCamisa", "#", 20));
+        
         columns.add(new ColumnConfig("label", "Nombre completo ", 100));
 
         columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
+        columns.add(new ColumnConfig("numeroCamisa", "#", 20));
 
+//        ColumnConfig idConvocado = new ColumnConfig();
+//        idConvocado.setId("idDeportista.id");
+//        idConvocado.setWidth(20);
+//        idConvocado.setHidden(true);
+//        columns.add(idConvocado);
         ColumnModel cm = new ColumnModel(columns);
 
         gridTitulares = new Grid<BeanModel>(storeTitulares, cm);
@@ -470,9 +477,9 @@ public class PanelAdminConvocados extends LayoutContainer {
             @Override
             public void load(Object loadConfig, AsyncCallback<List<Deportista>> callback) {
                 if (idCompetencia != null) {
-                    svc.getConvocadosXTipo(idCompetencia, "s", callback);
+                    svc.getConvocadosXTipoGrids(idCompetencia, "s", callback);
                 } else {
-                    svc.getConvocadosXTipo(0l, "s", callback);
+                    svc.getConvocadosXTipoGrids(0l, "s", callback);
                 }
             }
         };
@@ -487,10 +494,12 @@ public class PanelAdminConvocados extends LayoutContainer {
         final RowNumberer r = new RowNumberer();
 
         columns.add(r);
-        columns.add(new ColumnConfig("numeroCamisa", "#", 20));
+        
         columns.add(new ColumnConfig("label", "Nombre completo ", 100));
 
         columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
+        
+        columns.add(new ColumnConfig("numeroCamisa", "#", 20));
 
         ColumnModel cm = new ColumnModel(columns);
 
@@ -578,39 +587,53 @@ public class PanelAdminConvocados extends LayoutContainer {
 //                else if (gridSuplentes.getStore().getModels().isEmpty() || gridSuplentes.getStore().getModels().size()<6) {
 //                    MessageBox.alert("Error", "Debe ingresar como mínimo 5 jugadores suplentes ", null);
                 } else {
-                    List<ConvocadosCompe> convocadosCompe = new ArrayList<ConvocadosCompe>();
-                    List<BeanModel> depTitulares = gridTitulares.getStore().getModels();
-                    for (BeanModel deportista : depTitulares) {
-                        ConvocadosCompe cc = new ConvocadosCompe();
-                        Long idDep = (Long) deportista.get("id");
-                        cc.setIdDeportista(new Deportista(idDep));
-                        cc.setTipoConvocado("t");
-                        cc.setIdCompetencia(new Competencia(idCompetencia));
-                        convocadosCompe.add(cc);
-                    }
-                    List<BeanModel> depSuplentes = gridSuplentes.getStore().getModels();
-                    for (BeanModel deportista : depSuplentes) {
-                        ConvocadosCompe cc = new ConvocadosCompe();
-                        Long idDep = (Long) deportista.get("id");
-                        cc.setIdDeportista(new Deportista(idDep));
-                        cc.setTipoConvocado("s");
-                        cc.setIdCompetencia(new Competencia(idCompetencia));
-                        convocadosCompe.add(cc);
-                    }
-                    getServiceConvocados().guardarConvocadosComp(convocadosCompe, new AsyncCallback<Void>() {
 
+                    MessageBox.confirm("Confirmación", "¿Seguro que desea guardar los convocados, recuerde que no se puede modificar posteriormente", new Listener<MessageBoxEvent>() {
                         @Override
-                        public void onFailure(Throwable caught) {
+                        public void handleEvent(MessageBoxEvent be) {
 
-                            Info.display("Error", "No Guardo");
-                        }
+                            String respb = be.getButtonClicked().getText();
 
-                        @Override
-                        public void onSuccess(Void result) {
-                            Info.display("Exito", "Guardo correctamente los convocados");
-                            habilitarCampos();
+                            if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
+                                List<ConvocadosCompe> convocadosCompe = new ArrayList<ConvocadosCompe>();
+                                List<BeanModel> depTitulares = gridTitulares.getStore().getModels();
+                                for (BeanModel deportista : depTitulares) {
+                                    ConvocadosCompe cc = new ConvocadosCompe();
+                                    Long idDep = (Long) deportista.get("id");
+                                    cc.setId(null);
+                                    cc.setIdDeportista(new Deportista(idDep));
+                                    cc.setTipoConvocado("t");
+                                    cc.setIdCompetencia(new Competencia(idCompetencia));
+                                    convocadosCompe.add(cc);
+                                }
+                                List<BeanModel> depSuplentes = gridSuplentes.getStore().getModels();
+                                for (BeanModel deportista : depSuplentes) {
+                                    ConvocadosCompe cc = new ConvocadosCompe();
+                                    Long idDep = (Long) deportista.get("id");
+                                    cc.setIdDeportista(new Deportista(idDep));
+                                    cc.setTipoConvocado("s");
+                                    cc.setIdCompetencia(new Competencia(idCompetencia));
+                                    convocadosCompe.add(cc);
+                                }
+                                getServiceConvocados().guardarConvocadosComp(convocadosCompe, new AsyncCallback<Void>() {
+
+                                    @Override
+                                    public void onFailure(Throwable caught) {
+
+                                        Info.display("Error", "No Guardo");
+                                    }
+
+                                    @Override
+                                    public void onSuccess(Void result) {
+                                        Info.display("Exito", "Guardo correctamente los convocados");
+                                        habilitarCampos();
+                                    }
+                                });
+                            }
+
                         }
                     });
+
                 }
             }
         };
@@ -651,16 +674,31 @@ public class PanelAdminConvocados extends LayoutContainer {
     }
 
     public void cargarConvocadosCompetencia(Long idCompetencia, boolean habilitar) {
-
         setIdCompetencia(idCompetencia);
         cargarGridSuplente();
         cargarGridTitulares();
-//        gridTitulares.setEnabled(habilitar);
-//        gridSuplentes.setEnabled(habilitar);
-        gridJugadores.setEnabled(habilitar);
-        cbxCategoria.setEnabled(habilitar);
+        // Valida si es para editar, si hay registros los convocados, si hay no se permite editar, pero
+        // Si esta vacio todos dos tanto titulares como suplentes, se habilita el botón de siguiente.
+        if (habilitar) {
+            getServiceConvocados().validarConsultarConvocados(idCompetencia, new AsyncCallback<Boolean>() {
 
-        btnGuardarConvocados.setVisible(habilitar);
+                @Override
+                public void onFailure(Throwable caught) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void onSuccess(Boolean result) {
+                    btnGuardarConvocados.setVisible(result);
+                    gridJugadores.setEnabled(result);
+                    cbxCategoria.setEnabled(result);
+                }
+            });
+        } else {
+            btnGuardarConvocados.setVisible(habilitar);
+            gridJugadores.setEnabled(habilitar);
+            cbxCategoria.setEnabled(habilitar);
+        }
 
     }
 

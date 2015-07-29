@@ -16,5 +16,7 @@ public interface DaoControlDisciplinarioComp extends DaoGenerico<ControlDiscipli
     
     public List<ControlDisciplinarioCompe> getTarjetasXCompetencia(Long idCompetencia)throws Exception;
     
+    public boolean validarMinutoTarCompetencia(Long idCompetencia, Integer minuto)throws Exception;
+    
     
 }

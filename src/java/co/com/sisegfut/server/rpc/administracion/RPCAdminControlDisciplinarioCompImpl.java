@@ -63,12 +63,20 @@ public class RPCAdminControlDisciplinarioCompImpl extends RPCMaestroImpl<Control
             Logger.getLogger(RPCAdminControlDisciplinarioCompImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (ControlDisciplinarioCompe controlDisciplinarioCompe : listaRetorno) {
-            if(controlDisciplinarioCompe.getIdDeportista().getId().equals(idDeportista) && controlDisciplinarioCompe.getTipoTarjeta().equalsIgnoreCase("AMARILLA")){
-                tieneAmarilla=true;
+            if (controlDisciplinarioCompe.getIdDeportista().getId().equals(idDeportista) && controlDisciplinarioCompe.getTipoTarjeta().equalsIgnoreCase("AMARILLA")) {
+                tieneAmarilla = true;
             }
         }
-        
-        
         return tieneAmarilla;
+    }
+
+    @Override
+    public Boolean validarMinutoTarCompetencia(Long idCompetencia, Integer Minuto) {
+        try {
+            return daoControlDisciplinarioComp.validarMinutoTarCompetencia(idCompetencia, Minuto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

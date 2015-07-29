@@ -18,4 +18,6 @@ public interface RPCAdminControlDisciplinarioComp extends RPCMaestro<ControlDisc
     
     public boolean validarTarjetasDeportista(Long idCompetencia, Long idDeportista);
     
+    public Boolean validarMinutoTarCompetencia(Long idCompetencia, Integer Minuto);
+    
 }

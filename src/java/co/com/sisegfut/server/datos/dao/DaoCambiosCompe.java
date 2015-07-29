@@ -17,5 +17,5 @@ public interface DaoCambiosCompe extends DaoGenerico<CambiosCompe>{
     
     public List<CambiosCompe> getCambiosXCompetencia(Long idCompetencia);
     
-    
+    public boolean validarMinutoCambiosCompetencia(Long idCompetencia, Integer minuto)throws Exception;
 }

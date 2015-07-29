@@ -17,4 +17,6 @@ public interface RPCAdminGolesAsync extends RPCMaestroAsync<Goles>{
     
     public void getGolesXCompetencia(Long idCompetencia, AsyncCallback<PagingLoadResult<Goles>> callback);
     
+    public void validarMinutoGolCompetencia(Long idCompetencia, Integer Minuto, AsyncCallback<Boolean> callback);
+    
 }

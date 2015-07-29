@@ -16,6 +16,9 @@ import java.util.List;
 public interface RPCAdminCambiosCompe extends RPCMaestro<CambiosCompe> {
 
     public PagingLoadResult<CambiosCompe> getCambiosXCompetenciaGrid(Long idCompetencia);
+    
     public List<CambiosCompe> getCambiosXCompetenciaCombo(Long idCompetencia);
+    
+    public Boolean validarMinutoCambioCompetencia(Long idCompetencia, Integer Minuto);
 
 }

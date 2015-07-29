@@ -38,5 +38,27 @@ public class DaoCambiosCompeImpl extends DaoGenericoImpl<CambiosCompe> implement
             return null;
         }
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public boolean validarMinutoCambiosCompetencia(Long idCompetencia, Integer minuto) throws Exception {
+
+    boolean existeMinutoComp = false;
+        String sql = "select * from cambios_competencia where id_competencia="+idCompetencia+" and minuto_cambio=" + minuto;
+        try {
+            CambiosCompe cambiosCompe = null;
+            cambiosCompe = (CambiosCompe) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("cambios_competencia", CambiosCompe.class).uniqueResult();
+            
+            if (cambiosCompe != null) {
+                existeMinutoComp = true;
+            }
+            return existeMinutoComp;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
 
 }

@@ -659,13 +659,29 @@ public class PanelAdminControlJuego extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (simple.isValid()) {
-                    CambiosCompe cambiosCompe = new CambiosCompe();
-                    cambiosCompe.setIdCompetencia(new Competencia(idCompetencia));
-                    cambiosCompe.setIdDeportistaSale(cbxTitulares.getDeportistaElegido());
-                    cambiosCompe.setIdDeportisteEntra(cbxSuplentes.getDeportistaElegido());
-                    cambiosCompe.setMinutoCambiio(nMinuto.getValue().intValue());
-                    realizarSustitucion(cambiosCompe);
-                    window.hide();
+                    getServiceCambiosComp().validarMinutoCambioCompetencia(idCompetencia, nMinuto.getValue().intValue(), new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            MessageBox.alert("Realizar Sustitución", "No fue posible validar el minuto", null);
+                        }
+
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            if (!result) {
+                                CambiosCompe cambiosCompe = new CambiosCompe();
+                                cambiosCompe.setIdCompetencia(new Competencia(idCompetencia));
+                                cambiosCompe.setIdDeportistaSale(cbxTitulares.getDeportistaElegido());
+                                cambiosCompe.setIdDeportisteEntra(cbxSuplentes.getDeportistaElegido());
+                                cambiosCompe.setMinutoCambiio(nMinuto.getValue().intValue());
+                                realizarSustitucion(cambiosCompe);
+                                window.hide();
+                            } else {
+                                MessageBox.alert("Realizar Sustitución", "Ya se realizó una sustitución en el minuto <b>" + nMinuto.getValue().intValue() + "</b>", null);
+                            }
+                        }
+                    });
+
                 }
             }
         });
@@ -769,19 +785,36 @@ public class PanelAdminControlJuego extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (simple.isValid()) {
-                    ControlDisciplinarioCompe controlDisciplinarioCompe = new ControlDisciplinarioCompe();
-                    controlDisciplinarioCompe.setIdCompetencia(new Competencia(idCompetencia));
-                    controlDisciplinarioCompe.setTipoTarjeta(cbxTarjeta.getValue().getColor());
-                    if (rdAnfitrion.getValue()) {
-                        controlDisciplinarioCompe.setEquipotarjeta("POLITECNICO JIC");
-                        controlDisciplinarioCompe.setIdDeportista(cbxDeportista.getDeportistaElegido());
-                    } else {
-                        controlDisciplinarioCompe.setEquipotarjeta("RIVAL");
-                        controlDisciplinarioCompe.setIdDeportista(new Deportista(idJugadorComodin));
-                    }
-                    controlDisciplinarioCompe.setMinutoTarjeta(nMinuto.getValue().intValue());
-                    validarATargetasAmarillas(controlDisciplinarioCompe);
-                    window.hide();
+
+                    getServiceTarjetasComp().validarMinutoTarCompetencia(idCompetencia, nMinuto.getValue().intValue(), new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                             MessageBox.alert("Registrar Tarjeta", "No fue posible validar el minuto", null);
+                        }
+
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            if (!result) {
+                                ControlDisciplinarioCompe controlDisciplinarioCompe = new ControlDisciplinarioCompe();
+                                controlDisciplinarioCompe.setIdCompetencia(new Competencia(idCompetencia));
+                                controlDisciplinarioCompe.setTipoTarjeta(cbxTarjeta.getValue().getColor());
+                                if (rdAnfitrion.getValue()) {
+                                    controlDisciplinarioCompe.setEquipotarjeta("POLITECNICO JIC");
+                                    controlDisciplinarioCompe.setIdDeportista(cbxDeportista.getDeportistaElegido());
+                                } else {
+                                    controlDisciplinarioCompe.setEquipotarjeta("RIVAL");
+                                    controlDisciplinarioCompe.setIdDeportista(new Deportista(idJugadorComodin));
+                                }
+                                controlDisciplinarioCompe.setMinutoTarjeta(nMinuto.getValue().intValue());
+                                validarATargetasAmarillas(controlDisciplinarioCompe);
+                                window.hide();
+                            } else {
+                                MessageBox.alert("Registrar Tarjeta", "Ya se registro una tarjeta en el minuto <b>" + nMinuto.getValue().intValue() + "</b>", null);
+                            }
+
+                        }
+                    });
 
                 }
             }
@@ -901,18 +934,34 @@ public class PanelAdminControlJuego extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (simple.isValid()) {
-                    Goles goles = new Goles();
-                    goles.setIdCompetencia(new Competencia(idCompetencia));
-                    goles.setMinutoGol(nMinuto.getValue().intValue());
-                    if (rdAnfitrion.getValue()) {
-                        goles.setEquipoGol("Politecnico JIC");
-                        goles.setIdDeportista(cbxDeportista.getDeportistaElegido());
-                    } else {
-                        goles.setEquipoGol("Rival");
-                        goles.setIdDeportista(new Deportista(idJugadorComodin));
-                    }
-                    registrarGol(goles);
-                    window.hide();
+
+                    getServiceGolesComp().validarMinutoGolCompetencia(idCompetencia, nMinuto.getValue().intValue(), new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            MessageBox.alert("Registrar Gol", "No fue posible validar el minuto", null);
+                        }
+
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            if (!result) {
+                                Goles goles = new Goles();
+                                goles.setIdCompetencia(new Competencia(idCompetencia));
+                                goles.setMinutoGol(nMinuto.getValue().intValue());
+                                if (rdAnfitrion.getValue()) {
+                                    goles.setEquipoGol("Politecnico JIC");
+                                    goles.setIdDeportista(cbxDeportista.getDeportistaElegido());
+                                } else {
+                                    goles.setEquipoGol("Rival");
+                                    goles.setIdDeportista(new Deportista(idJugadorComodin));
+                                }
+                                registrarGol(goles);
+                                window.hide();
+                            } else {
+                                MessageBox.alert("Registrar Gol", "Ya se registro un gol con el minuto <b>" + nMinuto.getValue().intValue() + "</b>", null);
+                            }
+                        }
+                    });
 
                 }
             }
@@ -962,6 +1011,12 @@ public class PanelAdminControlJuego extends LayoutContainer {
         });
 
     }
+//    
+//    public boolean validarExisteMinuto(Long idCompe, Integer minuto){
+//      final boolean existemin;
+//        
+//        
+//    }
 
     public void registrarGol(Goles goles) {
         getServiceGolesComp().guardarEntidad(goles, new AsyncCallback<RespuestaRPC<Goles>>() {
@@ -1081,7 +1136,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
 
         this.setIdCompetencia(IdComp);
         this.setIdJugadorComodin(idComodin);
-        
+
         cargarGridTarjetas();
         cargarGridCambios();
         cargarGridGoles();
@@ -1098,15 +1153,15 @@ public class PanelAdminControlJuego extends LayoutContainer {
     public void reiniciarControlJuego() {
         this.setIdCompetencia(null);
         this.setIdJugadorComodin(null);
-        
+
         cargarGridCambios();
         cargarGridGoles();
         cargarGridTarjetas();
-        
+
         btnCrearCambios.enable();
         btnCrearGol.enable();
         btnCrearTarjeta.enable();
-        
+
         btnEliminarCambio.enable();
         btnEliminarGol.enable();
         btnEliminarTarjeta.enable();

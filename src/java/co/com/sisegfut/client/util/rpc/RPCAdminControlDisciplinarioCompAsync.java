@@ -19,5 +19,7 @@ public interface RPCAdminControlDisciplinarioCompAsync extends RPCMaestroAsync<C
     
     public void validarTarjetasDeportista(Long idCompetencia, Long idDeportista, AsyncCallback<Boolean> callback);
     
+    public void validarMinutoTarCompetencia(Long idCompetencia, Integer Minuto, AsyncCallback<Boolean> callback);
+    
     
 }

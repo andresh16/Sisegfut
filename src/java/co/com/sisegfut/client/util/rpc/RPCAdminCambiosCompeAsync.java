@@ -19,6 +19,9 @@ import java.util.List;
 public interface RPCAdminCambiosCompeAsync extends RPCMaestroAsync<CambiosCompe>{
     
     public void getCambiosXCompetenciaGrid(Long idCompetencia, AsyncCallback<PagingLoadResult<CambiosCompe>> callback);
+    
     public void getCambiosXCompetenciaCombo(Long idCompetencia, AsyncCallback<List<CambiosCompe>> callback);
+    
+    public void validarMinutoCambioCompetencia(Long idCompetencia, Integer Minuto, AsyncCallback<Boolean> callback);
     
 }

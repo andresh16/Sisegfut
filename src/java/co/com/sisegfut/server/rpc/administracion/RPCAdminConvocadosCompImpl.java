@@ -114,6 +114,17 @@ public class RPCAdminConvocadosCompImpl extends RPCMaestroImpl<ConvocadosCompe> 
     }
 
     @Override
+    public List<Deportista> getConvocadosXTipoGrids(Long idCompetencia, String tipoConvado) {
+        try {
+            return daoConvocadosCompe.getConvocadosXTipo(idCompetencia, tipoConvado);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    @Override
     public List<Deportista> getConvocados(Long idCompetencia) {
 
         List<Deportista> deportistas = daoConvocadosCompe.getConvocados(idCompetencia);
@@ -151,7 +162,23 @@ public class RPCAdminConvocadosCompImpl extends RPCMaestroImpl<ConvocadosCompe> 
         }
         deportistas.removeAll(eliminar);
 
-    return deportistas ;
-}
+        return deportistas;
+    }
+
+    @Override
+    public Boolean validarConsultarConvocados(Long idCompetencia) {
+        boolean habilitarEdicionConvocados = false;
+        List<Deportista> titulares = null;
+        List<Deportista> suplentes = null;
+
+        titulares = daoConvocadosCompe.getConvocadosXTipo(idCompetencia, "t");
+        suplentes = daoConvocadosCompe.getConvocadosXTipo(idCompetencia, "s");
+
+        if ((titulares.isEmpty() ||  titulares.size()==0) && (suplentes.isEmpty() ||  suplentes.size()==0) ) {
+            habilitarEdicionConvocados = true;
+        }
+        return habilitarEdicionConvocados;
+
+    }
 
 }

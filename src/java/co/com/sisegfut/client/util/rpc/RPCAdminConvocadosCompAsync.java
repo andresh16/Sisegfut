@@ -20,7 +20,12 @@ public interface RPCAdminConvocadosCompAsync extends RPCMaestroAsync<ConvocadosC
     
     public void getConvocadosXTipo(Long idCompetencia, String tipoConvado,AsyncCallback<List<Deportista>> callback);
     
+    public void getConvocadosXTipoGrids(Long idCompetencia, String tipoConvado,AsyncCallback<List<Deportista>> callback);
+    
     public void getConvocados(Long idCompetencia, AsyncCallback<List<Deportista>> callback);
+    
+    public void validarConsultarConvocados(Long idCompetencia, AsyncCallback<Boolean> callback);
+    
     
     
     

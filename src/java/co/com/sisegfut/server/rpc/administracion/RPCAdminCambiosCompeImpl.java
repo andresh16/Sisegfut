@@ -66,4 +66,14 @@ public class RPCAdminCambiosCompeImpl extends RPCMaestroImpl<CambiosCompe> imple
         }
     }
 
+    @Override
+    public Boolean validarMinutoCambioCompetencia(Long idCompetencia, Integer Minuto) {
+        try {
+            return daoCambiosCompe.validarMinutoCambiosCompetencia(idCompetencia, Minuto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

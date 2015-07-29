@@ -56,4 +56,15 @@ public class RPCAdminGolesImpl extends RPCMaestroImpl<Goles> implements RPCAdmin
 
     }
 
+    @Override
+    public Boolean validarMinutoGolCompetencia(Long idCompetencia, Integer Minuto) {
+        try {
+            return daoGolesCompe.validarMinutoGolCompetencia(idCompetencia, Minuto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    
+    }
+
 }

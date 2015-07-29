@@ -233,7 +233,7 @@ public class PanelAdminSituaciones extends ContentPanel {
             public void componentSelected(ButtonEvent ce) {
 
                 if (cp.isValid()) {
-                    getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
+                        getServiceSituaciones().getSituacionesXCompetencia(IdCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
                         @Override
                         public void onFailure(Throwable caught) {
@@ -1335,9 +1335,9 @@ public class PanelAdminSituaciones extends ContentPanel {
         simple.show();
     }
 
-    public void buscarSituacionesxCompetencia(Long idCompetencia, final boolean habilitar) {
-
-        getServiceSituaciones().getSituacionesXCompetencia(idCompetencia, new AsyncCallback<List<SituacionesJuegoCompe>>() {
+    public void buscarSituacionesxCompetencia(Long idCompetenc, final boolean habilitar) {
+          setIdCompetencia(idCompetenc);
+        getServiceSituaciones().getSituacionesXCompetencia(idCompetenc, new AsyncCallback<List<SituacionesJuegoCompe>>() {
 
             @Override
             public void onFailure(Throwable caught) {

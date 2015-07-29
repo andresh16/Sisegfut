@@ -26,10 +26,10 @@ public class DaoConvocadosCompeImpl extends DaoGenericoImpl<ConvocadosCompe> imp
 
         List<Deportista> listaDepConvocaTipo = null;
 
-        String sql = "Select d.* from convocados_competencia as c inner "
-                + "join deportista as d on d.id=c.id_deportista and "
-                + "id_competencia="+idCompetencia+" and tipo_convocado='"+tipoConvado+"' "
-                + "order by nombres asc; ";
+            String sql = "Select d.* from convocados_competencia as c inner "
+                    + "join deportista as d on d.id=c.id_deportista and "
+                    + "id_competencia="+idCompetencia+" and tipo_convocado='"+tipoConvado+"' "
+                    + "order by nombres asc; ";
         try {
             listaDepConvocaTipo = (List<Deportista>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

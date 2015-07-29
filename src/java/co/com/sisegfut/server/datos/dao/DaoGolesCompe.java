@@ -16,4 +16,5 @@ public interface DaoGolesCompe extends DaoGenerico<Goles>{
     
     public List<Goles> getGolesXCompetencia(Long idCompetencia)throws Exception;
     
+    public boolean validarMinutoGolCompetencia(Long idCompetencia, Integer minuto)throws Exception;
 }
