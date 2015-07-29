@@ -55,11 +55,11 @@ public class PanelAcceso extends LayoutContainer {
         super.onRender(parent, index);
         setStyleName("elLogin");
         setScrollMode(Style.Scroll.AUTOY);
-         VBoxLayout layout2 = new VBoxLayout();  
+        VBoxLayout layout2 = new VBoxLayout();  
         layout2.setPadding(new Padding(5));  
         layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
-        layout2.setPack(BoxLayoutPack.CENTER);  
-        
+        layout2.setPack(BoxLayoutPack.START);  
+        scrollIntoView(this);
         setLayout(layout2);
 
         // Construcción del logo
@@ -84,12 +84,14 @@ public class PanelAcceso extends LayoutContainer {
 //        recuperacion.setIcon(Resources.ICONS.iconoClave());
 //        recuperacion.add(panelRecuperacion);
 //        panel.add(recuperacion);
+        
         ContentPanel panel = new ContentPanel();
 
         panel.setLayout(new AccordionLayout());
         panel.setWidth(440);
 //        panel.setSize(440, 240);
         panel.setAutoHeight(true);
+        panel.setScrollMode(Style.Scroll.AUTOY);
         panel.setHeaderVisible(false);
 //        panel.setIcon(Resources.ICONS.);
 

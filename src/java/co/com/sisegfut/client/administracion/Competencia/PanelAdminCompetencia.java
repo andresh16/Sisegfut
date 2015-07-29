@@ -616,13 +616,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         wBuscar.hide();
-                        fechaFiltroComp = null;
-                        DtFecha2.reset();
-                        IdTorneo = null;
-                        comboBoxTorneo2.recargar();
-                        idRival = null;
-                        cbxRival2.recargar();
-                        cargarGridCompetencia();
+                       limpiarPanelBuscarCompetencia();
 
                     }
                 });
@@ -963,7 +957,6 @@ public class PanelAdminCompetencia extends LayoutContainer {
         adminPestComp.tabItemControlJuego.disable();
         adminPestComp.getTabpanel().setSelection(adminPestComp.tabItemConvocados);
         btnGuardarCompromiso.setVisible(true);
-        limpiarPanelBuscarCompetencia();
         cbxRival.recargar();
         cbxRival.disable();
 //        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
@@ -978,8 +971,10 @@ public class PanelAdminCompetencia extends LayoutContainer {
         idRival = null;
         cbxRival2.recargar();
         cargarGridCompetencia();
-
+        
     }
+    
+    
 
     public RPCAdminCompetenciaAsync getServiceCompetencia() {
         RPCAdminCompetenciaAsync svc = (RPCAdminCompetenciaAsync) GWT.create(RPCAdminCompetencia.class);
@@ -1030,6 +1025,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 wBuscar.hide();
+                limpiarPanelBuscarCompetencia();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
 
@@ -1058,6 +1054,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
+                limpiarPanelBuscarCompetencia();
                 wBuscar.hide();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
