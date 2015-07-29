@@ -10,12 +10,11 @@ package co.com.sisegfut.client.aatest.model;
  * @author Andres Hurtado
  */
 public class Data {
-private static int lastId = 0;
-  private String id = "" + lastId++ ;
+  private String id ;
  
   private String name;
-  private Integer data1;
-  private Integer data2;
+  private Double data1;
+  private Double data2;
 //  private double data3;
 //  private double data4;
 //  private double data5;
@@ -23,6 +22,48 @@ private static int lastId = 0;
 //  private double data7;
 //  private double data8;
 //  private double data9;
+
+    public Data(String name, Double data1, Double data2) {
+        this.name = name;
+        this.data1 = data1;
+        this.data2 = data2;
+    }
+
+    public Data() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getData1() {
+        return data1;
+    }
+
+    public void setData1(Double data1) {
+        this.data1 = data1;
+    }
+
+    public Double getData2() {
+        return data2;
+    }
+
+    public void setData2(Double data2) {
+        this.data2 = data2;
+    }
+}
  
 //  public Data(String name, double data1, double data2, double data3, double data4, double data5, double data6,
 //      double data7, double data8, double data9) {
@@ -140,3 +181,5 @@ private static int lastId = 0;
 //    return id;
 //  }
 }
+
+    
