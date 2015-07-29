@@ -15,24 +15,23 @@ import java.util.Date;
  */
 public class DTOTestCooperxDeportista implements BeanModelTag, Serializable{
     
-    private Date fecha;
+    private String fecha;
     private String distancia;
     private String consumOxigeno;
     private String condicionFisica;
     private String velocidad;
     private String vo2max;
-    private String nombres;
-    private String apellidos;
-    private String documento;
+    private String identificacion;
+    private String nombreCompleto;
 
     public DTOTestCooperxDeportista() {
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -76,29 +75,25 @@ public class DTOTestCooperxDeportista implements BeanModelTag, Serializable{
         this.vo2max = vo2max;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
+    
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
+    
     
     
 }

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a50a3674-a430-4447-90a0-9f40269acd18">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="distancia" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="nombreCompleto" class="java.lang.String"/>
+	<field name="condicionFisica" class="java.lang.String"/>
+	<field name="consumOxigeno" class="java.lang.String"/>
+	<field name="vo2max" class="java.lang.String"/>
+	<field name="velocidad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="17" width="387" height="36" forecolor="#336600" uuid="bbddf0d3-7a46-4ae8-9ee4-31766369f4d2"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Test de Cooper por la categoría]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="17" width="141" height="36" uuid="9342d300-5157-4c66-a03a-8777f2c720f7"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="15" width="134" height="31" uuid="0e9cdf26-6df5-4c04-8a32-39b3c417ed63"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="21" width="74" height="20" uuid="713bde37-a05e-4177-a3b7-a228731bdd34"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="21" width="56" height="20" uuid="95c0fd51-e45d-4488-bbfb-d8363d33fb19"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distancia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="21" width="79" height="20" uuid="568cb415-74e0-46fe-a416-8eed773e092f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="22" width="86" height="20" uuid="eb6059ea-ccc9-475f-b368-28ab90f1b445"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condicion Física]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="21" width="98" height="20" uuid="d36a7d6f-9124-40ca-ba15-73acb31b757a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consumo Oxigeno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="21" width="67" height="20" uuid="56e90a42-d60c-4135-b271-81b7308287be"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[vo2max]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="22" width="75" height="20" uuid="bf53b6cd-121a-4959-8a78-f04a9c53740b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Velocidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="21" width="104" height="20" uuid="6045a7cd-32af-4d9a-b501-6e34c89242bf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Completo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="22" width="1" height="27" uuid="8909c327-41e6-43b7-ab30-bf64d618d5b7"/>
+			</line>
+			<line>
+				<reportElement x="77" y="22" width="1" height="27" uuid="b3203c48-2dde-49ec-bc89-a5d47d9ee893"/>
+			</line>
+			<line>
+				<reportElement x="157" y="22" width="1" height="27" uuid="c891b1e9-f3e9-4116-80d6-d5ef6883051a"/>
+			</line>
+			<line>
+				<reportElement x="262" y="22" width="1" height="27" uuid="401e8aa8-0b15-465b-9ee3-dfd5dfe882e9"/>
+			</line>
+			<line>
+				<reportElement x="319" y="22" width="1" height="27" uuid="59d19200-5f88-4108-be1b-2f6328acbace"/>
+			</line>
+			<line>
+				<reportElement x="405" y="22" width="1" height="27" uuid="eb505612-170b-4e0f-8092-ac3e11ee7495"/>
+			</line>
+			<line>
+				<reportElement x="504" y="22" width="1" height="27" uuid="add55600-9ec2-418c-a6ae-6ae1a2072951"/>
+			</line>
+			<line>
+				<reportElement x="572" y="22" width="1" height="27" uuid="7f606b8e-b3ea-42bf-bd13-18aa42a54d58"/>
+			</line>
+			<line>
+				<reportElement x="649" y="22" width="1" height="27" uuid="6c0e2e3d-8489-49e9-bcbd-2c8efe6c4b99"/>
+			</line>
+			<line>
+				<reportElement x="4" y="21" width="645" height="1" uuid="0ae0b015-8e72-402d-beca-2c7c18193fc0"/>
+			</line>
+			<line>
+				<reportElement x="4" y="48" width="645" height="1" uuid="19afc6ec-9c29-421e-b6bd-0081a46a3f99"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="3" width="74" height="20" uuid="255685e2-8329-43ee-895b-efabf40bf95c"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="3" width="56" height="20" uuid="d675e8bf-62f9-4458-a448-79550a7a1570"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="3" width="79" height="20" uuid="cc539b8e-1823-4440-bac8-48c9f9ab7313"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="3" width="105" height="40" uuid="6cefce14-6c49-443f-8842-b1c89267e3eb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="3" width="86" height="20" uuid="4450ea9e-2582-4785-b089-0cd1ef03f5a6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{condicionFisica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="3" width="96" height="20" uuid="bea248eb-a5af-4470-a9dc-7ff4b0bcb2ae"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consumOxigeno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="3" width="67" height="20" uuid="a23a125b-b80d-4f67-acff-8b33690c99d5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vo2max}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="573" y="3" width="77" height="20" uuid="7463eb9c-df9a-4412-91cd-7e02ffb8ba7e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{velocidad}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="43" width="645" height="1" uuid="f00aaa6c-672a-4adf-9ac4-6b1b29c96b6d"/>
+			</line>
+			<line>
+				<reportElement x="3" y="0" width="1" height="43" uuid="89c5841e-31e2-4413-b2a5-488f55daadde"/>
+			</line>
+			<line>
+				<reportElement x="77" y="-1" width="1" height="44" uuid="a111d86a-cf18-4ed2-bf65-cc31c04406fb"/>
+			</line>
+			<line>
+				<reportElement x="157" y="1" width="1" height="42" uuid="81064c4b-dcbc-4146-8fd0-614742f274e6"/>
+			</line>
+			<line>
+				<reportElement x="262" y="0" width="1" height="43" uuid="a811c7e2-239c-483d-9e28-5625f3f39083"/>
+			</line>
+			<line>
+				<reportElement x="319" y="1" width="1" height="42" uuid="84cf1fb3-0784-4304-b261-4ce61bf5cd61"/>
+			</line>
+			<line>
+				<reportElement x="405" y="0" width="1" height="43" uuid="73200076-0f79-46cc-907e-50e67d0b2671"/>
+			</line>
+			<line>
+				<reportElement x="504" y="0" width="1" height="43" uuid="d61a3ccd-1a32-4ef8-a2a3-22400f52965a"/>
+			</line>
+			<line>
+				<reportElement x="572" y="0" width="1" height="43" uuid="96a0ae31-e64d-4806-a685-f4a12decc800"/>
+			</line>
+			<line>
+				<reportElement x="649" y="0" width="1" height="43" uuid="911717cf-925d-4103-b930-e3798e539f25"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="54" forecolor="#339900" backcolor="#99FF99" uuid="68a8290b-86eb-4d78-b86f-ff738174c3aa">
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+				</reportElement>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="2" y="4" width="184" height="20" uuid="cd14af3e-fc76-4c84-ab8a-11a212e134fe"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="649" y="0" width="80" height="20" uuid="e733ad36-a859-4e90-bc80-96467b3b3d01"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="729" y="0" width="40" height="20" uuid="2298cfa1-b9a4-407e-8662-378e0da80b25"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

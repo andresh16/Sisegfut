@@ -42,7 +42,7 @@ public class DaoTestCooperImpl extends DaoGenericoImpl<TestCooper> implements Da
     public List<TestCooper> TestCooperXCategoria(Long idCategoria) throws Exception {
         List<TestCooper> listaTestCooper = null;
 
-        String sql = "select id_deportista,max(fecha) from test_cooper where categoria ="+ idCategoria+ "group by id_deportista";
+        String sql = "select ta.* from test_cooper as ta Inner Join Deportista as d On ta.id_deportista=d.id and d.categoria=" + idCategoria;
         try {
             listaTestCooper = (List<TestCooper>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

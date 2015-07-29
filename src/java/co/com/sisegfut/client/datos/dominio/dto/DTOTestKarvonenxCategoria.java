@@ -11,37 +11,28 @@ import java.util.Date;
 
 /**
  *
- * @author Andres Hurtado
+ * @author ManuelAlejandro
  */
-public class DTOTestKarvonen implements BeanModelTag, Serializable {
-
-    private Date fecha;
+public class DTOTestKarvonenxCategoria implements BeanModelTag, Serializable{
+    
+    private String fecha;
     private String porcentaje;
     private String fcReposo;
     private String resKarvonen;
     private Long idKarvonen;
-    
-    public DTOTestKarvonen() {
+    private String identificacion;
+    private String nombreCompleto;
+
+    public DTOTestKarvonenxCategoria() {
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
-    
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
-    public Long getIdKarvonen() {
-        return idKarvonen;
-    }
-
-    public void setIdKarvonen(Long idKarvonen) {
-        this.idKarvonen = idKarvonen;
-    }
-    
-    
 
     public String getPorcentaje() {
         return porcentaje;
@@ -66,9 +57,31 @@ public class DTOTestKarvonen implements BeanModelTag, Serializable {
     public void setResKarvonen(String resKarvonen) {
         this.resKarvonen = resKarvonen;
     }
-    
-    
-    
-    
 
+    public Long getIdKarvonen() {
+        return idKarvonen;
+    }
+
+    public void setIdKarvonen(Long idKarvonen) {
+        this.idKarvonen = idKarvonen;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+    
+    
+    
 }

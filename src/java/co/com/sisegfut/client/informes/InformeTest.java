@@ -89,9 +89,19 @@ public class InformeTest extends FormPanel {
                 if (panel.isValid()) {
                     Long idCategoria = cbxCategoria.getCategoriaElegida().getId();
                     if(comboTests.getSimpleValue().equalsIgnoreCase("Test de Karvonen")){
-                        generarTestKarvonen(idCategoria);
+//                        generarTestKarvonen(idCategoria);
+                        System.out.println("Test Karvonen "+idCategoria);
+                        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteTestKarvonen/";
+                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Test de Cooper")){
-                        generarTestCooper(idCategoria);
+//                        generarTestCooper(idCategoria);
+                        System.out.println("Test Cooper "+idCategoria);
+                        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteTestCooper/";
+                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Medidas Antropométricas")){
 //                        generarTestAntropometrico(idCategoria); 
                         System.out.println("Test Antropometrico "+idCategoria);
@@ -100,7 +110,12 @@ public class InformeTest extends FormPanel {
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
                         redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
                     }else if(comboTests.getSimpleValue().equalsIgnoreCase("Control Técnico")){
-                        generarTestControlTecnico(idCategoria);
+//                        generarTestControlTecnico(idCategoria);
+                        System.out.println("Control Técnico "+idCategoria);
+                        idCategoria = cbxCategoria.getCategoriaElegida().getId();
+                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteControlTecnico/";
+                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
                     }
                     panel.reset();
                 } else {
@@ -120,7 +135,7 @@ public class InformeTest extends FormPanel {
         
     }
     public void generarTestCooper(Long idCategoria){
-        System.out.println("Test Cooper "+idCategoria);
+//        System.out.println("Test Cooper "+idCategoria);
 //        String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportista/";
 //                    // usuarioSession
 //                    redireccionarA(base +"/"+idCategoria);

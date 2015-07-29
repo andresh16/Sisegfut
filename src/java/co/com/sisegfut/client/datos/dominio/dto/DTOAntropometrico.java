@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class DTOAntropometrico implements BeanModelTag, Serializable{
     
-    private Date fecha;
+    private String fecha;
     private String perbrazorelajado;
     private String perabdominal;
     private String percadera;
@@ -33,11 +33,11 @@ public class DTOAntropometrico implements BeanModelTag, Serializable{
     private String nombreCompleto;
     
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

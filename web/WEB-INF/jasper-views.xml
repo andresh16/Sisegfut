@@ -66,7 +66,7 @@
         </property>
     </bean>
     
-        <!--Reporte de Personal-->
+    <!--Reporte de Personal-->
         
     <bean id="pdfReporteHVPersonal"
               class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
@@ -82,7 +82,7 @@
         </property>
     </bean>    
         
-     <!--Reporte de Antropometrico-->
+     <!--Reporte de Antropometrico X Categoria-->
         
     <bean id="pdfReporteAntropometrico"
               class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
@@ -111,20 +111,94 @@
         </property>
     </bean>                        
 	
-    <!--Histórico Test de Cooper x Deportista-->
+    <!--Reporte Test de Cooper X Categoria-->
         
-    <bean id="pdfReporteTC"
+    <bean id="pdfReporteTestCooper"
               class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
-              p:url="classpath:reportes/DeportistaTC.jrxml"
+              p:url="classpath:reportes/TestCooper.jrxml"
               p:reportDataKey="datasource" >
         
         <property name="headers">
             <props>
                 <prop key="Content-Disposition">
-                    attachment; filename=TestCooperXDeportista.pdf
+                    attachment; filename=TestCooperXCategoria.pdf
                 </prop>
             </props>
         </property>
-    </bean>      
+    </bean>  
+    
+    <bean id="xlsReporteTestCooper"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/TestCooper.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=TestCooperXCategoria.xls
+                </prop>
+            </props>
+        </property>
+    </bean>  
+    
+    <!--Reporte Test de Karvonen X Categoria-->
+       
+    <bean id="pdfReporteTestKarvonen"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/TestKarvonen.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=TestKarvonenXCategoria.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>         
            
+    <bean id="xlsReporteTestKarvonen"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/TestKarvonen.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=TestKarvonenXCategoria.xls
+                </prop>
+            </props>
+        </property>
+    </bean>   
+    
+    <!--Reporte Control Técnico X Categoria-->
+     
+    <bean id="pdfReporteControlTecnico"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/ControlTecnico.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=ControlTecnicoXCategoria.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>  
+    
+    <bean id="xlsReporteControlTecnico"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/ControlTecnico.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=ControlTecnicoXCategoria.xls
+                </prop>
+            </props>
+        </property>
+    </bean>       
+    
 </beans>

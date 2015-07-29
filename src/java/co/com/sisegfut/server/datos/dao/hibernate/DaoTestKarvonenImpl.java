@@ -37,11 +37,9 @@ public class DaoTestKarvonenImpl extends DaoGenericoImpl<TestKarvonen> implement
 
     @Transactional(readOnly = true)
     @Override
-    public List<TestKarvonen> TestKarvonenXCategoria(Long idCategoria) throws Exception {
+    public List<TestKarvonen> TestKarvonenxCategoria(Long idCategoria) throws Exception {
         List<TestKarvonen> listaKarvonen = null;
-
-        String sql = "select id_deportista,max(fecha) from test_karvonen where categoria ="+ idCategoria+ "group by id_deportista";
-        try {
+            String sql = "select ta.* from test_karvonen as ta Inner Join Deportista as d On ta.id_deportista=d.id and d.categoria=" + idCategoria;try {
             listaKarvonen = (List<TestKarvonen>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
                     .addEntity("test_karvonen", TestKarvonen.class).list();

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1f61c55-8fe7-4cb4-9c12-3043dca7bfbd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="nombreCompleto" class="java.lang.String"/>
+	<field name="nombrerecepcion30seg" class="java.lang.String"/>
+	<field name="nombreprecisionpase15seg" class="java.lang.String"/>
+	<field name="nombreprecisiondisparoempeine" class="java.lang.String"/>
+	<field name="nombrepotenciaremate" class="java.lang.String"/>
+	<field name="nombrecontrolbalon50seg" class="java.lang.String"/>
+	<field name="nombreconduccion" class="java.lang.String"/>
+	<field name="nombrecabeceodefensivo" class="java.lang.String"/>
+	<field name="nombrecabeceoofensivo" class="java.lang.String"/>
+	<field name="nombreaceleracion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="113" y="18" width="393" height="36" forecolor="#336600" uuid="02988aaa-2a7d-40e6-b9ae-3221115e51b2"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Control Técnico por la categoría]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="506" y="18" width="127" height="36" uuid="d546081b-919f-4847-be4f-cc291b0eb42e"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="38" y="0" width="130" height="32" uuid="c77c2930-f06e-4ce9-9f49-42d353328796"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="61" y="3" width="68" height="20" uuid="84252dda-cf0d-43f5-bdee-333d72a2755a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="3" width="67" height="30" uuid="cf780530-45da-468a-a9c4-84072c1e7676"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Completo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="3" width="59" height="46" uuid="eb13f1fc-d487-4372-ab27-196530852dcf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recepción 30 Seg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="3" width="57" height="48" uuid="b44c17f7-967c-4dba-8e08-ef126b18487a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precisión Pase 15 Seg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="3" width="66" height="47" uuid="b3c4ef8c-59b5-4793-97cb-7663307f0981"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precisión Disparo Empeine]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="3" width="67" height="47" uuid="118fcb35-ac4b-4e0a-8363-f1349b7b872b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Potencia Remate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="3" width="77" height="47" uuid="f8d9230e-9599-4ac8-b47b-506773c1990c"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Control Balón 50 Seg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="523" y="3" width="62" height="47" uuid="7b50b14d-0e8f-4e87-8a70-c265589f9b61"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conducción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="585" y="3" width="64" height="47" uuid="2a0af05d-eb09-45ce-97d1-9c3cde3d7266"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cabeceo Defensivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="649" y="3" width="59" height="47" uuid="ba4a2613-9ba9-4fa8-aa2e-3587cb98b280"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cabeceo Ofensivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="708" y="3" width="73" height="47" uuid="878abe95-ce26-449d-8d96-f5b92e845019"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aceleración]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="50" width="779" height="1" uuid="68f52967-1e90-41b2-ac36-d9d96afeb9c7"/>
+			</line>
+			<line>
+				<reportElement x="585" y="3" width="1" height="47" uuid="efd811f5-753d-4b79-8908-d71d25820411"/>
+			</line>
+			<line>
+				<reportElement x="523" y="3" width="1" height="47" uuid="73f14f65-e84f-42a9-86c0-6434934ee28d"/>
+			</line>
+			<line>
+				<reportElement x="446" y="3" width="1" height="47" uuid="facbf660-67bf-4e65-aabb-efbf32b9b062"/>
+			</line>
+			<line>
+				<reportElement x="781" y="2" width="1" height="49" uuid="2411d378-6144-4b50-9363-169150b1f131"/>
+			</line>
+			<line>
+				<reportElement x="648" y="3" width="1" height="48" uuid="54ac174c-15ea-44c8-9bd0-359d9396ad1b"/>
+			</line>
+			<line>
+				<reportElement x="707" y="3" width="1" height="47" uuid="a8485817-d82e-42f7-b32e-3d3e950be65c"/>
+			</line>
+			<line>
+				<reportElement x="2" y="3" width="1" height="47" uuid="d4ebc0d3-3857-4c59-a17c-06d9f2d0619e"/>
+			</line>
+			<line>
+				<reportElement x="61" y="3" width="1" height="47" uuid="f242d059-81f8-4684-a2c9-83f428e35771"/>
+			</line>
+			<line>
+				<reportElement x="130" y="3" width="1" height="47" uuid="8eef67fe-9315-44f4-ad69-472be7097f1e"/>
+			</line>
+			<line>
+				<reportElement x="197" y="3" width="1" height="47" uuid="fc24bbb9-d556-4a0f-ac73-28fa190d508d"/>
+			</line>
+			<line>
+				<reportElement x="255" y="3" width="1" height="47" uuid="897528a9-96a2-41fa-b6ee-23ddea9c401f"/>
+			</line>
+			<line>
+				<reportElement x="312" y="3" width="1" height="48" uuid="1dc74f2d-a2c8-4d85-ab0e-0c6d07eb0782"/>
+			</line>
+			<line>
+				<reportElement x="378" y="3" width="1" height="47" uuid="01c299a6-9aef-4e26-9ff8-0786c937773e"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="3" y="3" width="60" height="20" uuid="93006356-3ac3-4dbb-ad21-bf70b4535724"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="2" width="779" height="1" uuid="efd35c27-5889-446e-be3c-f041a1daa416"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="60" height="20" uuid="ebffe4ce-a47d-458a-ac44-acd4af049e8c"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="0" width="68" height="20" uuid="875b9df3-9a13-42f7-a013-b27e5ec6f770"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="67" height="50" uuid="66a6f36e-616b-45c1-a942-e01bdb979849"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="59" height="20" uuid="7351e7da-62c9-47ef-afc6-296a3c3ba7a1"/>
+				<textFieldExpression><![CDATA[$F{nombrerecepcion30seg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="0" width="57" height="20" uuid="202d0251-41f7-4409-9ae0-069e9d1b07fe"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreprecisionpase15seg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="0" width="65" height="20" uuid="3e3ba715-3c9a-4606-bd49-7685abd1b8a5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreprecisiondisparoempeine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="68" height="20" uuid="5496ffee-9740-48c5-88fc-bec2e5813651"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombrepotenciaremate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="77" height="20" uuid="58a610bb-9649-418f-bc91-b7bd6cfab382"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombrecontrolbalon50seg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="0" width="62" height="20" uuid="adad66dd-5fe5-483f-b4da-d6d2f4c19c96"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreconduccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="585" y="0" width="64" height="20" uuid="db9330a1-c4b8-44c1-8099-3dbdd055483b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombrecabeceodefensivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="649" y="0" width="59" height="20" uuid="093d0269-511d-4a6b-99e5-a019d7c0c330"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombrecabeceoofensivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="708" y="0" width="73" height="20" uuid="2264c6e9-af63-43ba-980c-059120ea5d6b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreaceleracion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="49" width="779" height="1" uuid="ed3f6f98-949d-4db6-8df0-031e6d934355"/>
+			</line>
+			<line>
+				<reportElement x="61" y="0" width="1" height="49" uuid="5ec885c9-7d8a-4573-ae5b-1b2840ebaceb"/>
+			</line>
+			<line>
+				<reportElement x="130" y="-2" width="1" height="51" uuid="c5b20c1c-3d3d-43fa-b4fa-e83d42d1c3c6"/>
+			</line>
+			<line>
+				<reportElement x="255" y="-1" width="1" height="50" uuid="677b9e80-ff88-4f26-9969-a824284824d5"/>
+			</line>
+			<line>
+				<reportElement x="197" y="-1" width="1" height="51" uuid="f078b6f1-665f-4383-a22e-0b88443423c2"/>
+			</line>
+			<line>
+				<reportElement x="312" y="-1" width="1" height="50" uuid="4cfbb124-237a-4d64-a80a-5b44357b06d0"/>
+			</line>
+			<line>
+				<reportElement x="378" y="-1" width="1" height="50" uuid="639a78b5-e465-42cd-9bfb-1aa552209a55"/>
+			</line>
+			<line>
+				<reportElement x="446" y="-2" width="1" height="51" uuid="6bdbdf7f-648f-4943-8501-2ad8f294ba8c"/>
+			</line>
+			<line>
+				<reportElement x="523" y="-2" width="1" height="51" uuid="498dc6dc-358e-4947-a674-be9b44f786b4"/>
+			</line>
+			<line>
+				<reportElement x="707" y="-1" width="1" height="50" uuid="f8695215-fa27-4a94-b2b2-3f314d2e570d"/>
+			</line>
+			<line>
+				<reportElement x="648" y="-1" width="1" height="50" uuid="faa409a3-c3c8-4b13-8f7f-cb38bdec522f"/>
+			</line>
+			<line>
+				<reportElement x="585" y="-1" width="1" height="50" uuid="5ad65d6a-765f-4760-bf72-88da88dcfb13"/>
+			</line>
+			<line>
+				<reportElement x="781" y="0" width="1" height="50" uuid="0540d508-d0bd-4433-89c1-3932c95c128e"/>
+			</line>
+			<line>
+				<reportElement x="2" y="0" width="1" height="50" uuid="452d435a-3686-4a96-89eb-9da2f19b68f6"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="58">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="54" forecolor="#339900" backcolor="#99FF99" uuid="798b2b5b-d406-4909-a8a0-4557dc16c87c">
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+				</reportElement>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="2" y="4" width="184" height="20" uuid="e7184741-5726-4d29-8277-8a46742899e5"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="649" y="0" width="80" height="20" uuid="8fee222f-818a-43ca-8caa-f5d62c1e56e7"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="729" y="0" width="40" height="20" uuid="ea6cd0d7-ac26-454b-b1b5-fe3ac14c064d"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

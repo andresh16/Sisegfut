@@ -51,7 +51,7 @@ public class RPCAdminAntropometricoImpl extends RPCMaestroImpl<Antropometrico> i
             if (listAntropometrico != null) {
                 for (Antropometrico valorAntropometrico : listAntropometrico) {
                     DTOAntropometrico agg = new DTOAntropometrico();
-                    agg.setFecha(valorAntropometrico.getFecha());
+                    agg.setFecha(valorAntropometrico.getFecha().toString());
                     agg.setPerabdominal(valorAntropometrico.getPerabdominal().toString());
                     agg.setPerbrazorelajado(valorAntropometrico.getPerbrazorelajado().toString());
                     agg.setPercadera(valorAntropometrico.getPercadera().toString());

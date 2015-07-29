@@ -15,6 +15,7 @@ import java.util.Date;
  * @author Andres Hurtado
  */
 public class DTOTestCooper implements BeanModelTag, Serializable{
+    
     private Date fecha;
     private String distancia;
     private String consumOxigeno;
@@ -22,6 +23,8 @@ public class DTOTestCooper implements BeanModelTag, Serializable{
     private String velocidad;
     private String vo2max;
     private Long IdCooper;
+    private String identificacion;
+    private String nombreCompleto;
     
 
     public DTOTestCooper() {
@@ -81,6 +84,22 @@ public class DTOTestCooper implements BeanModelTag, Serializable{
 
     public void setCondicionFisica(String condicionFisica) {
         this.condicionFisica = condicionFisica;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
     
     

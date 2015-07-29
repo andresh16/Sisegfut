@@ -6,19 +6,23 @@ package co.com.sisegfut.server.vista.rest;
 
 import co.com.sisegfut.client.datos.dominio.AntecedentesDeportivos;
 import co.com.sisegfut.client.datos.dominio.Antropometrico;
+import co.com.sisegfut.client.datos.dominio.ControlTecnico;
 import co.com.sisegfut.client.datos.dominio.Lesiones;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EstudiosRealizados;
 import co.com.sisegfut.client.datos.dominio.Experiencia;
 import co.com.sisegfut.client.datos.dominio.LogrosDeportivos;
 import co.com.sisegfut.client.datos.dominio.Personal;
-import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.TestCooper;
+import co.com.sisegfut.client.datos.dominio.TestKarvonen;
+import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
 import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooperxDeportista;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTestKarvonenxCategoria;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoAntropometrico;
@@ -93,7 +97,7 @@ public class ReportesController {
      */
     @RequestMapping(value = "/ReporteDeportista/{nombreCategoria}/{categoria}/{tipo}",
             method = RequestMethod.GET)
-    public ModelAndView doReportDeportista(
+        public ModelAndView doReportDeportista(
             @PathVariable String nombreCategoria,
             @PathVariable Long categoria,
             @PathVariable Long tipo,
@@ -446,7 +450,7 @@ public class ReportesController {
                 for (Antropometrico antropometrico : listaDeportistaAntReport) {
                     DTOAntropometrico dtoAntropometrico = new DTOAntropometrico();
                     
-                    dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha().toString()));
+                    dtoAntropometrico.setFecha(Formatos.fecha2(antropometrico.getFecha()));
                     dtoAntropometrico.setIdentificacion(antropometrico.getIdDeportista().getDocumento());
                     dtoAntropometrico.setNombreCompleto(antropometrico.getIdDeportista().getLabel());
                     
@@ -505,26 +509,15 @@ public class ReportesController {
 
             return retorno;
         }
-    }
-
-//            parameterMap.put("documento", dep.getDocumento());
-//            parameterMap.put("nombres", dep.getNombres());
-//            parameterMap.put("apellidos", dep.getApellidos());
-//            parameterMap.put("fecha", ant.getFecha());
-//            parameterMap.put("perbrazorelajado", ant.getPerbrazorelajado());
-//            parameterMap.put("perabdominal", ant.getPerabdominal());
-//            parameterMap.put("percadera", ant.getPercadera());
-//            parameterMap.put("perpantorrilla", ant.getPerpantorrilla());
-//            parameterMap.put("plisubescapular", ant.getPlisubescapular());
-//            parameterMap.put("plitricipital", ant.getPlitricipital());
-//            parameterMap.put("plisupraescapular", ant.getPlisupraescapular());
-//            parameterMap.put("pliabdominal", ant.getPliabdominal());
-//            parameterMap.put("porcentajeGrasa", ant.getPorcentajeGrasa());        
+    }       
            
-    @RequestMapping(value = "/ReporteDeportistaTC/{idDeportista}",
+    //Reporte Test de Cooper Deportistas X Categoria
+    @RequestMapping(value = "/ReporteTestCooper/{nombreCategoria}/{categoria}/{tipo}",
             method = RequestMethod.GET)
-    public ModelAndView doReportTestCooper(
-            @PathVariable Long idDeportista,
+    public ModelAndView doReportTestCopper(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
             ModelAndView modelAndView,
             HttpServletRequest request,
             HttpServletResponse response) {
@@ -539,47 +532,39 @@ public class ReportesController {
             return retorno;
         }
         try {
-            log.info("Entra a generar reporte histórico del test de cooper");
-            Deportista dep = daoDeportista.getById(idDeportista);
+            log.info("Entra a generar reporte");
+            List <TestCooper> listaDeportistaTcReport = daoTestCooper.TestCooperXCategoria(categoria);
+            List<DTOTestCooperxDeportista> listaDeportistaTc = new ArrayList<DTOTestCooperxDeportista>();
+                String cat = null;
+                for (TestCooper testCooper : listaDeportistaTcReport) {
+                    DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
+                    
+                    dtoTestCooper.setFecha(Formatos.fecha2(testCooper.getFecha()));
+                    dtoTestCooper.setIdentificacion(testCooper.getIdDeportista().getDocumento());
+                    dtoTestCooper.setNombreCompleto(testCooper.getIdDeportista().getLabel());
+                    
+                    dtoTestCooper.setDistancia(testCooper.getDistancia().toString());
+                    dtoTestCooper.setCondicionFisica(testCooper.getCondicionFisica());
+                    dtoTestCooper.setConsumOxigeno(testCooper.getConsumOxigeno());
+                    dtoTestCooper.setVo2max(testCooper.getVo2max());                    
+                    dtoTestCooper.setVelocidad(testCooper.getVelocidad());
+                    listaDeportistaTc.add(dtoTestCooper);
+                    
+                    
+                    cat=testCooper.getIdDeportista().getCategoria().getNombrecategoria();
+                }
+            System.out.println("nombre cat" + cat);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
 
-            parameterMap.put("documento", dep.getDocumento());
-            parameterMap.put("nombres", dep.getNombres());
-            parameterMap.put("apellidos", dep.getApellidos());
-//            parameterMap.put("categoria", dep.getCategoria().getNombrecategoria());
-            
-            List<TestCooper> listAnt =  new ArrayList<TestCooper>();
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
+            parameterMap.put("categoria", nombreCategoria);
 
-            List<DTOTestCooperxDeportista> listaRetorno = new ArrayList<DTOTestCooperxDeportista>();
-
-            listAnt = daoTestCooper.TCXDeportista(idDeportista);
-            
-                DTOTestCooperxDeportista agg = new DTOTestCooperxDeportista();
-
-                if (listAnt.size() > 1) {
-                    if (listAnt.get(1) != null) {
-                        agg.setCondicionFisica(listAnt.get(1).getCondicionFisica());
-                        agg.setDistancia(listAnt.get(1).getDistancia().toString());
-                        agg.setConsumOxigeno(listAnt.get(1).getConsumOxigeno());
-                        agg.setFecha(listAnt.get(1).getFecha());
-                        agg.setVelocidad(listAnt.get(1).getVelocidad());
-                        agg.setVo2max(listAnt.get(1).getVo2max());
-                    }
-                } else {
-                    agg.setCondicionFisica("");
-                    agg.setDistancia("");
-                    agg.setConsumOxigeno("");
-                    agg.setFecha(null);
-                    agg.setVelocidad("");
-                    agg.setVo2max("");
-                }
-                
-                listaRetorno.add(agg);
-
-             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetorno));
-
-            modelAndView = new ModelAndView("pdfReporteTC", parameterMap);
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteTestCooper", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteTestCooper", parameterMap);
+            }
 
             return modelAndView;
 
@@ -588,7 +573,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.\n" + e);
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -596,5 +581,149 @@ public class ReportesController {
 
             return retorno;
         }
-    }
+    } 
+    
+    //Reporte Test de Karvonen Deportistas X Categoria
+    @RequestMapping(value = "/ReporteTestKarvonen/{nombreCategoria}/{categoria}/{tipo}",
+            method = RequestMethod.GET)
+        public ModelAndView doReportTestKarvonen(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List <TestKarvonen> listaDeportistaTkReport = daoTestKarvonen.TestKarvonenxCategoria(categoria);
+            List<DTOTestKarvonenxCategoria> listaDeportistaTk = new ArrayList<DTOTestKarvonenxCategoria>();
+                String cat = null;
+                for (TestKarvonen testKarvonen : listaDeportistaTkReport) {
+                    DTOTestKarvonenxCategoria dtoTestKarvonen = new DTOTestKarvonenxCategoria();
+                    
+                    dtoTestKarvonen.setFecha(Formatos.fecha2(testKarvonen.getFecha()));
+                    dtoTestKarvonen.setIdentificacion(testKarvonen.getIdDeportista().getDocumento());
+                    dtoTestKarvonen.setNombreCompleto(testKarvonen.getIdDeportista().getLabel());
+                    
+                    dtoTestKarvonen.setFcReposo(testKarvonen.getFcReposo().toString());
+                    dtoTestKarvonen.setPorcentaje(testKarvonen.getPorcentaje().toString());
+                    dtoTestKarvonen.setResKarvonen(testKarvonen.getResultadoKarvonen());
+                    listaDeportistaTk.add(dtoTestKarvonen);
+                                        
+                    cat=testKarvonen.getIdDeportista().getCategoria().getNombrecategoria();
+                }
+            System.out.println("nombre cat" + cat);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
+            parameterMap.put("categoria", nombreCategoria);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteTestKarvonen", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteTestKarvonen", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    } 
+    
+    //Reporte Test de Cooper Deportistas X Categoria
+    @RequestMapping(value = "/ReporteControlTecnico/{nombreCategoria}/{categoria}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportControlTecnico(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List <ControlTecnico> listaDeportistaCtReport = daoControlTecnico.ControlTecnicoxCategoria(categoria);
+            List<DTOControlTecnicoxCategoria> listaDeportistaCt = new ArrayList<DTOControlTecnicoxCategoria>();
+                String cat = null;
+                for (ControlTecnico controlTecnico : listaDeportistaCtReport) {
+                    DTOControlTecnicoxCategoria dtoControlTecnico = new DTOControlTecnicoxCategoria();
+                    
+                    dtoControlTecnico.setFecha(Formatos.fecha2(controlTecnico.getFecha()));
+                    dtoControlTecnico.setIdentificacion(controlTecnico.getIdDeportista().getDocumento());
+                    dtoControlTecnico.setNombreCompleto(controlTecnico.getIdDeportista().getLabel());
+                    
+                    dtoControlTecnico.setNombrerecepcion30seg(controlTecnico.getNombrerecepcion30seg().toString());
+                    dtoControlTecnico.setNombreprecisionpase15seg(controlTecnico.getNombreprecisionpase15seg().toString());
+                    dtoControlTecnico.setNombreprecisiondisparoempeine(controlTecnico.getNombreprecisiondisparoempeine().toString());
+                    dtoControlTecnico.setNombrepotenciaremate(controlTecnico.getNombrepotenciaremate().toString());                    
+                    dtoControlTecnico.setNombrecontrolbalon50seg(controlTecnico.getNombrecontrolbalon50seg().toString());
+                    dtoControlTecnico.setNombreconduccion(controlTecnico.getNombreconduccion().toString());
+                    dtoControlTecnico.setNombrecabeceodefensivo(controlTecnico.getNombrecabeceodefensivo().toString());
+                    dtoControlTecnico.setNombrecabeceoofensivo(controlTecnico.getNombrecabeceoofensivo().toString());                    
+                    dtoControlTecnico.setNombreaceleracion(controlTecnico.getNombreaceleracion().toString());
+                    listaDeportistaCt.add(dtoControlTecnico);
+                                        
+                    cat=controlTecnico.getIdDeportista().getCategoria().getNombrecategoria();
+                }
+            System.out.println("nombre cat" + cat);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaCt));
+            parameterMap.put("categoria", nombreCategoria);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteControlTecnico", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteControlTecnico", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    } 
 }
