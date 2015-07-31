@@ -35,7 +35,7 @@ public class PanelEstadisticas extends Window {
 
     public PanelEstadisticas() {
         AdvancedChartExample advancedChartExample = new AdvancedChartExample();
-        setSize(900, 500);
+        setSize(900, 600);
         setPlain(true);
         setModal(true);
         setClosable(true);
@@ -43,9 +43,11 @@ public class PanelEstadisticas extends Window {
         setHeading("Estadistica de la competencia");
         setLayout(new FillLayout());
         myConstants = (Main) GWT.create(Main.class);
-        panel.setLayoutData(new MarginData(10));
-        panel.setCollapsible(true);
-        panel.setHeadingText("Grouped Bar Chart");
+        
+        panel.setLayoutData(new MarginData(0));
+        panel.setCollapsible(false);
+        panel.setHeadingText("Estadisticas");
+        panel.setHeaderVisible(false);
         panel.setPixelSize(620, 500);
         panel.setBodyBorder(true);
 
@@ -71,7 +73,8 @@ public class PanelEstadisticas extends Window {
     }
 
     public void setIdCompetencia(Long idCompetencia) {
-        this.idCompetencia = idCompetencia;
+//        this.idCompetencia = idCompetencia;
+        ejemploBarras1.setIdCompetencia(idCompetencia);
     }
     
     /**

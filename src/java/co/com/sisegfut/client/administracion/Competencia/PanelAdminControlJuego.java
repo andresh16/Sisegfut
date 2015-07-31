@@ -5,7 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.Competencia;
 
-import co.com.sisegfut.client.aatest.TestData;
+import co.com.sisegfut.client.aatest.TestDataExt;
 import co.com.sisegfut.client.aatest.model.Tarjeta;
 import co.com.sisegfut.client.datos.dominio.CambiosCompe;
 import co.com.sisegfut.client.datos.dominio.Competencia;
@@ -725,7 +725,7 @@ public class PanelAdminControlJuego extends LayoutContainer {
         cbxDeportista.setAllowBlank(false);
 
         ListStore<Tarjeta> tarjetas = new ListStore<Tarjeta>();
-        tarjetas.add(TestData.getTarjetas());
+        tarjetas.add(TestDataExt.getTarjetas());
 
         cbxTarjeta = new ComboBox<Tarjeta>();
         cbxTarjeta.setWidth(150);

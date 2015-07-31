@@ -81,7 +81,7 @@ public class AdvancedChartExample extends LayoutContainer {
         layoutContainerMain = new LayoutContainer();
 
         final ListStore<TeamSales> store = new ListStore<TeamSales>();
-        store.add(TestData.getTeamSales());
+        store.add(TestDataExt.getTeamSales());
 
         // chart
         String url = !isExplorer() ? "../../" : "";
@@ -189,7 +189,7 @@ public class AdvancedChartExample extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 store.removeAll();
-                store.add(TestData.getTeamSales());
+                store.add(TestDataExt.getTeamSales());
             }
         });
 
