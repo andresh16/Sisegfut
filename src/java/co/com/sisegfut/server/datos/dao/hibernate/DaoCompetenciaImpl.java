@@ -7,6 +7,7 @@ package co.com.sisegfut.server.datos.dao.hibernate;
 
 import co.com.sisegfut.client.datos.dominio.Competencia;
 import co.com.sisegfut.server.datos.dao.DaoCompetencia;
+import co.com.sisegfut.server.util.Formatos;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +51,7 @@ public class DaoCompetenciaImpl extends DaoGenericoImpl<Competencia> implements 
         String condicionFiltro = "";
 
         if (fechaCompetencia != null) {
-            condicionFiltro += "fecha='" + fechaCompetencia + "'";
+            condicionFiltro += "fecha between '" + Formatos.ceroHoras(fechaCompetencia)+"' and '"+ Formatos.Horas23(fechaCompetencia)+"'";
         }
         if (idTorneo != null) {
             if (condicionFiltro != "") {

@@ -17,8 +17,8 @@ public class DTOSituacionJuegoCompGraficas {
     
     
       private static final String[] situacionesJuego = new String[] {
-       "Falta Z1", "Falta Z2", "Falta Z3", "Recuperación Z1", "Recuperación Z2", "Recuperación Z3","Tiro Libre Z1","Tiro Libre Z2","Tiro Libre Z3", "Centrao Lateral",
-      "Entradas Erradas", "Fuera Lugar", "Opción Gol", "Penalty","Remate","Tiro Esquina", "Tarjeta Roja","Tarjeta Amarilla"};
+       "Falta Z1", "Falta Z2", "Falta Z3", "Recuperación Z1", "Recuperación Z2", "Recuperación Z3","Tiro Libre Z1","Tiro Libre Z2","Tiro Libre Z3", "Centro Lateral",
+      "Entradas Erradas", "Fuera Lugar", "Opción Gol", "Penalty","Remate","Tiro Esquina", "Tarjeta Roja","Tarjeta Amarilla","Gol"};
 
   
 

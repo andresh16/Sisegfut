@@ -105,7 +105,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         DtFecha.setName("fecha_nacimiento");
         DtFecha.setAllowBlank(false);
         DtFecha.setEnabled(false);
-        DtFecha.setMinValue(fechaActual);
+//        DtFecha.setMinValue(fechaActual);
         DtFecha.setEditable(false);
 
         DtFecha.setValue(new Date());

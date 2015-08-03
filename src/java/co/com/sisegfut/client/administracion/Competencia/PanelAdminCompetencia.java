@@ -12,6 +12,7 @@ import co.com.sisegfut.client.datos.dominio.Rivales;
 import co.com.sisegfut.client.datos.dominio.Torneos;
 import co.com.sisegfut.client.datos.dominio.dto.DTOCompetencia;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
+import co.com.sisegfut.client.util.Formatos;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxRival;
 import co.com.sisegfut.client.util.combox.ComboBoxTorneo;
@@ -32,9 +33,11 @@ import com.extjs.gxt.ui.client.data.RpcProxy;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -48,12 +51,15 @@ import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.Time;
+import com.extjs.gxt.ui.client.widget.form.TimeField;
 import com.extjs.gxt.ui.client.widget.grid.BufferView;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
@@ -69,6 +75,7 @@ import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
+import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -93,6 +100,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private ListStore<Competencia> storeCompetencia;
     final PagingToolBar PgtoolBar = new PagingToolBar(50);
     private Grid<Competencia> gridCompetencia;
+    private Date fechaActividad = new Date();
 
     // Formulario compromiso
 //    private TextField<String> txtLocal = new TextField<String>();
@@ -106,6 +114,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private ComboBoxTorneo comboBoxTorneo2;
 //    private ComboBoxCategoria cbxCategoria = new ComboBoxCategoria(ACTIVOS);
     private DateField DtFecha = new DateField();
+    private TimeField tmHora = new TimeField();
     private DateField DtFecha2 = new DateField();
     private FormPanel fpCompromiso;
     private ContentPanel cpCuerpoTecCom;
@@ -126,7 +135,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private ComboBoxRival cbxRival = null;
     private ComboBoxRival cbxRival2 = null;
 
-    private Date fechaFiltroComp = null;
+    private Date fechaFiltroComp = new Date();
     private Long IdTorneo = null;
     private Long idRival = null;
     private Long idJugadorComodin = null;
@@ -292,9 +301,22 @@ public class PanelAdminCompetencia extends LayoutContainer {
         DtFecha.setAllowBlank(false);
         DtFecha.setFormatValue(true);
         DtFecha.setValue(new Date());
-
         DtFecha.setFieldLabel("<font color='red'>*</font> Fecha ");
         Columna1.add(DtFecha, formData);
+
+        tmHora.setFieldLabel("<font color='red'>*</font> Hora");
+//        tmHora.addPlugin(plugin);
+//        tmHora.setData("text", "Seleccione la hora");
+        tmHora.setEmptyText("Seleccione la hora");
+        DateTimeFormat fmt = DateTimeFormat.getFormat("hh:mm aa");
+        tmHora.setFormat(fmt);
+//        tmHora.setValue(new Time(new Date()));
+        tmHora.setIncrement(30);
+        tmHora.setForceSelection(true);
+        tmHora.setTriggerAction(ComboBox.TriggerAction.ALL);
+        tmHora.setEditable(false);
+        tmHora.setAllowBlank(false);
+        Columna1.add(tmHora, formData);
 
         txtLugar.setName("local");
         txtLugar.setFieldLabel("<font color='red'>*</font> Lugar");
@@ -396,122 +418,123 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
     }
 
-    public FormPanel crearFormularioBusqueda() {
-
-        FormPanel fpCompromiso = new FormPanel();
-        fpCompromiso.setScrollMode(Style.Scroll.AUTO);
-        fpCompromiso.setFrame(true);
-        fpCompromiso.setHeaderVisible(false);
-//        form.setPadding(5);
-        fpCompromiso.setSize("100%", "100%");
-
-        // Layout Main que contiene todas las columnas 
-        FormData formData = new FormData("-10");
-        LayoutContainer main = new LayoutContainer();
-        main.setLayout(new ColumnLayout());
-        // main.setHeight(100);
-        main.setAutoHeight(true);
-        ///////////////////// Columna 1 ////////////////////////////  
-        LayoutContainer Columna1 = new LayoutContainer();
-        Columna1.setStyleAttribute("padding", "10px");
-
-        FormLayout layout = new FormLayout();
-        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
-        Columna1.setLayout(layout);
-
-        DtFecha2.setName("fechaCompromiso");
-        DtFecha.setFieldLabel("<font color='red'>*</font> Fecha ");
-        DtFecha2.setLabelSeparator("Fecha competencia ");
-//        DtFecha2.setAllowBlank(false);
-//        DtFecha2.setFormatValue(true);
-
-        Columna1.add(DtFecha2, formData);
-
-        ///////////////////// Columna 2 //////////////////////////// 
-        LayoutContainer Columna2 = new LayoutContainer();
-        Columna2.setStyleAttribute("padding", "10px");
-        layout = new FormLayout();
-        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
-        Columna2.setLayout(layout);
-
-        comboBoxTorneo2 = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
-        comboBoxTorneo2.setLabelSeparator("Torneo");
-        comboBoxTorneo2.setEditable(false);
-        comboBoxTorneo2.setForceSelection(true);
-
-        comboBoxTorneo2.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
-            @Override
-            public void handleEvent(BaseEvent be) {
-                if (comboBoxTorneo2.getValue() != null) {
-                    cbxRival2.setIdTorneoElegido(comboBoxTorneo2.getTorneosElegido().getId());
-                    cbxRival2.enable();
-                } else {
-                    cbxRival2.disable();
-                }
-            }
-        });
-        Columna2.add(comboBoxTorneo2, formData);
-
-        ///////////////////// Columna 3 //////////////////////////// 
-        LayoutContainer Columna3 = new LayoutContainer();
-        Columna3.setStyleAttribute("padding", "10px");
-        layout = new FormLayout();
-        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
-        Columna3.setLayout(layout);
-
-        cbxRival2 = new ComboBoxRival(ACTIVOS);
-        cbxRival2.setLabelSeparator("Rival");
-        cbxRival2.disable();
-        cbxRival2.setEditable(false);
-        Columna3.add(cbxRival2, formData);
-
-        main.add(Columna1, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
-        main.add(Columna2, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
-        main.add(Columna3, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
-
-        fpCompromiso.add(main, new FormData("100%"));
-
-        Button btnBuscarCompetencia = new Button("Buscar", new SelectionListener<ButtonEvent>() {
-
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                if (DtFecha2.getValue() != null) {
-                    DateTimeFormat fmt = DateTimeFormat.getFormat("dd-MM-yyyy");
-                    fechaFiltroComp = fmt.parse(fmt.format(DtFecha2.getValue()));
-//                    fechaFiltroComp = DtFecha2.getValue();
-                }
-                if (comboBoxTorneo2.getValue() != null) {
-                    IdTorneo = comboBoxTorneo2.getTorneosElegido().getId();
-                }
-                if (cbxRival2.getValue() != null) {
-                    idRival = cbxRival2.getRivalElegido().getId();
-                }
-                cargarGridCompetencia();
-
-            }
-        });
-        Button btnLimpiarForCompetencia = new Button("Limpiar", new SelectionListener<ButtonEvent>() {
-
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                fechaFiltroComp = null;
-                DtFecha2.reset();
-                IdTorneo = null;
-                comboBoxTorneo2.recargar();
-
-                idRival = null;
-                cbxRival2.recargar();
-                cbxRival2.disable();
-                cargarGridCompetencia();
-            }
-        });
-        fpCompromiso.addButton(btnBuscarCompetencia);
-        fpCompromiso.addButton(btnLimpiarForCompetencia);
-        fpCompromiso.setButtonAlign(Style.HorizontalAlignment.CENTER);
-
-        return fpCompromiso;
-
-    }
+//    public FormPanel crearFormularioBusqueda() {
+//
+//        FormPanel fpCompromiso = new FormPanel();
+//        fpCompromiso.setScrollMode(Style.Scroll.AUTO);
+//        fpCompromiso.setFrame(true);
+//        fpCompromiso.setHeaderVisible(false);
+////        form.setPadding(5);
+//        fpCompromiso.setSize("100%", "100%");
+//
+//        // Layout Main que contiene todas las columnas 
+//        FormData formData = new FormData("-10");
+//        LayoutContainer main = new LayoutContainer();
+//        main.setLayout(new ColumnLayout());
+//        // main.setHeight(100);
+//        main.setAutoHeight(true);
+//        ///////////////////// Columna 1 ////////////////////////////  
+//        LayoutContainer Columna1 = new LayoutContainer();
+//        Columna1.setStyleAttribute("padding", "10px");
+//
+//        FormLayout layout = new FormLayout();
+//        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
+//        Columna1.setLayout(layout);
+//
+//        DtFecha2.setName("fechaCompromiso");
+//        DtFecha.setFieldLabel("<font color='red'>*</font> Fecha ");
+//        DtFecha2.setLabelSeparator("Fecha competencia ");
+//        DtFecha2.setValue(new Date());
+////        DtFecha2.setAllowBlank(false);
+////        DtFecha2.setFormatValue(true);
+//
+//        Columna1.add(DtFecha2, formData);
+//
+//        ///////////////////// Columna 2 //////////////////////////// 
+//        LayoutContainer Columna2 = new LayoutContainer();
+//        Columna2.setStyleAttribute("padding", "10px");
+//        layout = new FormLayout();
+//        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
+//        Columna2.setLayout(layout);
+//
+//        comboBoxTorneo2 = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
+//        comboBoxTorneo2.setLabelSeparator("Torneo");
+//        comboBoxTorneo2.setEditable(false);
+//        comboBoxTorneo2.setForceSelection(true);
+//
+//        comboBoxTorneo2.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
+//            @Override
+//            public void handleEvent(BaseEvent be) {
+//                if (comboBoxTorneo2.getValue() != null) {
+//                    cbxRival2.setIdTorneoElegido(comboBoxTorneo2.getTorneosElegido().getId());
+//                    cbxRival2.enable();
+//                } else {
+//                    cbxRival2.disable();
+//                }
+//            }
+//        });
+//        Columna2.add(comboBoxTorneo2, formData);
+//
+//        ///////////////////// Columna 3 //////////////////////////// 
+//        LayoutContainer Columna3 = new LayoutContainer();
+//        Columna3.setStyleAttribute("padding", "10px");
+//        layout = new FormLayout();
+//        layout.setLabelAlign(FormPanel.LabelAlign.TOP);
+//        Columna3.setLayout(layout);
+//
+//        cbxRival2 = new ComboBoxRival(ACTIVOS);
+//        cbxRival2.setLabelSeparator("Rival");
+//        cbxRival2.disable();
+//        cbxRival2.setEditable(false);
+//        Columna3.add(cbxRival2, formData);
+//
+//        main.add(Columna1, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
+//        main.add(Columna2, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
+//        main.add(Columna3, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.33));
+//
+//        fpCompromiso.add(main, new FormData("100%"));
+//
+//        Button btnBuscarCompetencia = new Button("Buscar", new SelectionListener<ButtonEvent>() {
+//
+//            @Override
+//            public void componentSelected(ButtonEvent ce) {
+//                if (DtFecha2.getValue() != null) {
+//                    DateTimeFormat fmt = DateTimeFormat.getFormat("dd-MM-yyyy");
+//                    fechaFiltroComp = fmt.parse(fmt.format(DtFecha2.getValue()));
+////                    fechaFiltroComp = DtFecha2.getValue();
+//                }
+//                if (comboBoxTorneo2.getValue() != null) {
+//                    IdTorneo = comboBoxTorneo2.getTorneosElegido().getId();
+//                }
+//                if (cbxRival2.getValue() != null) {
+//                    idRival = cbxRival2.getRivalElegido().getId();
+//                }
+//                cargarGridCompetencia();
+//
+//            }
+//        });
+//        Button btnLimpiarForCompetencia = new Button("Limpiar", new SelectionListener<ButtonEvent>() {
+//
+//            @Override
+//            public void componentSelected(ButtonEvent ce) {
+//                fechaFiltroComp = null;
+//                DtFecha2.reset();
+//                IdTorneo = null;
+//                comboBoxTorneo2.recargar();
+//
+//                idRival = null;
+//                cbxRival2.recargar();
+//                cbxRival2.disable();
+//                cargarGridCompetencia();
+//            }
+//        });
+//        fpCompromiso.addButton(btnBuscarCompetencia);
+//        fpCompromiso.addButton(btnLimpiarForCompetencia);
+//        fpCompromiso.setButtonAlign(Style.HorizontalAlignment.CENTER);
+//
+//        return fpCompromiso;
+//
+//    }
 
     protected SelectionListener<ButtonEvent> listenerGuardarCompromiso() {
         return new SelectionListener<ButtonEvent>() {
@@ -570,7 +593,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         competencia.setAnfitrion("POLITECNICO JIC");
         competencia.setRival(cbxRival.getRivalElegido());
-        competencia.setFecha(DtFecha.getValue());
+
+        fechaActividad = DtFecha.getValue();
+        System.out.println("hora actividad" + Formatos.Hora(tmHora.getDateValue()));
+        fechaActividad.setTime(tmHora.getDateValue().getTime());
+        System.out.println("fecha  " + fechaActividad);
+
+        competencia.setFecha(fechaActividad);
         competencia.setLugar(txtLugar.getValue());
         competencia.setTorneo(comboBoxTorneo.getTorneosElegido());
         competencia.setObservacion("");
@@ -596,7 +625,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 wBuscar = new Window();
-                wBuscar.setSize(700, 450);
+                wBuscar.setSize(800, 450);
                 wBuscar.setPlain(true);
                 wBuscar.setModal(true);
                 wBuscar.setClosable(false);
@@ -606,22 +635,22 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                 wBuscar.add(crearGridCompetencia());
 
-                btnEditarCompetencia = new Button("Editar", listenerEditarCompetencia());
+                btnEditarCompetencia = new Button("Editar", Resources.ICONS.iconoModificar(), listenerEditarCompetencia());
                 btnEditarCompetencia.disable();
-                btnConsularCompetencia = new Button("Consultar", listenerConsultarCompetencia());
+                btnConsularCompetencia = new Button("Consultar", Resources.ICONS.iconoBuscar(), listenerConsultarCompetencia());
                 btnConsularCompetencia.disable();
 
-                Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
+                Button btnCancelarBusCompetencia = new Button("Cancelar", Resources.ICONS.iconoCancelar(), new SelectionListener<ButtonEvent>() {
 
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         wBuscar.hide();
-                       limpiarPanelBuscarCompetencia();
+                        limpiarPanelBuscarCompetencia();
 
                     }
                 });
 
-                btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
+                btnEstadisticaCompetencia = new Button("Ver Estadisticas", Resources.ICONS.iconoGraficaBarras1(), new SelectionListener<ButtonEvent>() {
 
                     @Override
                     public void componentSelected(ButtonEvent ce) {
@@ -703,14 +732,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Fecha");
         column.setWidth(50);
-        column.setDateTimeFormat(DateTimeFormat.getFormat("dd MMMM yyyy"));
+        column.setDateTimeFormat(DateTimeFormat.getFormat("EEEE dd MMMM yyyy hh:mm aa"));
         configs.add(column);
 
         column = new ColumnConfig();
         column.setId("compromiso");
-        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Compromiso");
-        column.setWidth(120);
+        column.setWidth(150);
         column.setRenderer(new GridCellRenderer() {
 
             @Override
@@ -727,9 +756,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("torneo");
-        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Torneo");
-        column.setWidth(80);
+        column.setWidth(60);
         column.setRenderer(new GridCellRenderer() {
 
             @Override
@@ -746,7 +775,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("lugar");
-        column.setAlignment(Style.HorizontalAlignment.CENTER);
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Lugar");
         column.setWidth(80);
         column.setRenderer(new GridCellRenderer() {
@@ -767,7 +796,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         column.setId("finalizo");
         column.setAlignment(Style.HorizontalAlignment.CENTER);
         column.setHeader("Finalizo?");
-        column.setWidth(30);
+        column.setWidth(45);
         column.setRenderer(new GridCellRenderer() {
 
             @Override
@@ -799,17 +828,107 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cpGrid.setBorders(false);
         cpGrid.setIcon(Resources.ICONS.table());
 
-        ContentPanel cpForm = new ContentPanel();
-        cpForm.setHeaderVisible(false);
-        cpForm.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
-        cpForm.setFrame(true);
-        cpForm.setBodyBorder(false);
-        cpForm.setBorders(false);
+        ToolBar toolbarBuscar = new ToolBar();
+        toolbarBuscar.setSpacing(10);
+        
+        DtFecha2.setValue(new Date());
 
-        FormPanel panel = crearFormularioBusqueda();
-//        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
-        cpForm.add(panel);
+        comboBoxTorneo2 = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
+        comboBoxTorneo2.setLabelSeparator("Torneo");
+        comboBoxTorneo2.setEditable(false);
+        comboBoxTorneo2.setForceSelection(true);
 
+        comboBoxTorneo2.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
+            @Override
+            public void handleEvent(BaseEvent be) {
+                if (comboBoxTorneo2.getValue() != null) {
+                    cbxRival2.setIdTorneoElegido(comboBoxTorneo2.getTorneosElegido().getId());
+                    cbxRival2.enable();
+                } else {
+                    cbxRival2.disable();
+                }
+            }
+        });
+        cbxRival2 = new ComboBoxRival(ACTIVOS);
+        cbxRival2.setLabelSeparator("Rival");
+        cbxRival2.disable();
+        cbxRival2.setEditable(false);
+        Button btnBuscarCompetencia = new Button("Buscar", Resources.ICONS.iconoBuscar(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                buscarCompetencia();
+            }
+        });
+        Button btnLimpiarForCompetencia = new Button("Limpiar", Resources.ICONS.iconoLimpiar(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                fechaFiltroComp = null;
+                DtFecha2.reset();
+                IdTorneo = null;
+                comboBoxTorneo2.recargar();
+                idRival = null;
+                cbxRival2.recargar();
+                cbxRival2.disable();
+                btnEstadisticaCompetencia.disable();
+                btnEditarCompetencia.disable();
+                btnConsularCompetencia.disable();
+                cargarGridCompetencia();
+
+            }
+        });
+        // se ejecuta cuando se presiona la tecla enter.
+        DtFecha2.addKeyListener(new KeyListener() {
+
+            @Override
+            public void componentKeyPress(ComponentEvent event) {
+                if (event.getKeyCode() == 13) {
+                    buscarCompetencia();
+                }
+            }
+        });
+        comboBoxTorneo2.addKeyListener(new KeyListener() {
+
+            @Override
+            public void componentKeyPress(ComponentEvent event) {
+                if (event.getKeyCode() == 13) {
+                    buscarCompetencia();
+                }
+            }
+        });
+        cbxRival2.addKeyListener(new KeyListener() {
+
+            @Override
+            public void componentKeyPress(ComponentEvent event) {
+                if (event.getKeyCode() == 13) {
+                    buscarCompetencia();
+                }
+            }
+        });
+
+        toolbarBuscar.add(DtFecha2);
+        toolbarBuscar.add(new SeparatorToolItem());
+        toolbarBuscar.add(comboBoxTorneo2);
+        toolbarBuscar.add(new SeparatorToolItem());
+        toolbarBuscar.add(cbxRival2);
+        toolbarBuscar.add(new SeparatorToolItem());
+        toolbarBuscar.add(btnBuscarCompetencia);
+        toolbarBuscar.add(new SeparatorToolItem());
+        toolbarBuscar.add(btnLimpiarForCompetencia);
+
+        cpGrid.setTopComponent(toolbarBuscar);
+
+//        ContentPanel cpForm = new ContentPanel();
+//        cpForm.setHeaderVisible(false);
+//        cpForm.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+//        cpForm.setFrame(true);
+//        cpForm.setBodyBorder(false);
+//        cpForm.setBorders(false);
+//
+//        FormPanel panel = crearFormularioBusqueda();
+////        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+//        cpForm.add(panel);
         gridCompetencia = new Grid<Competencia>(storeCompetencia, cm);
         gridCompetencia.setView(new BufferView());
 
@@ -880,8 +999,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         cpGrid.add(gridCompetencia);
 
-        lcPanelBuscarCompetencia.add(cpForm, new RowData(1, 0.4, new Margins(0)));
-        lcPanelBuscarCompetencia.add(cpGrid, new RowData(1, 0.6, new Margins(0)));
+//        lcPanelBuscarCompetencia.add(cpForm, new RowData(1, 0.4, new Margins(0)));
+        lcPanelBuscarCompetencia.add(cpGrid, new RowData(1, 1, new Margins(0)));
 
         return lcPanelBuscarCompetencia;
     }
@@ -933,12 +1052,28 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
     }
 
+    public void buscarCompetencia() {
+        if (DtFecha2.getValue() != null) {
+            DateTimeFormat fmt = DateTimeFormat.getFormat("dd-MM-yyyy");
+            fechaFiltroComp = fmt.parse(fmt.format(DtFecha2.getValue()));
+//                    fechaFiltroComp = DtFecha2.getValue();
+        }
+        if (comboBoxTorneo2.getValue() != null) {
+            IdTorneo = comboBoxTorneo2.getTorneosElegido().getId();
+        }
+        if (cbxRival2.getValue() != null) {
+            idRival = cbxRival2.getRivalElegido().getId();
+        }
+        cargarGridCompetencia();
+    }
+
     public void limpiarCompetencia() {
         this.mask("Reiniciando competencia....");
         idCompetencia = null;
         binding.addButton(btnGuardarCompromiso);
         fpCompromiso.setEnabled(true);
         DtFecha.reset();
+        tmHora.reset();
         comboBoxTorneo.recargar();
         cbxRival.setIdTorneoElegido(null);
         cbxRival.recargar();
@@ -964,17 +1099,18 @@ public class PanelAdminCompetencia extends LayoutContainer {
     }
 
     public void limpiarPanelBuscarCompetencia() {
-        fechaFiltroComp = null;
-        DtFecha2.reset();
+        fechaFiltroComp = new Date();
+        DtFecha2.setValue(fechaFiltroComp);
+        btnEstadisticaCompetencia.disable();
+        btnEditarCompetencia.disable();
+        btnConsularCompetencia.disable();
         IdTorneo = null;
         comboBoxTorneo2.recargar();
         idRival = null;
         cbxRival2.recargar();
         cargarGridCompetencia();
-        
+
     }
-    
-    
 
     public RPCAdminCompetenciaAsync getServiceCompetencia() {
         RPCAdminCompetenciaAsync svc = (RPCAdminCompetenciaAsync) GWT.create(RPCAdminCompetencia.class);
@@ -1004,6 +1140,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     public void cargarDatosCompetencia(Competencia competencia, boolean habilitar) {
 
         DtFecha.setValue(competencia.getFecha());
+        tmHora.setDateValue(competencia.getFecha());
         comboBoxTorneo.seleccionar(competencia.getTorneo().getId());
         cbxRival.setIdTorneoElegido(competencia.getTorneo().getId());
         cbxRival.recargar();

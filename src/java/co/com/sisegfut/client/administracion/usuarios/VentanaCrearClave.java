@@ -24,6 +24,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ComponentPlugin;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
@@ -252,8 +253,11 @@ public class VentanaCrearClave extends Window implements AsyncCallback<Respuesta
 
                 if (respuesta.getResultado() == RespuestaRPC.RESULTADO_OK) {
                     //formulario.reset();
+                    cerrarVentana();
                     pnlExito.definirTexto("La clave se ha cambiado correctamente");
+                    Info.display("Cambio de clave","La clave se ha cambiado correctamente");
                     pnlExito.setVisible(true);
+                    
                 }
                 else
                 {

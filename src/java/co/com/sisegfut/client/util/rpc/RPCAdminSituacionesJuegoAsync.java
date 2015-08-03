@@ -6,6 +6,7 @@
 
 package co.com.sisegfut.client.util.rpc;
 
+import co.com.sisegfut.client.aatest.model.Data2;
 import co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.List;
@@ -17,5 +18,7 @@ import java.util.List;
 public interface RPCAdminSituacionesJuegoAsync extends RPCMaestroAsync<SituacionesJuegoCompe>{
     
     public void getSituacionesXCompetencia(Long idCompetencia, AsyncCallback<List<SituacionesJuegoCompe>> callback);
+    
+    public void getSituacionesXCompetenciaGrafica(Long idCompetencia, AsyncCallback<List<Data2>> callback);
     
 }

@@ -8,6 +8,7 @@ package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
+import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Date;
@@ -19,5 +20,7 @@ import java.util.Date;
 public interface RPCAdminControlAsistenciaAsync extends RPCMaestroAsync<ControlAsistencia>{
     
     public void obtenerCtlAsistenciaFiltro(Date fechaInicial, Date fechaFinal, Long idCategoria, String actividad, AsyncCallback<PagingLoadResult<DTOControlAsistencia>> callback);
+    
+    public void obtenerReporteAsistenciaxMes(Integer mes,Integer anio, Long idCategoria, AsyncCallback<PagingLoadResult<DTOReporteAsistenciaXMes>> callback);
     
 }

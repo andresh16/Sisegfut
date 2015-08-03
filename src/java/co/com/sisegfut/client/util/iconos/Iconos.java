@@ -146,5 +146,17 @@ public interface Iconos extends XImages {
 
     @Resource("iconoBuscar.png")
     AbstractImagePrototype iconoBuscar();
+    
+    @Resource("graficaBarras1.png")
+    AbstractImagePrototype iconoGraficaBarras1();
+    
+    @Resource("graficaBarras2.png")
+    AbstractImagePrototype iconoGraficaBarras2();
+    
+    @Resource("graficaTorta.png")
+    AbstractImagePrototype iconoGraficaTorta1();
+    
+    @Resource("graficaTorta2.png")
+    AbstractImagePrototype iconoGraficaTorta2();
 
 }

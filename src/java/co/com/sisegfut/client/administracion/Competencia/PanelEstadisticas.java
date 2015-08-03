@@ -58,6 +58,7 @@ public class PanelEstadisticas extends Window {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
+                ejemploBarras1.limpiargrafica();
                 hide();
             }
         });

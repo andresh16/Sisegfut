@@ -34,7 +34,7 @@ public class RPCAdminControlDisciplinarioCompImpl extends RPCMaestroImpl<Control
     }
 
     @Autowired
-    public void setDaoCargos(DaoControlDisciplinarioComp daoControlDisciplinarioComp) {
+    public void setDaoControlDisciplinario(DaoControlDisciplinarioComp daoControlDisciplinarioComp) {
         this.daoControlDisciplinarioComp = daoControlDisciplinarioComp;
         super.setDaoGenerico(daoControlDisciplinarioComp);
     }

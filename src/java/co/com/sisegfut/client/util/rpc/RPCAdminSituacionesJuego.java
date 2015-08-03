@@ -6,6 +6,7 @@
 
 package co.com.sisegfut.client.util.rpc;
 
+import co.com.sisegfut.client.aatest.model.Data2;
 import co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe;
 import java.util.List;
 
@@ -16,5 +17,7 @@ import java.util.List;
 public interface RPCAdminSituacionesJuego extends RPCMaestro<SituacionesJuegoCompe>{
     
     public List<SituacionesJuegoCompe> getSituacionesXCompetencia(Long idCompetencia);
+    
+    public List<Data2> getSituacionesXCompetenciaGrafica(Long idCompetencia);
     
 }

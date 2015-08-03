@@ -134,6 +134,7 @@ public abstract class FormularioCRUD<T extends Serializable> extends FormPanel{
 
             @Override
             public void componentSelected(ButtonEvent ce) {
+                
               ventanaCrearClave = new VentanaCrearClave(VentanaCrearClave.CAMBIAR);
               ventanaCrearClave.setEntidad(usuarioLogeado);
               ventanaCrearClave.show();

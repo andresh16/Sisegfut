@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.com.sisegfut.server.rpc.administracion;
 
 import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
+import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
 import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistencia;
 import co.com.sisegfut.server.datos.dao.DaoControlAsistencia;
 import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
@@ -22,21 +22,22 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author fhurtado
  */
-public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsistencia> implements RPCAdminControlAsistencia{
-       private Usuarios usuarioSession;
+public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsistencia> implements RPCAdminControlAsistencia {
+
+    private Usuarios usuarioSession;
     private DaoControlAsistencia daoControlAsistencia;
-    
+
     @Autowired
     @Override
     public void setUsuarioSession(Usuarios usuarioSession) {
         this.usuarioSession = usuarioSession;
         super.setUsuarioSession(usuarioSession);
     }
-    
+
     @Autowired
     public void setDaoAntDep(DaoControlAsistencia daoControlAsistencia) {
         this.daoControlAsistencia = daoControlAsistencia;
-        super.setDaoGenerico(daoControlAsistencia); 
+        super.setDaoGenerico(daoControlAsistencia);
     }
 
     @Override
@@ -45,23 +46,30 @@ public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsisten
         List<ControlAsistencia> listPlanillasAsistencia = new ArrayList<ControlAsistencia>();
         List<DTOControlAsistencia> listaRetorno = new ArrayList<DTOControlAsistencia>();
 
-            listPlanillasAsistencia = daoControlAsistencia.obtenerPlanillaAsistenciaFiltro(fechaInicial, fechaFinal, idCategoria, actividad);
-            if (listPlanillasAsistencia != null) {
-                for (ControlAsistencia ctrlAsistencia : listPlanillasAsistencia) {
-                    DTOControlAsistencia agg = new DTOControlAsistencia();
-                    agg.setIdPlanillaAsistencia(ctrlAsistencia.getId());
-                    agg.setIdCategoria(ctrlAsistencia.getCategoria().getId());
-                    agg.setCategoria(ctrlAsistencia.getCategoria().getNombrecategoria());
-                    agg.setActividad(ctrlAsistencia.getActividad());
-                    agg.setLugar(ctrlAsistencia.getLugar());
-                    agg.setObservaciones(ctrlAsistencia.getObservaciones());
-                    agg.setFecha(ctrlAsistencia.getFecha());
-                    listaRetorno.add(agg);
-                }
+        listPlanillasAsistencia = daoControlAsistencia.obtenerPlanillaAsistenciaFiltro(fechaInicial, fechaFinal, idCategoria, actividad);
+        if (listPlanillasAsistencia != null) {
+            for (ControlAsistencia ctrlAsistencia : listPlanillasAsistencia) {
+                DTOControlAsistencia agg = new DTOControlAsistencia();
+                agg.setIdPlanillaAsistencia(ctrlAsistencia.getId());
+                agg.setIdCategoria(ctrlAsistencia.getCategoria().getId());
+                agg.setCategoria(ctrlAsistencia.getCategoria().getNombrecategoria());
+                agg.setActividad(ctrlAsistencia.getActividad());
+                agg.setLugar(ctrlAsistencia.getLugar());
+                agg.setObservaciones(ctrlAsistencia.getObservaciones());
+                agg.setFecha(ctrlAsistencia.getFecha());
+                listaRetorno.add(agg);
             }
+        }
 
         PagingLoadResult<DTOControlAsistencia> loadResult = new BasePagingLoadResult<DTOControlAsistencia>(listaRetorno, 1, 100);
         return loadResult;
-    
+
+    }
+
+    @Override
+    public PagingLoadResult<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes, Integer anio, Long idCategoria) {
+        List<DTOReporteAsistenciaXMes> listaRetorno = daoControlAsistencia.obtenerReporteAsistenciaxMes(mes, anio, idCategoria);
+        PagingLoadResult<DTOReporteAsistenciaXMes> loadResult = new BasePagingLoadResult<DTOReporteAsistenciaXMes>(listaRetorno, 1, 100);
+        return loadResult;
     }
 }

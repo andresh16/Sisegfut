@@ -118,6 +118,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     private Long IdCategoriaElegida;
 
     private Window wBuscar;
+    private Window wReporteAsistenciaMes;
     private DTOControlAsistencia dTOControlAsistencia;
     private Button btnBuscarAsistencia;
     private Button btnVerCtrolAsistencia;
@@ -149,6 +150,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        setScrollMode(Style.Scroll.AUTOY);
         cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
+        cp2.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         cp.setScrollMode(Style.Scroll.AUTO);
         myConstants = (Main) GWT.create(Main.class);
 
@@ -195,7 +197,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         proxy = new RpcProxy<PagingLoadResult<Asistencia>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Asistencia>> callback) {
-               if (consultarPlanillaasistencia) {
+                if (consultarPlanillaasistencia) {
                     svc.getAsistenciaxId(dTOControlAsistencia.getIdPlanillaAsistencia(), callback);
                 } else {
                     svc.getDeportistasxCategoria(IdCategoriaElegida, callback);
@@ -302,13 +304,13 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         columns.add(new ColumnConfig("idDeportista.label", "Nombre completo ", 120));
         columns.add(new ColumnConfig("idDeportista.telefono", "Télefono", 50));
         columns.add(new ColumnConfig("idDeportista.posicion.nombrePosicion", "Posición", 50));
-        
+
         ColumnConfig idDep = new ColumnConfig();
         idDep.setId("idDeportista.id");
         idDep.setWidth(20);
         idDep.setHidden(true);
         columns.add(idDep);
-        
+
         ColumnConfig id = new ColumnConfig();
         id.setId("id");
         id.setWidth(20);
@@ -345,7 +347,6 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        grid.addPlugin(columnfalto);
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-
 
         grid.addListener(Events.Attach, new Listener<GridEvent<BeanModel>>() {
             @Override
@@ -386,24 +387,16 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         panel2.setFrame(true);
         panel2.setHeaderVisible(true);
-//        panel2.setCollapsible(true);
-
-//        cp.setTopComponent(toolBar);
-        cp.setHeading("Deportistas");
-//        cp2.add(toolBar, new FlowData(0));
-//        cp.setLayout(new RowLayout(Orientation.HORIZONTAL));
-        cp.setCollapsible(true);
+        cp.setHeaderVisible(true);
         dataWest = new BorderLayoutData(Style.LayoutRegion.WEST);
         dataWest.setMargins(new Margins(0, 0, 0, 0));
         dataWest.setSplit(true);
         panel2.add(cp2, new RowData(0.4, 1, new Margins(0)));
 
-//        formBindings = new FormBinding(panel, true);
-        cp2.add(panelFormularioControlAsistencia);
-        //cp2.setHeading("Perfil Deportista");
+        cp2.add(panelFormularioControlAsistencia, new RowData(0.6, 1, new Margins(0)));
+
         cp2.setHeaderVisible(false);
         cp2.setLayout(new FillLayout(Style.Orientation.VERTICAL));
-        cp2.setCollapsible(true);
         dataCenter = new BorderLayoutData(Style.LayoutRegion.CENTER);
         panel2.add(cp, new RowData(0.6, 1, new Margins(0)));
 
@@ -457,7 +450,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         wBuscar.add(crearGriControlAsistencia());
 
-        btnVerCtrolAsistencia = new Button("Ver planilla", listenerVerPlanillaAsistencia());
+        btnVerCtrolAsistencia = new Button("Ver planilla", Resources.ICONS.iconoGrid(), listenerVerPlanillaAsistencia());
 
         Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
 
@@ -600,9 +593,9 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        System.out.println(store.getModels().get(0).get("idDeportista"));
         List<String[]> lista = new ArrayList<String[]>();
         for (BeanModel model : store.getModels()) {
-            
+
             Asistencia asistencia = new Asistencia();
-            asistencia.setId((Long)model.get("id"));
+            asistencia.setId((Long) model.get("id"));
             asistencia.setEstado(model.get("estado").toString());
             asistencia.setId_control_asistencia(new ControlAsistencia(idControlAsistencia));
             asistencia.setEstado(model.get("estado").toString());
@@ -629,7 +622,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     public void limpiarCampos() {
         cp.setHeading("");
         IdCategoriaElegida = null;
-        consultarPlanillaasistencia=false;
+        consultarPlanillaasistencia = false;
         store.removeAll();
         store.removeAll();
         cargar(null);
@@ -746,9 +739,9 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Fecha ");
         column.setWidth(100);
-        column.setDateTimeFormat(DateTimeFormat.getFormat("EEEE dd MMMM yyyy hh:mm AAA"));
+        column.setDateTimeFormat(DateTimeFormat.getFormat("EEEE dd MMMM yyyy hh:mm aa"));
         configs.add(column);
-        
+
         column = new ColumnConfig();
         column.setId("categoria");
         column.setAlignment(Style.HorizontalAlignment.CENTER);
@@ -842,7 +835,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 if (be.getSelection().size() > 0) {
 
                     dTOControlAsistencia = (DTOControlAsistencia) be.getSelectedItem().getBean();
-                    id=dTOControlAsistencia.getIdPlanillaAsistencia();
+                    id = dTOControlAsistencia.getIdPlanillaAsistencia();
                 } else {
                     formBindings.unbind();
                 }
@@ -1014,6 +1007,39 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             e.printStackTrace();
         }
 
+    }
+
+    public FormPanel crearPanelReporteAsistencia() {
+        
+        FormPanel panel = new FormPanel();
+        
+        String [] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio",
+            "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+
+        ComboBox a = new ComboBox();
+        a.setStore(store);
+        
+        SimpleComboBox<String> comboAnios = new SimpleComboBox<String>();
+
+        comboAnios.setName("anio"); 
+        comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
+        comboAnios.setFieldLabel("Año");
+        comboAnios.setAllowBlank(false);
+        
+        panel.add(comboAnios);
+
+        comboAnios.setForceSelection(true);
+        comboAnios.setTriggerAction(ComboBox.TriggerAction.ALL);
+        Date anio = new Date();
+        Integer anioActual = Integer.parseInt(Formatos.anio(anio));
+        for (int i = 1990; i <= anioActual; i++) {
+            comboAnios.add("" + i);
+        }
+        comboAnios.setSimpleValue("2015");
+        
+        
+        
+      return panel;
     }
 
 }
