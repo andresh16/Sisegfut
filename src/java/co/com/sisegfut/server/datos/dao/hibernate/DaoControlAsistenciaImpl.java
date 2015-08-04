@@ -61,14 +61,14 @@ public class DaoControlAsistenciaImpl extends DaoGenericoImpl<ControlAsistencia>
         }
 
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public List<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes, Integer anio, Long idCategoria) throws DataAccessException {
 
         List<DTOReporteAsistenciaXMes> reporteAsistencia = new ArrayList<DTOReporteAsistenciaXMes>();
         String sql1 = "Select ca.* from control_asistencia as ca WHERE date_part('month', fecha) = " + mes + " and date_part('year', fecha) = " + anio + " and categoria =" + idCategoria;
-        String sql2 = "Select d.* from deportista as d where categoria=" + idCategoria+" order by nombres";
+        String sql2 = "Select d.* from deportista as d where categoria=" + idCategoria + " order by nombres";
         List<ControlAsistencia> planillasAsistenciasAlMes = null;
         List<Deportista> deportistaxCategoria = null;
         try {
@@ -77,36 +77,37 @@ public class DaoControlAsistenciaImpl extends DaoGenericoImpl<ControlAsistencia>
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (planillasAsistenciasAlMes.size() != 0) {
 
-        try {
-            deportistaxCategoria = (List<Deportista>) sessionFactory.getCurrentSession()
-                    .createSQLQuery(sql2).addEntity("d", Deportista.class).list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            try {
+                deportistaxCategoria = (List<Deportista>) sessionFactory.getCurrentSession()
+                        .createSQLQuery(sql2).addEntity("d", Deportista.class).list();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        String planillas = "";
-        for (ControlAsistencia planilla : planillasAsistenciasAlMes) {
-            planillas += planilla.getId() + ",";
-        }
-        planillas = planillas.substring(0, planillas.length() - 1);
+            String planillas = "";
+            for (ControlAsistencia planilla : planillasAsistenciasAlMes) {
+                planillas += planilla.getId() + ",";
+            }
+            planillas = planillas.substring(0, planillas.length() - 1);
 
-        for (Deportista deportistaxCategoria1 : deportistaxCategoria) {
-            String sql3 = "select * from asistencia where id_deportista=" + deportistaxCategoria1.getId() + " and estado='ASISTE' and  id_control_asistencia in(" + planillas + ")";
-            List<Asistencia> asistencias = (List<Asistencia>) sessionFactory.getCurrentSession()
-                    .createSQLQuery(sql3).addEntity("asistencia", Asistencia.class).list();
+            for (Deportista deportistaxCategoria1 : deportistaxCategoria) {
+                String sql3 = "select * from asistencia where id_deportista=" + deportistaxCategoria1.getId() + " and estado='ASISTE' and  id_control_asistencia in(" + planillas + ")";
+                List<Asistencia> asistencias = (List<Asistencia>) sessionFactory.getCurrentSession()
+                        .createSQLQuery(sql3).addEntity("asistencia", Asistencia.class).list();
 
-            DTOReporteAsistenciaXMes dtoraxm = new DTOReporteAsistenciaXMes();
+                DTOReporteAsistenciaXMes dtoraxm = new DTOReporteAsistenciaXMes();
 
-            dtoraxm.setNombreDeportista(deportistaxCategoria1.getLabel());
-            dtoraxm.setDiasAsistenciaTotal(asistencias.size() + "/" + planillasAsistenciasAlMes.size());
-            float porcentajeAsistencia = (float) (asistencias.size() * 100) / planillasAsistenciasAlMes.size();
-            dtoraxm.setPorcentajeAsistenciaTotal(Math.floor(porcentajeAsistencia) + "%");
-            reporteAsistencia.add(dtoraxm);
+                dtoraxm.setNombreDeportista(deportistaxCategoria1.getLabel());
+                dtoraxm.setDiasAsistenciaTotal(asistencias.size() + "/" + planillasAsistenciasAlMes.size());
+                float porcentajeAsistencia = (float) (asistencias.size() * 100) / planillasAsistenciasAlMes.size();
+                dtoraxm.setPorcentajeAsistenciaTotal(Math.floor(porcentajeAsistencia) + "%");
+                reporteAsistencia.add(dtoraxm);
 
-        }
-
-        return reporteAsistencia;
+            }
+        } 
+            return reporteAsistencia;
     }
 
 }
