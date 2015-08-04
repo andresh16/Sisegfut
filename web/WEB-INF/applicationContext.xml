@@ -46,13 +46,8 @@
             <list>                
                 <value>co.com.sisegfut.client.datos.dominio.Rol</value>                
                 <value>co.com.sisegfut.client.datos.dominio.Usuarios</value>
-                <!--value>co.com.sisegfut.client.datos.dominio.Cuentas</value-->
-                <!--value>co.com.sisegfut.client.datos.dominio.Movimientos</value-->
-                <!--value>co.com.sisegfut.client.datos.dominio.TipoCuenta</value-->
-                <!--value>co.com.sisegfut.client.datos.dominio.TipoMovimiento</value-->
                 <value>co.com.sisegfut.client.datos.dominio.Categoria</value>
                 <value>co.com.sisegfut.client.datos.dominio.TipoDocumento</value>
-                <!--value>co.com.sisegfut.client.datos.dominio.SituacionesJuego</value-->
                 <value>co.com.sisegfut.client.datos.dominio.Personal</value>
                 <value>co.com.sisegfut.client.datos.dominio.Cargos</value>
                 <value>co.com.sisegfut.client.datos.dominio.Eps</value>
@@ -63,7 +58,6 @@
                 <value>co.com.sisegfut.client.datos.dominio.LogrosDeportivos</value>
                 <value>co.com.sisegfut.client.datos.dominio.AntecedentesDeportivos</value>
                 <value>co.com.sisegfut.client.datos.dominio.Lesiones</value> 
-                <!--value>co.com.sisegfut.client.datos.dominio.EstadoAsistencia</value-->         
                 <value>co.com.sisegfut.client.datos.dominio.Torneos</value> 
                 <value>co.com.sisegfut.client.datos.dominio.Asistencia</value>  
                 <value>co.com.sisegfut.client.datos.dominio.ControlAsistencia</value>           
@@ -137,31 +131,13 @@
     <bean id="usuario" class="co.com.sisegfut.client.datos.dominio.Usuarios" scope="session">
         <aop:scoped-proxy/>
     </bean>
-    
 
-   
     <bean class="co.com.sisegfut.server.servicios.local.ServicioCorreosImpl">
         <property name="emisorCorreos" ref="emisorCorreos"/>
         <property name="mailMessage" ref="mailMessage"/>
         <property name="remitente" value="${smtp.remitente}"/>
         <property name="urlLogo" value="${smtp.urllogo}"/>
     </bean>
-    
-    <bean class="co.com.sisegfut.server.servicios.local.ServicioSMSImpl">
-        <property name="urlBase" value="${http.sms.url.base}"/>
-        <property name="paramUsuarioNombre" value="${http.sms.param.usuario.nombre}"/>
-        <property name="paramUsuarioValor" value="${http.sms.param.usuario.valor}"/>
-        <property name="paramClaveNombre" value="${http.sms.param.clave.nombre}"/>
-        <property name="paramClaveValor" value="${http.sms.param.clave.valor}"/>
-        <property name="paramDeNombre" value="${http.sms.param.de.nombre}"/>
-        <property name="paramParaNombre" value="${http.sms.param.para.nombre}"/>
-        <property name="prefijo" value="${http.sms.prefijo}"/>
-        <property name="paramMensajeNombre" value="${http.sms.param.mensaje.nombre}"/>
-        <property name="remitente" value="${http.sms.remitente}"/>
-    </bean>
-    
-     
-    
     
     
 </beans>

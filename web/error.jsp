@@ -9,6 +9,8 @@
         Parece que la pagina que visito no existe.
         <BR>
         Consulte con su administrador de sistema.
-
+        <pre>
+            <% exception.printStackTrace(response.getWriter());%>
+        </pre>
     </BODY>
 </HTML>
