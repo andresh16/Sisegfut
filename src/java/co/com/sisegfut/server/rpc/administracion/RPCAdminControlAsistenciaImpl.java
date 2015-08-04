@@ -67,9 +67,15 @@ public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsisten
     }
 
     @Override
-    public PagingLoadResult<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes, Integer anio, Long idCategoria) {
-        List<DTOReporteAsistenciaXMes> listaRetorno = daoControlAsistencia.obtenerReporteAsistenciaxMes(mes, anio, idCategoria);
-        PagingLoadResult<DTOReporteAsistenciaXMes> loadResult = new BasePagingLoadResult<DTOReporteAsistenciaXMes>(listaRetorno, 1, 100);
-        return loadResult;
+    public List<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes, Integer anio, Long idCategoria) {
+   
+        try {
+            List<DTOReporteAsistenciaXMes> listaRetorno = daoControlAsistencia.obtenerReporteAsistenciaxMes(mes, anio, idCategoria);
+        return listaRetorno;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 }

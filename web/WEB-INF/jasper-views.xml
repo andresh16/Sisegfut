@@ -160,7 +160,7 @@
     <bean id="xlsReporteTestKarvonen"
               class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
               p:url="classpath:reportes/TestKarvonen.jrxml"
-              p:reportDataKey="datasource" >
+              p:reportDataKey="datasource">
         
         <property name="headers">
             <props>
@@ -199,6 +199,36 @@
                 </prop>
             </props>
         </property>
-    </bean>       
+    </bean>   
+    
+        <!--Reporte Asistencia X Mes-->
+     
+    <bean id="pdfReporteAsistencia"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/ReporteAsistencia.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=ReporteAsistencia.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>  
+    
+    <bean id="xlsReporteAsistencia"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/ReporteAsistencia.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=ReporteAsistencia.xls
+                </prop>
+            </props>
+        </property>
+    </bean>     
     
 </beans>

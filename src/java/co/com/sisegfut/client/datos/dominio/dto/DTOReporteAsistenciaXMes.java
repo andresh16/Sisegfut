@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author fhurtado
  */
-public class DTOReporteAsistenciaXMes implements BeanModelTag, Serializable{
+public class DTOReporteAsistenciaXMes  implements BeanModelTag,Serializable{
     
     private String nombreDeportista;
     private String diasAsistenciaTotal;

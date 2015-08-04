@@ -13,6 +13,7 @@ import co.com.sisegfut.client.datos.dominio.ControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
+import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
 import co.com.sisegfut.client.util.BeansLocales;
 import co.com.sisegfut.client.util.Formatos;
@@ -25,10 +26,13 @@ import co.com.sisegfut.client.util.rpc.RPCAdminControlAsistenciaAsync;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.data.BaseFilterPagingLoadConfig;
+import com.extjs.gxt.ui.client.data.BaseListLoader;
 import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.data.BeanModelReader;
+import com.extjs.gxt.ui.client.data.ListLoadResult;
+import com.extjs.gxt.ui.client.data.ListLoader;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
@@ -47,12 +51,12 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
+import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
@@ -62,12 +66,12 @@ import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.grid.BufferView;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
-import com.extjs.gxt.ui.client.widget.grid.CheckColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
+import com.extjs.gxt.ui.client.widget.grid.RowNumberer;
 import com.extjs.gxt.ui.client.widget.grid.filters.GridFilters;
 import com.extjs.gxt.ui.client.widget.grid.filters.StringFilter;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
@@ -123,9 +127,16 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     private Button btnBuscarAsistencia;
     private Button btnVerCtrolAsistencia;
     private PagingLoader<PagingLoadResult<ModelData>> loaderControlAsistencia;
+    private ListLoader<ListLoadResult<ModelData>> loaderReporteAsistencia;
+
     private ListStore<ControlAsistencia> storeCtrlAsistencia;
+    private ListStore<BeanModel> storeReporteAsistencia;
+
     private PagingToolBar PgtoolBarCtrolAsitencia = new PagingToolBar(50);
+    private PagingToolBar PgtoolBarReporteAsitencia = new PagingToolBar(50);
+
     private Grid<ControlAsistencia> gridCtrlAsistencia;
+    private Grid<BeanModel> gridReporteAsistencia;
 
     private DateField DtFechaInicial = new DateField();
     private DateField DtFechaFinal = new DateField();
@@ -137,6 +148,14 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     private String actividad = "Entrenamiento";
     private FormButtonBinding bindingFormFiltros;
     private boolean consultarPlanillaasistencia = false;
+    private static final int TIPO_XLS = 1;
+    private static final int TIPO_PDF = 2;
+    private Integer idAnio = null;
+    private Integer idMes = null;
+    private Long idCategoriaReporte = null;
+    private Label lbReporteAsistencia;
+    private String nombreCategoria;
+    private String mes;
 
     private Main myConstants;
 
@@ -145,12 +164,12 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         super.onRender(parent, index);
 
         BorderLayout layout = new BorderLayout();
-        setLayout(layout);
+        setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
 //        setScrollMode(Style.Scroll.AUTOY);
         cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
-        cp2.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        cp2.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cp.setScrollMode(Style.Scroll.AUTO);
         myConstants = (Main) GWT.create(Main.class);
 
@@ -383,37 +402,43 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         panel2 = new ContentPanel();
         panel2.setHeading("Control de Asistencia");
         panel2.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        panel2.setSize(500, 500);
+//        panel2.setSize(500, 500);
 
         panel2.setFrame(true);
         panel2.setHeaderVisible(true);
         cp.setHeaderVisible(true);
-        dataWest = new BorderLayoutData(Style.LayoutRegion.WEST);
-        dataWest.setMargins(new Margins(0, 0, 0, 0));
-        dataWest.setSplit(true);
+//        dataWest = new BorderLayoutData(Style.LayoutRegion.WEST);
+//        dataWest.setMargins(new Margins(0, 0, 0, 0));
+//        dataWest.setSplit(true);
         panel2.add(cp2, new RowData(0.4, 1, new Margins(0)));
 
-        cp2.add(panelFormularioControlAsistencia, new RowData(0.6, 1, new Margins(0)));
+        cp2.add(crearPanelReporteAsistencia(), new RowData(1, 0.35, new Margins(0)));
+        cp2.add(panelFormularioControlAsistencia, new RowData(1, 0.65, new Margins(0)));
 
         cp2.setHeaderVisible(false);
-        cp2.setLayout(new FillLayout(Style.Orientation.VERTICAL));
-        dataCenter = new BorderLayoutData(Style.LayoutRegion.CENTER);
+
+//        dataCenter = new BorderLayoutData(Style.LayoutRegion.CENTER);
         panel2.add(cp, new RowData(0.6, 1, new Margins(0)));
 
-        add(panel2);
+        add(panel2, new RowData(1, 1, new Margins(0)));
 
         //Agrego un listener para escuchar el cambio de tamanio del panel
         this.addListener(Events.Resize, new Listener<BoxComponentEvent>() {
             public void handleEvent(final BoxComponentEvent event) {
                 panel2.setWidth(event.getWidth());
                 panel2.setHeight(event.getHeight());
-                cp2.setHeight(event.getHeight() - 10);
 //                if (event.getHeight() - 160 > 100) {
 //                    cp.setHeight(event.getHeight()-10);
 //                    cp2.setHeight(event.getHeight()-10);
 //                } else {
 //                    cp.setHeight(100);
 //                }
+            }
+        });
+        this.addListener(Events.OnLoad, new Listener<BoxComponentEvent>() {
+            public void handleEvent(final BoxComponentEvent event) {
+                panel2.setWidth(event.getWidth());
+                panel2.setHeight(event.getHeight());
             }
         });
 
@@ -452,7 +477,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         btnVerCtrolAsistencia = new Button("Ver planilla", Resources.ICONS.iconoGrid(), listenerVerPlanillaAsistencia());
 
-        Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
+        Button btnCancelarBusCompetencia = new Button("Cancelar", Resources.ICONS.iconoCancelar(), new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -482,6 +507,59 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         wBuscar.setButtonAlign(Style.HorizontalAlignment.CENTER);
 //                
         wBuscar.setFocusWidget(wBuscar.getButtonBar().getItem(0));
+
+        /// Ventana de buscar reporte Asistencia 
+        wReporteAsistenciaMes = new Window();
+        wReporteAsistenciaMes.setSize(700, 550);
+        wReporteAsistenciaMes.setPlain(true);
+        wReporteAsistenciaMes.setModal(true);
+        wReporteAsistenciaMes.setClosable(false);
+        wReporteAsistenciaMes.setBlinkModal(true);
+        wReporteAsistenciaMes.setHeading("Reporte asistencia");
+        wReporteAsistenciaMes.setLayout(new FillLayout());
+
+        wReporteAsistenciaMes.add(crearGridReporteAsistencia());
+
+        Button btnGenerarPDF = new Button("Ver planilla PDF", Resources.ICONS.iconoPDF(), listenerVerReporteAsistencia(TIPO_PDF));
+
+        Button btnGenerarXLS = new Button("Ver planilla XLS", Resources.ICONS.iconoExcel(), listenerVerReporteAsistencia(TIPO_XLS));
+
+        Button btnCancelarReporte = new Button("Cancelar", Resources.ICONS.iconoCancelar(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                wReporteAsistenciaMes.hide();
+                idAnio = null;
+                idMes = null;
+                idCategoriaReporte = null;
+                nombreCategoria="";
+                mes="";
+                gridReporteAsistencia.getStore().removeAll();
+            }
+        });
+
+//                btnEstadisticaCompetencia = new Button("Ver Estadisticas", new SelectionListener<ButtonEvent>() {
+//
+//                    @Override
+//                    public void componentSelected(ButtonEvent ce) {
+//                        panelEstadisticas.setIdCompetencia(dTOCompetencia.getIdCompetencia());
+//                        panelEstadisticas.show();
+//                    }
+//                });
+//                btnEstadisticaCompetencia.disable();
+        wReporteAsistenciaMes.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+//                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
+            }
+        }));
+        wReporteAsistenciaMes.addButton(btnGenerarPDF);
+        wReporteAsistenciaMes.addButton(btnGenerarXLS);
+        wReporteAsistenciaMes.addButton(btnCancelarReporte);
+//                
+        wReporteAsistenciaMes.setButtonAlign(Style.HorizontalAlignment.CENTER);
+//                
+        wReporteAsistenciaMes.setFocusWidget(wReporteAsistenciaMes.getButtonBar().getItem(0));
 
     }
 
@@ -513,6 +591,19 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 consultarPlanillaasistencia = true;
                 cargar();
 //                consultarPlanillaasistencia = false;
+            }
+        };
+
+    }
+
+    protected SelectionListener<ButtonEvent> listenerVerReporteAsistencia(final Integer tipoReporte) {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAsistenciaxMes/";
+                    // usuarioSession
+                    redireccionarA(base + idAnio + "/" + idMes + "/"+idCategoriaReporte+"/"+nombreCategoria+"/"+mes+"/"+tipoReporte);
             }
         };
 
@@ -944,7 +1035,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         fpControlAsistencia.add(main, new FormData("100%"));
 
-        Button btnBuscarCompetencia = new Button("Buscar", new SelectionListener<ButtonEvent>() {
+        Button btnBuscarCompetencia = new Button("Buscar", Resources.ICONS.iconoBuscar(), new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -968,7 +1059,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 }
             }
         });
-        Button btnLimpiarForCompetencia = new Button("Limpiar", new SelectionListener<ButtonEvent>() {
+        Button btnLimpiarForCompetencia = new Button("Limpiar", Resources.ICONS.iconoLimpiar(), new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -1010,36 +1101,181 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
     }
 
     public FormPanel crearPanelReporteAsistencia() {
-        
-        FormPanel panel = new FormPanel();
-        
-        String [] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio",
-            "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
 
-        ComboBox a = new ComboBox();
-        a.setStore(store);
-        
-        SimpleComboBox<String> comboAnios = new SimpleComboBox<String>();
+        FormPanel fmReporteAsistencia = new FormPanel();
+        fmReporteAsistencia.setHeading("Reporte de asistencia");
+        fmReporteAsistencia.setScrollMode(Style.Scroll.AUTOY);
+        fmReporteAsistencia.setFrame(true);
+        fmReporteAsistencia.setHeaderVisible(true);
+        fmReporteAsistencia.setHeight(150);
 
-        comboAnios.setName("anio"); 
+        FormData formData = new FormData("-10");
+
+        final ComboBoxCategoria cbxCategoriaReporte = new ComboBoxCategoria(ACTIVOS);
+        cbxCategoriaReporte.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
+        cbxCategoriaReporte.setFieldLabel("<font color='red'>*</font> Categoria");
+        cbxCategoriaReporte.setAllowBlank(false);
+        cbxCategoriaReporte.setForceSelection(true);
+        cbxCategoriaReporte.setEditable(false);
+        cbxCategoriaReporte.setTriggerAction(ComboBox.TriggerAction.ALL);
+
+        final SimpleComboBox<String> comboAnios = new SimpleComboBox<String>();
+        final SimpleComboBox<String> comboMeses = new SimpleComboBox<String>();
+
+        comboAnios.setName("anio");
         comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
-        comboAnios.setFieldLabel("Año");
+        comboAnios.setFieldLabel("<font color='red'>*</font> Año");
         comboAnios.setAllowBlank(false);
-        
-        panel.add(comboAnios);
-
         comboAnios.setForceSelection(true);
+        comboAnios.setEditable(false);
         comboAnios.setTriggerAction(ComboBox.TriggerAction.ALL);
+
         Date anio = new Date();
         Integer anioActual = Integer.parseInt(Formatos.anio(anio));
         for (int i = 1990; i <= anioActual; i++) {
             comboAnios.add("" + i);
         }
-        comboAnios.setSimpleValue("2015");
-        
-        
-        
-      return panel;
+        comboAnios.setSimpleValue(anioActual.toString());
+
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
+        comboMeses.setName("mes");
+        comboMeses.setToolTip(new ToolTipConfig("Mes", "Elija un mes"));
+        comboMeses.setFieldLabel("<font color='red'>*</font> Mes");
+        comboMeses.setAllowBlank(false);
+        comboMeses.setEditable(false);
+        comboMeses.setForceSelection(true);
+        comboMeses.setTriggerAction(ComboBox.TriggerAction.ALL);
+
+        for (int i = 0; i < 12; i++) {
+            comboMeses.add(meses[i]);
+        }
+//        comboMeses.getSelectedIndex();
+        fmReporteAsistencia.add(cbxCategoriaReporte, formData);
+        fmReporteAsistencia.add(comboAnios, formData);
+        fmReporteAsistencia.add(comboMeses, formData);
+
+        Button btnVerReporte = new Button("Ver reporte", Resources.ICONS.iconoGrid(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                wReporteAsistenciaMes.show();
+                idAnio = Integer.parseInt(comboAnios.getSimpleValue());
+                idMes = comboMeses.getSelectedIndex() + 1;
+                idCategoriaReporte = cbxCategoriaReporte.getCategoriaElegida().getId();
+                nombreCategoria=cbxCategoriaReporte.getCategoriaElegida().getNombrecategoria();
+                mes=comboMeses.getSimpleValue();
+                
+                wReporteAsistenciaMes.setHeading("<b>Reporte asistencia de la categoria "
+                        + nombreCategoria + " para el año " + idAnio + " del mes " + mes + "</b>");
+                cargarLoaderReporteAsistencia();
+
+            }
+        });
+        Button btnLimpiarFormReporte = new Button("Limpiar", Resources.ICONS.iconoLimpiar(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                cbxCategoriaReporte.reset();
+                cbxCategoriaReporte.recargar();
+                comboAnios.reset();
+                comboMeses.reset();
+            }
+        });
+
+        FormButtonBinding bindingFormReporte = new FormButtonBinding(fmReporteAsistencia);
+        bindingFormReporte.addButton(btnVerReporte);
+
+        fmReporteAsistencia.addButton(btnVerReporte);
+        fmReporteAsistencia.addButton(btnLimpiarFormReporte);
+        fmReporteAsistencia.setButtonAlign(Style.HorizontalAlignment.CENTER);
+
+        return fmReporteAsistencia;
     }
+
+    public ContentPanel crearGridReporteAsistencia() {
+
+        ContentPanel cpGridReporteAsistencia = new ContentPanel();
+        cpGridReporteAsistencia.setHeaderVisible(false);
+        cpGridReporteAsistencia.setLayout(new FillLayout(Style.Orientation.VERTICAL));
+        cpGridReporteAsistencia.setFrame(true);
+        cpGridReporteAsistencia.setBodyBorder(false);
+        cpGridReporteAsistencia.setBorders(false);
+        cpGridReporteAsistencia.setIcon(Resources.ICONS.table());
+
+        final RPCAdminControlAsistenciaAsync svc = (RPCAdminControlAsistenciaAsync) GWT.create(RPCAdminControlAsistencia.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) svc;
+        endpoint.setServiceEntryPoint("services/RPCAdminControlAsistencia");
+
+        //Valido que el servicio RPC este activo.
+        if (svc == null) {
+            MessageBox box = new MessageBox();
+            box.setButtons(MessageBox.OK);
+            box.setIcon(MessageBox.INFO);
+            box.setTitle("Lesiones");
+            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.show();
+//            return;
+        }
+        //Llamo el servicio RPC que se usara como proxy para cargar los datos de la entidad indicada
+        RpcProxy<List<DTOReporteAsistenciaXMes>> proxy = new RpcProxy<List<DTOReporteAsistenciaXMes>>() {
+            @Override
+            public void load(Object loadConfig, AsyncCallback<List<DTOReporteAsistenciaXMes>> callback) {
+                svc.obtenerReporteAsistenciaxMes(idMes, idAnio, idCategoriaReporte, callback);
+            }
+        };
+
+        loaderReporteAsistencia = new BaseListLoader<ListLoadResult<ModelData>>(proxy, new BeanModelReader());
+
+        storeReporteAsistencia = new ListStore<BeanModel>(loaderReporteAsistencia);
+
+//        
+        List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
+        final RowNumberer columnaNumeros = new RowNumberer();
+
+        columns.add(columnaNumeros);
+
+        columns.add(new ColumnConfig("nombreDeportista", "Nombre completo ", 100));
+
+        columns.add(new ColumnConfig("diasAsistenciaTotal", "Total Asistencia", 50));
+
+        columns.add(new ColumnConfig("porcentajeAsistenciaTotal", "Asistió %", 40));
+        ColumnModel cm = new ColumnModel(columns);
+
+        gridReporteAsistencia = new Grid<BeanModel>(storeReporteAsistencia, cm);
+
+        gridReporteAsistencia.setView(new BufferView());
+        gridReporteAsistencia.setLoadMask(true);
+        gridReporteAsistencia.setBorders(true);
+        gridReporteAsistencia.getView().setForceFit(true);
+        gridReporteAsistencia.setStateId("pagingGridExample");
+        gridReporteAsistencia.setStateful(true);
+
+        cpGridReporteAsistencia.add(gridReporteAsistencia);
+
+        return cpGridReporteAsistencia;
+    }
+
+    public void cargarLoaderReporteAsistencia() {
+        try {
+            gridReporteAsistencia.getStore().removeAll();
+            loaderReporteAsistencia.load();
+            loaderReporteAsistencia.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Mediante una llamada nativa redirecciona el browser a la dirección
+     * especificada, en el caso de descargar archivos el contenido del browser
+     * se conserva y simplemente lanza el archivo ;)
+     *
+     * @param url URL a ser cargada
+     */
+    private static native void redireccionarA(String url)/*-{
+     $wnd.location = url;
+     }-*/;
 
 }

@@ -10,6 +10,7 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOControlAsistencia;
 import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,6 +20,6 @@ public interface RPCAdminControlAsistencia extends RPCMaestro<ControlAsistencia>
 
     public PagingLoadResult<DTOControlAsistencia> obtenerCtlAsistenciaFiltro(Date fechaInicial, Date fechaFinal, Long idCategoria, String actividad);
     
-    public PagingLoadResult<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes,Integer anio, Long idCategoria);
+    public List<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes,Integer anio, Long idCategoria);
 
 }
