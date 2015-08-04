@@ -1,29 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="19ba275d-88d3-4dd0-92c9-78850bdf86a5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String"/>
+	<parameter name="anio" class="java.lang.String"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<field name="nombreDeportista" class="java.lang.String"/>
+	<field name="diasAsistenciaTotal" class="java.lang.String"/>
+	<field name="porcentajeAsistenciaTotal" class="java.lang.String"/>
+	<title>
+		<band height="115" splitType="Stretch">
+			<textField>
+				<reportElement x="210" y="51" width="100" height="20" uuid="8b24b5f4-a21b-4da3-abb6-21f9ff32e4a7"/>
+				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="51" width="100" height="20" uuid="453e6290-f806-4197-8ace-6e74105dd27c"/>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="51" width="100" height="20" uuid="0d43aa95-dfbf-4e52-b423-c3fbdbed2abb"/>
+				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="20" uuid="11b6cd7a-9a39-4a6c-aaf6-e785f3fde17a"/>
+				<text><![CDATA[nombreDeportista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="20" uuid="6c8f816b-69b0-4ca1-8626-122fb383e168"/>
+				<text><![CDATA[diasAsistenciaTotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="20" uuid="2fd86c3e-a5e4-4bac-8125-82e43e5bfb7c"/>
+				<text><![CDATA[porcentajeAsistenciaTotal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="20" uuid="7055a513-f62b-401f-9765-569c5593608c"/>
+				<textFieldExpression><![CDATA[$F{nombreDeportista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="b31748a8-4eca-4a71-aed8-332f83745434"/>
+				<textFieldExpression><![CDATA[$F{diasAsistenciaTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="befb81e2-438f-4624-a51f-0a2fa6b95d1f"/>
+				<textFieldExpression><![CDATA[$F{porcentajeAsistenciaTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="2cb60dbc-c407-4b2e-8ad0-46b1b1ce62eb"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 </jasperReport>

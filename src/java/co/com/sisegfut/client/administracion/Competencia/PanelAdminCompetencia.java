@@ -365,6 +365,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
+              if(adminCuerpoTecnico.validarHayCuerpoTecnicoComp(idCompetencia)){
                 wFinalizarCompetencia = new Window();
                 wFinalizarCompetencia.setSize(300, 160);
                 wFinalizarCompetencia.setPlain(true);
@@ -413,6 +414,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 } else {
                     MessageBox.alert("Alerta", "No tiene competencia ", null);
                 }
+            }else{
+              MessageBox.alert("Cuerpo técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo tecnico ", null);
+              }
             }
         };
 
