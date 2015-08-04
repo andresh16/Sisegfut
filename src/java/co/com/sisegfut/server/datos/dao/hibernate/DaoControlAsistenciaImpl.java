@@ -68,7 +68,7 @@ public class DaoControlAsistenciaImpl extends DaoGenericoImpl<ControlAsistencia>
 
         List<DTOReporteAsistenciaXMes> reporteAsistencia = new ArrayList<DTOReporteAsistenciaXMes>();
         String sql1 = "Select ca.* from control_asistencia as ca WHERE date_part('month', fecha) = " + mes + " and date_part('year', fecha) = " + anio + " and categoria =" + idCategoria;
-        String sql2 = "Select d.* from deportista as d where categoria=" + idCategoria + " order by nombres";
+        String sql2 = "Select d.* from deportista as d where categoria=" + idCategoria + "and jugador_comodin=false order by nombres";
         List<ControlAsistencia> planillasAsistenciasAlMes = null;
         List<Deportista> deportistaxCategoria = null;
         try {
