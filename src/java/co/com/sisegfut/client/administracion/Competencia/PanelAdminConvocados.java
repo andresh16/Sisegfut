@@ -588,7 +588,7 @@ public class PanelAdminConvocados extends LayoutContainer {
 //                    MessageBox.alert("Error", "Debe ingresar como mínimo 5 jugadores suplentes ", null);
                 } else {
 
-                    MessageBox.confirm("Confirmación", "¿Seguro que desea guardar los convocados, recuerde que no se puede modificar posteriormente", new Listener<MessageBoxEvent>() {
+                    MessageBox.confirm("Confirmación", "¿Seguro que desea guardar los convocados, recuerde que no se puede modificar posteriormente?", new Listener<MessageBoxEvent>() {
                         @Override
                         public void handleEvent(MessageBoxEvent be) {
 

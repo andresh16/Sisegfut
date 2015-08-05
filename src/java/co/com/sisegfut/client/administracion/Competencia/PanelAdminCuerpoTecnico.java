@@ -288,26 +288,6 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         gridCuerpoTecnico.getStore().removeAll();
         loaderCuerpoTecComp.load(0, 50);
     }
-    
-    public boolean validarHayCuerpoTecnicoComp(Long IdCompetencia){
-    hayCuerpoTecnico=false;
-    getServiceCuerpoTecComp().getCuerpoTecnicoXCompetencia(idCompetencia, new AsyncCallback<PagingLoadResult<Personal>>() {
-
-        @Override
-        public void onFailure(Throwable caught) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void onSuccess(PagingLoadResult<Personal> result) {
-            if(result.getData().size()!=0){
-            hayCuerpoTecnico=true;
-            }
-        
-        }
-    });
-    return hayCuerpoTecnico;
-    }
 
     public void cargarCuerpoTecnicoCompetencia(Long IdCompe, boolean habilitar) {
         setIdCompetencia(IdCompe);

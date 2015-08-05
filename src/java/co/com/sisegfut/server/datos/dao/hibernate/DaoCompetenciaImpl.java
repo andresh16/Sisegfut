@@ -32,7 +32,7 @@ public class DaoCompetenciaImpl extends DaoGenericoImpl<Competencia> implements 
             Competencia competencia = new Competencia();
             Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Competencia.class);
             criteria.add(Restrictions.eq("id", idCompetencia));
-//            criteria.add(Restrictions.eq("finaliza_compentcia",false));
+            criteria.add(Restrictions.isNull("fechaInactivado"));
             competencia = (Competencia) criteria.uniqueResult();
             return competencia;
         } catch (HibernateException e) {
@@ -64,7 +64,7 @@ public class DaoCompetenciaImpl extends DaoGenericoImpl<Competencia> implements 
             condicionFiltro += " and rival=" + idRival;
         }
 
-        String sql = "select c.* from competencia as c where " + condicionFiltro+" order by fecha desc";
+        String sql = "select c.* from competencia as c where fechainactivado is  null  and " + condicionFiltro+" order by fecha desc";
         try {
             competencias = (List<Competencia>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)

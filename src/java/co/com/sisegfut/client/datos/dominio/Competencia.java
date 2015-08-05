@@ -7,8 +7,11 @@ package co.com.sisegfut.client.datos.dominio;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 import com.extjs.gxt.ui.client.data.BeanModelTag;
+import com.extjs.gxt.ui.client.data.ModelData;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +33,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "competencia")
-public class Competencia extends BaseModelData implements BeanModelTag, Serializable {
+public class Competencia extends EntidadPerpetua implements BeanModelTag, Serializable,ModelData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_competencia")
@@ -180,6 +183,36 @@ public class Competencia extends BaseModelData implements BeanModelTag, Serializ
 
     public void setFinalizaCompentcia(boolean finalizaCompentcia) {
         this.finalizaCompentcia = finalizaCompentcia;
+    }
+
+    @Override
+    public String getLabel() {
+        return getCompromiso();
+    }
+
+    @Override
+    public <X> X get(String property) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<String> getPropertyNames() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <X> X remove(String property) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <X> X set(String property, X value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
