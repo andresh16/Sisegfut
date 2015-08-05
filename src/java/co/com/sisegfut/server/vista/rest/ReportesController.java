@@ -755,7 +755,7 @@ public class ReportesController {
             parameterMap.put("datasource", new JRBeanCollectionDataSource(reporteAsistencia));
             parameterMap.put("categoria", nombreCategoria);
             parameterMap.put("mes", mes);
-            parameterMap.put("anio", anio);
+            parameterMap.put("anio", anio.toString());
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteAsistencia", parameterMap);
