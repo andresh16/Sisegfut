@@ -10,6 +10,7 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOCompetencia;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -24,5 +25,7 @@ public interface RPCAdminCompetenciaAsync extends RPCMaestroAsync<Competencia>{
     public void obtenerCompetenciaxId(Long idCompetencia, AsyncCallback<Competencia> callback);
     
     public void obtenerCompetenciaFiltro(Date fechaCompetencia, Long idTorneo, Long idRival, AsyncCallback<PagingLoadResult<DTOCompetencia>> callback);
+   
+    public void getCompetencias(Integer tipo, AsyncCallback<List<DTOCompetencia>> callback);
     
 }

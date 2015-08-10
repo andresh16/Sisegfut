@@ -149,9 +149,11 @@ public class Competencia extends EntidadPerpetua implements BeanModelTag, Serial
         return compromiso;
     }
 
-    public void setCompromiso() {
-        this.compromiso = getCompromiso();
+    public void setCompromiso(String compromiso) {
+        this.compromiso = compromiso;
     }
+
+  
 
     public Integer getGolesAnfitrion() {
         return golesAnfitrion;

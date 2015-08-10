@@ -96,4 +96,30 @@ public class RPCAdminCompetenciaImpl extends RPCMaestroImpl<Competencia> impleme
         PagingLoadResult<DTOCompetencia> loadResult = new BasePagingLoadResult<DTOCompetencia>(listaRetorno, 1, 100);
         return loadResult;
     }
+
+    @Override
+    public List<DTOCompetencia> getCompetencias(Integer tipo) {
+        List<Competencia> listCompetencias = new ArrayList<Competencia>();
+        List<DTOCompetencia> listaRetorno = new ArrayList<DTOCompetencia>();
+
+        listCompetencias = daoCompetencia.listarInactivos();
+        if (listCompetencias != null) {
+            for (Competencia valorCompentencia : listCompetencias) {
+                DTOCompetencia agg = new DTOCompetencia();
+                agg.setFecha(valorCompentencia.getFecha());
+                agg.setCompromiso(valorCompentencia.getCompromiso());
+                agg.setLugar(valorCompentencia.getLugar());
+                agg.setTorneo(valorCompentencia.getTorneo().getLabel());
+                agg.setFinalizo(valorCompentencia.isFinalizaCompentcia() ? "SI" : "NO");
+                agg.setIdCompetencia(valorCompentencia.getId());
+                agg.setIdJugadorComodin(valorCompentencia.getRival().getJugadorComodin().getId());
+                agg.setIdRival(valorCompentencia.getRival().getId());
+                agg.setObservaciones(valorCompentencia.getObservacion());
+                agg.setIdtorneo(valorCompentencia.getTorneo().getId());
+                listaRetorno.add(agg);
+            }
+        }
+        return listaRetorno;
+
+    }
 }

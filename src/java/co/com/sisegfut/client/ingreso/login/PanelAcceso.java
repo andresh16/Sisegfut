@@ -58,7 +58,7 @@ public class PanelAcceso extends LayoutContainer {
         VBoxLayout layout2 = new VBoxLayout();  
         layout2.setPadding(new Padding(5));  
         layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
-        layout2.setPack(BoxLayoutPack.START);  
+        layout2.setPack(BoxLayoutPack.CENTER);  
         scrollIntoView(this);
         setLayout(layout2);
 
@@ -96,7 +96,7 @@ public class PanelAcceso extends LayoutContainer {
 //        panel.setIcon(Resources.ICONS.);
 
         ContentPanel login = new ContentPanel();
-        login.setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=2 FACE='courier new' Color='black'><b>INICIAR SESIÓN</b></font></center>");
+        login.setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=2 FACE='arial' Color='black'><b>INICIAR SESIÓN</b></font></center>");
         login.setAnimCollapse(true);
         login.setHeight(240);
         login.setAutoHeight(true);
@@ -106,7 +106,7 @@ public class PanelAcceso extends LayoutContainer {
         panel.add(login);
 
         ContentPanel recuperacion = new ContentPanel();
-        recuperacion.setHeading("<FONT SIZE=2 FACE='courier new' Color='blue'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECUPERAR CONTRASEÑA</b></font></center>");
+        recuperacion.setHeading("<FONT SIZE=2 FACE='arial' Color='blue'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECUPERAR CONTRASEÑA</b></font></center>");
         recuperacion.setIcon(Resources.ICONS.iconoClave());
         recuperacion.add(panelRecuperacion);
         panel.add(recuperacion);

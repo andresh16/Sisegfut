@@ -9,6 +9,7 @@ import co.com.sisegfut.client.datos.dominio.Competencia;
 import co.com.sisegfut.client.datos.dominio.dto.DTOCompetencia;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,8 @@ public interface RPCAdminCompetencia extends RPCMaestro<Competencia>{
     public Competencia obtenerCompetenciaxId(Long IdCompetencia);
     
     public PagingLoadResult<DTOCompetencia> obtenerCompetenciaFiltro(Date fechaCompetencia, Long idTorneo, Long idRival);
+    
+    public List<DTOCompetencia> getCompetencias(Integer tipo);
     
     
 }

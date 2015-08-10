@@ -110,7 +110,7 @@ public class FormularioLogin extends FormPanel {
         txtUsuario.setData("text", "Ejem. ejemplo@dominio.com");
 //        txtUsuario.setEmptyText("ejem. ejemplo@dominio.com");
         txtUsuario.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico, ejem. ejemplo@dominio.com"));
-        txtUsuario.setFieldLabel("<center><FONT SIZE=3 FACE='courier new'><b>Usuario</b></font></center>");
+        txtUsuario.setFieldLabel("<center><FONT SIZE=3 FACE='arial'><b>Usuario</b></font></center>");
         txtUsuario.setRegex("^(\\w+)([-+.][\\w]+)*@(\\w[-\\w]*\\.){1,5}([A-Za-z]){2,4}$");
         txtUsuario.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
         txtUsuario.setAllowBlank(false);
@@ -122,7 +122,7 @@ public class FormularioLogin extends FormPanel {
         txtPassword.addPlugin(plugin);
         txtPassword.setData("text", "Campo sensible a las mayusculas");
         txtPassword.setToolTip(new ToolTipConfig("Contraseña", "Digite la contraseña, campo sensible a las mayusculas"));
-        txtPassword.setFieldLabel("<center><FONT SIZE=3 FACE='courier new'><b>Contraseña</b></font></center>");
+        txtPassword.setFieldLabel("<center><FONT SIZE=3 FACE='arial'><b>Contraseña</b></font></center>");
         txtPassword.setAllowBlank(false);
         txtPassword.setPassword(true);
         add(txtPassword, formData);

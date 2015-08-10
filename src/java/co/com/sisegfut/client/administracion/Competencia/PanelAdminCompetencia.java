@@ -94,7 +94,7 @@ import java.util.Map;
  * @author fhurtado
  */
 public class PanelAdminCompetencia extends LayoutContainer {
-    
+
     private ContentPanel panel2;
     private BorderLayoutData dataWest;
     private BorderLayoutData dataCenter;
@@ -111,7 +111,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private NumberField txtGolesAnfitrion = new NumberField();
     private NumberField txtGolesRival = new NumberField();
     private TextArea txtObservaciones;
-    
+
     private ComboBoxTorneo comboBoxTorneo;
     private ComboBoxTorneo comboBoxTorneo2;
 //    private ComboBoxCategoria cbxCategoria = new ComboBoxCategoria(ACTIVOS);
@@ -130,13 +130,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Button btnGuardarCompetencia;
     private Button btnNuevaCompetencia;
     private FormButtonBinding binding;
-    private Long idCompetencia;
+    private Long idCompetencia=null;
     private Competencia competenciaFinalizar;
     private Window wFinalizarCompetencia;
     private Window wBuscar;
     private ComboBoxRival cbxRival = null;
     private ComboBoxRival cbxRival2 = null;
-    
+
     private Date fechaFiltroComp = new Date();
     private Long IdTorneo = null;
     private Long idRival = null;
@@ -146,47 +146,47 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Button btnEstadisticaCompetencia;
     private Button btnEliminarCompetencia;
     private PanelEstadisticas panelEstadisticas = new PanelEstadisticas();
-    
+
     private Main myConstants;
     private String observacionesCompetencia;
     private DTOCompetencia dTOCompetencia = new DTOCompetencia();
-    
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
         MessageBox boxWait = MessageBox.wait("Competencia",
                 "Cargando los datos, por favor espere...", "Cargando...");
-        
+
         myConstants = (Main) GWT.create(Main.class);
-        
+
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
         setStyleAttribute("padding", "0px");
-        
+
         cp = new ContentPanel();
         cp2 = new ContentPanel();
-        
+
         cp.setStyleAttribute("padding", "0px");
         cp.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cp.setSize(500, 500);
         cp.setFrame(true);
         cp.setHeaderVisible(false);
-        
+
         cp2.setHeaderVisible(false);
         cp2.setLayout(new FillLayout());
         cp2.setScrollMode(Style.Scroll.AUTO);
 //        cp2.setEnabled(false);
         adminPestComp.tabpanelCompetencia.setEnabled(false);
-        
+
         fpCompromiso = crearFormulario();
-        
+
         btnGuardarCompromiso = new Button("Guardar Siguiente", listenerGuardarCompromiso());
         btnGuardarCompromiso.setIconAlign(IconAlign.RIGHT);
         btnGuardarCompromiso.setIcon(Resources.ICONS.iconoLogin());
-        
+
         btnBuscarComp = new Button("Buscar Competencia", listenerBuscar());
         btnBuscarComp.setIcon(Resources.ICONS.iconoBuscar());
-        
+
         ToolBar toolBar = new ToolBar();
         toolBar.setSpacing(2);
 //        toolBar.add(new SeparatorToolItem());
@@ -199,16 +199,16 @@ public class PanelAdminCompetencia extends LayoutContainer {
 //        fpCompromiso.addButton(btnEditar);
         fpCompromiso.addButton(btnBuscarComp);
         fpCompromiso.addButton(btnGuardarCompromiso);
-        
+
         fpCompromiso.setButtonAlign(Style.HorizontalAlignment.CENTER);
-        
+
         cpCuerpoTecCom = adminCuerpoTecnico;
         cpCuerpoTecCom.disable();
-        
-        cp.add(fpCompromiso, new RowData(1, 0.5, new Margins(0)));
-        cp.add(cpCuerpoTecCom, new RowData(1, 0.5, new Margins(0)));
+
+        cp.add(fpCompromiso, new RowData(1, 0.65, new Margins(0)));
+        cp.add(cpCuerpoTecCom, new RowData(1, 0.35, new Margins(0)));
         cp2.add(adminPestComp);
-        
+
         panel2 = new ContentPanel();
         panel2.setHeading("Control de competencia");
         panel2.setStyleAttribute("padding", "0px");
@@ -217,11 +217,11 @@ public class PanelAdminCompetencia extends LayoutContainer {
         panel2.setSize(500, 500);
         panel2.setFrame(true);
         panel2.setHeaderVisible(true);
-        
+
         panel2.add(cp, new RowData(0.4, 1, new Margins(0)));
-        
+
         panel2.add(cp2, new RowData(0.6, 1, new Margins(0)));
-        
+
         add(panel2);
 
         //Agrego un listener para escuchar el cambio de tamanio del panel
@@ -258,17 +258,17 @@ public class PanelAdminCompetencia extends LayoutContainer {
         btnNuevaCompetencia.setIconAlign(IconAlign.LEFT);
         btnNuevaCompetencia.setIcon(Resources.ICONS.iconoNuevaNota());
         btnNuevaCompetencia.setEnabled(true);
-        
+
         panel2.addButton(btnNuevaCompetencia);
         panel2.addButton(btnGuardarCompetencia);
         panel2.setButtonAlign(Style.HorizontalAlignment.CENTER);
         boxWait.close();
-        
+
     }
 
     ///////////////////////////// METODOS ////////////////////////////////////////////////////////////////////////////
     public FormPanel crearFormulario() {
-        
+
         FormPanel form = new FormPanel();
         form.setScrollMode(Style.Scroll.AUTO);
         form.setFrame(true);
@@ -276,6 +276,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
         form.setHeading("Datos iniciales competencia");
 //        form.setPadding(5);
         form.setSize("100%", "100%");
+        FormLayout fmlayout = new FormLayout();
+        fmlayout.setLabelAlign(FormPanel.LabelAlign.TOP);
+        form.setLayout(fmlayout);
         ToolButton btnayudaCompetencia = new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -286,7 +289,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         form.getHeader().addTool(btnayudaCompetencia);
 
         // Layout Main que contiene todas las columnas 
-        FormData formData = new FormData("-50");
+        FormData formData = new FormData("-30");
         LayoutContainer main = new LayoutContainer();
         main.setLayout(new ColumnLayout());
         // main.setHeight(100);
@@ -295,18 +298,18 @@ public class PanelAdminCompetencia extends LayoutContainer {
         ///////////////////// Columna 1 ////////////////////////////  
         LayoutContainer Columna1 = new LayoutContainer();
         Columna1.setStyleAttribute("padding", "0px");
-        
+
         FormLayout layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.TOP);
         Columna1.setLayout(layout);
-        
+
         DtFecha.setName("fechaCompromiso");
         DtFecha.setAllowBlank(false);
         DtFecha.setFormatValue(true);
         DtFecha.setValue(new Date());
         DtFecha.setFieldLabel("<font color='red'>*</font> Fecha ");
         Columna1.add(DtFecha, formData);
-        
+
         tmHora.setFieldLabel("<font color='red'>*</font> Hora");
 //        tmHora.addPlugin(plugin);
 //        tmHora.setData("text", "Seleccione la hora");
@@ -320,25 +323,19 @@ public class PanelAdminCompetencia extends LayoutContainer {
         tmHora.setEditable(false);
         tmHora.setAllowBlank(false);
         Columna1.add(tmHora, formData);
-        
-        txtLugar.setName("local");
-        txtLugar.setFieldLabel("<font color='red'>*</font> Lugar");
-        txtLugar.setEmptyText("");
-        txtLugar.setAllowBlank(false);
-        Columna1.add(txtLugar, formData);
         ///////////////////// Columna 2 //////////////////////////// 
         LayoutContainer Columna2 = new LayoutContainer();
         Columna2.setStyleAttribute("padding", "0px");
         layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.TOP);
         Columna2.setLayout(layout);
-        
+
         comboBoxTorneo = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
         comboBoxTorneo.setLabelSeparator("<font color='red'>*</font> Torneo");
         comboBoxTorneo.setAllowBlank(false);
         comboBoxTorneo.setForceSelection(true);
         Columna2.add(comboBoxTorneo, formData);
-        
+
         comboBoxTorneo.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
@@ -355,87 +352,83 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cbxRival.setAllowBlank(false);
         cbxRival.disable();
         Columna2.add(cbxRival, formData);
-        
+
         main.add(Columna1, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.5));
         main.add(Columna2, new com.extjs.gxt.ui.client.widget.layout.ColumnData(.5));
-        
+
         form.add(main, new FormData("100%"));
-        
+
+        txtLugar.setName("local");
+        txtLugar.setFieldLabel("<font color='red'>*</font> Lugar");
+        txtLugar.setEmptyText("");
+        txtLugar.setAllowBlank(false);
+        form.add(txtLugar, formData);
+
+        txtObservaciones = new TextArea();
+        txtObservaciones.setLabelSeparator("Observaciones");
+        txtObservaciones.setEmptyText("Ingrese las observaciones o comentarios de la competencia");
+        txtObservaciones.setAllowBlank(true);
+//        lcObservacion.add(txtObservaciones, formData);
+        form.add(txtObservaciones, formData);
+
         return form;
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerFinalizarCompetencia() {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 getServiceCuerpoTecComp().getCuerpoTecnicoXCompetencia(idCompetencia, new AsyncCallback<PagingLoadResult<Personal>>() {
-                    
+
                     @Override
                     public void onFailure(Throwable caught) {
-                        MessageBox.alert("Alerta", "No fue posible validar si hay personal tecnico ", null);
+                        MessageBox.alert("Alerta", "No fue posible validar si hay personal técnico ", null);
                     }
-                    
+
                     @Override
                     public void onSuccess(PagingLoadResult<Personal> result) {
                         if (result.getData().size() != 0) {
-                            wFinalizarCompetencia = new Window();
-                            wFinalizarCompetencia.setSize(300, 160);
-                            wFinalizarCompetencia.setPlain(true);
-                            wFinalizarCompetencia.setModal(true);
-                            wFinalizarCompetencia.setClosable(false);
-                            wFinalizarCompetencia.setBlinkModal(true);
-                            wFinalizarCompetencia.setHeading("Observaciones");
-                            wFinalizarCompetencia.setLayout(new FillLayout());
-                            FormData formData = new FormData("10");
-                            
-                            txtObservaciones = new TextArea();
-                            txtObservaciones.setEmptyText("Ingrese las observaciones o comentarios de la competencia");
-                            
-                            wFinalizarCompetencia.add(txtObservaciones, formData);
-                            Button btnAceptar = new Button("Aceptar", listenerAceptarObservaciones());
-                            wFinalizarCompetencia.addButton(btnAceptar);
-                            wFinalizarCompetencia.setButtonAlign(Style.HorizontalAlignment.CENTER);
-                            wFinalizarCompetencia.setFocusWidget(wFinalizarCompetencia.getButtonBar().getItem(0));
-                            
+
                             if (idCompetencia != null) {
                                 getServiceCompetencia().obtenerCompetenciaxId(idCompetencia, new AsyncCallback<Competencia>() {
-                                    
+
                                     @Override
                                     public void onFailure(Throwable caught) {
-                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                     MessageBox.alert("Error", "No fue posible consultar la compentecia", null);
                                     }
-                                    
+
                                     @Override
                                     public void onSuccess(Competencia result) {
                                         competenciaFinalizar = result;
-                                        MessageBox.confirm("Confirmación", "¿Seguro que desea finalizar la competencia \n <br/>" + competenciaFinalizar.getCompromiso()+" ?", new Listener<MessageBoxEvent>() {
+                                        MessageBox.confirm("Confirmación", "¿Seguro que desea finalizar la competencia \n <br/>" + competenciaFinalizar.getCompromiso() + " ?", new Listener<MessageBoxEvent>() {
                                             @Override
                                             public void handleEvent(MessageBoxEvent be) {
-                                                
+
                                                 String respb = be.getButtonClicked().getText();
-                                                
+
                                                 if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
-                                                    wFinalizarCompetencia.show();
+                                                    competenciaFinalizar.setFinalizaCompentcia(true);
+                                                    finalizarCompetencia(competenciaFinalizar);
                                                 }
-                                                
+
                                             }
                                         });
                                     }
                                 });
-                                
+
                             } else {
                                 MessageBox.alert("Alerta", "No tiene competencia. ", null);
                             }
                         } else {
                             MessageBox.alert("Cuerpo técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo tecnico. ", null);
                         }
-                        
+
                     }
                 });
-                
+
             }
         };
-        
+
     }
 
 //    public FormPanel crearFormularioBusqueda() {
@@ -559,17 +552,17 @@ public class PanelAdminCompetencia extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                
+
                 if (fpCompromiso.isValid()) {
-                    
+
                     Competencia competencia = obtenerFormulario();
                     getServiceCompetencia().guardarEntidad(competencia, new AsyncCallback<RespuestaRPC<Competencia>>() {
-                        
+
                         @Override
                         public void onFailure(Throwable caught) {
                             MessageBox.alert("Alerta", "No fue posible guardar la competencia: ", null);
                         }
-                        
+
                         @Override
                         public void onSuccess(RespuestaRPC<Competencia> result) {
                             idCompetencia = result.getObjetoRespuesta().getId();
@@ -587,11 +580,11 @@ public class PanelAdminCompetencia extends LayoutContainer {
                         }
                     });
                 }
-                
+
             }
         };
     }
-    
+
     public void habilitarPaneles() {
         binding.removeButton(btnGuardarCompromiso);
         adminPestComp.tabpanelCompetencia.setEnabled(true);
@@ -606,18 +599,18 @@ public class PanelAdminCompetencia extends LayoutContainer {
         btnGuardarCompetencia.enable();
         adminCuerpoTecnico.cbxPersonal.recargar();
     }
-    
+
     public Competencia obtenerFormulario() {
         Competencia competencia = new Competencia();
+
         
+        competencia.setId(idCompetencia);
         competencia.setAnfitrion("POLITECNICO JIC");
         competencia.setRival(cbxRival.getRivalElegido());
-        
         fechaActividad = DtFecha.getValue();
         System.out.println("hora actividad" + Formatos.Hora(tmHora.getDateValue()));
         fechaActividad.setTime(tmHora.getDateValue().getTime());
         System.out.println("fecha  " + fechaActividad);
-        
         competencia.setFecha(fechaActividad);
         competencia.setLugar(txtLugar.getValue());
         competencia.setTorneo(comboBoxTorneo.getTorneosElegido());
@@ -625,9 +618,10 @@ public class PanelAdminCompetencia extends LayoutContainer {
         competencia.setGolesAnfitrion(0);
         competencia.setGolesRival(0);
         competencia.setFinalizaCompentcia(false);
+        competencia.setObservacion(txtObservaciones.getValue());
         return competencia;
     }
-    
+
     public void cargarGridCompetencia() {
         try {
             loaderCompetencia.load(0, 100);
@@ -638,7 +632,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
 //        loader.load(0, 50);
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerBuscar() {
         return new SelectionListener<ButtonEvent>() {
             @Override
@@ -651,27 +645,27 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 wBuscar.setBlinkModal(true);
                 wBuscar.setHeading("Buscar competencia");
                 wBuscar.setLayout(new FillLayout());
-                
+
                 wBuscar.add(crearGridCompetencia());
-                
+
                 btnEditarCompetencia = new Button("Editar", Resources.ICONS.iconoModificar(), listenerEditarCompetencia());
                 btnEditarCompetencia.disable();
                 btnConsularCompetencia = new Button("Consultar", Resources.ICONS.iconoBuscar(), listenerConsultarCompetencia());
                 btnConsularCompetencia.disable();
-                btnEliminarCompetencia = new Button("Eliminar", Resources.ICONS.iconoEliminar(),listenerEliminarCompetencia());
+                btnEliminarCompetencia = new Button("Eliminar", Resources.ICONS.iconoEliminar(), listenerEliminarCompetencia());
                 btnEliminarCompetencia.disable();
                 Button btnCancelarBusCompetencia = new Button("Cancelar", Resources.ICONS.iconoCancelar(), new SelectionListener<ButtonEvent>() {
-                    
+
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         wBuscar.hide();
                         limpiarPanelBuscarCompetencia();
-                        
+
                     }
                 });
-                
+
                 btnEstadisticaCompetencia = new Button("Ver Estadisticas", Resources.ICONS.iconoGraficaBarras1(), new SelectionListener<ButtonEvent>() {
-                    
+
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         panelEstadisticas.setIdCompetencia(dTOCompetencia.getIdCompetencia());
@@ -679,7 +673,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                     }
                 });
                 btnEstadisticaCompetencia.disable();
-                
+
                 wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
@@ -690,27 +684,27 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 wBuscar.addButton(btnEditarCompetencia);
                 wBuscar.addButton(btnConsularCompetencia);
                 wBuscar.addButton(btnEliminarCompetencia);
-                
+
                 wBuscar.addButton(btnCancelarBusCompetencia);
 //                
                 wBuscar.setButtonAlign(Style.HorizontalAlignment.CENTER);
 //                
                 wBuscar.setFocusWidget(wBuscar.getButtonBar().getItem(0));
-                
+
                 wBuscar.show();
-                
+
             }
         };
-        
+
     }
-    
+
     public LayoutContainer crearGridCompetencia() {
-        
+
         LayoutContainer lcPanelBuscarCompetencia = new LayoutContainer();
         lcPanelBuscarCompetencia.setScrollMode(Style.Scroll.AUTOY);
         lcPanelBuscarCompetencia.setLayoutData(new FillLayout());
         lcPanelBuscarCompetencia.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        
+
         final RPCAdminCompetenciaAsync svc = (RPCAdminCompetenciaAsync) GWT.create(RPCAdminCompetencia.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminCompetencia");
@@ -732,7 +726,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 svc.obtenerCompetenciaFiltro(fechaFiltroComp, IdTorneo, idRival, callback);
             }
         };
-        
+
         loaderCompetencia = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, new BeanModelReader()) {
             @Override
             protected Object newLoadConfig() {
@@ -741,14 +735,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         };
         loaderCompetencia.setRemoteSort(true);
-        
+
         storeCompetencia = new ListStore<Competencia>(loaderCompetencia);
 //        store.setMonitorChanges(true);
 
         PgtoolBar.bind(loaderCompetencia);
 //        
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-        
+
         ColumnConfig column = new ColumnConfig();
         column.setId("fecha");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
@@ -756,14 +750,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
         column.setWidth(50);
         column.setDateTimeFormat(DateTimeFormat.getFormat("EEEE dd MMMM yyyy hh:mm aa"));
         configs.add(column);
-        
+
         column = new ColumnConfig();
         column.setId("compromiso");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Compromiso");
         column.setWidth(150);
         column.setRenderer(new GridCellRenderer() {
-            
+
             @Override
             public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
                 String compromiso = model.get("compromiso");
@@ -775,14 +769,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         });
         configs.add(column);
-        
+
         column = new ColumnConfig();
         column.setId("torneo");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Torneo");
         column.setWidth(60);
         column.setRenderer(new GridCellRenderer() {
-            
+
             @Override
             public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
                 String torneo = model.get("torneo");
@@ -794,14 +788,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         });
         configs.add(column);
-        
+
         column = new ColumnConfig();
         column.setId("lugar");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setHeader("Lugar");
         column.setWidth(80);
         column.setRenderer(new GridCellRenderer() {
-            
+
             @Override
             public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
                 String lugar = model.get("lugar");
@@ -813,14 +807,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         });
         configs.add(column);
-        
+
         column = new ColumnConfig();
         column.setId("finalizo");
         column.setAlignment(Style.HorizontalAlignment.CENTER);
         column.setHeader("Finalizo?");
         column.setWidth(45);
         column.setRenderer(new GridCellRenderer() {
-            
+
             @Override
             public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
                 String finalizo = model.get("finalizo");
@@ -837,11 +831,11 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 }
             }
         });
-        
+
         configs.add(column);
-        
+
         ColumnModel cm = new ColumnModel(configs);
-        
+
         ContentPanel cpGrid = new ContentPanel();
         cpGrid.setHeaderVisible(false);
         cpGrid.setLayout(new FillLayout(Style.Orientation.VERTICAL));
@@ -849,17 +843,17 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cpGrid.setBodyBorder(false);
         cpGrid.setBorders(false);
         cpGrid.setIcon(Resources.ICONS.table());
-        
+
         ToolBar toolbarBuscar = new ToolBar();
-        toolbarBuscar.setSpacing(10);
-        
+        toolbarBuscar.setSpacing(1);
+
         DtFecha2.setValue(new Date());
-        
+
         comboBoxTorneo2 = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
         comboBoxTorneo2.setLabelSeparator("Torneo");
         comboBoxTorneo2.setEditable(false);
         comboBoxTorneo2.setForceSelection(true);
-        
+
         comboBoxTorneo2.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
@@ -876,14 +870,22 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cbxRival2.disable();
         cbxRival2.setEditable(false);
         Button btnBuscarCompetencia = new Button("Buscar", Resources.ICONS.iconoBuscar(), new SelectionListener<ButtonEvent>() {
-            
+
             @Override
             public void componentSelected(ButtonEvent ce) {
                 buscarCompetencia();
             }
         });
+        Button btnReactivarCompetencia = new Button("Reactivar", Resources.ICONS.iconoRefrescar(), new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                PanelReactivarCompetencia panelReactivarCompetencia = new PanelReactivarCompetencia();
+                panelReactivarCompetencia.show();
+            }
+        });
         Button btnLimpiarForCompetencia = new Button("Limpiar", Resources.ICONS.iconoLimpiar(), new SelectionListener<ButtonEvent>() {
-            
+
             @Override
             public void componentSelected(ButtonEvent ce) {
                 fechaFiltroComp = null;
@@ -898,13 +900,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 btnConsularCompetencia.disable();
                 btnEliminarCompetencia.disable();
                 cargarGridCompetencia();
-                
+
             }
         });
 
         // se ejecuta cuando se presiona la tecla enter.
         DtFecha2.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void componentKeyPress(ComponentEvent event) {
                 if (event.getKeyCode() == 13) {
@@ -913,7 +915,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         });
         comboBoxTorneo2.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void componentKeyPress(ComponentEvent event) {
                 if (event.getKeyCode() == 13) {
@@ -922,7 +924,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
             }
         });
         cbxRival2.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void componentKeyPress(ComponentEvent event) {
                 if (event.getKeyCode() == 13) {
@@ -930,7 +932,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 }
             }
         });
-        
+
         toolbarBuscar.add(DtFecha2);
         toolbarBuscar.add(new SeparatorToolItem());
         toolbarBuscar.add(comboBoxTorneo2);
@@ -940,7 +942,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
         toolbarBuscar.add(btnBuscarCompetencia);
         toolbarBuscar.add(new SeparatorToolItem());
         toolbarBuscar.add(btnLimpiarForCompetencia);
-        
+        toolbarBuscar.add(new SeparatorToolItem());
+        toolbarBuscar.add(btnReactivarCompetencia);
+
         cpGrid.setTopComponent(toolbarBuscar);
 
 //        ContentPanel cpForm = new ContentPanel();
@@ -955,7 +959,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 //        cpForm.add(panel);
         gridCompetencia = new Grid<Competencia>(storeCompetencia, cm);
         gridCompetencia.setView(new BufferView());
-        
+
         gridCompetencia.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
 
         /**
@@ -967,7 +971,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
             public void handleEvent(SelectionChangedEvent<BeanModel> be) {
                 // formBindings.unbind();
                 if (be.getSelection().size() > 0) {
-                    
+
                     dTOCompetencia = (DTOCompetencia) be.getSelectedItem().getBean();
 
 //                    MessageBox.info("Competencia", "Seleccionó: "
@@ -997,14 +1001,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 }
             }
         });
-        
+
         gridCompetencia.addListener(Events.Attach, new Listener<GridEvent<BeanModel>>() {
             @Override
             public void handleEvent(GridEvent<BeanModel> be) {
                 PagingLoadConfig config = new BaseFilterPagingLoadConfig();
                 config.setOffset(0);
                 config.setLimit(50);
-                
+
                 Map<String, Object> state = gridCompetencia.getState();
                 if (state.containsKey("offset")) {
                     int offset = (Integer) state.get("offset");
@@ -1012,51 +1016,40 @@ public class PanelAdminCompetencia extends LayoutContainer {
                     config.setOffset(offset);
                     config.setLimit(limit);
                 }
-                
+
                 loaderCompetencia.load(config);
             }
         });
         gridCompetencia.setLoadMask(true);
         gridCompetencia.setBorders(true);
         gridCompetencia.getView().setForceFit(true);
-        
+
         gridCompetencia.setStateId("pagingGridExample");
         gridCompetencia.setStateful(true);
-        
+
         cpGrid.add(gridCompetencia);
 
 //        lcPanelBuscarCompetencia.add(cpForm, new RowData(1, 0.4, new Margins(0)));
         lcPanelBuscarCompetencia.add(cpGrid, new RowData(1, 1, new Margins(0)));
-        
+
         return lcPanelBuscarCompetencia;
     }
-    
-    protected SelectionListener<ButtonEvent> listenerAceptarObservaciones() {
-        return new SelectionListener<ButtonEvent>() {
+
+    public void finalizarCompetencia(Competencia competencia) {
+        getServiceCompetencia().guardarEntidad(competencia, new AsyncCallback<RespuestaRPC<Competencia>>() {
             @Override
-            public void componentSelected(ButtonEvent ce) {
-                
-                String ob = (txtObservaciones.getValue() != null) ? txtObservaciones.getValue() : "";
-                competenciaFinalizar.setFinalizaCompentcia(true);
-                competenciaFinalizar.setObservacion(ob);
-                wFinalizarCompetencia.hide();
-                getServiceCompetencia().guardarEntidad(competenciaFinalizar, new AsyncCallback<RespuestaRPC<Competencia>>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        MessageBox.alert("Error", "No se fue posible finalizar la competencia.", null);
-                    }
-                    
-                    @Override
-                    public void onSuccess(RespuestaRPC<Competencia> result) {
-                        limpiarCompetencia();
-                    }
-                });
-                
+            public void onFailure(Throwable caught) {
+                MessageBox.alert("Error", "No se fue posible finalizar la competencia.", null);
             }
-        };
-        
+
+            @Override
+            public void onSuccess(RespuestaRPC<Competencia> result) {
+                limpiarCompetencia();
+            }
+        });
+
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerNuevaCompetencia() {
         return new SelectionListener<ButtonEvent>() {
             @Override
@@ -1064,20 +1057,20 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 MessageBox.confirm("Confirmación", "¿Seguro que desea realizar una nueva competencia? ", new Listener<MessageBoxEvent>() {
                     @Override
                     public void handleEvent(MessageBoxEvent be) {
-                        
+
                         String respb = be.getButtonClicked().getText();
-                        
+
                         if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
                             limpiarCompetencia();
                         }
-                        
+
                     }
                 });
             }
         };
-        
+
     }
-    
+
     public void buscarCompetencia() {
         if (DtFecha2.getValue() != null) {
             DateTimeFormat fmt = DateTimeFormat.getFormat("dd-MM-yyyy");
@@ -1092,7 +1085,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         }
         cargarGridCompetencia();
     }
-    
+
     public void limpiarCompetencia() {
         this.mask("Reiniciando competencia....");
         idCompetencia = null;
@@ -1104,12 +1097,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cbxRival.setIdTorneoElegido(null);
         cbxRival.recargar();
         txtLugar.reset();
+        txtObservaciones.reset();
         cpCuerpoTecCom.setEnabled(false);
         btnGuardarCompromiso.setEnabled(true);
         btnGuardarCompetencia.disable();
-        
+        fpCompromiso.setHeading("Datos iniciales competencia");
         adminCuerpoTecnico.reiniciarCuerpoTecnicoCompe();
-        
+
         adminPestComp.panelAdminConvocados.reiniciarConvocados();
         adminPestComp.panelAdminControlDisciplinario.reiniciarControlJuego();
         adminPestComp.panelAdminSituaciones.reiniciarSituaciones();
@@ -1123,7 +1117,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 //        adminPestComp.panelAdminSituaciones.habilitarBotonesSituaciones(true);
         this.unmask();
     }
-    
+
     public void limpiarPanelBuscarCompetencia() {
         fechaFiltroComp = new Date();
         DtFecha2.setValue(fechaFiltroComp);
@@ -1136,9 +1130,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
         idRival = null;
         cbxRival2.recargar();
         cargarGridCompetencia();
-        
+
     }
-    
+
     public RPCAdminCompetenciaAsync getServiceCompetencia() {
         RPCAdminCompetenciaAsync svc = (RPCAdminCompetenciaAsync) GWT.create(RPCAdminCompetencia.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
@@ -1163,9 +1157,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
         simple.show();
     }
-    
-    public void cargarDatosCompetencia(Competencia competencia, boolean habilitar) {
-        
+
+    public void cargarDatosCompetencia(Competencia competencia,String Compromiso, boolean habilitar) {
+
         DtFecha.setValue(competencia.getFecha());
         tmHora.setDateValue(competencia.getFecha());
         comboBoxTorneo.seleccionar(competencia.getTorneo().getId());
@@ -1177,13 +1171,15 @@ public class PanelAdminCompetencia extends LayoutContainer {
         setIdCompetencia(competencia.getId());
         btnGuardarCompromiso.setVisible(habilitar);
         cbxRival.seleccionar(competencia.getRival().getId());
+        txtObservaciones.setValue(competencia.getObservacion());
+        fpCompromiso.setHeading(fpCompromiso.getHeader()+"    MARCADOR "+Compromiso);
 //        txtObservaciones.setValue(competencia.getObservacion());
     }
-    
+
     public void setIdCompetencia(Long idCompetencia) {
         this.idCompetencia = idCompetencia;
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerConsultarCompetencia() {
         return new SelectionListener<ButtonEvent>() {
             @Override
@@ -1192,7 +1188,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 limpiarPanelBuscarCompetencia();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
-                
+
                 Competencia competencia = new Competencia();
                 competencia.setId(dTOCompetencia.getIdCompetencia());
                 competencia.setFecha(dTOCompetencia.getFecha());
@@ -1200,42 +1196,42 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 competencia.setRival(new Rivales(dTOCompetencia.getIdRival()));
                 competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
                 competencia.setObservacion(dTOCompetencia.getObservaciones());
-                
-                cargarDatosCompetencia(competencia, false);
+
+                cargarDatosCompetencia(competencia,dTOCompetencia.getCompromiso(),false);
                 habilitarPanelesBusqueda(false);
                 adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), false);
                 adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), false);
                 adminPestComp.panelAdminSituaciones.buscarSituacionesxCompetencia(dTOCompetencia.getIdCompetencia(), false);
                 adminCuerpoTecnico.cargarCuerpoTecnicoCompetencia(dTOCompetencia.getIdCompetencia(), false);
-                
+
                 boxWait.close();
             }
         };
-        
+
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerEliminarCompetencia() {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                
-                MessageBox.confirm("Confirmación", "¿Seguro que desea eliminar la competencia \n <br/>" + dTOCompetencia.getCompromiso()+" ?", new Listener<MessageBoxEvent>() {
+
+                MessageBox.confirm("Confirmación", "¿Seguro que desea eliminar la competencia \n <br/>" + dTOCompetencia.getCompromiso() + " ?", new Listener<MessageBoxEvent>() {
                     @Override
                     public void handleEvent(MessageBoxEvent be) {
-                        
+
                         String respb = be.getButtonClicked().getText();
-                        
+
                         if (respb.equalsIgnoreCase("yes") || respb.equalsIgnoreCase("sí")) {
                             final MessageBox boxWait = MessageBox.wait("Competencia",
                                     "Eliminando la competencia", "Cargando...");
-                            
+
                             getServiceCompetencia().eliminarEntidad(dTOCompetencia.getIdCompetencia(), new AsyncCallback<RespuestaRPC<Competencia>>() {
-                                
+
                                 @Override
                                 public void onFailure(Throwable caught) {
-                                    MessageBox.alert("Error", "No fue posible eliminar la competencia "+caught.getMessage() , null);
+                                    MessageBox.alert("Error", "No fue posible eliminar la competencia " + caught.getMessage(), null);
                                 }
-                                
+
                                 @Override
                                 public void onSuccess(RespuestaRPC<Competencia> result) {
                                     limpiarPanelBuscarCompetencia();
@@ -1243,15 +1239,15 @@ public class PanelAdminCompetencia extends LayoutContainer {
                                 }
                             });
                         }
-                        
+
                     }
                 });
-                
+
             }
         };
-        
+
     }
-    
+
     protected SelectionListener<ButtonEvent> listenerEditarCompetencia() {
         return new SelectionListener<ButtonEvent>() {
             @Override
@@ -1260,7 +1256,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 wBuscar.hide();
                 MessageBox boxWait = MessageBox.wait("Competencia",
                         "Cargando los datos, por favor espere...", "Cargando...");
-                
+
                 Competencia competencia = new Competencia();
                 competencia.setId(dTOCompetencia.getIdCompetencia());
                 competencia.setFecha(dTOCompetencia.getFecha());
@@ -1268,27 +1264,27 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 competencia.setRival(new Rivales(dTOCompetencia.getIdRival()));
                 competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
                 competencia.setObservacion(dTOCompetencia.getObservaciones());
-                
-                cargarDatosCompetencia(competencia, true);
+
+                cargarDatosCompetencia(competencia,dTOCompetencia.getCompromiso(), true);
                 habilitarPanelesBusqueda(true);
                 adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), true);
                 adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), true);
                 adminPestComp.panelAdminSituaciones.buscarSituacionesxCompetencia(dTOCompetencia.getIdCompetencia(), true);
                 adminCuerpoTecnico.cargarCuerpoTecnicoCompetencia(dTOCompetencia.getIdCompetencia(), true);
-                
+
                 boxWait.close();
             }
         };
-        
+
     }
-    
+
     public RPCAdminCuerpoTecCompAsync getServiceCuerpoTecComp() {
         RPCAdminCuerpoTecCompAsync svc = (RPCAdminCuerpoTecCompAsync) GWT.create(RPCAdminCuerpoTecComp.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminCuerpoTecComp");
         return svc;
     }
-    
+
     public void habilitarPanelesBusqueda(boolean habilitar) {
 //        binding.removeButton(btnGuardarCompromiso);
 
@@ -1298,7 +1294,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         fpCompromiso.enable();
         cpCuerpoTecCom.enable();
         btnGuardarCompetencia.setEnabled(habilitar);
-        
+
     }
-    
+
 }
