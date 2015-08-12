@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1f61c55-8fe7-4cb4-9c12-3043dca7bfbd">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1684"/>
+	<property name="ireport.y" value="528"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
@@ -55,7 +55,7 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[identificación]]></text>
+				<text><![CDATA[Identificación]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="130" y="3" width="67" height="30" uuid="cf780530-45da-468a-a9c4-84072c1e7676"/>
@@ -128,7 +128,7 @@
 				<text><![CDATA[Aceleración]]></text>
 			</staticText>
 			<line>
-				<reportElement x="2" y="50" width="779" height="1" uuid="68f52967-1e90-41b2-ac36-d9d96afeb9c7"/>
+				<reportElement x="3" y="50" width="778" height="1" uuid="68f52967-1e90-41b2-ac36-d9d96afeb9c7"/>
 			</line>
 			<line>
 				<reportElement x="585" y="3" width="1" height="47" uuid="efd811f5-753d-4b79-8908-d71d25820411"/>
@@ -177,7 +177,7 @@
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<line>
-				<reportElement x="2" y="2" width="779" height="1" uuid="efd35c27-5889-446e-be3c-f041a1daa416"/>
+				<reportElement x="3" y="2" width="778" height="1" uuid="efd35c27-5889-446e-be3c-f041a1daa416"/>
 			</line>
 		</band>
 	</columnHeader>
@@ -198,6 +198,7 @@
 			</textField>
 			<textField>
 				<reportElement x="197" y="0" width="59" height="20" uuid="7351e7da-62c9-47ef-afc6-296a3c3ba7a1"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nombrerecepcion30seg}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -241,10 +242,10 @@
 				<textFieldExpression><![CDATA[$F{nombreaceleracion}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="49" width="779" height="1" uuid="ed3f6f98-949d-4db6-8df0-031e6d934355"/>
+				<reportElement x="3" y="49" width="778" height="1" uuid="ed3f6f98-949d-4db6-8df0-031e6d934355"/>
 			</line>
 			<line>
-				<reportElement x="61" y="0" width="1" height="49" uuid="5ec885c9-7d8a-4573-ae5b-1b2840ebaceb"/>
+				<reportElement x="61" y="-1" width="1" height="50" uuid="5ec885c9-7d8a-4573-ae5b-1b2840ebaceb"/>
 			</line>
 			<line>
 				<reportElement x="130" y="-2" width="1" height="51" uuid="c5b20c1c-3d3d-43fa-b4fa-e83d42d1c3c6"/>
@@ -277,10 +278,10 @@
 				<reportElement x="585" y="-1" width="1" height="50" uuid="5ad65d6a-765f-4760-bf72-88da88dcfb13"/>
 			</line>
 			<line>
-				<reportElement x="781" y="0" width="1" height="50" uuid="0540d508-d0bd-4433-89c1-3932c95c128e"/>
+				<reportElement x="781" y="0" width="1" height="49" uuid="0540d508-d0bd-4433-89c1-3932c95c128e"/>
 			</line>
 			<line>
-				<reportElement x="2" y="0" width="1" height="50" uuid="452d435a-3686-4a96-89eb-9da2f19b68f6"/>
+				<reportElement x="2" y="-1" width="1" height="50" uuid="452d435a-3686-4a96-89eb-9da2f19b68f6"/>
 			</line>
 		</band>
 	</detail>

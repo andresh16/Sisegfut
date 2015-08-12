@@ -9,6 +9,7 @@ import co.com.sisegfut.server.datos.dao.DaoUsuario;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.util.ImageUtil;
 import co.com.sisegfut.server.util.UploadItem;
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Date;

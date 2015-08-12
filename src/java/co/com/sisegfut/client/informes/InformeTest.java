@@ -11,7 +11,6 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
@@ -19,7 +18,6 @@ import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.FillLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.core.client.GWT;
@@ -38,7 +36,7 @@ public class InformeTest extends FormPanel {
     private SimpleComboBox<String> comboTests = new SimpleComboBox<String>();
 
     public InformeTest() {
-    setHeaderVisible(false);
+        setHeaderVisible(false);
         setLayout(new FitLayout());
 
         FormData formData = new FormData("-20");
@@ -51,6 +49,7 @@ public class InformeTest extends FormPanel {
         comboTests.setLabelSeparator("Tests");
         comboTests.setEmptyText("Seleccione un test");
         comboTests.setForceSelection(true);
+        comboTests.setAllowBlank(false);
         comboTests.setTriggerAction(ComboBox.TriggerAction.ALL);
         comboTests.add("Test de Karvonen");
         comboTests.add("Test de Cooper");

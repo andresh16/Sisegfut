@@ -37,6 +37,8 @@ import co.com.sisegfut.server.datos.dao.DaoLogrosDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoPersonal;
 import co.com.sisegfut.server.datos.dao.DaoTestCooper;
 import co.com.sisegfut.server.datos.dao.DaoTestKarvonen;
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+import java.io.InputStream;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -192,7 +194,10 @@ public class ReportesController {
             Deportista dep = daoDeportista.getById(idDeportista);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-
+            if(dep.getFoto()!=null){
+            InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+            parameterMap.put("foto", foto);
+            }
             parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("tipoDocumento", dep.getTipoDocumento().getNombreTipoDocumento());
             parameterMap.put("nombres", dep.getNombres());
@@ -242,6 +247,7 @@ public class ReportesController {
             listLogros = daoLogrosDeportivos.LogroDepxDeportista(idDeportista);
             listLesion = daoLesiones.AnteOsteoMuscularxDeportista(idDeportista);
 
+             
             int valorMayor = 0;
             if (listAnt.size() > listLogros.size()) {
                 if (listAnt.size() > listLesion.size()) {
@@ -254,7 +260,11 @@ public class ReportesController {
                     valorMayor = listLesion.size();
                 }
             }
-
+            
+            if(valorMayor==0){
+            DTOHVDeportista vacio = new DTOHVDeportista("","","","","","","","");
+            listaRetorno.add(vacio);
+            }
             for (int i = 0; i < valorMayor; i++) {
                 DTOHVDeportista agg = new DTOHVDeportista();
 
@@ -756,6 +766,8 @@ public class ReportesController {
             parameterMap.put("categoria", nombreCategoria);
             parameterMap.put("mes", mes);
             parameterMap.put("anio", anio.toString());
+            java.net.URL ruta = this.getClass().getResource("/reportes/politecnico-jaime-isaza-cadavid-logo.jpg");
+            parameterMap.put("imagenBanner", ruta);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteAsistencia", parameterMap);

@@ -24,6 +24,18 @@ public class DTOHVDeportista {
     public DTOHVDeportista() {
     }
 
+    public DTOHVDeportista(String clubAnterior, String annoAntDep, String categoriaAnteriorAntDep, String logro, String annoLogro, String categoriaAnteriorLogro, String lesion, String fechaLesion) {
+        this.clubAnterior = clubAnterior;
+        this.annoAntDep = annoAntDep;
+        this.categoriaAnteriorAntDep = categoriaAnteriorAntDep;
+        this.logro = logro;
+        this.annoLogro = annoLogro;
+        this.categoriaAnteriorLogro = categoriaAnteriorLogro;
+        this.lesion = lesion;
+        this.fechaLesion = fechaLesion;
+    }
+    
+
     public String getClubAnterior() {
         return clubAnterior;
     }

@@ -25,7 +25,7 @@
 				<text><![CDATA[Reporte Test de Cooper por la categoría]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="429" y="17" width="141" height="36" uuid="9342d300-5157-4c66-a03a-8777f2c720f7"/>
+				<reportElement x="429" y="17" width="141" height="36" forecolor="#336600" uuid="9342d300-5157-4c66-a03a-8777f2c720f7"/>
 				<textElement>
 					<font size="20"/>
 				</textElement>
@@ -36,7 +36,7 @@
 	<pageHeader>
 		<band height="46" splitType="Stretch">
 			<textField>
-				<reportElement x="9" y="15" width="134" height="31" uuid="0e9cdf26-6df5-4c04-8a32-39b3c417ed63"/>
+				<reportElement x="9" y="15" width="134" height="31" forecolor="#336600" uuid="0e9cdf26-6df5-4c04-8a32-39b3c417ed63"/>
 				<textElement>
 					<font size="20"/>
 				</textElement>
