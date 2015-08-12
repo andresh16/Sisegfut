@@ -76,6 +76,7 @@ public class PanelAdminDeportista extends LayoutContainer {
     
 
     Long id = null;
+    Long IdCategoriaElegida=null;
     protected MessageBox boxWait;
     private Usuarios usuarioLogeado;
     //Creo el toolbar de paginacion de el grid
@@ -154,9 +155,11 @@ public class PanelAdminDeportista extends LayoutContainer {
         RpcProxy<PagingLoadResult<Deportista>> proxy = new RpcProxy<PagingLoadResult<Deportista>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Deportista>> callback) {
-                FilterPagingLoadConfig f = (FilterPagingLoadConfig) loadConfig;
-                f.setSortDir(null);
-                svc.getConsulta(f,callback);
+                if (IdCategoriaElegida!=null){
+                 svc.getDeportistaxCategoria(IdCategoriaElegida, callback);
+                }else{
+                    svc.getDeportistas(callback);
+                }
             }
            
         };

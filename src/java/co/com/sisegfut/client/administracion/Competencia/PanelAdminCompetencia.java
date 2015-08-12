@@ -88,7 +88,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 /**
  *
  * @author fhurtado
@@ -145,7 +144,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Button btnConsularCompetencia;
     private Button btnEstadisticaCompetencia;
     private Button btnEliminarCompetencia;
-    private PanelEstadisticas panelEstadisticas = new PanelEstadisticas();
+    private PanelEstadisticas panelEstadisticas;
 
     private Main myConstants;
     private String observacionesCompetencia;
@@ -668,6 +667,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                     @Override
                     public void componentSelected(ButtonEvent ce) {
+                        panelEstadisticas = new PanelEstadisticas();
                         panelEstadisticas.setIdCompetencia(dTOCompetencia.getIdCompetencia());
                         panelEstadisticas.show();
                     }

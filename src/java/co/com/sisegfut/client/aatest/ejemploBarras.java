@@ -54,46 +54,45 @@ import java.util.List;
  * @author Andres Hurtado
  */
 public class ejemploBarras implements IsWidget {
-    
+
     public interface DataPropertyAccess extends PropertyAccess<Data2> {
-        
+
         ValueProvider<Data2, Double> cantidadAnfitrion();
-        
+
         ValueProvider<Data2, Double> cantidadRival();
-        
+
         ValueProvider<Data2, String> nombreSituacionJuego();
-        
+
         @Path("id")
         ModelKeyProvider<Data2> nameKey();
     }
-    
+
     private static final DataPropertyAccess dataAccess = GWT.create(DataPropertyAccess.class);
-    
+
     private FramedPanel panel;
     private Long idCompetencia;
     private ListStore<Data2> store;
     private Chart<Data2> chart;
-    
+
     public Long getIdCompetencia() {
         return idCompetencia;
     }
-    
+
     public void setIdCompetencia(Long idCompetencia) {
         this.idCompetencia = idCompetencia;
     }
-    List<Data2> situacionesJuego = new ArrayList<Data2>();
-    
+
     @Override
     public Widget asWidget() {
         if (panel == null) {
             store = new ListStore<Data2>(dataAccess.nameKey());
 //            store.addAll(DTOSituacionJuegoCompGraficas.getSituacionesCompetencia(4, 1, 10));
-            store.clear();
-            store.addAll(DTOSituacionJuegoCompGraficas.getSituacionesCompetenciaVacio(19, 1, 10));
-            
+//            store.clear();
+//            store.addAll(DTOSituacionJuegoCompGraficas.getSituacionesCompetenciaVacio(19, 1, 10));
+//            
             TextSprite title = new TextSprite("Cantidad");
             title.setFontSize(18);
-            
+
             NumericAxis<Data2> axis = new NumericAxis<Data2>();
             axis.setPosition(Position.BOTTOM);
             axis.addField(dataAccess.cantidadAnfitrion());
@@ -103,24 +102,24 @@ public class ejemploBarras implements IsWidget {
             axis.setMinimum(0);
             axis.setInterval(1);
             axis.setMaximum(15);
-            
+
             title = new TextSprite("Situaciones de Juego");
             title.setFontSize(18);
-            
+
             CategoryAxis<Data2, String> catAxis = new CategoryAxis<Data2, String>();
             catAxis.setPosition(Position.LEFT);
             catAxis.setField(dataAccess.nombreSituacionJuego());
             catAxis.setTitleConfig(title);
-            
+
             SeriesLabelConfig<Data2> labelConfig = new SeriesLabelConfig<Data2>();
             labelConfig.setLabelPosition(LabelPosition.OUTSIDE);
-            
+
             SeriesToolTipConfig<Data2> tooltipConfig = new SeriesToolTipConfig<Data2>();
-            
+
             List<String> resultadoBarra = new ArrayList<String>();
             resultadoBarra.add("POLITECNICO");
             resultadoBarra.add("RIVAL");
-            
+
             final BarSeries<Data2> bar = new BarSeries<Data2>();
             bar.setYAxisPosition(Position.BOTTOM);
             bar.addYField(dataAccess.cantidadAnfitrion());
@@ -137,7 +136,7 @@ public class ejemploBarras implements IsWidget {
             legend.setItemHighlighting(true);
             legend.setItemHiding(true);
             legend.getBorderConfig().setStrokeWidth(0);
-            
+
             chart = new Chart<Data2>();
             chart.setStore(store);
             chart.setShadowChart(false);
@@ -148,13 +147,13 @@ public class ejemploBarras implements IsWidget {
             chart.setAnimated(true);
             chart.setDefaultInsets(19);
             chart.setAnimationDuration(3000);
-            
+
             TextButton regenerate = new TextButton("Recargar");
             regenerate.addSelectHandler(new SelectHandler() {
                 @Override
                 public void onSelect(SelectEvent event) {
-                    store.clear();
-                    store.addAll(buscarSituacionesxCompetencia(idCompetencia));
+//                    store.clear();
+//                    store.addAll(buscarSituacionesxCompetencia(idCompetencia));
                     chart.redrawChart();
                 }
             });
@@ -186,7 +185,7 @@ public class ejemploBarras implements IsWidget {
             VerticalLayoutContainer layout = new VerticalLayoutContainer();
             layout.add(toolBar, new VerticalLayoutData(1, -1));
             layout.add(chart, new VerticalLayoutData(1, 1));
-            
+
             panel = new FramedPanel();
             panel.setLayoutData(new MarginData(0));
             panel.setCollapsible(true);
@@ -195,7 +194,7 @@ public class ejemploBarras implements IsWidget {
             panel.setHeaderVisible(false);
             panel.setBodyBorder(true);
             panel.add(layout);
-            
+
             final Resizable resize = new Resizable(panel, Dir.E, Dir.SE, Dir.S);
             resize.setMinHeight(400);
             resize.setMinWidth(400);
@@ -213,36 +212,37 @@ public class ejemploBarras implements IsWidget {
             });
 //      new Draggable(panel, panel.getHeader()).setUseProxy(false);
         }
-        
+
         return panel;
     }
-    
-    public List<Data2> buscarSituacionesxCompetencia(Long idCompetenc) {
+
+    public void buscarSituacionesxCompetencia(Long idCompetenc) {
         getServiceSituaciones().getSituacionesXCompetenciaGrafica(idCompetencia, new AsyncCallback<List<Data2>>() {
-            
+
             @Override
             public void onFailure(Throwable caught) {
-            System.out.println("No fue posible consultar las situaciones");
+                System.out.println("No fue posible consultar las situaciones");
             }
-            
+
             @Override
             public void onSuccess(List<Data2> result) {
-            situacionesJuego=result;
+//            situacionesJuego=result;
+                chart.getStore().addAll(result);
+                chart.redrawChart();
             }
         });
-        return situacionesJuego;
     }
-    
+
     public RPCAdminSituacionesJuegoAsync getServiceSituaciones() {
         RPCAdminSituacionesJuegoAsync svc = (RPCAdminSituacionesJuegoAsync) GWT.create(RPCAdminSituacionesJuego.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminSituacionesJuego");
         return svc;
     }
-    
-    public void limpiargrafica(){
-    store.clear();
-    chart.redrawChart();
+
+    public void limpiargrafica() {
+        store.clear();
+        chart.redrawChart();
     }
-    
+
 }

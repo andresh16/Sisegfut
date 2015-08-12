@@ -27,14 +27,21 @@ import com.sencha.gxt.widget.core.client.FramedPanel;
  */
 public class PanelEstadisticas extends Window {
 
+    @Override
+    public void show() {
+        ejemploBarras1.buscarSituacionesxCompetencia(idCompetencia);
+        super.show(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     private FramedPanel panel = new FramedPanel();
     private AdvancedChartExample advancedChartExample;
-    private ejemploBarras ejemploBarras1 = new ejemploBarras();
+//    private ejemploBarras ejemploBarras1 = new ejemploBarras();
+    private ejemploBarras ejemploBarras1;
     private Long idCompetencia;
     private Main myConstants;
 
     public PanelEstadisticas() {
-        AdvancedChartExample advancedChartExample = new AdvancedChartExample();
         setSize(900, 600);
         setPlain(true);
         setModal(true);
@@ -43,14 +50,14 @@ public class PanelEstadisticas extends Window {
         setHeading("Estadistica de la competencia");
         setLayout(new FillLayout());
         myConstants = (Main) GWT.create(Main.class);
-        
+
         panel.setLayoutData(new MarginData(0));
         panel.setCollapsible(false);
         panel.setHeadingText("Estadisticas");
         panel.setHeaderVisible(false);
         panel.setPixelSize(620, 500);
         panel.setBodyBorder(true);
-
+        ejemploBarras1 = new ejemploBarras();
         panel.add(ejemploBarras1);
 //        panel.add(advancedChartExample);
         add(panel);
@@ -67,7 +74,7 @@ public class PanelEstadisticas extends Window {
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                        abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaEstadistica());
+                abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaEstadistica());
             }
         }));
 
@@ -77,7 +84,7 @@ public class PanelEstadisticas extends Window {
 //        this.idCompetencia = idCompetencia;
         ejemploBarras1.setIdCompetencia(idCompetencia);
     }
-    
+
     /**
      * Abre ventana de ayuda.
      */
