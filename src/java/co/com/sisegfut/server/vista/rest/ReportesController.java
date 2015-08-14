@@ -148,6 +148,10 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
             parameterMap.put("categoria", nombreCategoria);
+            java.net.URL banner = this.getClass().getResource("co/com/sisegfut/client/util/imagenes/politecnico-jaime-isaza-cadavid-logo.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("co/com/sisegfut/client/util/imagenes/creditos.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
@@ -234,6 +238,7 @@ public class ReportesController {
             parameterMap.put("posicion", dep.getPosicion().getNombrePosicion());
             parameterMap.put("imc", dep.getImc());
             parameterMap.put("genero", dep.getGenero());
+            parameterMap.put("camisa", dep.getNumeroCamisa());
             parameterMap.put("nivelEducativo", dep.getNivelEducativo().getNombreNivelEducativo());
             parameterMap.put("instEducativa", dep.getInstEducativa().getNombreInstEducativa());
 
@@ -766,8 +771,10 @@ public class ReportesController {
             parameterMap.put("categoria", nombreCategoria);
             parameterMap.put("mes", mes);
             parameterMap.put("anio", anio.toString());
-            java.net.URL ruta = this.getClass().getResource("/reportes/politecnico-jaime-isaza-cadavid-logo.jpg");
-            parameterMap.put("imagenBanner", ruta);
+            java.net.URL banner = this.getClass().getResource("imagenes/politecnico-jaime-isaza-cadavid-logo.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("imagenes/creditos.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteAsistencia", parameterMap);

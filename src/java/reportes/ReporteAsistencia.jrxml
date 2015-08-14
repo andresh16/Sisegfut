@@ -1,117 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="19ba275d-88d3-4dd0-92c9-78850bdf86a5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="19ba275d-88d3-4dd0-92c9-78850bdf86a5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="8"/>
 	<parameter name="mes" class="java.lang.String"/>
 	<parameter name="anio" class="java.lang.String"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="imagenBanner" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
 	<field name="nombreDeportista" class="java.lang.String"/>
 	<field name="diasAsistenciaTotal" class="java.lang.String"/>
 	<field name="porcentajeAsistenciaTotal" class="java.lang.String"/>
 	<title>
-		<band height="193" splitType="Stretch">
+		<band height="181" splitType="Stretch">
 			<textField>
-				<reportElement x="312" y="71" width="100" height="31" forecolor="#336600" uuid="8b24b5f4-a21b-4da3-abb6-21f9ff32e4a7"/>
+				<reportElement x="117" y="133" width="100" height="31" forecolor="#336600" uuid="8b24b5f4-a21b-4da3-abb6-21f9ff32e4a7"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="156" y="71" width="145" height="31" forecolor="#336600" uuid="453e6290-f806-4197-8ace-6e74105dd27c"/>
+				<reportElement x="365" y="86" width="145" height="36" forecolor="#336600" uuid="453e6290-f806-4197-8ace-6e74105dd27c"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="439" y="71" width="100" height="31" forecolor="#336600" uuid="0d43aa95-dfbf-4e52-b423-c3fbdbed2abb"/>
+				<reportElement x="262" y="133" width="100" height="31" forecolor="#336600" uuid="0d43aa95-dfbf-4e52-b423-c3fbdbed2abb"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="184" y="19" width="354" height="36" forecolor="#336600" uuid="1f09f4d6-51f7-46f3-9971-09c92d5d5212"/>
+				<reportElement x="11" y="86" width="354" height="36" forecolor="#336600" uuid="1f09f4d6-51f7-46f3-9971-09c92d5d5212"/>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte Asistencia por la categoría]]></text>
 			</staticText>
 			<image isLazy="true" onErrorType="Icon">
-				<reportElement x="134" y="102" width="353" height="70" uuid="5b7e93ee-afc2-484f-bae2-7a81e40ef515"/>
+				<reportElement x="0" y="0" width="353" height="70" uuid="5b7e93ee-afc2-484f-bae2-7a81e40ef515"/>
 				<imageExpression><![CDATA[$P{imagenBanner}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="217" y="133" width="45" height="31" forecolor="#336600" uuid="83512025-da6b-4a53-8e84-8443227b7d36"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ - ]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="485" y="0" width="69" height="75" uuid="99b4e23c-1d9b-423d-a52f-1f2bcb3fb889"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="23" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="268" y="0" width="63" height="36" forecolor="#336600" uuid="71f5f929-660b-4130-80e5-660e88d4125f"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="329" y="0" width="36" height="36" forecolor="#336600" uuid="969980ea-331a-4d47-9451-aee9da724c33"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ - ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="0" width="100" height="36" forecolor="#336600" uuid="0e5b2f7c-a1a8-494d-b2fe-bc8010edc332"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="0" width="104" height="36" forecolor="#336600" uuid="9bcf9ee9-2249-4cb4-8a7e-4ed66b2b33d6"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="0" width="153" height="36" forecolor="#336600" uuid="53fed853-9cb2-4e24-8079-1f8e9ccea546"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Categoría]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="208" height="20" uuid="11b6cd7a-9a39-4a6c-aaf6-e785f3fde17a"/>
+				<reportElement mode="Opaque" x="30" y="0" width="154" height="24" backcolor="#CCFFCC" uuid="11b6cd7a-9a39-4a6c-aaf6-e785f3fde17a"/>
 				<box>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
 				</box>
-				<textElement>
-					<font isBold="true"/>
+				<textElement textAlignment="Justified">
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre Deportista]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="254" y="0" width="185" height="20" uuid="6c8f816b-69b0-4ca1-8626-122fb383e168"/>
+				<reportElement mode="Opaque" x="184" y="0" width="145" height="24" backcolor="#CCFFCC" uuid="6c8f816b-69b0-4ca1-8626-122fb383e168"/>
 				<box>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
 				</box>
-				<textElement>
-					<font isBold="true"/>
+				<textElement textAlignment="Justified">
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Días Asistencia Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="520" y="0" width="185" height="20" uuid="2fd86c3e-a5e4-4bac-8125-82e43e5bfb7c"/>
+				<reportElement mode="Opaque" x="329" y="0" width="185" height="24" backcolor="#CCFFCC" uuid="2fd86c3e-a5e4-4bac-8125-82e43e5bfb7c"/>
 				<box>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
 				</box>
-				<textElement>
-					<font isBold="true"/>
+				<textElement textAlignment="Justified">
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Porcentaje Asistencia Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="208" height="20" uuid="7055a513-f62b-401f-9765-569c5593608c"/>
+				<reportElement x="30" y="0" width="154" height="22" uuid="7055a513-f62b-401f-9765-569c5593608c"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreDeportista}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="520" y="2" width="185" height="20" uuid="befb81e2-438f-4624-a51f-0a2fa6b95d1f"/>
+				<reportElement x="329" y="0" width="185" height="22" uuid="befb81e2-438f-4624-a51f-0a2fa6b95d1f"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{porcentajeAsistenciaTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="254" y="2" width="185" height="20" uuid="b31748a8-4eca-4a71-aed8-332f83745434"/>
+				<reportElement x="184" y="0" width="145" height="22" uuid="b31748a8-4eca-4a71-aed8-332f83745434"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#006633"/>
+					<leftPen lineWidth="1.0" lineColor="#006633"/>
+					<bottomPen lineWidth="1.0" lineColor="#006633"/>
+					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{diasAsistenciaTotal}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="56" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="54" forecolor="#339900" backcolor="#99FF99" uuid="6013dfc1-ae9f-4530-bb12-442e3494eea7">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="24" forecolor="#339900" backcolor="#99FF99" uuid="6013dfc1-ae9f-4530-bb12-442e3494eea7">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 				</reportElement>
 				<textField pattern="EEEEE dd MMMMM yyyy">
@@ -122,12 +197,12 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="649" y="0" width="80" height="20" uuid="203e5241-d221-4fd8-84b5-aacd82cee7f6"/>
+					<reportElement x="434" y="0" width="80" height="20" uuid="203e5241-d221-4fd8-84b5-aacd82cee7f6"/>
 					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="729" y="0" width="40" height="20" uuid="0c09a19c-a8d7-4ce2-8bca-ce5d9e978d1e"/>
+					<reportElement x="514" y="0" width="40" height="20" uuid="0c09a19c-a8d7-4ce2-8bca-ce5d9e978d1e"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 			</frame>
