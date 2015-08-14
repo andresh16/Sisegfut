@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
-	<property name="ireport.zoom" value="0.75"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
+	<property name="ireport.zoom" value="1.2078825000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="201"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -90,8 +90,8 @@
 	<parameter name="instEducativa" class="java.lang.String"/>
 	<parameter name="foto" class="java.io.InputStream" isForPrompting="false"/>
 	<parameter name="camisa" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="banner" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
 	<field name="clubAnterior" class="java.lang.String"/>
 	<field name="categoriaAnteriorAntDep" class="java.lang.String"/>
 	<field name="annoAntDep" class="java.lang.String"/>
@@ -101,11 +101,11 @@
 	<field name="fechaLesion" class="java.lang.String"/>
 	<field name="lesion" class="java.lang.String"/>
 	<title>
-		<band height="582" splitType="Stretch">
+		<band height="506" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="17" y="124" width="427" height="40" backcolor="#000033" uuid="549298e4-67c7-4741-826d-575d560e16c0"/>
+				<reportElement stretchType="RelativeToTallestObject" x="17" y="93" width="461" height="40" backcolor="#000033" uuid="549298e4-67c7-4741-826d-575d560e16c0"/>
 				<textElement markup="styled">
-					<font fontName="Arial" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="24" isBold="true" isItalic="true" isStrikeThrough="false" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[HOJA DE VIDA DEL DEPORTISTA]]></text>
 			</staticText>
@@ -116,858 +116,994 @@
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="496" width="181" height="23" uuid="f8e25659-ee4d-43b5-b0ba-faa6fc8b0396"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="480" width="181" height="23" uuid="f8e25659-ee4d-43b5-b0ba-faa6fc8b0396"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nivelEducativo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="404" width="181" height="23" uuid="465830f1-febe-426c-859c-b2b7e58cfbb8"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="388" width="181" height="23" uuid="465830f1-febe-426c-859c-b2b7e58cfbb8"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{peso}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="356" width="270" height="20" backcolor="#FFFFFF" uuid="7b96b251-b3b6-4f7c-b0af-9c8f745c6571"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="308" width="270" height="20" backcolor="#FFFFFF" uuid="7b96b251-b3b6-4f7c-b0af-9c8f745c6571"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{direccion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="396" width="270" height="20" backcolor="#FFFFFF" uuid="de655fdb-af19-4dcf-b5b5-e2f7b03470e1"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="348" width="270" height="20" backcolor="#FFFFFF" uuid="de655fdb-af19-4dcf-b5b5-e2f7b03470e1"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="256" width="270" height="20" backcolor="#FFFFFF" uuid="422f37ba-a1c9-4dfe-8ba0-1b8ef5679b87"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="208" width="270" height="20" backcolor="#FFFFFF" uuid="422f37ba-a1c9-4dfe-8ba0-1b8ef5679b87"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{apellidos}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="146" y="195" width="270" height="21" backcolor="#FFFFFF" uuid="0800091b-8af9-4bb0-9108-84a66819b7dc"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="147" width="270" height="21" backcolor="#FFFFFF" uuid="0800091b-8af9-4bb0-9108-84a66819b7dc"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="427" width="110" height="23" backcolor="#FFFFFF" uuid="e61460c3-00f2-4401-b93c-d7ce3b0041b0"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="411" width="124" height="23" backcolor="#BDE0C0" uuid="e61460c3-00f2-4401-b93c-d7ce3b0041b0"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[IMC]]></text>
+				<text><![CDATA[IMC  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="376" width="270" height="20" backcolor="#FFFFFF" uuid="d81fba5a-5e43-40eb-bddb-8213616e7338"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="328" width="270" height="20" backcolor="#FFFFFF" uuid="d81fba5a-5e43-40eb-bddb-8213616e7338"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{barrio}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="296" width="270" height="20" backcolor="#FFFFFF" uuid="103c3cf7-3ed2-4ba7-be60-0c894b5b3083"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="248" width="270" height="20" backcolor="#FFFFFF" uuid="103c3cf7-3ed2-4ba7-be60-0c894b5b3083"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{genero}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="236" width="129" height="20" backcolor="#FFFFFF" uuid="d81ac099-ea4d-47cf-b8ef-428fd79d9f38"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="188" width="146" height="20" backcolor="#BDE0C0" uuid="d81ac099-ea4d-47cf-b8ef-428fd79d9f38"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Nombres]]></text>
+				<text><![CDATA[Nombres  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="276" width="270" height="20" backcolor="#FFFFFF" uuid="2d2748b1-61fe-4d1e-ab22-bb9f933488cd"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="228" width="270" height="20" backcolor="#FFFFFF" uuid="2d2748b1-61fe-4d1e-ab22-bb9f933488cd"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaNacimiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="381" width="110" height="23" backcolor="#FFFFFF" uuid="b4aea3e9-4cfb-468f-9339-175bb5970353"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="365" width="124" height="23" backcolor="#BDE0C0" uuid="b4aea3e9-4cfb-468f-9339-175bb5970353"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Estatura]]></text>
+				<text><![CDATA[Estatura  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="404" width="110" height="23" backcolor="#FFFFFF" uuid="48f7d8db-d707-4173-a8ed-1a83f0fd8679"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="388" width="124" height="23" backcolor="#BDE0C0" uuid="48f7d8db-d707-4173-a8ed-1a83f0fd8679"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Peso]]></text>
+				<text><![CDATA[Peso  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="296" width="129" height="20" backcolor="#FFFFFF" uuid="71340dc2-69b0-4835-bf38-b4511cc035e9"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="248" width="146" height="20" backcolor="#BDE0C0" uuid="71340dc2-69b0-4835-bf38-b4511cc035e9"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="12" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Género]]></text>
+				<text><![CDATA[Género  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="359" width="110" height="23" backcolor="#FFFFFF" uuid="561f18f6-5797-43d9-bd74-992f38c7c848"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="343" width="124" height="23" backcolor="#BDE0C0" uuid="561f18f6-5797-43d9-bd74-992f38c7c848"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Estrato]]></text>
+				<text><![CDATA[Estrato  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="416" width="129" height="20" backcolor="#FFFFFF" uuid="76828e22-aa4e-4d6b-875a-19f25e2d0b8c"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="368" width="146" height="20" backcolor="#BDE0C0" uuid="76828e22-aa4e-4d6b-875a-19f25e2d0b8c"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Posición]]></text>
+				<text><![CDATA[Posición  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="473" width="110" height="23" backcolor="#FFFFFF" uuid="d631cb8c-8a54-4bbd-8549-9d593b52d662"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="457" width="124" height="23" backcolor="#BDE0C0" uuid="d631cb8c-8a54-4bbd-8549-9d593b52d662"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Ins. Educativa]]></text>
+				<text><![CDATA[Ins. Educativa  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="382" width="181" height="22" uuid="719cecee-c72e-4299-8987-4f352590e7bd"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="366" width="181" height="22" uuid="719cecee-c72e-4299-8987-4f352590e7bd"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{estatura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="336" width="110" height="23" backcolor="#FFFFFF" uuid="730b1a9e-11ee-4613-b3a4-df23450beb79"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="320" width="124" height="23" backcolor="#BDE0C0" uuid="730b1a9e-11ee-4613-b3a4-df23450beb79"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Eps]]></text>
+				<text><![CDATA[Eps  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="479" width="270" height="21" backcolor="#FFFFFF" uuid="cd5a5075-8a66-4496-a909-0fd40b564c34"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="431" width="270" height="21" backcolor="#FFFFFF" uuid="cd5a5075-8a66-4496-a909-0fd40b564c34"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{numeroMadre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="316" width="129" height="20" backcolor="#FFFFFF" uuid="88c6b5df-df4f-40db-b375-28b3ba993f30"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="268" width="146" height="20" backcolor="#BDE0C0" uuid="88c6b5df-df4f-40db-b375-28b3ba993f30"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Teléfono]]></text>
+				<text><![CDATA[Teléfono  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="216" width="129" height="20" backcolor="#FFFFFF" uuid="5e6fe616-31de-4303-a4a4-02f7feacf4e7"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="168" width="146" height="20" backcolor="#BDE0C0" uuid="5e6fe616-31de-4303-a4a4-02f7feacf4e7"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Tipo Documento]]></text>
+				<text><![CDATA[Tipo Documento  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="456" width="270" height="23" backcolor="#FFFFFF" uuid="02e377cd-1bf7-4a42-9ad9-3b2ce35a7469"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="408" width="270" height="23" backcolor="#FFFFFF" uuid="02e377cd-1bf7-4a42-9ad9-3b2ce35a7469"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombreMadre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="416" width="270" height="20" backcolor="#FFFFFF" uuid="5eba65b7-545b-4482-8f9a-104b8eb7e95f"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="368" width="270" height="20" backcolor="#FFFFFF" uuid="5eba65b7-545b-4482-8f9a-104b8eb7e95f"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{posicion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="376" width="129" height="20" backcolor="#FFFFFF" uuid="da5bd2fa-f6a7-4056-b494-f95f58e97baf"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="328" width="146" height="20" backcolor="#BDE0C0" uuid="da5bd2fa-f6a7-4056-b494-f95f58e97baf"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Barrio]]></text>
+				<text><![CDATA[ Barrio  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="336" width="129" height="20" backcolor="#FFFFFF" uuid="8c7950cb-33ad-402a-82de-9950056e4150"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="288" width="146" height="20" backcolor="#BDE0C0" uuid="8c7950cb-33ad-402a-82de-9950056e4150"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Correo]]></text>
+				<text><![CDATA[Correo  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="500" width="129" height="23" backcolor="#FFFFFF" uuid="f7da3225-9d90-4237-893c-68d226f2c1ca"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="452" width="146" height="23" backcolor="#BDE0C0" uuid="f7da3225-9d90-4237-893c-68d226f2c1ca"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Nombre Padre]]></text>
+				<text><![CDATA[Nombre Padre  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="356" width="129" height="20" backcolor="#FFFFFF" uuid="1f7b7165-eb9b-48f7-b775-c38e1aed68d3"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="308" width="146" height="20" backcolor="#BDE0C0" uuid="1f7b7165-eb9b-48f7-b775-c38e1aed68d3"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Dirección]]></text>
+				<text><![CDATA[Dirección  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="316" width="270" height="20" backcolor="#FFFFFF" uuid="af55c27f-4c01-408d-b305-b893bc180c1f"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="268" width="270" height="20" backcolor="#FFFFFF" uuid="af55c27f-4c01-408d-b305-b893bc180c1f"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="478" width="129" height="23" backcolor="#FFFFFF" uuid="d11a351d-37a2-4033-b65e-a9f8e1f68c4f"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="430" width="146" height="23" backcolor="#BDE0C0" uuid="d11a351d-37a2-4033-b65e-a9f8e1f68c4f"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Número Madre]]></text>
+				<text><![CDATA[Número Madre  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="500" width="270" height="23" backcolor="#FFFFFF" uuid="d8930d2c-c41e-45b7-9b61-b7c14a0ccbcd"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="452" width="270" height="23" backcolor="#FFFFFF" uuid="d8930d2c-c41e-45b7-9b61-b7c14a0ccbcd"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombrePadre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="359" width="181" height="23" uuid="35474c13-99e0-4987-b007-c39f8d56a442"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="343" width="181" height="23" uuid="35474c13-99e0-4987-b007-c39f8d56a442"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{estrato}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="473" width="181" height="23" uuid="efa9f37a-b6ef-44cb-931f-1e006ba33455"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="457" width="181" height="23" uuid="efa9f37a-b6ef-44cb-931f-1e006ba33455"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{instEducativa}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="276" width="129" height="20" backcolor="#FFFFFF" uuid="6d71d5b7-9647-4c91-935c-5896cd1a1ac1"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="228" width="146" height="20" backcolor="#BDE0C0" uuid="6d71d5b7-9647-4c91-935c-5896cd1a1ac1"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Fecha Nacimiento]]></text>
+				<text><![CDATA[Fecha Nacimiento  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="523" width="129" height="26" backcolor="#FFFFFF" uuid="b91f0898-37b1-4315-8f7b-43686c549e31"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="475" width="146" height="26" backcolor="#BDE0C0" uuid="b91f0898-37b1-4315-8f7b-43686c549e31"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Número Padre]]></text>
+				<text><![CDATA[Número Padre  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="396" width="129" height="20" backcolor="#FFFFFF" uuid="c33c77de-d777-48f8-b6ec-7d02f6a8c546"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="348" width="146" height="20" backcolor="#BDE0C0" uuid="c33c77de-d777-48f8-b6ec-7d02f6a8c546"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Categoría]]></text>
+				<text><![CDATA[Categoría  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="456" width="129" height="23" backcolor="#FFFFFF" uuid="0e75f49c-002d-48b4-90e7-1def08277c35"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="408" width="146" height="23" backcolor="#BDE0C0" uuid="0e75f49c-002d-48b4-90e7-1def08277c35"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Nombre Madre]]></text>
+				<text><![CDATA[Nombre Madre  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="450" width="110" height="23" backcolor="#FFFFFF" uuid="be0e052f-1ebe-450e-9174-48e51eae6370"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="434" width="124" height="23" backcolor="#BDE0C0" uuid="be0e052f-1ebe-450e-9174-48e51eae6370"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[FCM]]></text>
+				<text><![CDATA[FCM  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="195" width="129" height="21" backcolor="#FFFFFF" uuid="1a7b6b9e-4a0c-4211-9aa9-869160006acf"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="147" width="146" height="21" backcolor="#BDE0C0" uuid="1a7b6b9e-4a0c-4211-9aa9-869160006acf"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Documento]]></text>
+				<text><![CDATA[Documento  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="444" y="496" width="110" height="23" backcolor="#FFFFFF" uuid="1ba02439-0a8f-4e43-9f02-7a40419c4124"/>
-				<box>
+				<reportElement mode="Opaque" x="450" y="480" width="124" height="23" backcolor="#BDE0C0" uuid="1ba02439-0a8f-4e43-9f02-7a40419c4124"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Nivel Educativo]]></text>
+				<text><![CDATA[Nivel Educativo  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="256" width="129" height="20" backcolor="#FFFFFF" uuid="ef09266e-acd6-4eb7-a1f0-bc44c9834528"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="208" width="146" height="20" backcolor="#BDE0C0" uuid="ef09266e-acd6-4eb7-a1f0-bc44c9834528"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Apellidos]]></text>
+				<text><![CDATA[ Apellidos  ]]></text>
 			</staticText>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="523" width="270" height="26" backcolor="#FFFFFF" uuid="96c86624-5236-4c92-8fed-e0db57609845"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="475" width="270" height="26" backcolor="#FFFFFF" uuid="96c86624-5236-4c92-8fed-e0db57609845"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{numeroPadre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="146" y="216" width="270" height="20" backcolor="#FFFFFF" uuid="c05ab6eb-f041-4916-b182-98d48f306dfa"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="168" width="270" height="20" backcolor="#FFFFFF" uuid="c05ab6eb-f041-4916-b182-98d48f306dfa"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipoDocumento}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="427" width="181" height="23" uuid="8fb2ae4e-fed1-4b39-9959-7e3b9a85fea5"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="411" width="181" height="23" uuid="8fb2ae4e-fed1-4b39-9959-7e3b9a85fea5"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{imc}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="336" width="181" height="23" uuid="71b53697-fda0-4ab7-9814-80118a8f792e"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="320" width="181" height="23" uuid="71b53697-fda0-4ab7-9814-80118a8f792e"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{eps}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="336" width="270" height="20" backcolor="#FFFFFF" uuid="3a7cb937-d7a6-4ffb-98f8-7da8a845a48f"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="288" width="270" height="20" backcolor="#FFFFFF" uuid="3a7cb937-d7a6-4ffb-98f8-7da8a845a48f"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="554" y="450" width="181" height="23" uuid="bb4d371b-7334-4063-b270-244a7da70026"/>
-				<box>
-					<pen lineColor="#339900"/>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="574" y="434" width="181" height="23" uuid="bb4d371b-7334-4063-b270-244a7da70026"/>
+				<box leftPadding="10">
+					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fcm}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="146" y="236" width="270" height="20" backcolor="#FFFFFF" uuid="dbed0fb7-9bb4-4fad-a030-1ab37469c349"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="163" y="188" width="270" height="20" backcolor="#FFFFFF" uuid="dbed0fb7-9bb4-4fad-a030-1ab37469c349"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombres}]]></textFieldExpression>
 			</textField>
 			<break>
-				<reportElement x="0" y="500" width="100" height="1" uuid="cf4c040c-18fc-4696-8245-d8fb8732e6bb"/>
+				<reportElement x="0" y="500" width="117" height="1" uuid="cf4c040c-18fc-4696-8245-d8fb8732e6bb"/>
 			</break>
 			<image onErrorType="Blank">
-				<reportElement x="518" y="135" width="170" height="191" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
+				<reportElement x="505" y="105" width="191" height="211" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
-			<textField>
-				<reportElement x="146" y="436" width="270" height="20" backcolor="#FFFFFF" uuid="1349c54d-b8b7-4222-a6c0-355277170e91"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="163" y="388" width="270" height="20" backcolor="#FFFFFF" uuid="1349c54d-b8b7-4222-a6c0-355277170e91"/>
+				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{camisa}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="436" width="129" height="20" backcolor="#FFFFFF" uuid="178062e7-f513-492b-9e92-78c679fa220f"/>
-				<box>
+				<reportElement mode="Opaque" x="17" y="388" width="146" height="20" backcolor="#BDE0C0" uuid="178062e7-f513-492b-9e92-78c679fa220f"/>
+				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
 					<leftPen lineWidth="1.0" lineColor="#339900"/>
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement textAlignment="Justified">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Camisa]]></text>
+				<text><![CDATA[Camisa  ]]></text>
 			</staticText>
-			<image onErrorType="Blank">
-				<reportElement x="0" y="0" width="381" height="83" uuid="59ecc4e9-3805-4ce8-a69a-db331609e6d3"/>
+			<image isUsingCache="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="505" height="83" uuid="59ecc4e9-3805-4ce8-a69a-db331609e6d3"/>
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
-			<image onErrorType="Blank">
-				<reportElement x="673" y="35" width="80" height="73" uuid="b3ecb22e-9878-4d20-8f68-8d8e6d7bf8a1"/>
+			<image isUsingCache="true" onErrorType="Blank">
+				<reportElement x="675" y="20" width="80" height="73" uuid="b3ecb22e-9878-4d20-8f68-8d8e6d7bf8a1"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="51" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="30" width="110" height="20" uuid="aa8a5edf-f844-4913-a1eb-b94646f3c123"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="0" y="22" width="138" height="20" backcolor="#BDE0C0" uuid="aa8a5edf-f844-4913-a1eb-b94646f3c123"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Club Anterior]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="30" width="103" height="20" uuid="cf056f1b-f267-4e08-bcee-66a3a0506d3c"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="138" y="22" width="75" height="20" backcolor="#BDE0C0" uuid="cf056f1b-f267-4e08-bcee-66a3a0506d3c"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Categoria Anterior]]></text>
+				<text><![CDATA[Categoría Anterior]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="221" y="30" width="62" height="20" uuid="ab4888ed-a799-4de5-9643-d32095ea9175"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="213" y="22" width="62" height="20" backcolor="#BDE0C0" uuid="ab4888ed-a799-4de5-9643-d32095ea9175"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Año]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-1" y="0" width="195" height="20" uuid="7dd79868-2e0a-451d-82fb-c2674c3cc029"/>
-				<textElement>
-					<font size="10" isBold="true" isItalic="true"/>
+				<reportElement mode="Opaque" x="0" y="2" width="275" height="20" backcolor="#C1EF78" uuid="7dd79868-2e0a-451d-82fb-c2674c3cc029"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Antecedentes deportivos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="0" width="195" height="20" uuid="97a7a8b9-0100-4a35-8187-fadba4383413"/>
-				<textElement>
-					<font size="10" isBold="true" isItalic="true"/>
+				<reportElement mode="Opaque" x="283" y="2" width="291" height="21" backcolor="#C1EF78" uuid="97a7a8b9-0100-4a35-8187-fadba4383413"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Logros deportivos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="600" y="0" width="180" height="20" uuid="012df4f6-660b-44a4-bc9a-70c4dd3c26aa"/>
-				<textElement>
-					<font size="10" isBold="true" isItalic="true"/>
+				<reportElement mode="Opaque" x="590" y="2" width="190" height="20" backcolor="#C1EF78" uuid="012df4f6-660b-44a4-bc9a-70c4dd3c26aa"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Lesiones]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="30" width="126" height="20" uuid="930a24a5-8a42-4482-9c74-263fe602567f"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="283" y="23" width="167" height="19" backcolor="#BDE0C0" uuid="930a24a5-8a42-4482-9c74-263fe602567f"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Logro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="409" y="30" width="114" height="20" uuid="aa55ab98-0888-401c-8b98-8e63267195c2"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="450" y="23" width="73" height="19" backcolor="#BDE0C0" uuid="aa55ab98-0888-401c-8b98-8e63267195c2"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Categoria Logro]]></text>
+				<text><![CDATA[Categoría]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="531" y="30" width="69" height="20" uuid="f7f56334-40f1-418f-8f50-d0b526cd1ce7"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="523" y="23" width="51" height="19" backcolor="#BDE0C0" uuid="f7f56334-40f1-418f-8f50-d0b526cd1ce7"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Año]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="709" y="30" width="69" height="20" uuid="90726e8e-d1a0-4d8a-a354-44fbd593e287"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="696" y="22" width="84" height="20" backcolor="#BDE0C0" uuid="90726e8e-d1a0-4d8a-a354-44fbd593e287"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Fecha Lesión]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="604" y="31" width="69" height="20" uuid="6688203b-3b9a-41e8-be28-89d915108690"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement mode="Opaque" x="590" y="22" width="105" height="20" backcolor="#BDE0C0" uuid="6688203b-3b9a-41e8-be28-89d915108690"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Lesión]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22">
+		<band height="23">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="110" height="22" uuid="ff0b1aa2-251e-4213-af5d-2cc2c6fd1910"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="138" height="22" uuid="ff0b1aa2-251e-4213-af5d-2cc2c6fd1910"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{clubAnterior}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="110" y="0" width="103" height="22" uuid="d37134b4-f1b0-41b7-86e6-c161d75efa09"/>
+				<reportElement stretchType="RelativeToBandHeight" x="138" y="0" width="75" height="22" uuid="d37134b4-f1b0-41b7-86e6-c161d75efa09"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{categoriaAnteriorAntDep}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="221" y="0" width="62" height="22" uuid="aba72b4a-376b-4b78-b080-42e934ffac8f"/>
+				<reportElement stretchType="RelativeToBandHeight" x="213" y="0" width="62" height="22" uuid="aba72b4a-376b-4b78-b080-42e934ffac8f"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{annoAntDep}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="283" y="0" width="114" height="22" uuid="c6632b03-761d-40c3-a185-7240989feb65"/>
+				<reportElement stretchType="RelativeToBandHeight" x="283" y="0" width="167" height="22" uuid="c6632b03-761d-40c3-a185-7240989feb65"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{logro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="409" y="0" width="114" height="22" uuid="bdbbfee6-8f60-416c-8f06-5dc65871e828"/>
+				<reportElement stretchType="RelativeToBandHeight" x="523" y="0" width="51" height="22" uuid="1afe2f49-4e91-4aa8-90a7-465b12edfd84"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{categoriaAnteriorLogro}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="531" y="0" width="69" height="22" uuid="1afe2f49-4e91-4aa8-90a7-465b12edfd84"/>
-				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{annoLogro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="604" y="0" width="105" height="22" uuid="bcf8580f-df90-4c4a-be57-956230c0ca92"/>
+				<reportElement stretchType="RelativeToBandHeight" x="590" y="0" width="105" height="22" uuid="bcf8580f-df90-4c4a-be57-956230c0ca92"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font size="10"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lesion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="709" y="0" width="71" height="20" uuid="a555d8ef-5335-477c-a436-436b33dca069"/>
+				<reportElement x="695" y="0" width="85" height="22" uuid="a555d8ef-5335-477c-a436-436b33dca069"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement>
+					<font size="12" pdfFontName="Helvetica"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaLesion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="73" height="22" uuid="a2db6f09-604f-41d3-81dc-d0d72ce6e062"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0" lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement>
+					<font size="12" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoriaAnteriorLogro}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

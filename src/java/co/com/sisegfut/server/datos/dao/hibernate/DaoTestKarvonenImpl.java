@@ -39,10 +39,37 @@ public class DaoTestKarvonenImpl extends DaoGenericoImpl<TestKarvonen> implement
     @Override
     public List<TestKarvonen> TestKarvonenxCategoria(Long idCategoria) throws Exception {
         List<TestKarvonen> listaKarvonen = null;
-            String sql = "select ta.* from test_karvonen as ta Inner Join Deportista as d On ta.id_deportista=d.id and d.categoria=" + idCategoria;try {
+        String sql = "select ta.* from test_karvonen as ta Inner Join Deportista as d On ta.id_deportista=d.id and d.categoria=" + idCategoria;
+        try {
             listaKarvonen = (List<TestKarvonen>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
                     .addEntity("test_karvonen", TestKarvonen.class).list();
+            return listaKarvonen;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<TestKarvonen> ultimoTesKartRealizadoXDeportista(Long idCategoria) throws Exception {
+        List<TestKarvonen> listaKarvonen = null;
+        String sql = "select "
+                + "    test.*"
+                + "from test_karvonen test"
+                + "join (select "
+                + "    id_deportista, max(fecha) as fecha "
+                + "from test_karvonen "
+                + "group by id_deportista) vi"
+                + "on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
+                + "join deportista dep"
+                + "on (dep.id = test.id_deportista and dep.categoria="+idCategoria+")";
+        
+        try {
+            listaKarvonen = (List<TestKarvonen>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("test", TestKarvonen.class).list();
             return listaKarvonen;
         } catch (Exception e) {
             e.printStackTrace();

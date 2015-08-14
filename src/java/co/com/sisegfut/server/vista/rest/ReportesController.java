@@ -198,9 +198,9 @@ public class ReportesController {
             Deportista dep = daoDeportista.getById(idDeportista);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-            if(dep.getFoto()!=null){
-            InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
-            parameterMap.put("foto", foto);
+            if (dep.getFoto() != null) {
+                InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+                parameterMap.put("foto", foto);
             }
             parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("tipoDocumento", dep.getTipoDocumento().getNombreTipoDocumento());
@@ -241,6 +241,10 @@ public class ReportesController {
             parameterMap.put("camisa", dep.getNumeroCamisa());
             parameterMap.put("nivelEducativo", dep.getNivelEducativo().getNombreNivelEducativo());
             parameterMap.put("instEducativa", dep.getInstEducativa().getNombreInstEducativa());
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
             List<AntecedentesDeportivos> listAnt = new ArrayList<AntecedentesDeportivos>();
             List<LogrosDeportivos> listLogros = new ArrayList<LogrosDeportivos>();
@@ -252,11 +256,12 @@ public class ReportesController {
             listLogros = daoLogrosDeportivos.LogroDepxDeportista(idDeportista);
             listLesion = daoLesiones.AnteOsteoMuscularxDeportista(idDeportista);
 
-             
             int valorMayor = 0;
             if (listAnt.size() > listLogros.size()) {
                 if (listAnt.size() > listLesion.size()) {
                     valorMayor = listAnt.size();
+                }else {
+                    valorMayor = listLesion.size();
                 }
             } else {
                 if (listLogros.size() > listLesion.size()) {
@@ -265,48 +270,49 @@ public class ReportesController {
                     valorMayor = listLesion.size();
                 }
             }
-            
-            if(valorMayor==0){
-            DTOHVDeportista vacio = new DTOHVDeportista("","","","","","","","");
-            listaRetorno.add(vacio);
-            }
-            for (int i = 0; i < valorMayor; i++) {
-                DTOHVDeportista agg = new DTOHVDeportista();
 
-                if (listAnt.size() > i) {
-                    if (listAnt.get(i) != null) {
-                        agg.setClubAnterior(listAnt.get(i).getClubAnterior());
-                        agg.setAnnoAntDep(listAnt.get(i).getAnno());
-                        agg.setCategoriaAnteriorAntDep(listAnt.get(i).getCategoriaAnterior().getNombrecategoria());
+            if (valorMayor == 0) {
+                DTOHVDeportista vacio = new DTOHVDeportista("", "", "", "", "", "", "", "");
+                listaRetorno.add(vacio);
+            } else {
+                for (int i = 0; i < valorMayor; i++) {
+                    DTOHVDeportista agg = new DTOHVDeportista();
+
+                    if (listAnt.size() > i) {
+                        if (listAnt.get(i) != null) {
+                            agg.setClubAnterior(listAnt.get(i).getClubAnterior());
+                            agg.setAnnoAntDep(listAnt.get(i).getAnno());
+                            agg.setCategoriaAnteriorAntDep(listAnt.get(i).getCategoriaAnterior().getNombrecategoria());
+                        }
+                    } else {
+                        agg.setClubAnterior("");
+                        agg.setAnnoAntDep("");
+                        agg.setCategoriaAnteriorAntDep("");
+
                     }
-                } else {
-                    agg.setClubAnterior("");
-                    agg.setAnnoAntDep("");
-                    agg.setCategoriaAnteriorAntDep("");
+                    if (listLogros.size() > i) {
+                        if (listLogros.get(i) != null) {
+                            agg.setLogro(listLogros.get(i).getLogroDeportivo());
+                            agg.setCategoriaAnteriorLogro(listLogros.get(i).getCategoriaLogro().getNombrecategoria());
+                            agg.setAnnoLogro(listLogros.get(i).getAnioLogro());
+                        }
+                    } else {
+                        agg.setLogro("");
+                        agg.setCategoriaAnteriorLogro("");
+                        agg.setAnnoLogro("");
+                    }
+                    if (listLesion.size() > i) {
+                        if (listLesion.get(i) != null) {
+                            agg.setLesion(listLesion.get(i).getNombreLesion());
+                            agg.setFechaLesion(listLesion.get(i).getFechaLesion().toString());
+                        }
+                    } else {
+                        agg.setLesion("");
+                        agg.setFechaLesion("");
+                    }
+                    listaRetorno.add(agg);
 
                 }
-                if (listLogros.size() > i) {
-                    if (listLogros.get(i) != null) {
-                        agg.setLogro(listLogros.get(i).getLogroDeportivo());
-                        agg.setCategoriaAnteriorLogro(listLogros.get(i).getCategoriaLogro().getNombrecategoria());
-                        agg.setAnnoLogro(listLogros.get(i).getAnioLogro());
-                    }
-                } else {
-                    agg.setLogro("");
-                    agg.setCategoriaAnteriorLogro("");
-                    agg.setAnnoLogro("");
-                }
-                if (listLesion.size() > i) {
-                    if (listLesion.get(i) != null) {
-                        agg.setLesion(listLesion.get(i).getNombreLesion());
-                        agg.setFechaLesion(listLesion.get(i).getFechaLesion().toString());
-                    }
-                } else {
-                    agg.setLesion("");
-                    agg.setFechaLesion("");
-                }
-                listaRetorno.add(agg);
-
             }
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetorno));
@@ -771,9 +777,10 @@ public class ReportesController {
             parameterMap.put("categoria", nombreCategoria);
             parameterMap.put("mes", mes);
             parameterMap.put("anio", anio.toString());
-            java.net.URL banner = this.getClass().getResource("imagenes/politecnico-jaime-isaza-cadavid-logo.jpg");
+
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("imagenBanner", banner);
-            java.net.URL logo = this.getClass().getResource("imagenes/creditos.png");
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {

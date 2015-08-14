@@ -16,5 +16,8 @@ import java.util.List;
 public interface DaoAntropometrico extends DaoGenerico<Antropometrico>{
     
     public List<Antropometrico> AntropometricoxDeportista(Long idCategoria)throws Exception;
+    
     public List<Antropometrico> AntropometricoxCategoria(Long idCategoria)throws Exception;
+    
+    public List<Antropometrico> ultimaMedAntropoRealizadaXDeportista(Long idCategoria)throws Exception;
 }
