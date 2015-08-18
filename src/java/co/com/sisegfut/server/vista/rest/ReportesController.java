@@ -148,9 +148,10 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
             parameterMap.put("categoria", nombreCategoria);
-            java.net.URL banner = this.getClass().getResource("co/com/sisegfut/client/util/imagenes/politecnico-jaime-isaza-cadavid-logo.jpg");
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
-            java.net.URL logo = this.getClass().getResource("co/com/sisegfut/client/util/imagenes/creditos.png");
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
@@ -241,6 +242,7 @@ public class ReportesController {
             parameterMap.put("camisa", dep.getNumeroCamisa());
             parameterMap.put("nivelEducativo", dep.getNivelEducativo().getNombreNivelEducativo());
             parameterMap.put("instEducativa", dep.getInstEducativa().getNombreInstEducativa());
+            
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
@@ -358,7 +360,10 @@ public class ReportesController {
             Personal per = daoPersonal.getById(idPersonal);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-
+            if (per.getFoto() != null) {
+                InputStream foto = new ByteInputStream(per.getFoto(), per.getFoto().length);
+                parameterMap.put("foto", foto);
+            }
             parameterMap.put("documento", per.getDocumento());
             parameterMap.put("tipoDocumento", per.getTipoDocumento().getNombreTipoDocumento());
             parameterMap.put("nombres", per.getNombres());
@@ -373,6 +378,11 @@ public class ReportesController {
             parameterMap.put("genero", per.getGenero());
             parameterMap.put("nivelEducativo", per.getNivelEducativo().getNombreNivelEducativo());
 
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+            
             List<EstudiosRealizados> listEst = new ArrayList<EstudiosRealizados>();
             List<Experiencia> listExp = new ArrayList<Experiencia>();
 
@@ -421,7 +431,7 @@ public class ReportesController {
             }
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetornoPersonal));
-
+                        
             modelAndView = new ModelAndView("pdfReporteHVPersonal", parameterMap);
 
             return modelAndView;
@@ -493,19 +503,18 @@ public class ReportesController {
 
                 cat = antropometrico.getIdDeportista().getCategoria().getNombrecategoria();
             }
-
-//            if (listaDeportistaReport.isEmpty()) {
-//                listaDeportistaReport.add(new DTODeportistaxCategoria());
-//            }
-//            if (listaDeportistaAntReport.isEmpty()) {
-//                listaDeportistaAntReport.add(new DTOAntropometrico());
-//            }
+            
             System.out.println("nombre cat" + cat);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAnt));
             parameterMap.put("categoria", nombreCategoria);
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteAntropometrico", parameterMap);
@@ -577,6 +586,11 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
             parameterMap.put("categoria", nombreCategoria);
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteTestCooper", parameterMap);
@@ -646,6 +660,11 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
             parameterMap.put("categoria", nombreCategoria);
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteTestKarvonen", parameterMap);
@@ -721,6 +740,11 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaCt));
             parameterMap.put("categoria", nombreCategoria);
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("imagenBanner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
             if (tipo == TIPO_XLS) {
                 modelAndView = new ModelAndView("xlsReporteControlTecnico", parameterMap);

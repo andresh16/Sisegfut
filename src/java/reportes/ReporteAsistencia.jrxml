@@ -12,9 +12,9 @@
 	<field name="diasAsistenciaTotal" class="java.lang.String"/>
 	<field name="porcentajeAsistenciaTotal" class="java.lang.String"/>
 	<title>
-		<band height="181" splitType="Stretch">
+		<band height="160" splitType="Stretch">
 			<staticText>
-				<reportElement x="58" y="115" width="410" height="36" forecolor="#336600" uuid="1f09f4d6-51f7-46f3-9971-09c92d5d5212"/>
+				<reportElement x="59" y="101" width="410" height="36" forecolor="#336600" uuid="1f09f4d6-51f7-46f3-9971-09c92d5d5212"/>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -74,39 +74,39 @@
 		<band height="24" splitType="Stretch">
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="11" y="0" width="206" height="24" backcolor="#CCFFCC" uuid="11b6cd7a-9a39-4a6c-aaf6-e785f3fde17a"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Nombre Deportista]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="217" y="0" width="145" height="24" backcolor="#CCFFCC" uuid="6c8f816b-69b0-4ca1-8626-122fb383e168"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Días Asistencia Total]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="362" y="0" width="185" height="24" backcolor="#CCFFCC" uuid="2fd86c3e-a5e4-4bac-8125-82e43e5bfb7c"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Porcentaje Asistencia Total]]></text>
@@ -117,11 +117,11 @@
 		<band height="23" splitType="Stretch">
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="11" y="0" width="206" height="23" uuid="7055a513-f62b-401f-9765-569c5593608c"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
 					<font size="13" pdfFontName="Helvetica"/>
@@ -130,11 +130,11 @@
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="362" y="0" width="185" height="23" uuid="befb81e2-438f-4624-a51f-0a2fa6b95d1f"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Justified">
 					<font size="13" pdfFontName="Helvetica"/>
@@ -143,11 +143,11 @@
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="217" y="0" width="145" height="23" uuid="b31748a8-4eca-4a71-aed8-332f83745434"/>
-				<box topPadding="1" leftPadding="10" bottomPadding="1">
-					<topPen lineWidth="1.0" lineColor="#006633"/>
-					<leftPen lineWidth="1.0" lineColor="#006633"/>
-					<bottomPen lineWidth="1.0" lineColor="#006633"/>
-					<rightPen lineWidth="1.0" lineColor="#006633"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Justified">
 					<font size="13" pdfFontName="Helvetica"/>

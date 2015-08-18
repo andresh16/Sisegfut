@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bfd541fa-601a-4a0a-bb6c-ee00cc7b5684">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="documento" class="java.lang.String"/>
@@ -15,6 +15,9 @@
 	<parameter name="telefono" class="java.lang.String"/>
 	<parameter name="celular" class="java.lang.String"/>
 	<parameter name="nivelEducativo" class="java.lang.String"/>
+	<parameter name="banner" class="java.lang.String"/>
+	<parameter name="foto" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<field name="titulo" class="java.lang.String"/>
 	<field name="empresa" class="java.lang.String"/>
 	<field name="cargo" class="java.lang.String"/>
@@ -26,306 +29,574 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="358" splitType="Stretch">
+		<band height="464" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="288" y="46" width="233" height="40" backcolor="#000033" uuid="c7754cfd-4cc1-4ccb-9d48-8ed7012f2bc2"/>
-				<textElement markup="styled">
-					<font fontName="Serif" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
+				<reportElement stretchType="RelativeToTallestObject" x="303" y="101" width="233" height="40" backcolor="#000033" uuid="c7754cfd-4cc1-4ccb-9d48-8ed7012f2bc2"/>
+				<textElement textAlignment="Center" markup="styled">
+					<font fontName="SansSerif" size="24" isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[HOJA DE VIDA ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="132" width="130" height="20" uuid="ca43ac9f-88a9-4a08-81e0-16d7a3e0dd4a"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="322" width="130" height="20" backcolor="#BDE0C0" uuid="ca43ac9f-88a9-4a08-81e0-16d7a3e0dd4a"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="168" width="130" height="20" uuid="eab02f49-aa28-47d1-a618-8a6ec588051d"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="342" width="130" height="20" backcolor="#BDE0C0" uuid="eab02f49-aa28-47d1-a618-8a6ec588051d"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="206" width="130" height="20" uuid="cd22d200-be17-4c4c-b362-2aad3ee41f98"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="362" width="130" height="20" backcolor="#BDE0C0" uuid="cd22d200-be17-4c4c-b362-2aad3ee41f98"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="239" width="130" height="20" uuid="a06f0631-6359-4920-8179-7f3122ed1d5c"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="382" width="130" height="20" backcolor="#BDE0C0" uuid="a06f0631-6359-4920-8179-7f3122ed1d5c"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Apellidos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="278" width="130" height="20" uuid="d438966c-0690-4e97-b083-f33d745e62ac"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="402" width="130" height="20" backcolor="#BDE0C0" uuid="d438966c-0690-4e97-b083-f33d745e62ac"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de Nacimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="311" width="130" height="20" uuid="08f8af2a-9ead-461f-b577-6a5b3eb5872f"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="57" y="422" width="130" height="20" backcolor="#BDE0C0" uuid="08f8af2a-9ead-461f-b577-6a5b3eb5872f"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Género]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="132" width="130" height="20" uuid="1e129c32-f092-4c8e-9a0d-cb0ce82f11c5"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="322" width="130" height="20" backcolor="#BDE0C0" uuid="1e129c32-f092-4c8e-9a0d-cb0ce82f11c5"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cargo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="168" width="130" height="20" uuid="ea6d34d8-848c-4d72-9cf6-8cc69b3e2741"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="342" width="130" height="20" backcolor="#BDE0C0" uuid="ea6d34d8-848c-4d72-9cf6-8cc69b3e2741"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Barrio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="206" width="130" height="20" uuid="65b296a6-8845-4f8e-bbcd-aa7ea41f632b"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="362" width="130" height="20" backcolor="#BDE0C0" uuid="65b296a6-8845-4f8e-bbcd-aa7ea41f632b"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="239" width="130" height="20" uuid="e8fc4bc2-1242-44b0-a563-edfca7f3df30"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="382" width="130" height="20" backcolor="#BDE0C0" uuid="e8fc4bc2-1242-44b0-a563-edfca7f3df30"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="278" width="130" height="20" uuid="fec56d4a-5e96-420f-a3db-385dbfb1912c"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="402" width="130" height="20" backcolor="#BDE0C0" uuid="fec56d4a-5e96-420f-a3db-385dbfb1912c"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="311" width="130" height="20" uuid="46252080-faaa-461a-8c8e-29be9fc267a0"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="444" y="422" width="130" height="20" backcolor="#BDE0C0" uuid="46252080-faaa-461a-8c8e-29be9fc267a0"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nivel Educativo]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="592" y="26" width="184" height="20" uuid="2217f258-cb10-43cb-b3bb-19e5db075651"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<textField>
-				<reportElement x="173" y="132" width="196" height="20" uuid="9944d472-9663-4138-97a1-581215d17807"/>
-				<textElement>
+				<reportElement x="187" y="322" width="196" height="20" uuid="9944d472-9663-4138-97a1-581215d17807"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{documento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="173" y="168" width="196" height="20" uuid="d9e9faff-33ba-4cdf-a68d-d821b14caf0a"/>
-				<textElement>
+				<reportElement x="187" y="342" width="196" height="20" uuid="d9e9faff-33ba-4cdf-a68d-d821b14caf0a"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{tipoDocumento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{tipoDocumento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="173" y="206" width="196" height="20" uuid="c884b52f-3a07-489d-9df6-ce39a597f28d"/>
-				<textElement>
+				<reportElement x="187" y="362" width="196" height="20" uuid="c884b52f-3a07-489d-9df6-ce39a597f28d"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{nombres}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="173" y="239" width="196" height="20" uuid="ceb1d6c8-82f5-4bf0-a24b-efe0b6f92276"/>
-				<textElement>
+				<reportElement x="187" y="382" width="196" height="20" uuid="ceb1d6c8-82f5-4bf0-a24b-efe0b6f92276"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{apellidos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="173" y="278" width="196" height="20" uuid="cfa481cf-a43a-488a-8799-91162d8c7698"/>
-				<textElement>
+				<reportElement x="187" y="402" width="196" height="20" uuid="cfa481cf-a43a-488a-8799-91162d8c7698"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{fechaNacimiento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{fechaNacimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="173" y="311" width="196" height="20" uuid="47bf2233-f0f3-413f-a47e-52ab951591c7"/>
-				<textElement>
+				<reportElement x="187" y="422" width="196" height="20" uuid="47bf2233-f0f3-413f-a47e-52ab951591c7"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{genero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{genero}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="168" width="184" height="20" uuid="e184dc43-94f0-4b9e-af7e-a6a7036a0b9b"/>
-				<textElement>
+				<reportElement x="574" y="342" width="184" height="20" uuid="e184dc43-94f0-4b9e-af7e-a6a7036a0b9b"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{barrio}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{barrio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="206" width="184" height="20" uuid="7c64b103-cfd8-4863-9450-e961db6ff803"/>
-				<textElement>
+				<reportElement x="574" y="362" width="184" height="20" uuid="7c64b103-cfd8-4863-9450-e961db6ff803"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{direccion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="239" width="184" height="20" uuid="b13715f1-8dd4-480b-a95d-d3042cce639a"/>
-				<textElement>
+				<reportElement x="574" y="382" width="184" height="20" uuid="b13715f1-8dd4-480b-a95d-d3042cce639a"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="278" width="184" height="20" uuid="5e3ef416-782f-4098-80d6-2a5f6faa9571"/>
-				<textElement>
+				<reportElement x="574" y="402" width="184" height="20" uuid="5e3ef416-782f-4098-80d6-2a5f6faa9571"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{celular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{celular}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="311" width="184" height="20" uuid="b2cbdbbc-b999-4ee4-ac81-67a26b7228fb"/>
-				<textElement>
+				<reportElement x="574" y="422" width="184" height="20" uuid="b2cbdbbc-b999-4ee4-ac81-67a26b7228fb"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{nivelEducativo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{nivelEducativo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="132" width="184" height="20" uuid="eeb28827-4f65-466f-b9fd-91f84055df2a"/>
-				<textElement>
+				<reportElement x="574" y="322" width="184" height="20" uuid="eeb28827-4f65-466f-b9fd-91f84055df2a"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Justified">
 					<font fontName="Serif" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{cargo}]]></textFieldExpression>
 			</textField>
+			<image onErrorType="Icon">
+				<reportElement x="16" y="14" width="383" height="68" uuid="f2e8090e-8237-44ea-9ca1-ab57b59d039b"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="690" y="14" width="89" height="68" uuid="509febf6-4399-4204-b2fd-242997a80fb4"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="347" y="156" width="149" height="142" uuid="b3d96221-00de-4115-a0a2-526e056cda37"/>
+				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
+			</image>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="8" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="115" splitType="Stretch">
 			<staticText>
-				<reportElement x="100" y="48" width="130" height="20" uuid="0c7e17d0-ec64-461f-bb18-f8aa00894b32"/>
+				<reportElement mode="Opaque" x="100" y="47" width="130" height="21" backcolor="#BDE0C0" uuid="0c7e17d0-ec64-461f-bb18-f8aa00894b32"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Institución]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="47" width="100" height="20" uuid="d74ad8fd-beb9-4115-ac06-5cb65d0c26c2"/>
+				<reportElement mode="Opaque" x="10" y="47" width="90" height="21" backcolor="#BDE0C0" uuid="d74ad8fd-beb9-4115-ac06-5cb65d0c26c2"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Titulo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="47" width="130" height="20" uuid="5bb8b107-c270-4701-bb7f-d817e31edf8e"/>
+				<reportElement mode="Opaque" x="230" y="47" width="130" height="21" backcolor="#BDE0C0" uuid="5bb8b107-c270-4701-bb7f-d817e31edf8e"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nivel Educativo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="48" width="100" height="20" uuid="ae332ed8-fbda-4285-9333-b9358bbd0380"/>
+				<reportElement mode="Opaque" x="360" y="47" width="100" height="21" backcolor="#BDE0C0" uuid="ae332ed8-fbda-4285-9333-b9358bbd0380"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Año Graduación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="481" y="48" width="93" height="20" uuid="7b7073ba-6c74-44d0-92f4-60cc0045b3e6"/>
+				<reportElement mode="Opaque" x="481" y="48" width="93" height="20" backcolor="#BDE0C0" uuid="7b7073ba-6c74-44d0-92f4-60cc0045b3e6"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Empresa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="574" y="48" width="100" height="20" uuid="8f02d248-b355-4199-9287-42038c599525"/>
+				<reportElement mode="Opaque" x="574" y="48" width="100" height="20" backcolor="#BDE0C0" uuid="8f02d248-b355-4199-9287-42038c599525"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cargo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="173" y="0" width="130" height="20" uuid="9ad472be-a29b-47fd-a49e-44e38f0648ff"/>
-				<textElement>
+				<reportElement x="173" y="0" width="130" height="30" uuid="9ad472be-a29b-47fd-a49e-44e38f0648ff"/>
+				<textElement textAlignment="Center">
 					<font fontName="Serif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Estudios Realizados]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="560" y="0" width="130" height="20" uuid="55d84645-b298-42d5-ad90-0f28790ef105"/>
-				<textElement>
+				<reportElement x="560" y="0" width="130" height="30" uuid="55d84645-b298-42d5-ad90-0f28790ef105"/>
+				<textElement textAlignment="Center">
 					<font fontName="Serif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Experiencia]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="80" width="100" height="45" uuid="45f20a23-c1af-46fa-8d6a-12b2c95288e8"/>
+				<reportElement x="10" y="68" width="90" height="45" uuid="45f20a23-c1af-46fa-8d6a-12b2c95288e8"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="481" y="80" width="93" height="45" uuid="7aa0da3c-9cf5-4c73-a136-f7e477032bda"/>
+				<reportElement x="481" y="68" width="93" height="45" uuid="7aa0da3c-9cf5-4c73-a136-f7e477032bda"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="574" y="80" width="100" height="45" uuid="e37d8d47-1051-4bf2-a57c-e0edbfa28b2b"/>
+				<reportElement x="574" y="68" width="100" height="45" uuid="e37d8d47-1051-4bf2-a57c-e0edbfa28b2b"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="673" y="47" width="100" height="20" uuid="184bbcd1-2518-4a07-a0e6-b6237c8fafcd"/>
+				<reportElement mode="Opaque" x="673" y="48" width="101" height="20" backcolor="#BDE0C0" uuid="184bbcd1-2518-4a07-a0e6-b6237c8fafcd"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tiempo Laborado]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="676" y="80" width="100" height="20" uuid="a8008c4b-fd61-45bc-9cf9-7f1d1f6624db"/>
+				<reportElement x="674" y="68" width="100" height="45" uuid="a8008c4b-fd61-45bc-9cf9-7f1d1f6624db"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tiempoLaborado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="80" width="130" height="45" uuid="9ec650c9-7e39-4038-9749-9a7cad8335b0"/>
+				<reportElement x="100" y="68" width="130" height="45" uuid="9ec650c9-7e39-4038-9749-9a7cad8335b0"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{institucionEducativa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="230" y="80" width="130" height="45" uuid="ab2eb73e-0fd1-4f88-81ac-71bda425f583"/>
+				<reportElement x="230" y="68" width="130" height="45" uuid="ab2eb73e-0fd1-4f88-81ac-71bda425f583"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{escolaridad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="360" y="80" width="100" height="20" uuid="466ddfa6-465c-489b-95f1-fc8ef7c41d6a"/>
+				<reportElement x="360" y="68" width="100" height="45" uuid="466ddfa6-465c-489b-95f1-fc8ef7c41d6a"/>
+				<box>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
 				<textElement>
 					<font fontName="Serif"/>
 				</textElement>
@@ -333,7 +604,29 @@
 			</textField>
 		</band>
 	</detail>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
+	<pageFooter>
+		<band height="25">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="24" forecolor="#339900" backcolor="#99FF99" uuid="734f7708-444d-446f-9234-c914b05b55c0">
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+				</reportElement>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="0" y="0" width="184" height="20" uuid="8eae09ad-5d5b-434f-9711-7ea6a1ac5f6d"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="434" y="0" width="80" height="20" uuid="ba9e9665-9c40-4424-91cf-6a5ec9cafa6d"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="514" y="0" width="40" height="20" uuid="6afbef9e-8e71-4964-95f0-824142fa0f56"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
 </jasperReport>
