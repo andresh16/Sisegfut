@@ -55,16 +55,15 @@ public class DaoTestKarvonenImpl extends DaoGenericoImpl<TestKarvonen> implement
     @Override
     public List<TestKarvonen> ultimoTesKartRealizadoXDeportista(Long idCategoria) throws Exception {
         List<TestKarvonen> listaKarvonen = null;
-        String sql = "select "
-                + "    test.*"
-                + "from test_karvonen test"
-                + "join (select "
-                + "    id_deportista, max(fecha) as fecha "
-                + "from test_karvonen "
-                + "group by id_deportista) vi"
-                + "on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
-                + "join deportista dep"
-                + "on (dep.id = test.id_deportista and dep.categoria="+idCategoria+")";
+        String sql = "select test.*"
+                + " from test_karvonen test"
+                + " join (select "
+                + " id_deportista, max(fecha) as fecha "
+                + " from test_karvonen "
+                + " group by id_deportista) vi"
+                + " on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
+                + " join deportista dep"
+                + " on (dep.id = test.id_deportista and dep.categoria="+idCategoria+")";
         
         try {
             listaKarvonen = (List<TestKarvonen>) sessionFactory.getCurrentSession()

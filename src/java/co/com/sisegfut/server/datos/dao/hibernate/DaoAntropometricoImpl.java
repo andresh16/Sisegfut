@@ -58,16 +58,15 @@ public class DaoAntropometricoImpl extends DaoGenericoImpl<Antropometrico> imple
     public List<Antropometrico> ultimaMedAntropoRealizadaXDeportista(Long idCategoria) throws Exception {
 
         List<Antropometrico> listaAntep = null;
-        String sql = "select "
-                + "    test.*"
-                + "from antropometrico test"
-                + "join (select "
-                + "    id_deportista, max(fecha) as fecha "
-                + "from antropometrico "
-                + "group by id_deportista) vi"
-                + "on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
-                + "join deportista dep"
-                + "on (dep.id = test.id_deportista and dep.categoria=" + idCategoria + ")";
+        String sql = "select test.*"
+                + " from antropometrico test"
+                + " join (select "
+                + " id_deportista, max(fecha) as fecha "
+                + " from antropometrico "
+                + " group by id_deportista) vi"
+                + " on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
+                + " join deportista dep"
+                + " on (dep.id = test.id_deportista and dep.categoria=" + idCategoria + ")";
 
         try {
             listaAntep = (List<Antropometrico>) sessionFactory.getCurrentSession()

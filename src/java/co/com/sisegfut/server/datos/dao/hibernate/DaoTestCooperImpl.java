@@ -79,15 +79,14 @@ public class DaoTestCooperImpl extends DaoGenericoImpl<TestCooper> implements Da
 
         List<TestCooper> listaAntep = null;
 
-        String sql = "select "
-                + "    test.*"
-                + "from test_cooper test"
+        String sql = "select test.* "
+                + "from test_cooper test " 
                 + "join (select "
-                + "    id_deportista, max(fecha) as fecha "
-                + "from test_cooper "
-                + "group by id_deportista) vi"
-                + "on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
-                + "join deportista dep"
+                + " id_deportista, max(fecha) as fecha "
+                + " from test_cooper "
+                + "group by id_deportista) vi "
+                + " on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
+                + " join deportista dep "
                 + "on (dep.id = test.id_deportista and dep.categoria="+idCategoria+")";
         try {
             listaAntep = (List<TestCooper>) sessionFactory.getCurrentSession()

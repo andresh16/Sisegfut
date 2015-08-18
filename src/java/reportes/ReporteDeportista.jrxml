@@ -4,139 +4,201 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
-	<field name="fechaNacimiento" class="java.lang.String"/>
-	<field name="apellidos" class="java.lang.String"/>
-	<field name="nombres" class="java.lang.String"/>
-	<field name="posicion" class="java.lang.String"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
 	<field name="identificacion" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="fechaNacimiento" class="java.lang.String"/>
+	<field name="posicion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="139" splitType="Stretch">
 			<textField>
-				<reportElement x="447" y="99" width="213" height="36" forecolor="#336600" uuid="28d2efd1-1622-4d9f-bf71-6204531422b0"/>
+				<reportElement x="413" y="103" width="159" height="36" forecolor="#336600" uuid="28d2efd1-1622-4d9f-bf71-6204531422b0"/>
 				<textElement>
-					<font fontName="Serif" size="22" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="34" y="99" width="413" height="36" forecolor="#336600" uuid="b8478e84-4486-44e9-880f-de92f8bc45f3"/>
+				<reportElement x="4" y="103" width="408" height="36" forecolor="#336600" uuid="b8478e84-4486-44e9-880f-de92f8bc45f3"/>
 				<textElement>
-					<font fontName="Serif" size="22" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte de deportistas por la categoría]]></text>
 			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="575" y="0" width="85" height="70" uuid="9aa074c2-9482-4203-919b-c580b9735598"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="423" height="70" uuid="26f0cee1-a6a4-4f6a-9840-2c12d4d2bf4f"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="33" splitType="Stretch">
-			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="32" width="660" height="1" isRemoveLineWhenBlank="true" forecolor="#006600" backcolor="#336600" uuid="d3b188b4-a045-43e3-8160-72b6c5754d04"/>
-				<graphicElement>
-					<pen lineWidth="2.5"/>
-				</graphicElement>
-			</line>
 			<textField>
-				<reportElement x="2" y="0" width="110" height="22" forecolor="#336600" uuid="42269927-a82a-4bbe-8c62-cfe3372aab01"/>
+				<reportElement x="4" y="0" width="159" height="23" forecolor="#336600" uuid="6adb42c4-4a6f-4595-833d-64b0bbaf9791"/>
 				<textElement>
-					<font fontName="Serif" size="14" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="23" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="260" y="0" width="153" height="20" uuid="4ff4ebb3-684d-486f-bfb8-b0dfb477c1a3"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="0" y="0" width="132" height="24" backcolor="#C1EF78" uuid="fd2ca16a-73bd-4fb4-9fcd-d1ad77520c3c"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Apellidos]]></text>
+				<text><![CDATA[Identificación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="403" y="1" width="147" height="20" uuid="c86ae57e-f69f-48ac-811b-0312f3ed4822"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Fecha nacimiento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="540" y="0" width="120" height="20" uuid="13de9aca-5217-4ea6-8030-e72e6a94e819"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Posición]]></text>
-			</staticText>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="137" y="0" width="129" height="20" uuid="406ff566-5bcc-4551-9d0e-651513ac927f"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="132" y="0" width="132" height="24" backcolor="#C1EF78" uuid="d602092f-5563-48de-9bc2-d12de4b185e8"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="141" height="20" uuid="ea2eda7e-dec0-4eae-b26b-197c69a777b3"/>
-				<textElement>
-					<font fontName="Serif" size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="264" y="0" width="156" height="24" backcolor="#C1EF78" uuid="2e91ab47-e386-4752-8c93-c6cdb3c75c19"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Identificación]]></text>
+				<text><![CDATA[Apellidos]]></text>
 			</staticText>
-			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="20" width="660" height="1" isRemoveLineWhenBlank="true" uuid="1d5d3a67-d8b8-410e-b991-1bf3f23a47cb"/>
-				<graphicElement>
-					<pen lineWidth="2.5"/>
-				</graphicElement>
-			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="0" width="121" height="24" backcolor="#C1EF78" uuid="84a5e582-3ba3-4ff5-9441-6f3278db2ff4"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Nacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="541" y="0" width="119" height="24" backcolor="#C1EF78" uuid="dcdd31d5-cec8-4b0b-965a-1c17dfae4fc6"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Posición]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="403" y="0" width="123" height="20" uuid="2a90e741-a46e-43f8-83c2-ab52d95a325e"/>
+				<reportElement x="0" y="0" width="132" height="32" uuid="cb2ba23f-c214-4a14-b2a9-a9e318e65319"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fechaNacimiento}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="133" y="0" width="133" height="20" uuid="e04b33b6-4698-4bb9-9e08-74066932f2a8"/>
-				<textElement>
-					<font fontName="Serif" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="141" height="20" uuid="0862e69c-773b-4d48-a610-8b88fca744ed"/>
-				<textElement>
-					<font fontName="Serif" size="12"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="260" y="0" width="153" height="20" uuid="a1d34442-2290-4cb0-9bb8-8fe77a97a5f4"/>
+				<reportElement x="132" y="0" width="132" height="32" uuid="ae67ee21-8c3e-4fc7-95ba-6a04f3c396e3"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="12"/>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="0" width="156" height="32" uuid="793721b5-edeb-46fd-aec6-7acebe995898"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="20" width="660" height="1" uuid="e2cb2180-811c-44a5-845e-ab494a4a33c3"/>
-			</line>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="540" y="0" width="120" height="20" uuid="406cf5b4-190b-408f-80cc-0f2212217a48"/>
+				<reportElement x="420" y="0" width="121" height="32" uuid="01cacc21-e83b-48bf-afbd-18b08aa2250f"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement>
-					<font fontName="Serif" size="12"/>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaNacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="541" y="0" width="119" height="32" uuid="ea157b8e-69aa-4980-8dc2-032c91a0c45f"/>
+				<box leftPadding="4">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{posicion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="11"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="24">
 			<elementGroup>

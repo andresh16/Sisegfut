@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a50a3674-a430-4447-90a0-9f40269acd18">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="652"/>
+	<property name="ireport.y" value="81"/>
 	<parameter name="categoria" class="java.lang.String"/>
-	<parameter name="banner" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="distancia" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
@@ -18,26 +18,26 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="114" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<staticText>
-				<reportElement x="120" y="78" width="387" height="36" forecolor="#336600" uuid="bbddf0d3-7a46-4ae8-9ee4-31766369f4d2"/>
+				<reportElement x="37" y="93" width="471" height="36" forecolor="#336600" uuid="bbddf0d3-7a46-4ae8-9ee4-31766369f4d2"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Reporte Test de Cooper por la categoría]]></text>
+				<text><![CDATA[Reporte Test de Cooper por la categoría   ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="508" y="78" width="141" height="36" forecolor="#336600" uuid="9342d300-5157-4c66-a03a-8777f2c720f7"/>
+				<reportElement x="507" y="93" width="141" height="36" forecolor="#336600" uuid="9342d300-5157-4c66-a03a-8777f2c720f7"/>
 				<textElement>
 					<font size="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
-			<image onErrorType="Icon">
+			<image onErrorType="Blank">
 				<reportElement x="2" y="0" width="423" height="70" uuid="e6220c8f-fbe3-4f73-9a02-46c02e977451"/>
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
-			<image>
+			<image onErrorType="Blank">
 				<reportElement x="716" y="0" width="85" height="70" uuid="9d7b3685-84e1-4111-82cb-89de76b1b449"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
@@ -172,8 +172,8 @@
 	</columnHeader>
 	<detail>
 		<band height="42" splitType="Stretch">
-			<textField>
-				<reportElement x="9" y="1" width="74" height="40" uuid="255685e2-8329-43ee-895b-efabf40bf95c"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="-1" width="74" height="42" uuid="255685e2-8329-43ee-895b-efabf40bf95c"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -182,12 +182,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="83" y="1" width="103" height="40" uuid="cc539b8e-1823-4440-bac8-48c9f9ab7313"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="83" y="-1" width="103" height="42" uuid="cc539b8e-1823-4440-bac8-48c9f9ab7313"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -196,12 +196,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="518" y="1" width="130" height="40" uuid="bea248eb-a5af-4470-a9dc-7ff4b0bcb2ae"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="518" y="-1" width="130" height="42" uuid="bea248eb-a5af-4470-a9dc-7ff4b0bcb2ae"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -210,12 +210,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{consumOxigeno}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="648" y="1" width="68" height="40" uuid="a23a125b-b80d-4f67-acff-8b33690c99d5"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="648" y="-1" width="68" height="42" uuid="a23a125b-b80d-4f67-acff-8b33690c99d5"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -224,12 +224,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vo2max}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="716" y="1" width="77" height="40" uuid="7463eb9c-df9a-4412-91cd-7e02ffb8ba7e"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="716" y="-1" width="77" height="42" uuid="7463eb9c-df9a-4412-91cd-7e02ffb8ba7e"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -238,12 +238,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{velocidad}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="394" y="1" width="124" height="40" uuid="4450ea9e-2582-4785-b089-0cd1ef03f5a6"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="394" y="-1" width="124" height="42" uuid="4450ea9e-2582-4785-b089-0cd1ef03f5a6"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -252,12 +252,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{condicionFisica}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="186" y="1" width="122" height="40" uuid="6cefce14-6c49-443f-8842-b1c89267e3eb"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="186" y="-1" width="122" height="42" uuid="6cefce14-6c49-443f-8842-b1c89267e3eb"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -266,12 +266,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="308" y="1" width="86" height="40" uuid="d675e8bf-62f9-4458-a448-79550a7a1570"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="308" y="-1" width="86" height="42" uuid="d675e8bf-62f9-4458-a448-79550a7a1570"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -280,7 +280,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
 			</textField>

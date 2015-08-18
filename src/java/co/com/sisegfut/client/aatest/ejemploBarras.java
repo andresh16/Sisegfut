@@ -146,7 +146,7 @@ public class ejemploBarras implements IsWidget {
             chart.setLegend(legend);
             chart.setAnimated(true);
             chart.setDefaultInsets(19);
-            chart.setAnimationDuration(3000);
+            chart.setAnimationDuration(2000);
 
             TextButton regenerate = new TextButton("Recargar");
             regenerate.addSelectHandler(new SelectHandler() {
@@ -183,7 +183,7 @@ public class ejemploBarras implements IsWidget {
 //      toolBar.add(shadow);
 
             VerticalLayoutContainer layout = new VerticalLayoutContainer();
-            layout.add(toolBar, new VerticalLayoutData(1, -1));
+//            layout.add(toolBar, new VerticalLayoutData(1, -1));
             layout.add(chart, new VerticalLayoutData(1, 1));
 
             panel = new FramedPanel();

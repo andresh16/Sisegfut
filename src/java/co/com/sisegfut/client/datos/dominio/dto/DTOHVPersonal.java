@@ -27,6 +27,18 @@ public class DTOHVPersonal {
         return titulo;
     }
 
+    public DTOHVPersonal(String titulo, String institucionEducativa, String escolaridad, String annoGraduacion, String empresa, String cargo, String tiempoLaborado) {
+        this.titulo = titulo;
+        this.institucionEducativa = institucionEducativa;
+        this.escolaridad = escolaridad;
+        this.annoGraduacion = annoGraduacion;
+        this.empresa = empresa;
+        this.cargo = cargo;
+        this.tiempoLaborado = tiempoLaborado;
+    }
+
+    
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

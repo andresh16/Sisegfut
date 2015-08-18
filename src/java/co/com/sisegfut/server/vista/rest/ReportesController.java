@@ -148,7 +148,7 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
             parameterMap.put("categoria", nombreCategoria);
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
@@ -242,7 +242,7 @@ public class ReportesController {
             parameterMap.put("camisa", dep.getNumeroCamisa());
             parameterMap.put("nivelEducativo", dep.getNivelEducativo().getNombreNivelEducativo());
             parameterMap.put("instEducativa", dep.getInstEducativa().getNombreInstEducativa());
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
@@ -262,7 +262,7 @@ public class ReportesController {
             if (listAnt.size() > listLogros.size()) {
                 if (listAnt.size() > listLesion.size()) {
                     valorMayor = listAnt.size();
-                }else {
+                } else {
                     valorMayor = listLesion.size();
                 }
             } else {
@@ -379,10 +379,10 @@ public class ReportesController {
             parameterMap.put("nivelEducativo", per.getNivelEducativo().getNombreNivelEducativo());
 
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("imagenBanner", banner);
+            parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
-            
+
             List<EstudiosRealizados> listEst = new ArrayList<EstudiosRealizados>();
             List<Experiencia> listExp = new ArrayList<Experiencia>();
 
@@ -398,40 +398,46 @@ public class ReportesController {
                 valorMayor = listExp.size();
             }
 
-            for (int i = 0; i < valorMayor; i++) {
-                DTOHVPersonal agg = new DTOHVPersonal();
+            if (valorMayor == 0) {
+                DTOHVPersonal vacio = new DTOHVPersonal("", "", "", "", "", "", "");
+                listaRetornoPersonal.add(vacio);
+            } else {
 
-                if (listEst.size() > i) {
-                    if (listEst.get(i) != null) {
-                        agg.setTitulo(listEst.get(i).getTitulo());
-                        agg.setInstitucionEducativa(listEst.get(i).getInstitucion());
-                        agg.setEscolaridad(listEst.get(i).getNivelEducativo().getNombreNivelEducativo());
-                        agg.setAnnoGraduacion(listEst.get(i).getAnioGraduacion());
+                for (int i = 0; i < valorMayor; i++) {
+                    DTOHVPersonal agg = new DTOHVPersonal();
+
+                    if (listEst.size() > i) {
+                        if (listEst.get(i) != null) {
+                            agg.setTitulo(listEst.get(i).getTitulo());
+                            agg.setInstitucionEducativa(listEst.get(i).getInstitucion());
+                            agg.setEscolaridad(listEst.get(i).getNivelEducativo().getNombreNivelEducativo());
+                            agg.setAnnoGraduacion(listEst.get(i).getAnioGraduacion());
+                        }
+                    } else {
+                        agg.setTitulo("");
+                        agg.setInstitucionEducativa("");
+                        agg.setEscolaridad("");
+                        agg.setAnnoGraduacion("");
+
                     }
-                } else {
-                    agg.setTitulo("");
-                    agg.setInstitucionEducativa("");
-                    agg.setEscolaridad("");
-                    agg.setAnnoGraduacion("");
+                    if (listExp.size() > i) {
+                        if (listExp.get(i) != null) {
+                            agg.setEmpresa(listExp.get(i).getEmpresa());
+                            agg.setCargo(listExp.get(i).getCargo().getNombrecargo());
+                            agg.setTiempoLaborado(listExp.get(i).getTiempoLaborado());
+                        }
+                    } else {
+                        agg.setEmpresa("");
+                        agg.setCargo("");
+                        agg.setTiempoLaborado("");
+                    }
+                    listaRetornoPersonal.add(agg);
 
                 }
-                if (listExp.size() > i) {
-                    if (listExp.get(i) != null) {
-                        agg.setEmpresa(listExp.get(i).getEmpresa());
-                        agg.setCargo(listExp.get(i).getCargo().getNombrecargo());
-                        agg.setTiempoLaborado(listExp.get(i).getTiempoLaborado());
-                    }
-                } else {
-                    agg.setEmpresa("");
-                    agg.setCargo("");
-                    agg.setTiempoLaborado("");
-                }
-                listaRetornoPersonal.add(agg);
-
             }
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaRetornoPersonal));
-                        
+
             modelAndView = new ModelAndView("pdfReporteHVPersonal", parameterMap);
 
             return modelAndView;
@@ -503,16 +509,16 @@ public class ReportesController {
 
                 cat = antropometrico.getIdDeportista().getCategoria().getNombrecategoria();
             }
-            
+
             System.out.println("nombre cat" + cat);
 
             Map<String, Object> parameterMap = new HashMap<String, Object>();
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAnt));
             parameterMap.put("categoria", nombreCategoria);
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("imagenBanner", banner);
+            parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 
@@ -561,7 +567,7 @@ public class ReportesController {
         }
         try {
             log.info("Entra a generar reporte");
-            List<TestCooper> listaDeportistaTcReport = daoTestCooper.TestCooperXCategoria(categoria);
+            List<TestCooper> listaDeportistaTcReport = daoTestCooper.ultimoTesCoopertRealizadoXDeportista(categoria);
             List<DTOTestCooperxDeportista> listaDeportistaTc = new ArrayList<DTOTestCooperxDeportista>();
             String cat = null;
             for (TestCooper testCooper : listaDeportistaTcReport) {
@@ -586,9 +592,9 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
             parameterMap.put("categoria", nombreCategoria);
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("imagenBanner", banner);
+            parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 
@@ -637,7 +643,7 @@ public class ReportesController {
         }
         try {
             log.info("Entra a generar reporte");
-            List<TestKarvonen> listaDeportistaTkReport = daoTestKarvonen.TestKarvonenxCategoria(categoria);
+            List<TestKarvonen> listaDeportistaTkReport = daoTestKarvonen.ultimoTesKartRealizadoXDeportista(categoria);
             List<DTOTestKarvonenxCategoria> listaDeportistaTk = new ArrayList<DTOTestKarvonenxCategoria>();
             String cat = null;
             for (TestKarvonen testKarvonen : listaDeportistaTkReport) {
@@ -660,9 +666,9 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
             parameterMap.put("categoria", nombreCategoria);
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("imagenBanner", banner);
+            parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 
@@ -711,7 +717,7 @@ public class ReportesController {
         }
         try {
             log.info("Entra a generar reporte");
-            List<ControlTecnico> listaDeportistaCtReport = daoControlTecnico.ControlTecnicoxCategoria(categoria);
+            List<ControlTecnico> listaDeportistaCtReport = daoControlTecnico.ultimoCtrlTecnicotRealizadoXDeportista(categoria);
             List<DTOControlTecnicoxCategoria> listaDeportistaCt = new ArrayList<DTOControlTecnicoxCategoria>();
             String cat = null;
             for (ControlTecnico controlTecnico : listaDeportistaCtReport) {
@@ -740,9 +746,9 @@ public class ReportesController {
 
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaCt));
             parameterMap.put("categoria", nombreCategoria);
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("imagenBanner", banner);
+            parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
 

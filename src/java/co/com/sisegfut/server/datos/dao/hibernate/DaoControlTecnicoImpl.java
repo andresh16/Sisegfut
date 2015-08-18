@@ -57,16 +57,15 @@ public class DaoControlTecnicoImpl extends DaoGenericoImpl<ControlTecnico> imple
     @Override
     public List<ControlTecnico> ultimoCtrlTecnicotRealizadoXDeportista(Long idCategoria) throws Exception {
         List<ControlTecnico> listaAntep = null;
-        String sql = "select "
-                + "    test.*"
-                + "from control_tecnico test"
-                + "join (select "
-                + "    id_deportista, max(fecha) as fecha "
-                + "from control_tecnico "
-                + "group by id_deportista) vi"
-                + "on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
-                + "join deportista dep"
-                + "on (dep.id = test.id_deportista and dep.categoria=" + idCategoria + ")";
+        String sql = "select test.*"
+                + " from control_tecnico test"
+                + " join (select "
+                + " id_deportista, max(fecha) as fecha "
+                + " from control_tecnico "
+                + " group by id_deportista) vi"
+                + " on (test.id_deportista = vi.id_deportista and test.fecha = vi.fecha)"
+                + " join deportista dep"
+                + " on (dep.id = test.id_deportista and dep.categoria=" + idCategoria + ")";
         try {
             listaAntep = (List<ControlTecnico>) sessionFactory.getCurrentSession()
                     .createSQLQuery(sql)
