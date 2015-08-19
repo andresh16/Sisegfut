@@ -78,4 +78,11 @@ public class RPCAdminControlAsistenciaImpl extends RPCMaestroImpl<ControlAsisten
         }
         
     }
+     @Override
+    public Boolean validarControlAsistenciaDiaCat(Date fecha, Long idCategoria, String actividad) {
+        List<ControlAsistencia> listPlanillasAsistencia = daoControlAsistencia.obtenerPlanillaAsistenciaFiltro(fecha, fecha, idCategoria, actividad);
+        // Retorna verdadero si no hay asistencias 
+        return listPlanillasAsistencia.size() == 0 || listPlanillasAsistencia.isEmpty()? true : false;
+        
+    }
 }

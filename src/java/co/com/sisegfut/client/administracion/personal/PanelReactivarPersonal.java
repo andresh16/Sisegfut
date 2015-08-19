@@ -135,7 +135,7 @@ public class PanelReactivarPersonal extends Window{
     }
     
     public void cerrar(){
-    this.close();
+    this.hide();
     
     }
     

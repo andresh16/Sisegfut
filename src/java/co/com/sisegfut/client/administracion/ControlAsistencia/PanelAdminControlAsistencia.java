@@ -609,35 +609,45 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
     }
 
-    protected SelectionListener<ButtonEvent> listenerGuardar() {
+
+        protected SelectionListener<ButtonEvent> listenerGuardar() {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (!grid.getStore().getModels().isEmpty()) {
                     if (panelFormularioControlAsistencia.isValid()) {
-//                     panel2.mask("Guardando..");
-//                        if (!validarAsistencia()) {
-//                            //mostrar mensaje
-//                            return;
-//                        }
-//                        if (!validarFalto()) {
-//                            //mostrar mensaje
-//                            return;
-//                        }
 
-                        getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
+                        Date fecha = panelFormularioControlAsistencia.DtFecha.getValue();
+                        Long idCat = panelFormularioControlAsistencia.cbxCategoria.getCategoriaElegida().getId();
+                        String actividad = panelFormularioControlAsistencia.rdEntrenamiento.getValue() ? "Entrenamiento" : "Competencia";
+                        final String categoria=panelFormularioControlAsistencia.cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        getServiceControlAsistencia().validarControlAsistenciaDiaCat(fecha, idCat, actividad, new AsyncCallback<Boolean>() {
 
                             @Override
                             public void onFailure(Throwable caught) {
-                                MessageBox.alert("Error!", "No guardo Grid de asistencia", null);
+                                Info.display("Error!", "no fue posible validar el control de asistencia");
                             }
-
                             @Override
-                            public void onSuccess(RespuestaRPC<ControlAsistencia> result) {
-//                            Info.display("Exito!", "Se guardo correctamente el control de asistencia");
-                                guardarGridAsistencia(result.getObjetoRespuesta().getId());
+                            public void onSuccess(Boolean result) {
+                                if (result) {
+                                    getServiceControlAsistencia().guardarEntidad(panelFormularioControlAsistencia.ObtenerFormulario(new ControlAsistencia()), new AsyncCallback<RespuestaRPC<ControlAsistencia>>() {
+
+                                        @Override
+                                        public void onFailure(Throwable caught) {
+                                            MessageBox.alert("Error!", "No guardo Grid de asistencia", null);
+                                        }
+
+                                        @Override
+                                        public void onSuccess(RespuestaRPC<ControlAsistencia> result) {
+                                            guardarGridAsistencia(result.getObjetoRespuesta().getId());
+                                        }
+                                    });
+                                } else {
+                                    MessageBox.alert("Control de asistencia", "En la categoría "+categoria+", ya se encuentra registrada una planilla para esté mismo día y para esta misma actividad.", null);
+                                }
                             }
                         });
+
                     }
                 } else {
                     MessageBox.alert("Guardar", "Debe seleccionar una categoría con deportistas", null);
@@ -648,7 +658,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         };
 
     }
-
+    
     private boolean validarAsistencia() {
         Boolean asistio;
         for (BeanModel jugador : grid.getStore().getModels()) {

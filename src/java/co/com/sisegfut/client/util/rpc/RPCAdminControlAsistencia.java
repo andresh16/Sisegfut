@@ -22,4 +22,12 @@ public interface RPCAdminControlAsistencia extends RPCMaestro<ControlAsistencia>
     
     public List<DTOReporteAsistenciaXMes> obtenerReporteAsistenciaxMes(Integer mes,Integer anio, Long idCategoria);
 
+       /**
+     * Valida si la asistencia que se desea guardar ya existe en esa categoria y en ese mismo día
+     * @param fecha
+     * @param idCategoria
+     * @param actividad
+     * @return 
+     */
+    public Boolean validarControlAsistenciaDiaCat(Date fecha, Long idCategoria, String actividad);
 }

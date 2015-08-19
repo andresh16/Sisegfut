@@ -135,7 +135,7 @@ public class PanelReactivarDeportista extends Window{
     }
     
     public void cerrar(){
-    this.close();
+    this.hide();
     
     }
     
