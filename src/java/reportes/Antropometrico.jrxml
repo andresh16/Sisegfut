@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="980" pageHeight="595" orientation="Landscape" columnWidth="940" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
-	<property name="ireport.zoom" value="1.0263162364614133"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="1102"/>
+	<property name="ireport.y" value="240"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
 	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
@@ -26,7 +26,7 @@
 	<title>
 		<band height="133" splitType="Stretch">
 			<staticText>
-				<reportElement x="158" y="84" width="610" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
+				<reportElement x="217" y="85" width="543" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -37,7 +37,7 @@
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image onErrorType="Blank">
-				<reportElement x="840" y="0" width="61" height="58" uuid="e4721f4f-09cc-49f7-95f4-f5dee21ba1e6"/>
+				<reportElement x="840" y="0" width="61" height="69" uuid="e4721f4f-09cc-49f7-95f4-f5dee21ba1e6"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -45,7 +45,7 @@
 	<pageHeader>
 		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="365" y="0" width="198" height="27" forecolor="#336600" uuid="4474b89a-8941-49d3-81b5-9a636406c8b2"/>
+				<reportElement x="378" y="0" width="198" height="27" forecolor="#336600" uuid="4474b89a-8941-49d3-81b5-9a636406c8b2"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -170,7 +170,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Magro (kg)]]></text>
+				<text><![CDATA[Graso (kg)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="886" y="0" width="55" height="46" backcolor="#C1EF78" uuid="35a03d53-32f1-4546-85a9-1ab2d360b1bb"/>
@@ -248,7 +248,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Perimetros]]></text>
+				<text><![CDATA[Perímetros]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="799" y="0" width="87" height="22" backcolor="#C1EF78" uuid="de41fda7-4341-434c-98dc-0719451b604a"/>

@@ -91,6 +91,7 @@ public class PanelCooper extends LayoutContainer {
     Grid<TestKarvonen> grid;
     final PagingToolBar PgtoolBar = new PagingToolBar(50);
     Long idDeportista = null;
+    private Deportista dep;
     private Image foto = new Image();
     FormPanel form = new FormPanel();
     private Integer pesoDep;
@@ -572,7 +573,7 @@ public class PanelCooper extends LayoutContainer {
 
                 if (idDeportista != null) {
 
-                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaTC/";
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/HistoricoTestCooper/";
                     // deportista seleccionado
                     redireccionarA(base + idDeportista);
 

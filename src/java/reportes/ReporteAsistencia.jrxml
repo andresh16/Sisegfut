@@ -54,7 +54,7 @@
 				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="88" y="0" width="104" height="25" forecolor="#336600" uuid="9bcf9ee9-2249-4cb4-8a7e-4ed66b2b33d6"/>
+				<reportElement x="101" y="0" width="104" height="25" forecolor="#336600" uuid="9bcf9ee9-2249-4cb4-8a7e-4ed66b2b33d6"/>
 				<box leftPadding="10"/>
 				<textElement>
 					<font size="14" isBold="true" isItalic="true"/>
@@ -62,7 +62,7 @@
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="0" width="77" height="25" forecolor="#336600" uuid="53fed853-9cb2-4e24-8079-1f8e9ccea546"/>
+				<reportElement x="24" y="0" width="77" height="25" forecolor="#336600" uuid="53fed853-9cb2-4e24-8079-1f8e9ccea546"/>
 				<textElement>
 					<font size="14" isBold="true" isItalic="true"/>
 				</textElement>

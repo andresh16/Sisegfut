@@ -839,5 +839,80 @@ public class ReportesController {
             return retorno;
         }
     }
+    
+    @RequestMapping(value = "/HistoricoTestCooper/{idDeportista}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportHistoricoTestCopper(
+            @PathVariable Long idDeportista,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
 
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            Deportista dep = daoDeportista.getById(idDeportista);
+            
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+            
+                       
+            if (dep.getFoto() != null) {
+                InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+                parameterMap.put("foto", foto);
+            }
+            parameterMap.put("documento", dep.getDocumento());
+            parameterMap.put("nombres", dep.getNombres());
+            parameterMap.put("apellidos", dep.getApellidos());
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+            
+            List<TestCooper> listaDeportistaTcReport = daoTestCooper.TCXDeportista(idDeportista);
+            List<DTOTestCooperxDeportista> listaDeportistaTc = new ArrayList<DTOTestCooperxDeportista>();
+               //////         
+            for (TestCooper testCooper : listaDeportistaTcReport) {
+                DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
+
+                dtoTestCooper.setFecha(Formatos.fecha2(testCooper.getFecha()));
+
+                dtoTestCooper.setDistancia(testCooper.getDistancia().toString());
+                dtoTestCooper.setCondicionFisica(testCooper.getCondicionFisica());
+                dtoTestCooper.setConsumOxigeno(testCooper.getConsumOxigeno());
+                dtoTestCooper.setVo2max(testCooper.getVo2max());
+                dtoTestCooper.setVelocidad(testCooper.getVelocidad());
+                listaDeportistaTc.add(dtoTestCooper);
+                
+            }
+//           
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
+
+            
+            modelAndView = new ModelAndView("pdfHistoricoTestCooper", parameterMap);
+            
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
 }

@@ -38,13 +38,13 @@
     </bean>
                 
     <bean id="xlsReporteDeportista"
-              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsHtmlView"
               p:url="classpath:reportes/ReporteDeportista.jrxml"
               p:reportDataKey="datasource" >
         <property name="headers">
             <props>
                 <prop key="Content-Disposition">
-                    attachment; filename=reporte_DeportistasXCategoria.xls
+                    attachment; filename=reporte_DeportistasXCategoria.pdf
                 </prop>
             </props>
         </property>
@@ -230,5 +230,35 @@
             </props>
         </property>
     </bean>     
+    
+    <!--Histórico Test de Cooper X Deportista-->
+        
+    <bean id="pdfHistoricoTestCooper"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/DeportistaTC.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=HistoricoTestCooperXDeportista.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>  
+    
+    <bean id="xlsHistoricoTestCooper"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/DeportistaTC.jrxml"
+              p:reportDataKey="datasource" >
+        
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=HistoricoTestCooperXDeportista.xls
+                </prop>
+            </props>
+        </property>
+    </bean>  
     
 </beans>

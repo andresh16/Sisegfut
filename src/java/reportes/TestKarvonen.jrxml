@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38cc219e-5db4-42db-98ff-669ed933c81e">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="147"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
@@ -18,7 +18,7 @@
 	<title>
 		<band height="131" splitType="Stretch">
 			<staticText>
-				<reportElement x="176" y="95" width="544" height="36" forecolor="#336600" uuid="3815a7bb-84ff-46af-925b-ec8255c99087"/>
+				<reportElement x="205" y="95" width="427" height="36" forecolor="#336600" uuid="3815a7bb-84ff-46af-925b-ec8255c99087"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -37,7 +37,7 @@
 	<pageHeader>
 		<band height="36" splitType="Stretch">
 			<textField>
-				<reportElement x="331" y="0" width="176" height="35" forecolor="#336600" uuid="9f359e14-75f5-49cb-9e57-e6c5ae18e5bd"/>
+				<reportElement x="341" y="0" width="176" height="35" forecolor="#336600" uuid="9f359e14-75f5-49cb-9e57-e6c5ae18e5bd"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>

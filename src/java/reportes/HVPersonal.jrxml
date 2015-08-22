@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bfd541fa-601a-4a0a-bb6c-ee00cc7b5684">
-	<property name="ireport.zoom" value="0.8250000000000002"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="442"/>
 	<parameter name="documento" class="java.lang.String"/>
 	<parameter name="tipoDocumento" class="java.lang.String"/>
 	<parameter name="nombres" class="java.lang.String"/>
@@ -60,7 +60,7 @@
 					<bottomPen lineWidth="1.0" lineColor="#339900"/>
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font fontName="SansSerif" size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Documento]]></text>
@@ -378,24 +378,25 @@
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image onErrorType="Blank">
-				<reportElement x="690" y="14" width="89" height="68" uuid="509febf6-4399-4204-b2fd-242997a80fb4"/>
+				<reportElement x="690" y="14" width="78" height="68" uuid="509febf6-4399-4204-b2fd-242997a80fb4"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<image onErrorType="Blank">
-				<reportElement x="519" y="168" width="198" height="178" uuid="b3d96221-00de-4115-a0a2-526e056cda37"/>
+				<reportElement x="543" y="188" width="198" height="178" uuid="b3d96221-00de-4115-a0a2-526e056cda37"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="52">
+		<band height="51">
 			<staticText>
 				<reportElement mode="Opaque" x="679" y="31" width="101" height="20" backcolor="#BDE0C0" uuid="184bbcd1-2518-4a07-a0e6-b6237c8fafcd"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -405,10 +406,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="16" y="30" width="90" height="21" backcolor="#BDE0C0" uuid="d74ad8fd-beb9-4115-ac06-5cb65d0c26c2"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -418,10 +420,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="16" y="0" width="450" height="30" backcolor="#C1EF78" uuid="9ad472be-a29b-47fd-a49e-44e38f0648ff"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -431,10 +434,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="106" y="30" width="130" height="21" backcolor="#BDE0C0" uuid="0c7e17d0-ec64-461f-bb18-f8aa00894b32"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -444,10 +448,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="487" y="31" width="93" height="20" backcolor="#BDE0C0" uuid="7b7073ba-6c74-44d0-92f4-60cc0045b3e6"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -457,10 +462,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="236" y="30" width="130" height="21" backcolor="#BDE0C0" uuid="5bb8b107-c270-4701-bb7f-d817e31edf8e"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -470,10 +476,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="366" y="30" width="100" height="21" backcolor="#BDE0C0" uuid="ae332ed8-fbda-4285-9333-b9358bbd0380"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -483,10 +490,11 @@
 			<staticText>
 				<reportElement mode="Opaque" x="580" y="31" width="100" height="20" backcolor="#BDE0C0" uuid="8f02d248-b355-4199-9287-42038c599525"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>
@@ -494,12 +502,13 @@
 				<text><![CDATA[Cargo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="487" y="1" width="292" height="30" backcolor="#C1EF78" uuid="4cc299c3-a79a-4fc6-a532-6d6d8f8e53fd"/>
+				<reportElement mode="Opaque" x="487" y="0" width="293" height="31" backcolor="#C1EF78" uuid="4cc299c3-a79a-4fc6-a532-6d6d8f8e53fd"/>
 				<box leftPadding="3">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="true"/>

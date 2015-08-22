@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="105"/>
+	<property name="ireport.y" value="57"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -785,7 +785,7 @@
 				<reportElement x="0" y="500" width="117" height="1" uuid="cf4c040c-18fc-4696-8245-d8fb8732e6bb"/>
 			</break>
 			<image onErrorType="Blank">
-				<reportElement x="505" y="105" width="191" height="211" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
+				<reportElement x="523" y="97" width="191" height="211" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
@@ -821,7 +821,7 @@
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image isUsingCache="true" onErrorType="Blank">
-				<reportElement x="700" y="0" width="80" height="73" uuid="b3ecb22e-9878-4d20-8f68-8d8e6d7bf8a1"/>
+				<reportElement x="700" y="0" width="80" height="83" uuid="b3ecb22e-9878-4d20-8f68-8d8e6d7bf8a1"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

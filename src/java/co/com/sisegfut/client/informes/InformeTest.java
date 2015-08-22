@@ -119,7 +119,7 @@ public class InformeTest extends FormPanel {
                     panel.reset();
                 } else {
 
-                    MessageBox.alert("ERROR", "No envio al redireccionar panel invalido", null);
+                    MessageBox.alert("ERROR", "No envio al redireccionar, panel inválido", null);
                 }
 
             }
