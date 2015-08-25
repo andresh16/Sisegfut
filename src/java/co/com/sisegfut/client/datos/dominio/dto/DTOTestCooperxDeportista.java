@@ -31,6 +31,16 @@ public class DTOTestCooperxDeportista implements BeanModelTag, Serializable{
         return fecha;
     }
 
+    public DTOTestCooperxDeportista(String fecha, String distancia, String consumOxigeno, String condicionFisica, String velocidad, String vo2max) {
+        this.fecha = fecha;
+        this.distancia = distancia;
+        this.consumOxigeno = consumOxigeno;
+        this.condicionFisica = condicionFisica;
+        this.velocidad = velocidad;
+        this.vo2max = vo2max;
+    }
+    
+
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }

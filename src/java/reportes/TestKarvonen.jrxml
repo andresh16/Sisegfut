@@ -18,7 +18,7 @@
 	<title>
 		<band height="131" splitType="Stretch">
 			<staticText>
-				<reportElement x="205" y="95" width="427" height="36" forecolor="#336600" uuid="3815a7bb-84ff-46af-925b-ec8255c99087"/>
+				<reportElement x="205" y="95" width="515" height="36" forecolor="#336600" uuid="3815a7bb-84ff-46af-925b-ec8255c99087"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -129,7 +129,7 @@
 	</columnHeader>
 	<detail>
 		<band height="29" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="2" y="0" width="103" height="28" uuid="b68b3020-5290-4015-b8ae-5b2226a3917a"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -142,7 +142,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="429" y="0" width="151" height="28" uuid="44b2da64-5611-4700-8777-c99e5711dce8"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -155,7 +155,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fcReposo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="580" y="0" width="122" height="28" uuid="26f0d279-10ec-49e4-9f77-14e713895bdc"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -168,7 +168,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="702" y="0" width="100" height="28" uuid="690ba52c-176e-45d9-a77e-93dd3e38d17f"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -181,7 +181,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{resKarvonen}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="105" y="0" width="116" height="28" uuid="02572ac5-abd5-443b-8345-ce2837c592be"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -194,7 +194,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="221" y="0" width="208" height="28" uuid="a08e710f-dc3f-4476-8278-70cc229ac618"/>
 				<box topPadding="1" leftPadding="3">
 					<topPen lineWidth="1.0"/>
@@ -222,14 +222,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="673" y="4" width="80" height="20" uuid="75655958-52df-4c3b-9bca-d9444c35985c"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="753" y="4" width="40" height="20" uuid="43758652-858c-47af-a8f4-3aae5b324e91"/>
+					<reportElement x="757" y="9" width="42" height="20" uuid="8dd95426-72e3-4519-bcfa-fc4c4ad735f4"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="489" y="9" width="268" height="20" uuid="94cc3e31-44be-47e2-8a8d-09a7268e0b5f"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

@@ -839,7 +839,6 @@ public class ReportesController {
             return retorno;
         }
     }
-    
     @RequestMapping(value = "/HistoricoTestCooper/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoTestCopper(
@@ -869,21 +868,24 @@ public class ReportesController {
                 parameterMap.put("foto", foto);
             }
             parameterMap.put("documento", dep.getDocumento());
-            parameterMap.put("nombres", dep.getNombres());
-            parameterMap.put("apellidos", dep.getApellidos());
+            parameterMap.put("nombreCompleto", dep.getNombreCompleto());
             
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
             
-            List<TestCooper> listaDeportistaTcReport = daoTestCooper.TCXDeportista(idDeportista);
+            List<TestCooper> listaDeportistaTcReport = daoTestCooper.TestCooperXDeportista(idDeportista);
             List<DTOTestCooperxDeportista> listaDeportistaTc = new ArrayList<DTOTestCooperxDeportista>();
-               //////         
+               //////
+            
+            if(listaDeportistaTcReport.isEmpty() || listaDeportistaTcReport.size()==0){
+               listaDeportistaTc.add(new DTOTestCooperxDeportista("","","","","",""));
+            }else{
             for (TestCooper testCooper : listaDeportistaTcReport) {
                 DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
 
-                dtoTestCooper.setFecha(Formatos.fecha2(testCooper.getFecha()));
+                dtoTestCooper.setFecha(Formatos.fechaHoraMilitar(testCooper.getFecha()));
 
                 dtoTestCooper.setDistancia(testCooper.getDistancia().toString());
                 dtoTestCooper.setCondicionFisica(testCooper.getCondicionFisica());
@@ -892,6 +894,7 @@ public class ReportesController {
                 dtoTestCooper.setVelocidad(testCooper.getVelocidad());
                 listaDeportistaTc.add(dtoTestCooper);
                 
+            }
             }
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));

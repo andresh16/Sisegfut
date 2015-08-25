@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="942" pageHeight="595" orientation="Landscape" columnWidth="902" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8bda892-b124-4d7c-a69e-816c6357697a">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="73"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
@@ -24,7 +24,7 @@
 	<title>
 		<band height="149" splitType="Stretch">
 			<staticText>
-				<reportElement x="217" y="113" width="438" height="36" forecolor="#336600" uuid="f0dbe89d-b35b-421f-9e51-c9ea2f32dfed"/>
+				<reportElement x="217" y="113" width="485" height="36" forecolor="#336600" uuid="f0dbe89d-b35b-421f-9e51-c9ea2f32dfed"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -357,12 +357,12 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="779" y="10" width="80" height="20" uuid="200c2621-5be3-4820-9abd-9b767594d1e9"/>
+				<reportElement x="581" y="10" width="268" height="20" uuid="160c909f-e071-48b3-a844-da8f21d45c8a"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+"de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="862" y="10" width="40" height="20" uuid="c5774387-82f3-4fcf-9963-50c2966b6309"/>
+				<reportElement x="849" y="10" width="42" height="20" uuid="86016e7e-c5d1-4e40-8200-dc59a4ab00fb"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

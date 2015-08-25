@@ -169,14 +169,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="434" y="0" width="80" height="20" uuid="203e5241-d221-4fd8-84b5-aacd82cee7f6"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="514" y="0" width="40" height="20" uuid="0c09a19c-a8d7-4ce2-8bca-ce5d9e978d1e"/>
+					<reportElement x="505" y="0" width="42" height="20" uuid="25d7d8c3-117d-46d3-80be-60c8bb715166"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="237" y="0" width="268" height="20" uuid="017b6e49-e234-416f-9e8d-38413fada671"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

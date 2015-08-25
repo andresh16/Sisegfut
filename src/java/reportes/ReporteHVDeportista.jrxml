@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.8264462809917354"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="57"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -784,10 +784,6 @@
 			<break>
 				<reportElement x="0" y="500" width="117" height="1" uuid="cf4c040c-18fc-4696-8245-d8fb8732e6bb"/>
 			</break>
-			<image onErrorType="Blank">
-				<reportElement x="523" y="97" width="191" height="211" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
-				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
-			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement x="163" y="388" width="270" height="20" backcolor="#FFFFFF" uuid="1349c54d-b8b7-4222-a6c0-355277170e91"/>
 				<box leftPadding="10">
@@ -823,6 +819,20 @@
 			<image isUsingCache="true" onErrorType="Blank">
 				<reportElement x="700" y="0" width="80" height="83" uuid="b3ecb22e-9878-4d20-8f68-8d8e6d7bf8a1"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="523" y="133" width="153" height="151" backcolor="#D9D6D6" uuid="73764e30-3aab-4b41-a2c3-a53ffdd1b55a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="557" y="197" width="104" height="41" uuid="65037be8-d701-43b1-a53c-b20831b5d3a1"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sin Foto]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement isPrintRepeatedValues="false" x="509" y="120" width="191" height="188" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
+				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -1113,14 +1123,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="649" y="0" width="80" height="20" uuid="9994f6e4-a6f7-45cd-a770-6725462630ec"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="729" y="0" width="40" height="20" uuid="8e840ee7-fb6f-4264-8050-f5dd3fb38063"/>
+					<reportElement x="733" y="4" width="42" height="20" uuid="a07a7b13-0e0e-4994-a0e8-ac249b829f5f"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="465" y="4" width="268" height="20" uuid="b3c61437-eed2-463f-a072-c55b5b06d3cd"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="980" pageHeight="595" orientation="Landscape" columnWidth="940" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="1102"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.zoom" value="1.0263162364614133"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
 	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
@@ -26,7 +26,7 @@
 	<title>
 		<band height="133" splitType="Stretch">
 			<staticText>
-				<reportElement x="217" y="85" width="543" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
+				<reportElement x="217" y="85" width="623" height="36" forecolor="#336600" uuid="c1f79ccb-77bf-41de-b70f-15a5ff36295a"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -490,14 +490,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="775" y="4" width="80" height="20" uuid="3c5feea3-105b-47c1-a04b-28bd8cb83ef9"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="861" y="4" width="40" height="20" uuid="12659ada-a9f5-4744-b00d-fccea5ac1da1"/>
+					<reportElement x="886" y="8" width="42" height="20" uuid="24c72921-aaa6-42b0-a9df-846f6e685990"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="618" y="8" width="268" height="20" uuid="c6f8f0c3-00fb-43de-a36a-493659932d6b"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+"de "]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

@@ -20,7 +20,7 @@
 	<title>
 		<band height="141" splitType="Stretch">
 			<staticText>
-				<reportElement x="203" y="92" width="410" height="36" forecolor="#336600" uuid="bbddf0d3-7a46-4ae8-9ee4-31766369f4d2"/>
+				<reportElement x="203" y="92" width="469" height="36" forecolor="#336600" uuid="bbddf0d3-7a46-4ae8-9ee4-31766369f4d2"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -39,7 +39,7 @@
 	<pageHeader>
 		<band height="33" splitType="Stretch">
 			<textField>
-				<reportElement x="336" y="0" width="134" height="31" forecolor="#336600" uuid="0e9cdf26-6df5-4c04-8a32-39b3c417ed63"/>
+				<reportElement x="336" y="0" width="169" height="31" forecolor="#336600" uuid="0e9cdf26-6df5-4c04-8a32-39b3c417ed63"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -292,14 +292,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="649" y="0" width="80" height="20" uuid="e733ad36-a859-4e90-bc80-96467b3b3d01"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="729" y="0" width="40" height="20" uuid="2298cfa1-b9a4-407e-8662-378e0da80b25"/>
+					<reportElement x="749" y="7" width="42" height="20" uuid="ccacb542-1ab1-4a52-972e-c068f9223efd"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="481" y="7" width="268" height="20" uuid="e62747e9-e5a8-4d40-a667-e5a803d9ab72"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

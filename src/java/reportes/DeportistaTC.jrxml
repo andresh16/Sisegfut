@@ -1,196 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8162af83-9647-427f-b9f0-7514b7794e87">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="138" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8162af83-9647-427f-b9f0-7514b7794e87">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="49"/>
-	<parameter name="velocidad" class="java.lang.String"/>
-	<parameter name="condicionFisica" class="java.lang.String"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="documento" class="java.lang.String"/>
-	<parameter name="nombres" class="java.lang.String"/>
-	<parameter name="apellidos" class="java.lang.String"/>
 	<parameter name="nombreCompleto" class="java.lang.String"/>
-	<parameter name="banner" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String"/>
-	<parameter name="foto" class="java.lang.String"/>
+	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="foto" class="java.io.InputStream" isForPrompting="false"/>
 	<field name="velocidad" class="java.lang.String"/>
 	<field name="condicionFisica" class="java.lang.String"/>
 	<field name="consumOxigeno" class="java.lang.String"/>
 	<field name="distancia" class="java.lang.String"/>
 	<field name="vo2max" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
-	<field name="IdCooper" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
-			<staticText>
-				<reportElement x="98" y="94" width="367" height="36" forecolor="#336600" uuid="8bf0a930-bead-491d-8664-32dfb46df46f"/>
-				<textElement>
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Reporte Histórico del Test de Cooper]]></text>
-			</staticText>
-			<image onErrorType="Icon">
+		<band height="293" splitType="Stretch">
+			<rectangle>
+				<reportElement x="206" y="170" width="108" height="104" backcolor="#D9D6D6" uuid="0b566172-d7a5-4db2-a204-1db9b4a0e8ba"/>
+			</rectangle>
+			<image onErrorType="Blank">
 				<reportElement x="2" y="0" width="353" height="79" uuid="9d52a4cd-8f2f-4e86-af20-f43e416d9b80"/>
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
-			<image onErrorType="Icon">
+			<image onErrorType="Blank">
 				<reportElement x="488" y="0" width="67" height="79" uuid="04504216-6a1f-469f-a184-3903af4258a7"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="135" y="79" width="312" height="55" forecolor="#336600" uuid="dc277742-be94-410e-9e9f-61e091b30a21"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Histórico de Tests de Cooper de "+$P{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<staticText>
+					<reportElement x="225" y="215" width="89" height="34" uuid="84ba24a3-33ec-4d5b-aae5-eebbd7a87ff2"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Sin Foto]]></text>
+				</staticText>
+			</elementGroup>
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="206" y="158" width="132" height="135" uuid="687ea58b-d541-4f60-b6cb-e6ff2bf5f6f1"/>
+				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="138" splitType="Stretch">
-			<textField>
-				<reportElement x="135" y="0" width="100" height="20" uuid="5c99cc1b-da5a-4748-806a-9c2e3ccd35a2"/>
-				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="259" y="0" width="146" height="20" uuid="dc277742-be94-410e-9e9f-61e091b30a21"/>
-				<textFieldExpression><![CDATA[$P{nombreCompleto}]]></textFieldExpression>
-			</textField>
-			<image onErrorType="Icon">
-				<reportElement x="200" y="20" width="124" height="113" uuid="687ea58b-d541-4f60-b6cb-e6ff2bf5f6f1"/>
-				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
-			</image>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="478" y="0" width="77" height="38" backcolor="#CCFFCC" uuid="7cd90c58-f213-4662-9992-2d0121118a67"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Velocidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="135" y="0" width="129" height="38" backcolor="#CCFFCC" uuid="00019828-f294-4adf-ab73-8ac75c6d30b7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condición Física]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="0" width="74" height="38" backcolor="#CCFFCC" uuid="eb9d844e-6cf0-48b3-80f6-66e072a6f13c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distancia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="422" y="0" width="56" height="38" backcolor="#CCFFCC" uuid="ac289a71-2ace-4abb-8c21-b6287aace021"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vo2max]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="0" width="133" height="38" backcolor="#CCFFCC" uuid="9da9aafb-ecff-4c07-a224-026ccdf39b67"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Prueba]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="338" y="0" width="84" height="38" backcolor="#CCFFCC" uuid="245008fe-c9bf-4ca4-a856-902770dacad7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consumo Oxigeno]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="41" splitType="Stretch">
-			<textField>
-				<reportElement x="448" y="20" width="60" height="20" uuid="eff1ef94-fd30-4320-bd05-f8bcb6616897"/>
-				<box>
+		<band height="25" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="478" y="0" width="77" height="25" uuid="eff1ef94-fd30-4320-bd05-f8bcb6616897"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{velocidad}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="448" y="0" width="60" height="20" uuid="7cd90c58-f213-4662-9992-2d0121118a67"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="135" y="0" width="129" height="25" uuid="728a24a9-2755-42aa-a744-f8a82b50f547"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Velocidad]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="117" y="20" width="100" height="20" uuid="728a24a9-2755-42aa-a744-f8a82b50f547"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{condicionFisica}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="117" y="0" width="100" height="20" uuid="00019828-f294-4adf-ab73-8ac75c6d30b7"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="264" y="0" width="74" height="25" uuid="e2332c81-039e-4dd5-829d-d84909f5d86e"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Condición Física]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="217" y="20" width="62" height="20" uuid="e2332c81-039e-4dd5-829d-d84909f5d86e"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="217" y="0" width="62" height="20" uuid="eb9d844e-6cf0-48b3-80f6-66e072a6f13c"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="338" y="0" width="84" height="25" uuid="70566f60-bd22-4421-9eb3-5aa74f46e3a2"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Distancia]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="279" y="20" width="107" height="20" uuid="70566f60-bd22-4421-9eb3-5aa74f46e3a2"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{consumOxigeno}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="279" y="0" width="107" height="20" uuid="245008fe-c9bf-4ca4-a856-902770dacad7"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="422" y="0" width="56" height="25" uuid="1589f440-88c2-45c6-9c0b-9a2196cf6a9b"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Consumo Oxigeno]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="386" y="20" width="59" height="20" uuid="1589f440-88c2-45c6-9c0b-9a2196cf6a9b"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{vo2max}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="386" y="0" width="59" height="20" uuid="ac289a71-2ace-4abb-8c21-b6287aace021"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2" y="0" width="133" height="25" uuid="820d86ba-19d2-47ea-bc5a-a6765f23f63c"/>
+				<box leftPadding="2" bottomPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Vo2max]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="17" y="20" width="100" height="20" uuid="820d86ba-19d2-47ea-bc5a-a6765f23f63c"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="17" y="0" width="100" height="20" uuid="9da9aafb-ecff-4c07-a224-026ccdf39b67"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Fecha]]></text>
-			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
@@ -207,12 +230,12 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="436" y="0" width="80" height="20" uuid="9bdbee7e-11f5-4e5c-8c9b-e80ffe59bd17"/>
+					<reportElement x="239" y="4" width="268" height="20" uuid="9bdbee7e-11f5-4e5c-8c9b-e80ffe59bd17"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="515" y="0" width="40" height="20" uuid="4d203bd2-f200-4fc8-b9c4-b91410426fd8"/>
+					<reportElement x="507" y="4" width="42" height="20" uuid="4d203bd2-f200-4fc8-b9c4-b91410426fd8"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 			</frame>

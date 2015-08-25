@@ -17,7 +17,7 @@
 	<title>
 		<band height="139" splitType="Stretch">
 			<staticText>
-				<reportElement x="134" y="103" width="372" height="36" forecolor="#336600" uuid="b8478e84-4486-44e9-880f-de92f8bc45f3"/>
+				<reportElement x="134" y="103" width="441" height="36" forecolor="#336600" uuid="b8478e84-4486-44e9-880f-de92f8bc45f3"/>
 				<textElement>
 					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
@@ -120,7 +120,7 @@
 	</columnHeader>
 	<detail>
 		<band height="32" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="132" height="32" uuid="cb2ba23f-c214-4a14-b2a9-a9e318e65319"/>
 				<box leftPadding="4">
 					<pen lineWidth="1.0"/>
@@ -134,7 +134,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="132" y="0" width="132" height="32" uuid="ae67ee21-8c3e-4fc7-95ba-6a04f3c396e3"/>
 				<box leftPadding="4">
 					<pen lineWidth="1.0"/>
@@ -148,7 +148,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="264" y="0" width="156" height="32" uuid="793721b5-edeb-46fd-aec6-7acebe995898"/>
 				<box leftPadding="4">
 					<pen lineWidth="1.0"/>
@@ -162,7 +162,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="0" width="121" height="32" uuid="01cacc21-e83b-48bf-afbd-18b08aa2250f"/>
 				<box leftPadding="4">
 					<pen lineWidth="1.0"/>
@@ -176,7 +176,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaNacimiento}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="541" y="0" width="119" height="32" uuid="ea157b8e-69aa-4980-8dc2-032c91a0c45f"/>
 				<box leftPadding="4">
 					<pen lineWidth="1.0"/>
@@ -207,14 +207,14 @@
 							</textElement>
 							<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 						</textField>
-						<textField>
-							<reportElement x="504" y="4" width="80" height="20" uuid="ab70402f-cd77-4cae-8aee-c04aa22fdef6"/>
-							<textElement textAlignment="Right"/>
-							<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-						</textField>
 						<textField evaluationTime="Report">
-							<reportElement x="584" y="4" width="40" height="20" uuid="0dba674e-ac43-4cfd-9efa-27f93680ec8d"/>
+							<reportElement x="609" y="4" width="42" height="20" uuid="99d5637d-f78e-4b43-b4f5-188f776c7000"/>
 							<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="341" y="4" width="268" height="20" uuid="149945f2-6be5-4079-85f5-c00e4bed08eb"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 						</textField>
 					</frame>
 				</elementGroup>
