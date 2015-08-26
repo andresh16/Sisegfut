@@ -950,7 +950,6 @@ public class ReportesController {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
-            parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
             
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
@@ -1111,7 +1110,6 @@ public class ReportesController {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
-            parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
             
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");

@@ -1,187 +1,186 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="389be595-d7aa-46cf-8d57-b8c3cf8cd908">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="942" pageHeight="595" orientation="Landscape" columnWidth="902" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="389be595-d7aa-46cf-8d57-b8c3cf8cd908">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nombreCompleto" class="java.lang.String"/>
-	<parameter name="banner" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String"/>
-	<parameter name="foto" class="java.lang.String"/>
-	<parameter name="fecha" class="java.lang.String"/>
-	<parameter name="nombrerecepcion30seg" class="java.lang.String"/>
-	<parameter name="nombreprecisionpase15seg" class="java.lang.String"/>
-	<parameter name="nombreprecisiondisparoempeine" class="java.lang.String"/>
-	<parameter name="nombrepotenciaremate" class="java.lang.String"/>
-	<parameter name="nombrecontrolbalon50seg" class="java.lang.String"/>
-	<parameter name="nombreconduccion" class="java.lang.String"/>
-	<parameter name="nombrecabeceodefensivo" class="java.lang.String"/>
-	<parameter name="nombrecabeceoofensivo" class="java.lang.String"/>
-	<parameter name="nombreaceleracion" class="java.lang.String"/>
+	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="foto" class="java.io.InputStream" isForPrompting="false"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="nombrerecepcion30seg" class="java.lang.String"/>
+	<field name="nombreprecisionpase15seg" class="java.lang.String"/>
+	<field name="nombreprecisiondisparoempeine" class="java.lang.String"/>
+	<field name="nombrepotenciaremate" class="java.lang.String"/>
+	<field name="nombrecontrolbalon50seg" class="java.lang.String"/>
+	<field name="nombreconduccion" class="java.lang.String"/>
+	<field name="nombrecabeceodefensivo" class="java.lang.String"/>
+	<field name="nombrecabeceoofensivo" class="java.lang.String"/>
+	<field name="nombreaceleracion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="293" splitType="Stretch">
 			<rectangle>
-				<reportElement x="335" y="164" width="130" height="119" backcolor="#D9D6D6" uuid="c6294ce0-54ac-4556-af39-3af498b4b971"/>
+				<reportElement x="345" y="164" width="130" height="119" backcolor="#D9D6D6" uuid="c6294ce0-54ac-4556-af39-3af498b4b971"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="352" y="192" width="89" height="34" uuid="9a0e834d-85b1-4446-b2ba-35abf578012a"/>
+				<reportElement x="376" y="210" width="89" height="34" uuid="9a0e834d-85b1-4446-b2ba-35abf578012a"/>
 				<textElement>
 					<font size="18"/>
 				</textElement>
 				<text><![CDATA[Sin Foto]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="231" y="90" width="355" height="59" forecolor="#336600" uuid="cfc7e493-a540-4fd3-8ea2-cc70a0f52233"/>
+				<reportElement x="231" y="90" width="436" height="59" forecolor="#336600" uuid="cfc7e493-a540-4fd3-8ea2-cc70a0f52233"/>
 				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Histórico de Medidas Antropométricas de "+$P{nombreCompleto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Histórico de Pruebas de Control Técnico de "+$P{nombreCompleto}]]></textFieldExpression>
 			</textField>
-			<image onErrorType="Icon">
+			<image onErrorType="Blank">
 				<reportElement x="2" y="0" width="353" height="70" uuid="c4837dfb-68d3-4650-a334-b39d2c7c79e5"/>
-				<imageExpression><![CDATA[$P{banner}
-]]></imageExpression>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image onErrorType="Icon">
 				<reportElement x="731" y="0" width="71" height="70" uuid="8ae54366-f89a-4d34-8a5f-09348975680a"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
-			<image onErrorType="Blank">
-				<reportElement x="335" y="164" width="130" height="119" uuid="f8050fba-3e93-40fc-895f-e2fcdff4564c"/>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="345" y="164" width="130" height="119" uuid="f8050fba-3e93-40fc-895f-e2fcdff4564c"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="34" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="7" y="0" width="71" height="33" uuid="dc90919e-c356-4da1-9e4c-a6b7e8992214"/>
+				<reportElement mode="Opaque" x="2" y="0" width="145" height="45" backcolor="#CCFFCC" uuid="dc90919e-c356-4da1-9e4c-a6b7e8992214"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Prueba]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="78" y="0" width="70" height="33" uuid="dbaf4548-3601-4cb3-a677-5db9f555d0b0"/>
+				<reportElement mode="Opaque" x="147" y="0" width="86" height="45" backcolor="#CCFFCC" uuid="dbaf4548-3601-4cb3-a677-5db9f555d0b0"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recepción 30 seg]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="0" width="83" height="33" uuid="6f1fe1c5-02f7-463d-b93b-2e55a74810bc"/>
+				<reportElement mode="Opaque" x="233" y="0" width="69" height="45" backcolor="#CCFFCC" uuid="6f1fe1c5-02f7-463d-b93b-2e55a74810bc"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Presición Pase 15 seg]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="231" y="0" width="100" height="33" uuid="f2dcd2a0-da79-48d8-8f45-c98ed68cc2da"/>
+				<reportElement mode="Opaque" x="302" y="0" width="100" height="45" backcolor="#CCFFCC" uuid="f2dcd2a0-da79-48d8-8f45-c98ed68cc2da"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Presición Disparo Empeine]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="331" y="0" width="73" height="33" uuid="cf6b082d-aaf7-4234-a490-6eb3c8cb1d26"/>
+				<reportElement mode="Opaque" x="402" y="0" width="73" height="45" backcolor="#CCFFCC" uuid="cf6b082d-aaf7-4234-a490-6eb3c8cb1d26"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Potencia Remate]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="404" y="0" width="85" height="33" uuid="464f1d54-dd54-40c8-819b-d882713eddf5"/>
+				<reportElement mode="Opaque" x="475" y="0" width="73" height="45" backcolor="#CCFFCC" uuid="464f1d54-dd54-40c8-819b-d882713eddf5"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Control Balón 50 seg]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="489" y="0" width="78" height="33" uuid="302b933e-c839-496d-b806-cc4b6343cc58"/>
+				<reportElement mode="Opaque" x="548" y="0" width="90" height="45" backcolor="#CCFFCC" uuid="302b933e-c839-496d-b806-cc4b6343cc58"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Conducción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="718" y="0" width="81" height="33" uuid="c364152f-6dba-45db-8b29-01181772c8a4"/>
+				<reportElement mode="Opaque" x="789" y="0" width="84" height="45" backcolor="#CCFFCC" uuid="c364152f-6dba-45db-8b29-01181772c8a4"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Aceleración]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="567" y="0" width="81" height="33" uuid="f0d071ea-adab-46f3-8e21-ab295a92f40d"/>
+				<reportElement mode="Opaque" x="638" y="0" width="81" height="45" backcolor="#CCFFCC" uuid="f0d071ea-adab-46f3-8e21-ab295a92f40d"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cabeceo Defensivo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="648" y="0" width="70" height="33" uuid="18b19847-e5f8-47b8-9897-c0345b36eead"/>
+				<reportElement mode="Opaque" x="719" y="0" width="70" height="45" backcolor="#CCFFCC" uuid="18b19847-e5f8-47b8-9897-c0345b36eead"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cabeceo Ofensivo]]></text>
@@ -190,112 +189,142 @@
 	</pageHeader>
 	<detail>
 		<band height="35" splitType="Stretch">
-			<textField>
-				<reportElement x="7" y="0" width="71" height="34" uuid="0bc59474-3e1a-4634-b84e-e6cf4d583aa8"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2" y="0" width="145" height="35" uuid="95d5813d-b5a4-498b-9f64-e03524cff0f6"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="78" y="0" width="70" height="34" uuid="5ea206dd-c441-4b62-a71a-e22df381c6e7"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="147" y="0" width="86" height="35" uuid="b98a3d71-af5c-4c4f-866e-9d118d209a3d"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombrerecepcion30seg}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrerecepcion30seg}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="148" y="0" width="83" height="34" uuid="ec96c6e8-5087-4a92-9c4f-23a04deeab45"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="233" y="0" width="69" height="35" uuid="5c6c7e32-e667-4463-ad40-82042db90e99"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombreprecisionpase15seg}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreprecisionpase15seg}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="231" y="0" width="100" height="34" uuid="73991961-7f4f-4537-8679-f9258171525a"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="302" y="0" width="100" height="35" uuid="c0d5afb5-c4cc-4bb1-9b52-6be8146253f9"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombreprecisiondisparoempeine}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreprecisiondisparoempeine}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="331" y="0" width="73" height="34" uuid="f3cfd764-520a-4eb4-b20f-8d672ef65373"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="402" y="0" width="73" height="35" uuid="7d6d2cfe-f050-4aed-8e69-28896496d869"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombrepotenciaremate}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrepotenciaremate}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="404" y="0" width="85" height="34" uuid="41e9ab96-229b-4738-8fc0-ebbb7353b654"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="475" y="0" width="73" height="35" uuid="ceed714a-390e-4202-8d33-4188b0f0aee5"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombrecontrolbalon50seg}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecontrolbalon50seg}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="489" y="0" width="78" height="34" uuid="b9fe4f89-edf0-48dd-a4b0-420d30adcac9"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="548" y="0" width="90" height="35" uuid="fb65b4bc-6ab3-4aef-be3a-1b0297fb0dea"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombreconduccion}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreconduccion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="648" y="0" width="70" height="34" uuid="f6274455-1ce0-4f63-b0d5-0959a5eacafb"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="638" y="0" width="81" height="35" uuid="5bf647d7-df87-4308-b238-f93ed203edb0"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombrecabeceoofensivo}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecabeceodefensivo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="567" y="0" width="81" height="34" uuid="ca940ff1-bad7-448a-a14b-5092e1237302"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="719" y="0" width="70" height="35" uuid="34e60ea1-007b-4021-b753-93b098c17240"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombrecabeceodefensivo}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecabeceoofensivo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="718" y="0" width="81" height="34" uuid="ac348684-6255-435e-bb2d-a5346c996670"/>
-				<box>
+			<textField isBlankWhenNull="true">
+				<reportElement x="789" y="0" width="84" height="35" uuid="6f2cb4a1-97e6-4474-951f-5550fc5cf943"/>
+				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$P{nombreaceleracion}]]></textFieldExpression>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreaceleracion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="29" splitType="Stretch">
 			<frame>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="29" forecolor="#339900" backcolor="#99FF99" uuid="1154f41c-44bc-47c0-a5d0-60dcda8c170d">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="873" height="29" forecolor="#339900" backcolor="#99FF99" uuid="1154f41c-44bc-47c0-a5d0-60dcda8c170d">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 				</reportElement>
 				<textField pattern="EEEEE dd MMMMM yyyy">
@@ -306,12 +335,12 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="491" y="4" width="268" height="20" uuid="3ad51a59-2519-47b4-a0b6-08806436dc3b"/>
+					<reportElement x="548" y="4" width="268" height="20" uuid="3ad51a59-2519-47b4-a0b6-08806436dc3b"/>
 					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement x="759" y="4" width="42" height="20" uuid="3038db40-ddd6-40cf-abfd-3f55bf862382"/>
+					<reportElement x="816" y="4" width="42" height="20" uuid="3038db40-ddd6-40cf-abfd-3f55bf862382"/>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 			</frame>
