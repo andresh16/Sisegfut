@@ -372,6 +372,9 @@ public final class PanelAntropometrico extends LayoutContainer {
 
         Button btnEliminar = new Button("Eliminar", listenerEliminar());
         btnEliminar.setIcon(Resources.ICONS.iconoEliminar());
+        
+        Button btnReporte = new Button("Histórico", ListenerGenerarReporte());
+        btnReporte.setIcon(Resources.ICONS.iconoPDF());
 
         FormPanel panel = crearFormulario();
 //        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
@@ -442,6 +445,7 @@ public final class PanelAntropometrico extends LayoutContainer {
         toolBar.add(btnGuardar);
         toolBar.add(btnEliminar);
         toolBar.add(btnLimpiar);
+        toolBar.add(btnReporte);
         toolBar.add(lbNombreDep);
 
         cpForm.setTopComponent(toolBar);
@@ -560,6 +564,25 @@ public final class PanelAntropometrico extends LayoutContainer {
             }
         };
 
+    }
+    
+    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+                if (idDeportista != null) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/HistoricoAntropometrico/";
+                    // deportista seleccionado
+                    redireccionarA(base + idDeportista);
+
+                } else {
+                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
+                }
+
+            }
+        };
     }
 
     public Antropometrico obtenerDatosFormulario() {
@@ -879,24 +902,6 @@ public final class PanelAntropometrico extends LayoutContainer {
           });
     
     
-    }
-    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
-        return new SelectionListener<ButtonEvent>() {
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-
-                if (dep != null) {
-
-                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaAntropometrico/";
-                    // deportista seleccionado
-                    redireccionarA(base + dep.getId());
-
-                } else {
-                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
-                }
-
-            }
-        };
     }
     
     public RPCAdminDeportistaAsync getServiceDeportista() {

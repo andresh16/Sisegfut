@@ -17,13 +17,16 @@ import co.com.sisegfut.client.datos.dominio.TestCooper;
 import co.com.sisegfut.client.datos.dominio.TestKarvonen;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
+import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometricoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxCategoria;
+import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
 import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
 import co.com.sisegfut.client.datos.dominio.dto.DTOTestCooperxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOTestKarvonenxCategoria;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTestKarvonenxDeportista;
 import co.com.sisegfut.server.util.Formatos;
 import co.com.sisegfut.server.datos.dao.DaoAntecedentesDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoAntropometrico;
@@ -839,6 +842,7 @@ public class ReportesController {
             return retorno;
         }
     }
+    
     @RequestMapping(value = "/HistoricoTestCooper/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoTestCopper(
@@ -882,25 +886,267 @@ public class ReportesController {
             if(listaDeportistaTcReport.isEmpty() || listaDeportistaTcReport.size()==0){
                listaDeportistaTc.add(new DTOTestCooperxDeportista("","","","","",""));
             }else{
-            for (TestCooper testCooper : listaDeportistaTcReport) {
-                DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
+                for (TestCooper testCooper : listaDeportistaTcReport) {
+                    DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
 
-                dtoTestCooper.setFecha(Formatos.fechaHoraMilitar(testCooper.getFecha()));
+                    dtoTestCooper.setFecha(Formatos.fechaHoraMilitar(testCooper.getFecha()));
 
-                dtoTestCooper.setDistancia(testCooper.getDistancia().toString());
-                dtoTestCooper.setCondicionFisica(testCooper.getCondicionFisica());
-                dtoTestCooper.setConsumOxigeno(testCooper.getConsumOxigeno());
-                dtoTestCooper.setVo2max(testCooper.getVo2max());
-                dtoTestCooper.setVelocidad(testCooper.getVelocidad());
-                listaDeportistaTc.add(dtoTestCooper);
-                
-            }
+                    dtoTestCooper.setDistancia(testCooper.getDistancia().toString());
+                    dtoTestCooper.setCondicionFisica(testCooper.getCondicionFisica());
+                    dtoTestCooper.setConsumOxigeno(testCooper.getConsumOxigeno());
+                    dtoTestCooper.setVo2max(testCooper.getVo2max());
+                    dtoTestCooper.setVelocidad(testCooper.getVelocidad());
+                    listaDeportistaTc.add(dtoTestCooper);
+
+                }
             }
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
 
             
             modelAndView = new ModelAndView("pdfHistoricoTestCooper", parameterMap);
+            
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+    
+    @RequestMapping(value = "/HistoricoTestKarvonen/{idDeportista}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportHistoricoTestKarvonen(
+            @PathVariable Long idDeportista,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            Deportista dep = daoDeportista.getById(idDeportista);
+            
+            Map<String, Object> parameterMap = new HashMap<String, Object>();            
+                       
+            if (dep.getFoto() != null) {
+                InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+                parameterMap.put("foto", foto);
+            }
+            parameterMap.put("documento", dep.getDocumento());
+            parameterMap.put("nombreCompleto", dep.getNombreCompleto());
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+            
+            List<TestKarvonen> listaDeportistaTkReport = daoTestKarvonen.TestKarvonenXDeportista(idDeportista);
+            List<DTOTestKarvonenxDeportista> listaDeportistaTk = new ArrayList<DTOTestKarvonenxDeportista>();
+            
+            if(listaDeportistaTkReport.isEmpty() || listaDeportistaTkReport.size()==0){
+               listaDeportistaTk.add(new DTOTestKarvonenxDeportista("","","",""));
+            }else{
+                for (TestKarvonen testkarvonen : listaDeportistaTkReport) {
+                    DTOTestKarvonenxDeportista dtoTestKarvonen = new DTOTestKarvonenxDeportista();
+
+                    dtoTestKarvonen.setFecha(Formatos.fechaHoraMilitar(testkarvonen.getFecha()));
+
+                    dtoTestKarvonen.setFcReposo(testkarvonen.getFcReposo().toString());
+                    dtoTestKarvonen.setPorcentaje(testkarvonen.getPorcentaje().toString());
+                    dtoTestKarvonen.setResKarvonen(testkarvonen.getResultadoKarvonen());
+                    listaDeportistaTk.add(dtoTestKarvonen);
+
+                }
+            }
+//           
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
+            
+            modelAndView = new ModelAndView("pdfHistoricoTestKarvonen", parameterMap);
+            
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+    
+    @RequestMapping(value = "/HistoricoAntropometrico/{idDeportista}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportHistoricoAntropometrico(
+            @PathVariable Long idDeportista,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            Deportista dep = daoDeportista.getById(idDeportista);
+            
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+            
+                       
+            if (dep.getFoto() != null) {
+                InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+                parameterMap.put("foto", foto);
+            }
+            parameterMap.put("documento", dep.getDocumento());
+            parameterMap.put("nombreCompleto", dep.getNombreCompleto());
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+            
+            List<Antropometrico> listaDeportistaAntReport = daoAntropometrico.AntropometricoxDeportista(idDeportista);
+            List<DTOAntropometricoxDeportista> listaDeportistaAnt = new ArrayList<DTOAntropometricoxDeportista>();
+               //////
+            
+            if(listaDeportistaAntReport.isEmpty() || listaDeportistaAntReport.size()==0){
+               listaDeportistaAnt.add(new DTOAntropometricoxDeportista("","","","","","","","","","","",""));
+            }else{
+                for (Antropometrico antropometrico : listaDeportistaAntReport) {
+                    DTOAntropometricoxDeportista dtoAntropometrico = new DTOAntropometricoxDeportista();
+
+                    dtoAntropometrico.setFecha(Formatos.fechaHoraMilitar(antropometrico.getFecha()));
+
+                    dtoAntropometrico.setPerabdominal(antropometrico.getPerabdominal().toString());
+                    dtoAntropometrico.setPerbrazorelajado(antropometrico.getPerbrazorelajado().toString());
+                    dtoAntropometrico.setPercadera(antropometrico.getPercadera().toString());
+                    dtoAntropometrico.setPerpantorrilla(antropometrico.getPerpantorrilla().toString());
+                    dtoAntropometrico.setPliabdominal(antropometrico.getPliabdominal().toString());
+                    dtoAntropometrico.setPlisubescapular(antropometrico.getPlisubescapular().toString());
+                    dtoAntropometrico.setPlisupraescapular(antropometrico.getPlisupraescapular().toString());
+                    dtoAntropometrico.setPlitricipital(antropometrico.getPlitricipital().toString());
+                    dtoAntropometrico.setPesoGraso(antropometrico.getPesoGraso());
+                    dtoAntropometrico.setPesoMacro(antropometrico.getPesoMacro());
+                    dtoAntropometrico.setPorcentajeGrasa(antropometrico.getPorcentajeGrasa());                                        
+                    listaDeportistaAnt.add(dtoAntropometrico);
+
+                }
+            }
+//           
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAnt));
+            
+            modelAndView = new ModelAndView("pdfHistoricoAntropometrico", parameterMap);
+            
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+    
+    @RequestMapping(value = "/HistoricoControlTecnico/{idDeportista}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportHistoricoControlTecnico(
+            @PathVariable Long idDeportista,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            Deportista dep = daoDeportista.getById(idDeportista);
+            
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+            
+                       
+            if (dep.getFoto() != null) {
+                InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
+                parameterMap.put("foto", foto);
+            }
+            parameterMap.put("documento", dep.getDocumento());
+            parameterMap.put("nombreCompleto", dep.getNombreCompleto());
+            
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+            
+            List<ControlTecnico> listaDeportistaCTReport = daoControlTecnico.CtrlTecXDeportista(idDeportista);
+            List<DTOControlTecnicoxDeportista> listaDeportistaTk = new ArrayList<DTOControlTecnicoxDeportista>();
+            
+            if(listaDeportistaCTReport.isEmpty() || listaDeportistaCTReport.size()==0){
+               listaDeportistaTk.add(new DTOControlTecnicoxDeportista("","","","","","","","","",""));
+            }else{
+                for (ControlTecnico controlTecnico : listaDeportistaCTReport) {
+                    DTOControlTecnicoxDeportista dtoControlTecnico = new DTOControlTecnicoxDeportista();
+
+                    dtoControlTecnico.setFecha(Formatos.fechaHoraMilitar(controlTecnico.getFecha()));
+
+                    dtoControlTecnico.setNombreaceleracion(controlTecnico.getNombreaceleracion().toString());
+                    dtoControlTecnico.setNombrecabeceodefensivo(controlTecnico.getNombrecabeceodefensivo().toString());
+                    dtoControlTecnico.setNombrecabeceoofensivo(controlTecnico.getNombrecabeceoofensivo().toString());
+                    dtoControlTecnico.setNombreconduccion(controlTecnico.getNombreconduccion().toString());
+                    dtoControlTecnico.setNombrecontrolbalon50seg(controlTecnico.getNombrecontrolbalon50seg().toString());
+                    dtoControlTecnico.setNombrepotenciaremate(controlTecnico.getNombrepotenciaremate().toString());
+                    dtoControlTecnico.setNombreprecisiondisparoempeine(controlTecnico.getNombreprecisiondisparoempeine().toString());
+                    dtoControlTecnico.setNombreprecisionpase15seg(controlTecnico.getNombreprecisionpase15seg().toString());
+                    dtoControlTecnico.setNombrerecepcion30seg(controlTecnico.getNombrerecepcion30seg().toString());
+                    listaDeportistaTk.add(dtoControlTecnico);
+
+                }
+            }
+//           
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
+            
+            modelAndView = new ModelAndView("pdfHistoricoControlTecnico", parameterMap);
             
             return modelAndView;
 

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="138" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8162af83-9647-427f-b9f0-7514b7794e87">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="87"/>
 	<parameter name="documento" class="java.lang.String"/>
 	<parameter name="nombreCompleto" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
@@ -20,7 +20,7 @@
 	<title>
 		<band height="293" splitType="Stretch">
 			<rectangle>
-				<reportElement x="206" y="170" width="108" height="104" backcolor="#D9D6D6" uuid="0b566172-d7a5-4db2-a204-1db9b4a0e8ba"/>
+				<reportElement x="225" y="158" width="130" height="119" backcolor="#D9D6D6" uuid="0b566172-d7a5-4db2-a204-1db9b4a0e8ba"/>
 			</rectangle>
 			<image onErrorType="Blank">
 				<reportElement x="2" y="0" width="353" height="79" uuid="9d52a4cd-8f2f-4e86-af20-f43e416d9b80"/>
@@ -47,7 +47,7 @@
 				</staticText>
 			</elementGroup>
 			<image scaleImage="RetainShape" onErrorType="Blank">
-				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="206" y="158" width="132" height="135" uuid="687ea58b-d541-4f60-b6cb-e6ff2bf5f6f1"/>
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="225" y="158" width="132" height="135" uuid="687ea58b-d541-4f60-b6cb-e6ff2bf5f6f1"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>

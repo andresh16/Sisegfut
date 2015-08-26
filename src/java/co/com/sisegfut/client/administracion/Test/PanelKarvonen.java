@@ -245,6 +245,9 @@ public class PanelKarvonen extends LayoutContainer {
         Button btnEliminar = new Button("Eliminar", listenerEliminar());
         btnEliminar.setIcon(Resources.ICONS.iconoEliminar());
 
+        Button btnReporte = new Button("Histórico", ListenerGenerarReporte());
+        btnReporte.setIcon(Resources.ICONS.iconoPDF());
+        
         FormPanel panel = crearFormulario();
 //        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
         cpForm.add(panel);
@@ -311,6 +314,7 @@ public class PanelKarvonen extends LayoutContainer {
         toolBar.add(btnGuardar);
         toolBar.add(btnEliminar);
         toolBar.add(btnLimpiar);
+        toolBar.add(btnReporte);
         toolBar.add(lbNombreDep);
 
         cpForm.setTopComponent(toolBar);
@@ -523,6 +527,25 @@ public class PanelKarvonen extends LayoutContainer {
         });
 
     }
+    
+    public SelectionListener<ButtonEvent> ListenerGenerarReporte() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+
+                if (idDeportista != null) {
+
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/HistoricoTestKarvonen/";
+                    // deportista seleccionado
+                    redireccionarA(base + idDeportista);
+
+                } else {
+                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
+                }
+
+            }
+        };
+    }
 
     public TestKarvonen obtenerDatosFormulario(String resultadoKarvonen) {
 
@@ -603,5 +626,15 @@ public class PanelKarvonen extends LayoutContainer {
         Long resultaEntero = Math.round(resultadoKarvonen);
         return resultaEntero.toString();
     }
-
+    
+      /**
+     * Mediante una llamada nativa redirecciona el browser a la dirección
+     * especificada, en el caso de descargar archivos el contenido del browser
+     * se conserva y simplemente lanza el archivo ;)
+     *
+     * @param url URL a ser cargada
+     */
+    private static native void redireccionarA(String url)/*-{
+     $wnd.location = url;
+     }-*/;
 }
