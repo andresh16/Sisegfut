@@ -220,7 +220,7 @@ public class TestData {
 
   
 
-  private static final String[] monthsAbbreviated = new String[] {
+    private static final String[] monthsAbbreviated = new String[] {
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 //  private static final String[] monthsFull = new String[] {
@@ -241,11 +241,29 @@ public class TestData {
     }
     return data;
   }
+   public static List<Data> getEstratos(int size, double min, double scale) {
+    List<Data> data = new ArrayList<Data>();
+    for (int i = 0; i < size; i++) {
+      data.add(new Data(i+"",i+"", Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min))));
+    }
+    return data;
+  }
 
   public static List<Data> getData(int size, double min, double scale) {
     List<Data> data = new ArrayList<Data>();
     for (int i = 0; i < size; i++) {
-      data.add(new Data(i+"",situacionesJuego[i % situacionesJuego.length], Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
+      data.add(new Data(i+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
+          Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
+          Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
+          Math.floor(Math.max(Math.random() * scale, min))));
+    }
+    return data;
+  }
+  
+   public static List<Data> getEstratos2(int size, double min, double scale) {
+    List<Data> data = new ArrayList<Data>();
+    for (int i = 0; i < size; i++) {
+      data.add(new Data(i+"","a", Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
           Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
           Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)), Math.floor(Math.max(Math.random() * scale, min)),
           Math.floor(Math.max(Math.random() * scale, min))));

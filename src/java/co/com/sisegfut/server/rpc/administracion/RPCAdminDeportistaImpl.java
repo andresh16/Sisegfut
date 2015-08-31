@@ -5,8 +5,10 @@
  */
 package co.com.sisegfut.server.rpc.administracion;
 
+import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import co.com.sisegfut.server.util.Formatos;
@@ -95,8 +97,8 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
 
     @Override
     public PagingLoadResult<Deportista> getDeportistas() {
-
-    List<Deportista> listaRetorno = new ArrayList<Deportista>();
+        
+        List<Deportista> listaRetorno = new ArrayList<Deportista>();
         try {
             listaRetorno = daoDeportista.getDeportistas();
         } catch (Exception ex) {
@@ -105,7 +107,24 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         PagingLoadResult<Deportista> loadResult = new BasePagingLoadResult<Deportista>(listaRetorno, 1, 1000);
         return loadResult;
     }
-    
-    
+
+    @Override
+    public List<Estratos> getDeportistasEstratificacion() {
+        List<DTOEstratosCantidad> cantidadEstratos=null;
+        System.out.println("" + cantidadEstratos);
+        List<Estratos> estratos= new ArrayList<Estratos>();
+        try {
+            cantidadEstratos=daoDeportista.getCantidadPorEstrato();
+        } catch (Exception ex) {
+            Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (DTOEstratosCantidad estrato : cantidadEstratos) {
+            int i=0;
+            estratos.add(new Estratos((i+1)+"","Estrato "+estrato.getEstrato(),estrato.getCantidad() ));
+            i++;
+        }
+        return estratos;
+        
+    }
 
 }

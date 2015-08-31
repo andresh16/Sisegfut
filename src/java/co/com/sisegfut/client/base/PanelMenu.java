@@ -18,6 +18,7 @@ import co.com.sisegfut.client.administracion.tipodocumento.PanelAdminTipoDocumen
 import co.com.sisegfut.client.administracion.torneos.PanelAdminTorneos;
 import co.com.sisegfut.client.administracion.usuarios.FormularioUsuarios;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.informes.InformeEstratificacion;
 import co.com.sisegfut.client.informes.PanelInformes;
 
 import co.com.sisegfut.client.util.BeansLocales;
@@ -97,6 +98,7 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdmTorneos;
     private Command cmdAdmTests;
     private Command cmdAdminRivales;
+    private Command cmdInfoEstratificacion;
 
     /**
      * Menú de la aplicación
@@ -313,6 +315,12 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdDatosUsuario);
+        menuBar.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Estratificación"
+                + "</img>",
+                true,
+                cmdInfoEstratificacion);
 
         //------------
         menuBar.addItem(
@@ -591,6 +599,14 @@ public class PanelMenu extends LayoutContainer {
 
                 PanelAdminEps adminEps = new PanelAdminEps();
                 adminEps.show();
+            }
+        };
+        cmdInfoEstratificacion = new Command() {
+
+            public void execute() {
+
+                InformeEstratificacion informeEstratificacion = new InformeEstratificacion();
+                informeEstratificacion.show();
             }
         };
 

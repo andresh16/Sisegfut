@@ -5,10 +5,12 @@
  */
 package co.com.sisegfut.client.util.rpc;
 
+import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -27,5 +29,7 @@ public interface RPCAdminDeportistaAsync extends RPCMaestroAsync<Deportista> {
     public void getDeportistaxCategoria(Long idCategoria, AsyncCallback<PagingLoadResult<Deportista>> callback);
     
     public void getDeportistas(AsyncCallback<PagingLoadResult<Deportista>> callback);
+    
+    public void getDeportistasEstratificacion(AsyncCallback<List<Estratos>> callback);
 
 }

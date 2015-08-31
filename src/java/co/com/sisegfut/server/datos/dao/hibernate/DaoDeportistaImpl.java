@@ -232,7 +232,7 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
 
     @Transactional(readOnly = true)
     @Override
-    public List<DTOEstratosCantidad> getCantidadPorEstraro() throws Exception {
+    public List<DTOEstratosCantidad> getCantidadPorEstrato() throws Exception {
         List<DTOEstratosCantidad> listaReporte = new ArrayList<DTOEstratosCantidad>();
         String sql = "select estrato,Count(*)as cantidad from deportista as d group by estrato";
 // Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets

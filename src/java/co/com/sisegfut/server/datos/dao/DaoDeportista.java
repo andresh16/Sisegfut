@@ -27,7 +27,7 @@ public interface DaoDeportista extends DaoGenerico<Deportista>{
       
       public List<Deportista> getDeportistas()throws Exception;
       
-      public List<DTOEstratosCantidad> getCantidadPorEstraro()throws Exception;
+      public List<DTOEstratosCantidad> getCantidadPorEstrato()throws Exception;
       
       
 }

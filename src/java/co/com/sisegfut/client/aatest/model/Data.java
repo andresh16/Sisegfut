@@ -16,7 +16,7 @@ public class Data implements Serializable {
 
     private String id;// = "" + lastId++ ;
     private String name;
-    private double cantidadAnfitrion;
+    private double data1;
     private double data2;
     private double data3;
     private double data4;
@@ -43,13 +43,13 @@ public class Data implements Serializable {
     public Data(String id, String name, double data1) {
         this.id = id;
         this.name = name;
-        this.cantidadAnfitrion = data1;
+        this.data1 = data1;
     }
     
-    public Data(String id, String name, double cantidadAnfitrion, double data2) {
+    public Data(String id, String name, double data1, double data2) {
         this.id=id;
         this.name = name;
-        this.cantidadAnfitrion = cantidadAnfitrion;
+        this.data1 = data1;
         this.data2 = data2;
     }
 
@@ -73,7 +73,7 @@ public class Data implements Serializable {
         super();
         this.id = id;
         this.name = name;
-        this.cantidadAnfitrion = cantidadAnfitrion;
+        this.data1 = data1;
         this.data2 = data2;
         this.data3 = data3;
         this.data4 = data4;
@@ -82,12 +82,6 @@ public class Data implements Serializable {
         this.data7 = data7;
         this.data8 = data8;
         this.data9 = data9;
-    }
-
-    
-    
-    public long getCantidadAnfitrion1Int() {
-        return (long) cantidadAnfitrion;
     }
 
     public double getData2() {
@@ -126,13 +120,14 @@ public class Data implements Serializable {
         return name;
     }
 
-    public double getCantidadAnfitrion() {
-        return cantidadAnfitrion;
+    public double getData1() {
+        return data1;
     }
 
-    public void setCantidadAnfitrion(double cantidadAnfitrion) {
-        this.cantidadAnfitrion = cantidadAnfitrion;
+    public void setData1(double data1) {
+        this.data1 = data1;
     }
+
 
 
     public void setData2(double data2) {

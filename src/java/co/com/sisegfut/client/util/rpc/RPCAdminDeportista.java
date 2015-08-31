@@ -6,9 +6,11 @@
 
 package co.com.sisegfut.client.util.rpc;
 
+import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -27,6 +29,8 @@ public interface RPCAdminDeportista extends RPCMaestro<Deportista>{
      public String CalcularFCM(Date fechaNacimiento);
      
      public Integer CalcularEdad(Date fechaNacimiento);
+     
+     public List<Estratos> getDeportistasEstratificacion();
      
     
 }
