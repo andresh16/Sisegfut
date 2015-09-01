@@ -419,7 +419,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                                 MessageBox.alert("Alerta", "No tiene competencia. ", null);
                             }
                         } else {
-                            MessageBox.alert("Cuerpo técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo tecnico. ", null);
+                            MessageBox.alert("Cuerpo técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo técnico. ", null);
                         }
 
                     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="942" pageHeight="595" orientation="Landscape" columnWidth="902" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="389be595-d7aa-46cf-8d57-b8c3cf8cd908">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="81"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nombreCompleto" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
@@ -23,17 +23,17 @@
 	<title>
 		<band height="293" splitType="Stretch">
 			<rectangle>
-				<reportElement x="345" y="164" width="130" height="119" backcolor="#D9D6D6" uuid="c6294ce0-54ac-4556-af39-3af498b4b971"/>
+				<reportElement x="388" y="149" width="130" height="134" backcolor="#D9D6D6" uuid="c6294ce0-54ac-4556-af39-3af498b4b971"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="376" y="210" width="89" height="34" uuid="9a0e834d-85b1-4446-b2ba-35abf578012a"/>
+				<reportElement x="412" y="206" width="89" height="34" uuid="9a0e834d-85b1-4446-b2ba-35abf578012a"/>
 				<textElement>
 					<font size="18"/>
 				</textElement>
 				<text><![CDATA[Sin Foto]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="231" y="90" width="436" height="59" forecolor="#336600" uuid="cfc7e493-a540-4fd3-8ea2-cc70a0f52233"/>
+				<reportElement x="231" y="90" width="436" height="48" forecolor="#336600" uuid="cfc7e493-a540-4fd3-8ea2-cc70a0f52233"/>
 				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -44,11 +44,11 @@
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image onErrorType="Icon">
-				<reportElement x="731" y="0" width="71" height="70" uuid="8ae54366-f89a-4d34-8a5f-09348975680a"/>
+				<reportElement x="831" y="0" width="71" height="70" uuid="8ae54366-f89a-4d34-8a5f-09348975680a"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="345" y="164" width="130" height="119" uuid="f8050fba-3e93-40fc-895f-e2fcdff4564c"/>
+				<reportElement x="388" y="149" width="130" height="134" uuid="f8050fba-3e93-40fc-895f-e2fcdff4564c"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
 		</band>
@@ -56,7 +56,7 @@
 	<pageHeader>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="2" y="0" width="145" height="45" backcolor="#CCFFCC" uuid="dc90919e-c356-4da1-9e4c-a6b7e8992214"/>
+				<reportElement mode="Opaque" x="2" y="0" width="133" height="45" backcolor="#CCFFCC" uuid="dc90919e-c356-4da1-9e4c-a6b7e8992214"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -69,7 +69,7 @@
 				<text><![CDATA[Fecha Prueba]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="147" y="0" width="86" height="45" backcolor="#CCFFCC" uuid="dbaf4548-3601-4cb3-a677-5db9f555d0b0"/>
+				<reportElement mode="Opaque" x="135" y="0" width="84" height="45" backcolor="#CCFFCC" uuid="dbaf4548-3601-4cb3-a677-5db9f555d0b0"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -82,7 +82,7 @@
 				<text><![CDATA[Recepción 30 seg]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="233" y="0" width="69" height="45" backcolor="#CCFFCC" uuid="6f1fe1c5-02f7-463d-b93b-2e55a74810bc"/>
+				<reportElement mode="Opaque" x="219" y="0" width="83" height="45" backcolor="#CCFFCC" uuid="6f1fe1c5-02f7-463d-b93b-2e55a74810bc"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -190,40 +190,40 @@
 	<detail>
 		<band height="35" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="2" y="0" width="145" height="35" uuid="95d5813d-b5a4-498b-9f64-e03524cff0f6"/>
+				<reportElement x="2" y="0" width="133" height="35" uuid="95d5813d-b5a4-498b-9f64-e03524cff0f6"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="147" y="0" width="86" height="35" uuid="b98a3d71-af5c-4c4f-866e-9d118d209a3d"/>
+				<reportElement x="135" y="0" width="84" height="35" uuid="b98a3d71-af5c-4c4f-866e-9d118d209a3d"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrerecepcion30seg}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="233" y="0" width="69" height="35" uuid="5c6c7e32-e667-4463-ad40-82042db90e99"/>
+				<reportElement x="219" y="0" width="83" height="35" uuid="5c6c7e32-e667-4463-ad40-82042db90e99"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreprecisionpase15seg}]]></textFieldExpression>
@@ -236,7 +236,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreprecisiondisparoempeine}]]></textFieldExpression>
@@ -249,7 +249,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrepotenciaremate}]]></textFieldExpression>
@@ -262,7 +262,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrecontrolbalon50seg}]]></textFieldExpression>
@@ -275,7 +275,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreconduccion}]]></textFieldExpression>
@@ -288,7 +288,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrecabeceodefensivo}]]></textFieldExpression>
@@ -301,7 +301,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrecabeceoofensivo}]]></textFieldExpression>
@@ -314,7 +314,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreaceleracion}]]></textFieldExpression>
