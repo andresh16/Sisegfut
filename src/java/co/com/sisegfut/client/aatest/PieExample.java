@@ -139,7 +139,7 @@ public class PieExample implements IsWidget, EntryPoint {
                             + dataAccess.estrato().getValue(item);
                 }
             });
-            tooltip.setDismissDelay(1000);
+            tooltip.setDismissDelay(3000);
 
             final PieSeries<Estratos> series = new PieSeries<Estratos>();
             series.setAngleField(dataAccess.cantidad());
@@ -155,18 +155,22 @@ public class PieExample implements IsWidget, EntryPoint {
             series.setLegendValueProvider(dataAccess.estrato(), new LabelProvider<String>() {
                 @Override
                 public String getLabel(String item) {
-                    return item.substring(0, 3);
+                    return item;
+//                    return item.substring(0, 5);
                 }
             });
 
             final Legend<Estratos> legend = new Legend<Estratos>();
-            legend.setPosition(Position.RIGHT);
+            legend.setPosition(Position.BOTTOM);
             legend.setItemHighlighting(true);
             legend.setItemHiding(true);
             legend.getBorderConfig().setStrokeWidth(0);
+            legend.setLegendInset(6);
+            legend.setPadding(10);
+            
 
             chart = new Chart<Estratos>();
-            chart.setDefaultInsets(50);
+            chart.setDefaultInsets(6);
             chart.setStore(store);
             chart.setShadowChart(false);
             chart.addGradient(slice1);

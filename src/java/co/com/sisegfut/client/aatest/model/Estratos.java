@@ -57,7 +57,7 @@ public class Estratos implements Serializable{
     
         List<Estratos> estratos = new ArrayList<Estratos>();
         for (int i = 0; i < 6; i++) {
-            estratos.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * 100, 1))));
+            estratos.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * 10, 1))));
         }
         
         return estratos;

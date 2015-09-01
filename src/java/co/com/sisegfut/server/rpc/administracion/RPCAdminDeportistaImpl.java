@@ -118,10 +118,9 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         } catch (Exception ex) {
             Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        int i=1;
         for (DTOEstratosCantidad estrato : cantidadEstratos) {
-            int i=0;
-            estratos.add(new Estratos((i+1)+"","Estrato "+estrato.getEstrato(),estrato.getCantidad() ));
-            i++;
+            estratos.add(new Estratos((i++)+"","Estrato "+estrato.getEstrato(),estrato.getCantidad().doubleValue() ));
         }
         return estratos;
         
