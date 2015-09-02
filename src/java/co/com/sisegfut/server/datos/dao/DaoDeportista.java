@@ -7,6 +7,7 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.Deportista;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaPosicion;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.util.Pair;
 import co.com.sisegfut.client.util.consulta.Consulta;
@@ -28,6 +29,13 @@ public interface DaoDeportista extends DaoGenerico<Deportista>{
       public List<Deportista> getDeportistas()throws Exception;
       
       public List<DTOEstratosCantidad> getCantidadPorEstrato()throws Exception;
+      
+      public List<DTOEstratosCantidad> getCantidadPorEstrato(Long idCategoria)throws Exception;
+      
+      public List<DTODeportistaPosicion> getCantidadPorPosicion()throws Exception;
+      
+      public List<DTODeportistaPosicion> getCantidadPorPosicion(Long idCategoria)throws Exception;
+      
       
       
 }

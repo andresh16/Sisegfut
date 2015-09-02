@@ -8,6 +8,7 @@ package co.com.sisegfut.server.datos.dao.hibernate;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EntidadPerpetua;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaPosicion;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.util.Pair;
 import co.com.sisegfut.client.util.consulta.Comparacion;
@@ -19,7 +20,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import org.aspectj.apache.bcel.generic.AALOAD;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
@@ -243,14 +243,14 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
 //            List resultado = criteria.list();
         for (int i = 1; i < 7; i++) {
             try {
-                
-                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.estrato='"+i+"'";
+
+                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.estrato='" + i + "'";
                 List<Deportista> cantidadPorestrato = (List<Deportista>) sessionFactory.getCurrentSession()
-                    .createSQLQuery(sql1)
-                    .addEntity("d", Deportista.class).list();
-                if(cantidadPorestrato!=null){
-                DTOEstratosCantidad estratosCantidad = new DTOEstratosCantidad(""+i,cantidadPorestrato.size());
-                listaReporte.add(estratosCantidad);
+                        .createSQLQuery(sql1)
+                        .addEntity("d", Deportista.class).list();
+                if (cantidadPorestrato != null) {
+                    DTOEstratosCantidad estratosCantidad = new DTOEstratosCantidad("" + i, cantidadPorestrato.size());
+                    listaReporte.add(estratosCantidad);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -258,6 +258,95 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
             }
         }
         return listaReporte;
+    }
+
+    @Override
+    public List<DTOEstratosCantidad> getCantidadPorEstrato(Long idCategoria) throws Exception {
+        List<DTOEstratosCantidad> listaReporte = new ArrayList<DTOEstratosCantidad>();
+        String sql = "select estrato,Count(*)as cantidad from deportista as d group by estrato";
+// Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets
+//            Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Deportista.class)
+//                    .setProjection(Projections.projectionList()
+//                            .add(Projections.groupProperty("estrato"))
+//                            .add(Projections.count("nombres").as("cantidad")));
+//            List resultado = criteria.list();
+        for (int i = 1; i < 7; i++) {
+            try {
+
+                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and categoria=" + idCategoria + " and d.estrato='" + i + "'";
+                List<Deportista> cantidadPorestrato = (List<Deportista>) sessionFactory.getCurrentSession()
+                        .createSQLQuery(sql1)
+                        .addEntity("d", Deportista.class).list();
+                if (cantidadPorestrato != null) {
+                    DTOEstratosCantidad estratosCantidad = new DTOEstratosCantidad("" + i, cantidadPorestrato.size());
+                    listaReporte.add(estratosCantidad);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return listaReporte;
+    }
+
+    @Override
+    public List<DTODeportistaPosicion> getCantidadPorPosicion() throws Exception {
+        List<DTODeportistaPosicion> listaReporte = new ArrayList<DTODeportistaPosicion>();
+        String sql = "select count(d.posicion) as cantidad,d.posicion  from deportista as d  group by d.posicion order by d.posicion asc";
+// Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets
+//            Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Deportista.class)
+//                    .setProjection(Projections.projectionList()
+//                            .add(Projections.groupProperty("estrato"))
+//                            .add(Projections.count("nombres").as("cantidad")));
+//            List resultado = criteria.list();
+        for (int i = 1; i < 5; i++) {
+            try {
+
+                String sql1 = "select * from deportista where fechaInactivado is null and posicion =" + i;
+                List<Deportista> cantidadPorestrato = (List<Deportista>) sessionFactory.getCurrentSession()
+                        .createSQLQuery(sql1)
+                        .addEntity("d", Deportista.class).list();
+                if (cantidadPorestrato != null) {
+                    DTODeportistaPosicion estratosCantidad = new DTODeportistaPosicion(cantidadPorestrato.size(), "" + i);
+                    listaReporte.add(estratosCantidad);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return listaReporte;
+    }
+
+    @Override
+    public List<DTODeportistaPosicion> getCantidadPorPosicion(Long idCategoria) throws Exception {
+        List<DTODeportistaPosicion> listaReporte = new ArrayList<DTODeportistaPosicion>();
+        String sql = "select count(d.posicion) as cantidad,d.posicion  from deportista as d  group by d.posicion order by d.posicion asc";
+        String sql2 = "select count(d.posicion) as cantidad,d.posicion  from deportista as d where d.categoria="+idCategoria+"  group by d.posicion order by d.posicion asc";
+// Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets
+//            Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Deportista.class)
+//                    .setProjection(Projections.projectionList()
+//                            .add(Projections.groupProperty("estrato"))
+//                            .add(Projections.count("nombres").as("cantidad")));
+//            List resultado = criteria.list();
+        for (int i = 1; i < 5; i++) {
+            try {
+
+                String sql1 = "select * from deportista as d where fechaInactivado is null and posicion =" + i + "and  categoria=" + idCategoria;
+                List<Deportista> cantidadPorestrato = (List<Deportista>) sessionFactory.getCurrentSession()
+                        .createSQLQuery(sql1)
+                        .addEntity("d", Deportista.class).list();
+                if (cantidadPorestrato != null) {
+                    DTODeportistaPosicion deportistaPosicion = new DTODeportistaPosicion(cantidadPorestrato.size(), "" + i);
+                    listaReporte.add(deportistaPosicion);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return listaReporte;
+
     }
 
 }
