@@ -173,15 +173,7 @@ public class DeportistasPosiciones implements IsWidget, EntryPoint {
             chart.setLegend(legend);
             chart.setAnimated(true);
 
-//      TextButton regenerate = new TextButton("Recargar");
-//      regenerate.addSelectHandler(new SelectHandler() {
-//        @Override
-//        public void onSelect(SelectEvent event) {
-//          store.clear();
-//          store.addAll(estratos);
-//          chart.redrawChart();
-//        }
-//      });
+
 // 
             ToggleButton donut = new ToggleButton("Ver en dona");
             donut.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
