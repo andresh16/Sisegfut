@@ -8,6 +8,7 @@ package co.com.sisegfut.server.datos.dao.hibernate;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EntidadPerpetua;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaPosicion;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
 import co.com.sisegfut.client.util.Pair;
@@ -243,14 +244,14 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
 //            List resultado = criteria.list();
         for (int i = 1; i < 7; i++) {
             try {
-                
-                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.estrato='"+i+"'";
+
+                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.estrato='" + i + "'";
                 List<Deportista> cantidadPorestrato = (List<Deportista>) sessionFactory.getCurrentSession()
-                    .createSQLQuery(sql1)
-                    .addEntity("d", Deportista.class).list();
-                if(cantidadPorestrato!=null){
-                DTOEstratosCantidad estratosCantidad = new DTOEstratosCantidad(""+i,cantidadPorestrato.size());
-                listaReporte.add(estratosCantidad);
+                        .createSQLQuery(sql1)
+                        .addEntity("d", Deportista.class).list();
+                if (cantidadPorestrato != null) {
+                    DTOEstratosCantidad estratosCantidad = new DTOEstratosCantidad("" + i, cantidadPorestrato.size());
+                    listaReporte.add(estratosCantidad);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
