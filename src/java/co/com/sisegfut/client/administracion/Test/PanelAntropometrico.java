@@ -31,7 +31,6 @@ import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
-import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -46,7 +45,6 @@ import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
@@ -132,7 +130,7 @@ public final class PanelAntropometrico extends LayoutContainer {
     /**
      * Contiene los textos a presentar en la interfaz web segun el idioma
      */
-    private Main myConstants = (Main) GWT.create(Main.class);
+    private Main myConstants;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -151,7 +149,7 @@ public final class PanelAntropometrico extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Control tecnico");
-            box.setMessage("No se ha detectado ningún servicio RPC");
+            box.setMessage("No se ha detectado ningun servicio RPC");
             box.show();
             return;
         }
@@ -437,12 +435,12 @@ public final class PanelAntropometrico extends LayoutContainer {
 
         cpGrid.add(grid);
         ToolBar toolBar = new ToolBar();
-        cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
-            @Override
-            public void componentSelected(IconButtonEvent ce) {
-               abrirVentana(myConstants.ayudaPanelPIAntropometrico());
-            }
-        }));
+//        cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+//            @Override
+//            public void componentSelected(IconButtonEvent ce) {
+////               abrirVentana();
+//            }
+//        }));
 
         toolBar.add(btnGuardar);
         toolBar.add(btnEliminar);

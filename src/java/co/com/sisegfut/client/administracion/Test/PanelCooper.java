@@ -736,7 +736,7 @@ public class PanelCooper extends LayoutContainer {
             @Override
             public void onFailure(Throwable caught) {
 
-                MessageBox.alert("Error", "No guardo el control técnico", null);
+                MessageBox.alert("Error", "No guardo el onrol técnico", null);
             }
 
             @Override
