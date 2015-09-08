@@ -39,7 +39,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -105,7 +104,7 @@ public class PanelKarvonen extends LayoutContainer {
      * Contiene los textos a presentar en la interfaz web segun el
      * idDeportistaioma
      */
-    private Main myConstants = (Main) GWT.create(Main.class);
+    private Main myConstants;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -221,7 +220,7 @@ public class PanelKarvonen extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
 
         ContentPanel cpGrid = new ContentPanel();
-        cpGrid.setHeaderVisible(true);
+        cpGrid.setHeaderVisible(false);
 //      cpGrid.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cpGrid.setLayout(new FillLayout(Style.Orientation.VERTICAL));
         cpGrid.setFrame(true);
@@ -308,7 +307,7 @@ public class PanelKarvonen extends LayoutContainer {
         cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana(myConstants.ayudaPanelPVKarvonen());
+//                abrirVentana("Guarda eps");
             }
         }));
 
@@ -626,24 +625,6 @@ public class PanelKarvonen extends LayoutContainer {
         resultadoKarvonen = fcr.doubleValue() + porcent * (fcm - fcr);
         Long resultaEntero = Math.round(resultadoKarvonen);
         return resultaEntero.toString();
-    }
-    
-    /**
-     * Abre ventana de ayuda.
-     */
-    private void abrirVentana(String texto) {
-        final Dialog simple = new Dialog();
-        simple.setHeading("Ayuda");
-        simple.setButtons(Dialog.OK);
-        simple.setBodyStyleName("pad-text");
-        simple.addText(texto);
-        simple.getItem(0).getFocusSupport().setIgnore(true);
-        simple.setScrollMode(Style.Scroll.AUTO);
-        simple.setHideOnButtonClick(true);
-        simple.setWidth(550);
-        //simple.setSize(550, 255);
-
-        simple.show();
     }
     
       /**

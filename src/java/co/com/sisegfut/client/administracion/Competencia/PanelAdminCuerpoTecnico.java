@@ -64,7 +64,7 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
     private Button btnAgregar;
     private Button btnEliminar;
     public ComboBoxPersonalCompetencia cbxPersonal;
-    private Main myConstants = (Main) GWT.create(Main.class);;
+    private Main myConstants;
     private ToolBar toolBar;
     private Long idCompetencia;
     private Long idPersonalCuerpoTec = null;
