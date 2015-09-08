@@ -297,7 +297,6 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
                 if(cantidadPorPosicion!=null){
                 DTOPosicionesCantidad posicionCantidad = new DTOPosicionesCantidad(""+i,cantidadPorPosicion.size());
                 listaReporte.add(posicionCantidad);
-                //
                 }
             } catch (Exception e) {
                 e.printStackTrace();
