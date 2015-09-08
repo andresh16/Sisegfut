@@ -101,7 +101,7 @@ public class ejemploBarras implements IsWidget {
             axis.setDisplayGrid(true);
             axis.setMinimum(0);
             axis.setInterval(1);
-            axis.setMaximum(15);
+            axis.setMaximum(20);
 
             title = new TextSprite("Situaciones de Juego");
             title.setFontSize(18);

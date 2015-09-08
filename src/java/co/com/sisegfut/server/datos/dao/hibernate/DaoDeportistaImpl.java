@@ -9,6 +9,7 @@ import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EntidadPerpetua;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
+import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
 import co.com.sisegfut.client.util.Pair;
 import co.com.sisegfut.client.util.consulta.Comparacion;
 import co.com.sisegfut.client.util.consulta.Consulta;
@@ -19,7 +20,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import org.aspectj.apache.bcel.generic.AALOAD;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
@@ -259,5 +259,50 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
         }
         return listaReporte;
     }
-
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Deportista> deportistaPosicionXCategoria(Long idCategoria) throws Exception {
+        List<Deportista> listaReporte = null;
+        String sql = "Select d.* from deportista d where jugador_comodin=false and categoria=" + idCategoria + " and fechainactivado is null order by posicion asc";
+        try {
+            listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("d", Deportista.class).list();
+            return listaReporte;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<DTOPosicionesCantidad> getCantidadPorPosicion() throws Exception {
+        List<DTOPosicionesCantidad> listaReporte = new ArrayList<DTOPosicionesCantidad>();
+        String sql = "select posicion,Count(*)as cantidad from deportista as d group by posicion";
+// Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets
+//            Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Deportista.class)
+//                    .setProjection(Projections.projectionList()
+//                            .add(Projections.groupProperty("estrato"))
+//                            .add(Projections.count("nombres").as("cantidad")));
+//            List resultado = criteria.list();
+        for (int i = 0; i < 4; i++) {
+            try {
+                
+                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.posicion='"+i+"'";
+                List<Deportista> cantidadPorPosicion = (List<Deportista>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql1)
+                    .addEntity("d", Deportista.class).list();
+                if(cantidadPorPosicion!=null){
+                DTOPosicionesCantidad posicionCantidad = new DTOPosicionesCantidad(""+i,cantidadPorPosicion.size());
+                listaReporte.add(posicionCantidad);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return listaReporte;
+    }
 }

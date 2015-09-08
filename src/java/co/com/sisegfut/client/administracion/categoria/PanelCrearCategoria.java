@@ -132,7 +132,7 @@ public class PanelCrearCategoria extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente la Categoria");
+                    pnlExito.definirTexto("Guardo correctamente la Categoría");
                     pnlExito.setVisible(true);
                 }
             }

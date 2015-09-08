@@ -7,6 +7,7 @@
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.aatest.model.Estratos;
+import co.com.sisegfut.client.aatest.model.Posicion;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import java.util.Date;
@@ -32,5 +33,6 @@ public interface RPCAdminDeportista extends RPCMaestro<Deportista>{
      
      public List<Estratos> getDeportistasEstratificacion();
      
+     public List<Posicion> getDeportistasPosicion();
     
 }

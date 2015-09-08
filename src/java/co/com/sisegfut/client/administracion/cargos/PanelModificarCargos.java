@@ -134,7 +134,7 @@ public class PanelModificarCargos extends LayoutContainer {
 
             Cargos cargos = new Cargos();
             cargos.setId(cbxCargos.getCargoElegido().getId());
-            cargos.setNombrecargo(txtCargo.getValue());
+            cargos.setNombrecargo(txtCargo.getValue().toUpperCase());
 
             getServiceCargos().guardarEntidad(cargos, new AsyncCallback() {
 

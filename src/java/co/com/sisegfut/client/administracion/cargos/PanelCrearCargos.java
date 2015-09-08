@@ -116,7 +116,7 @@ public class PanelCrearCargos extends LayoutContainer {
 
         if (panel.isValid()) {
             Cargos cargos = new Cargos();
-            cargos.setNombrecargo(txtCargo.getValue());
+            cargos.setNombrecargo(txtCargo.getValue().toUpperCase());
 
             getServiceCargos().guardarEntidad(cargos, new AsyncCallback() {
 

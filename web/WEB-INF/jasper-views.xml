@@ -351,4 +351,32 @@
         </property>
     </bean>
     
+    <!-- Reporte de Deportista por Posición -->
+        
+    <bean id="pdfReporteDeportistaPosicion"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/ReporteDeportistaPosicion.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_DeportistasXPosicion.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>
+                
+    <bean id="xlsReporteDeportistaPosicion"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/ReporteDeportistaPosicion.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_DeportistasXPosicion.xls
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
 </beans>

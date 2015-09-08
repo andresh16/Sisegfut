@@ -5,6 +5,7 @@
  */
 package co.com.sisegfut.client.administracion.Competencia;
 
+import co.com.sisegfut.client.aaI18N.Main;
 import co.com.sisegfut.client.aatest.TestDataExt;
 import co.com.sisegfut.client.aatest.model.Tarjeta;
 import co.com.sisegfut.client.datos.dominio.CambiosCompe;
@@ -44,6 +45,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -93,10 +95,13 @@ public class PanelAdminControlJuego extends LayoutContainer {
     private Grid<BeanModel> gridTarjetas;
     private Button btnCrearCambios;
     private Button btnEliminarCambio;
+    private Button btnAyudaCambios;
     private Button btnCrearGol;
     private Button btnEliminarGol;
+    private Button btnAyudaGol;
     private Button btnCrearTarjeta;
     private Button btnEliminarTarjeta;
+    private Button btnAyudaTarjetas;
     private PagingLoader<PagingLoadResult<ModelData>> loaderCambios;
     private PagingLoader<PagingLoadResult<ModelData>> loaderGoles;
     private PagingLoader<PagingLoadResult<ModelData>> loaderTarjetas;
@@ -112,6 +117,11 @@ public class PanelAdminControlJuego extends LayoutContainer {
 
     private Radio rdAnfitrion;
     private Radio rdRival;
+    
+    /**
+     * Contiene los textos a presentar en la interfaz web segun el idioma
+     */
+    private Main myConstants = (Main) GWT.create(Main.class);
 
     public PanelAdminControlJuego() {
         setScrollMode(Style.Scroll.AUTOY);
@@ -232,6 +242,9 @@ public class PanelAdminControlJuego extends LayoutContainer {
         btnEliminarGol = new Button("Eliminar", listenerEliminarGol());
         btnEliminarGol.setIcon(Resources.ICONS.iconoEliminar());
 //        btnAgregar.setEnabled(false);
+        btnAyudaGol = new Button("Ayuda", listenerAyudaGol());
+        btnAyudaGol.setIcon(Resources.ICONS.iconoAyuda());
+//        btnAgregar.setEnabled(false);
 
 //        cbxPersonal.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
 //            @Override
@@ -250,6 +263,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
         toolBar.add(btnCrearGol);
         toolBar.add(new SeparatorToolItem());
         toolBar.add(btnEliminarGol);
+        toolBar.add(new SeparatorToolItem());
+        toolBar.add(btnAyudaGol);
         cp.setTopComponent(toolBar);
         cp.add(gridGoles);
         return cp;
@@ -331,12 +346,16 @@ public class PanelAdminControlJuego extends LayoutContainer {
         Label lbseleccione = new Label();
         lbseleccione.setText("<b>Sustituciones </b>");
 
-        btnCrearCambios = new Button("Realizar sustitución", listenerCrearCambio());
+        btnCrearCambios = new Button("Realizar Sustitución", listenerCrearCambio());
         btnCrearCambios.setIcon(Resources.ICONS.iconoNuevaNota());
 //        btnAgregar.setEnabled(false);
 
         btnEliminarCambio = new Button("", listenerEliminarCambio());
         btnEliminarCambio.setIcon(Resources.ICONS.iconoEliminar());
+//        btnAgregar.setEnabled(false);
+        
+        btnAyudaCambios = new Button("", listenerAyudaCambios());
+        btnAyudaCambios.setIcon(Resources.ICONS.iconoAyuda3());
 //        btnAgregar.setEnabled(false);
 
 //        cbxPersonal.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
@@ -356,6 +375,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
         toolBar.add(btnCrearCambios);
         toolBar.add(new SeparatorToolItem());
         toolBar.add(btnEliminarCambio);
+        toolBar.add(new SeparatorToolItem());
+        toolBar.add(btnAyudaCambios);
         cp.setTopComponent(toolBar);
         cp.add(gridCambios);
         return cp;
@@ -471,6 +492,10 @@ public class PanelAdminControlJuego extends LayoutContainer {
         btnEliminarTarjeta = new Button("", listenerEliminarTarjeta());
         btnEliminarTarjeta.setIcon(Resources.ICONS.iconoEliminar());
 //        btnAgregar.setEnabled(false);
+        
+        btnAyudaTarjetas = new Button("", listenerAyudaTarjetas());
+        btnAyudaTarjetas.setIcon(Resources.ICONS.iconoAyuda());
+//        btnAgregar.setEnabled(false);
 
 //        cbxPersonal.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
 //            @Override
@@ -489,6 +514,8 @@ public class PanelAdminControlJuego extends LayoutContainer {
         toolBar.add(btnCrearTarjeta);
         toolBar.add(new SeparatorToolItem());
         toolBar.add(btnEliminarTarjeta);
+        toolBar.add(new SeparatorToolItem());
+        toolBar.add(btnAyudaTarjetas);
         cp.setTopComponent(toolBar);
         cp.add(gridTarjetas);
         return cp;
@@ -610,6 +637,36 @@ public class PanelAdminControlJuego extends LayoutContainer {
                 AgregarTarjeta();
             }
 
+        };
+
+    }
+    
+    protected SelectionListener<ButtonEvent> listenerAyudaGol() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                abrirVentana(myConstants.ayudaPanelGoles());
+            }
+        };
+
+    }
+    
+    protected SelectionListener<ButtonEvent> listenerAyudaTarjetas() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                abrirVentana(myConstants.ayudaPanelTarjetas());
+            }
+        };
+
+    }
+    
+    protected SelectionListener<ButtonEvent> listenerAyudaCambios() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                abrirVentana(myConstants.ayudaPanelCambios());
+            }
         };
 
     }
@@ -1166,5 +1223,22 @@ public class PanelAdminControlJuego extends LayoutContainer {
         btnEliminarGol.enable();
         btnEliminarTarjeta.enable();
     }
+    
+    /**
+     * Abre ventana de ayuda.
+     */
+    private void abrirVentana(String texto) {
+        final Dialog simple = new Dialog();
+        simple.setHeading("Ayuda");
+        simple.setButtons(Dialog.OK);
+        simple.setBodyStyleName("pad-text");
+        simple.addText(texto);
+        simple.getItem(0).getFocusSupport().setIgnore(true);
+        simple.setScrollMode(Style.Scroll.AUTO);
+        simple.setHideOnButtonClick(true);
+        simple.setWidth(550);
+        //simple.setSize(550, 255);
 
+        simple.show();
+    }
 }

@@ -141,13 +141,13 @@ public class PanelModificarCategoria extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No Modifico el Tipo de Documento");
-                    MessageBox.alert("Error", "No Modifico la Categoria", null);
+                    pnlErrores.aniadir("No Modifico la Categoría");
+                    MessageBox.alert("Error", "No Modifico la Categoría", null);
                 }
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Modifico correctamente la Categoria");
+                    pnlExito.definirTexto("Se Modificó correctamente la Categoría");
                     pnlExito.setVisible(true);
                 }
 

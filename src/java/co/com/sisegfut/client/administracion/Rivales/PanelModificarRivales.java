@@ -172,7 +172,7 @@ public class PanelModificarRivales extends LayoutContainer {
                     Rivales rival = new Rivales();
                     rival.setId(cbxRival.getRivalElegido().getId());
                     rival.setTorneo(cbxTorneo.getTorneosElegido());
-                    rival.setNombreRival(txtRival.getValue());
+                    rival.setNombreRival(txtRival.getValue().toUpperCase());
                     rival.setJugadorComodin(cbxRival.getRivalElegido().getJugadorComodin());
 
                     getServiceRivales().guardarEntidad(rival, new AsyncCallback() {
@@ -186,7 +186,7 @@ public class PanelModificarRivales extends LayoutContainer {
 
                         @Override
                         public void onSuccess(Object result) {
-                            pnlExito.definirTexto("Se Modifico correctamente el rival");
+                            pnlExito.definirTexto("Se Modificó correctamente el rival");
                             pnlExito.setVisible(true);
                         }
 

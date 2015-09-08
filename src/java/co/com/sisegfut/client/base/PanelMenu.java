@@ -18,6 +18,7 @@ import co.com.sisegfut.client.administracion.tipodocumento.PanelAdminTipoDocumen
 import co.com.sisegfut.client.administracion.torneos.PanelAdminTorneos;
 import co.com.sisegfut.client.administracion.usuarios.FormularioUsuarios;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.informes.InformeDeportistasPosicion;
 import co.com.sisegfut.client.informes.InformeEstratificacion;
 import co.com.sisegfut.client.informes.PanelInformes;
 
@@ -99,6 +100,7 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdmTests;
     private Command cmdAdminRivales;
     private Command cmdInfoEstratificacion;
+    private Command cmdInfoDeportistasPosicion;
 
     /**
      * Menú de la aplicación
@@ -321,6 +323,12 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdInfoEstratificacion);
+        menuBar.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Deportistas Por Posición"
+                + "</img>",
+                true,
+                cmdInfoDeportistasPosicion);
 
         //------------
         menuBar.addItem(
@@ -609,7 +617,14 @@ public class PanelMenu extends LayoutContainer {
                 informeEstratificacion.show();
             }
         };
+        cmdInfoDeportistasPosicion = new Command() {
 
+            public void execute() {
+
+                InformeDeportistasPosicion informeDeportistasPosicion = new InformeDeportistasPosicion();
+                informeDeportistasPosicion.show();
+            }
+        };
         cmdAdmCargos = new Command() {
 
             public void execute() {

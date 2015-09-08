@@ -7,6 +7,7 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.Posiciones;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import co.com.sisegfut.client.datos.dominio.Posiciones;
  */
 public interface DaoPosiciones extends DaoGenerico<Posiciones>{
     
+//    public List<Posiciones> getPosicionesxDeportista()throws Exception;
 }

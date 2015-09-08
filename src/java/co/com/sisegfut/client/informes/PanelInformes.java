@@ -25,13 +25,14 @@ public class PanelInformes extends Window {
     private InformeCuenta infoCuenta;
     private InformeDeportista informeDeportista;
     private InformeTest informeTest;
-    TabItem tabInfoCategoria = new TabItem("Informe por categoria");
-    TabItem tabInfoCuenta = new TabItem("Informe por cuenta");
+    private InformeDeportistaPosicion informeDeportistaPosicion;
+    TabItem tabInfoCategoria = new TabItem("Informe por categoría");
+    TabItem tabInfoDeportistaPosicion = new TabItem("Informe deportistas posición");
     TabItem tabInfoTest = new TabItem("Informe tests");
 
     public PanelInformes() {
 
-        setSize(330, 200);
+        setSize(430, 200);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
@@ -46,10 +47,12 @@ public class PanelInformes extends Window {
         infoCuenta = new InformeCuenta();
         informeDeportista = new InformeDeportista();
         informeTest = new InformeTest();
+        informeDeportistaPosicion = new InformeDeportistaPosicion();
 
-        tabInfoCuenta.add(infoCuenta);
-        tabInfoCuenta.addStyleName("pad-text");
-        // panel.add(tabInfoCuenta);
+        tabInfoDeportistaPosicion.setLayout(new FillLayout());
+        tabInfoDeportistaPosicion.addStyleName("pad-text");
+        tabInfoDeportistaPosicion.add(informeDeportistaPosicion);
+        panel.add(tabInfoDeportistaPosicion);
 
         tabInfoCategoria.setLayout(new FillLayout());
         tabInfoCategoria.addStyleName("pad-text");

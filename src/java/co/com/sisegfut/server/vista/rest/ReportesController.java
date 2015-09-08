@@ -1162,4 +1162,79 @@ public class ReportesController {
             return retorno;
         }
     }
+    @RequestMapping(value = "/ReporteDeportistaPosicion/{nombreCategoria}/{categoria}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportDeportistaPosicion(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List<Deportista> listaDep = daoDeportista.deportistaPosicionXCategoria(categoria);
+
+            List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
+
+            for (Deportista deportista : listaDep) {
+
+                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
+
+                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
+                dtoDeportista.setNombres(deportista.getNombres());
+                dtoDeportista.setApellidos(deportista.getApellidos());
+                dtoDeportista.setIdentificacion(deportista.getDocumento());
+                dtoDeportista.setPosicion(deportista.getPosicion().getNombrePosicion());
+
+                listaDeportistaReport.add(dtoDeportista);
+            }
+
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTODeportistaxCategoria());
+            }
+            System.out.println("nombre cat" + nombreCategoria);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("categoria", nombreCategoria);
+
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
 }

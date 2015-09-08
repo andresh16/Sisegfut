@@ -6,7 +6,6 @@
 package co.com.sisegfut.client.aatest;
 
 import co.com.sisegfut.client.aatest.model.Data;
-import co.com.sisegfut.client.aatest.model.Data2;
 import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
@@ -140,6 +139,7 @@ public class PieExample implements IsWidget, EntryPoint {
                 }
             });
             tooltip.setDismissDelay(3000);
+            tooltip.setShowDelay(500);
 
             final PieSeries<Estratos> series = new PieSeries<Estratos>();
             series.setAngleField(dataAccess.cantidad());

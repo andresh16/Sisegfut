@@ -419,7 +419,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                                 MessageBox.alert("Alerta", "No tiene competencia. ", null);
                             }
                         } else {
-                            MessageBox.alert("Cuerpo técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo técnico. ", null);
+                            MessageBox.alert("Cuerpo Técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo técnico. ", null);
                         }
 
                     }
@@ -611,13 +611,13 @@ public class PanelAdminCompetencia extends LayoutContainer {
         fechaActividad.setTime(tmHora.getDateValue().getTime());
         System.out.println("fecha  " + fechaActividad);
         competencia.setFecha(fechaActividad);
-        competencia.setLugar(txtLugar.getValue());
+        competencia.setLugar(txtLugar.getValue().toUpperCase());
         competencia.setTorneo(comboBoxTorneo.getTorneosElegido());
         competencia.setObservacion("");
         competencia.setGolesAnfitrion(0);
         competencia.setGolesRival(0);
         competencia.setFinalizaCompentcia(false);
-        competencia.setObservacion(txtObservaciones.getValue());
+        competencia.setObservacion(txtObservaciones.getValue().toUpperCase());
         return competencia;
     }
 

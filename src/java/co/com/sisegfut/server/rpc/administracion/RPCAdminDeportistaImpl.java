@@ -6,9 +6,12 @@
 package co.com.sisegfut.server.rpc.administracion;
 
 import co.com.sisegfut.client.aatest.model.Estratos;
+import co.com.sisegfut.client.aatest.model.Posicion;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.Posiciones;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
+import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import co.com.sisegfut.server.util.Formatos;
@@ -125,5 +128,61 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         return estratos;
         
     }
-
+    
+    @Override
+    public List<Posicion> getDeportistasPosicion() {
+        List<DTOPosicionesCantidad> cantidadPosicion=null;
+        System.out.println("" + cantidadPosicion);
+        List<Posicion> posicion= new ArrayList<Posicion>();
+        try {
+            cantidadPosicion=daoDeportista.getCantidadPorPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int i=1;
+        for (DTOPosicionesCantidad posiciones : cantidadPosicion) {
+            posicion.add(new Posicion((i++)+"","Posición "+posiciones.getPosicion(),posiciones.getCantidad().doubleValue() ));
+        }
+        return posicion;
+        
+    }
+    
+    final String[] vectorPosiciones = new String[]{
+        "Portero", "Defensa", "Volante", "Delantero"};
+    
+//    @Override
+//    public List<Posiciones> getDeportistasPosicionD() {
+//        List<Posiciones> cantidadPosicion=null;
+//        System.out.println("" + cantidadPosicion);
+//        List<Posiciones> posiciones= new ArrayList<Posiciones>();
+//        try {
+////            cantidadPosicion=daoDeportista.getCantidadPorPosicion();
+//        } catch (Exception ex) {
+//            Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        List<Posicion> data = new ArrayList<Posicion>();
+//        /*
+//         *Inicializo la lista de datas para poder modificarlos segun el equipo 
+//         */
+//        for (int i = 0; i < 3; i++) {
+//            data.add(new Posicion(i + "", vectorPosiciones[i % vectorPosiciones.length], 0));
+//        }
+//        
+//        for (Posiciones posicion : cantidadPosicion) {
+//            int i = 0;
+//            data.set(i, new Posicion(i + "", vectorPosiciones[i % vectorPosiciones.length],  data.get(i).getCantidad() + posicion.getId()));
+//                i++;
+//                data.set(i, new Posicion(i + "", vectorPosiciones[i % vectorPosiciones.length], data.get(i).getCantidad() + posicion.getId()));
+//                i++;
+//                data.set(i, new Posicion(i + "", vectorPosiciones[i % vectorPosiciones.length], data.get(i).getCantidad() + posicion.getId()));
+//                i++;
+//                data.set(i, new Posicion(i + "", vectorPosiciones[i % vectorPosiciones.length], data.get(i).getCantidad() + posiciones.getId()));
+//                i++; 
+//                
+//                
+//        }    
+//         return data;  
+//        
+//        
+//    }
 }

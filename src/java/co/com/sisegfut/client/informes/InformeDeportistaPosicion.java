@@ -26,7 +26,7 @@ import com.google.gwt.core.client.GWT;
  *
  * @author fhurtado
  */
-public class InformeDeportista extends FormPanel {
+public class InformeDeportistaPosicion extends FormPanel {
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
@@ -34,7 +34,7 @@ public class InformeDeportista extends FormPanel {
     private FormBinding formBindings;
     private ComboBoxCategoria cbxCategoria;
 
-    public InformeDeportista() {
+    public InformeDeportistaPosicion() {
         
         setHeaderVisible(false);
         setLayout(new FitLayout());
@@ -78,7 +78,7 @@ public class InformeDeportista extends FormPanel {
                     Long idCategoria = cbxCategoria.getCategoriaElegida().getId();
                     String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
 
-                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportista/";
+                    String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportistaPosicion/";
                     // usuarioSession
                     redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ + tipo);
                     panel.reset();

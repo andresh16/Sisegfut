@@ -40,12 +40,14 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.DNDEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -54,6 +56,7 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.grid.CheckBoxSelectionModel;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -296,6 +299,13 @@ public class PanelAdminConvocados extends LayoutContainer {
 //        btnLimpiar.setIcon(Resources.ICONS.iconoRefrescar());
 
 //        setLayout(new FillLayout(Orientation.VERTICAL));
+        cpju.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                abrirVentana(myConstants.ayudaPanelCompetenciaConvocados());
+            }
+        }));
+        
         ToolBar toolBar = new ToolBar();
 
         toolBar.setSpacing(2);
@@ -719,5 +729,33 @@ public class PanelAdminConvocados extends LayoutContainer {
         setIdCompetencia(null);
 
     }
+    
+    /**
+     * Abre ventana de ayuda.
+     */
+    private void abrirVentana(String texto) {
+        final Dialog simple = new Dialog();
+        simple.setHeading("Ayuda");
+        simple.setButtons(Dialog.OK);
+        simple.setBodyStyleName("pad-text");
+        simple.addText(texto);
+        simple.getItem(0).getFocusSupport().setIgnore(true);
+        simple.setScrollMode(Style.Scroll.AUTO);
+        simple.setHideOnButtonClick(true);
+        simple.setWidth(550);
+        //simple.setSize(550, 255);
 
+        simple.show();
+    }
+    
+      /**
+     * Mediante una llamada nativa redirecciona el browser a la dirección
+     * especificada, en el caso de descargar archivos el contenido del browser
+     * se conserva y simplemente lanza el archivo ;)
+     *
+     * @param url URL a ser cargada
+     */
+    private static native void redireccionarA(String url)/*-{
+     $wnd.location = url;
+     }-*/;
 }

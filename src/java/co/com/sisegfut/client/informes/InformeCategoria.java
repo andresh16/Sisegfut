@@ -92,7 +92,7 @@ public class InformeCategoria extends LayoutContainer {
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
         cbxCategoria.setName("nombrecategoria");
         cbxCategoria.setToolTip(new ToolTipConfig("Categorias", "Elija una categoria.."));
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría");
         cbxCategoria.setAllowBlank(false);
         cbxCategoria.setEditable(false);
         Columna.add(cbxCategoria);

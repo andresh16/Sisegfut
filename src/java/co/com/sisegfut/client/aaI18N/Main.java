@@ -103,7 +103,7 @@ public interface Main extends Constants {
     
     String ayudaPanelCompetencia();
     
-    String ayudaPanelControlDisciplinario();
+    String ayudaPanelGoles();
     
     String ayudaPanelCargarFotoDeportista();
     
@@ -122,5 +122,11 @@ public interface Main extends Constants {
     String ayudaPanelCompetenciaEstadistica();
     
     String ayudaPanelAsistenciaBuscar();
+    
+    String ayudaPanelCompetenciaConvocados();
+    
+    String ayudaPanelCambios();
+    
+    String ayudaPanelTarjetas();
     
 }

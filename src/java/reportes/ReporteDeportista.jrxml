@@ -197,7 +197,7 @@
 			<elementGroup>
 				<elementGroup>
 					<frame>
-						<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="2" y="0" width="658" height="24" forecolor="#339900" backcolor="#99FF99" uuid="5eecf97d-8508-48b4-80f6-ddc6c662fe36">
+						<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="660" height="24" forecolor="#339900" backcolor="#99FF99" uuid="5eecf97d-8508-48b4-80f6-ddc6c662fe36">
 							<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 						</reportElement>
 						<textField pattern="EEEEE dd MMMMM yyyy">
