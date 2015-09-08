@@ -310,25 +310,25 @@ public class PanelMenu extends LayoutContainer {
                 + "Informes "
                 + "</img>",
                 true,
-                cmdInformes);
+                crearMenuInformes());
         menuBar.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Mis datos"
                 + "</img>",
                 true,
                 cmdDatosUsuario);
-        menuBar.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Estratificación"
-                + "</img>",
-                true,
-                cmdInfoEstratificacion);
-        menuBar.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Deportistas Por Posición"
-                + "</img>",
-                true,
-                cmdInfoDeportistasPosicion);
+//        menuBar.addItem(
+//                "<img src='imagenes/iconos/icono2.ico'> "
+//                + "Estratificación"
+//                + "</img>",
+//                true,
+//                cmdInfoEstratificacion);
+//        menuBar.addItem(
+//                "<img src='imagenes/iconos/icono2.ico'> "
+//                + "Deportistas Por Posición"
+//                + "</img>",
+//                true,
+//                cmdInfoDeportistasPosicion);
 
         //------------
         menuBar.addItem(
@@ -459,17 +459,36 @@ public class PanelMenu extends LayoutContainer {
                 + "Pruebas Individuales y Valorativas "
                 + "</img>",
                 true, cmdAdmTests);
-//                crearMenuPruebasValorativas());
 
-//        retorno.addItem(
-//                "<img src='imagenes/iconos/icono2.ico'> "
-//                + "Evaluciones Individuales"
-//                + "</img>",
-//                true,
-//                crearMenuTestIndividual());
         return retorno;
     }
 
+    private MenuBar crearMenuInformes() {
+        MenuBar retorno = new MenuBar(true);
+        //Los comandos fuerom previamente creados
+         
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Estratificación"
+                + "</img>",
+                true,
+                cmdInfoEstratificacion);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Deportistas Por Posición"
+                + "</img>",
+                true,
+                cmdInfoDeportistasPosicion);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Otros"
+                + "</img>",
+                true,
+                cmdInformes); 
+
+        return retorno;
+    }
+    
     private MenuBar crearMenuPruebasValorativas() {
         MenuBar retorno = new MenuBar(true);
         //Los comandos fuerom previamente creados
