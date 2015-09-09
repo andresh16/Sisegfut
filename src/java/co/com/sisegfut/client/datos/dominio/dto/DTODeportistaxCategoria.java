@@ -22,6 +22,15 @@ public class DTODeportistaxCategoria {
     public DTODeportistaxCategoria() {
     }
 
+    public DTODeportistaxCategoria(String fechaNacimiento, String identificacion, String nombres, String apellidos, String posicion) {
+        this.fechaNacimiento = fechaNacimiento;
+        this.identificacion = identificacion;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.posicion = posicion;
+    }
+    
+    
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }

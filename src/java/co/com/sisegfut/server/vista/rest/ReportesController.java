@@ -842,7 +842,7 @@ public class ReportesController {
             return retorno;
         }
     }
-    
+
     @RequestMapping(value = "/HistoricoTestCooper/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoTestCopper(
@@ -863,29 +863,28 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
             Deportista dep = daoDeportista.getById(idDeportista);
-            
+
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-            
-                       
+
             if (dep.getFoto() != null) {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
             parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
-            
+
             List<TestCooper> listaDeportistaTcReport = daoTestCooper.TestCooperXDeportista(idDeportista);
             List<DTOTestCooperxDeportista> listaDeportistaTc = new ArrayList<DTOTestCooperxDeportista>();
                //////
-            
-            if(listaDeportistaTcReport.isEmpty() || listaDeportistaTcReport.size()==0){
-               listaDeportistaTc.add(new DTOTestCooperxDeportista("","","","","",""));
-            }else{
+
+            if (listaDeportistaTcReport.isEmpty() || listaDeportistaTcReport.size() == 0) {
+                listaDeportistaTc.add(new DTOTestCooperxDeportista("", "", "", "", "", ""));
+            } else {
                 for (TestCooper testCooper : listaDeportistaTcReport) {
                     DTOTestCooperxDeportista dtoTestCooper = new DTOTestCooperxDeportista();
 
@@ -903,9 +902,8 @@ public class ReportesController {
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTc));
 
-            
             modelAndView = new ModelAndView("pdfHistoricoTestCooper", parameterMap);
-            
+
             return modelAndView;
 
         } catch (Exception e) {
@@ -922,7 +920,7 @@ public class ReportesController {
             return retorno;
         }
     }
-    
+
     @RequestMapping(value = "/HistoricoTestKarvonen/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoTestKarvonen(
@@ -943,26 +941,26 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
             Deportista dep = daoDeportista.getById(idDeportista);
-            
-            Map<String, Object> parameterMap = new HashMap<String, Object>();            
-                       
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
             if (dep.getFoto() != null) {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
-            
+
             List<TestKarvonen> listaDeportistaTkReport = daoTestKarvonen.TestKarvonenXDeportista(idDeportista);
             List<DTOTestKarvonenxDeportista> listaDeportistaTk = new ArrayList<DTOTestKarvonenxDeportista>();
-            
-            if(listaDeportistaTkReport.isEmpty() || listaDeportistaTkReport.size()==0){
-               listaDeportistaTk.add(new DTOTestKarvonenxDeportista("","","",""));
-            }else{
+
+            if (listaDeportistaTkReport.isEmpty() || listaDeportistaTkReport.size() == 0) {
+                listaDeportistaTk.add(new DTOTestKarvonenxDeportista("", "", "", ""));
+            } else {
                 for (TestKarvonen testkarvonen : listaDeportistaTkReport) {
                     DTOTestKarvonenxDeportista dtoTestKarvonen = new DTOTestKarvonenxDeportista();
 
@@ -977,9 +975,9 @@ public class ReportesController {
             }
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
-            
+
             modelAndView = new ModelAndView("pdfHistoricoTestKarvonen", parameterMap);
-            
+
             return modelAndView;
 
         } catch (Exception e) {
@@ -996,7 +994,7 @@ public class ReportesController {
             return retorno;
         }
     }
-    
+
     @RequestMapping(value = "/HistoricoAntropometrico/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoAntropometrico(
@@ -1017,29 +1015,28 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
             Deportista dep = daoDeportista.getById(idDeportista);
-            
+
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-            
-                       
+
             if (dep.getFoto() != null) {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
             parameterMap.put("documento", dep.getDocumento());
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
-            
+
             List<Antropometrico> listaDeportistaAntReport = daoAntropometrico.AntropometricoxDeportista(idDeportista);
             List<DTOAntropometricoxDeportista> listaDeportistaAnt = new ArrayList<DTOAntropometricoxDeportista>();
                //////
-            
-            if(listaDeportistaAntReport.isEmpty() || listaDeportistaAntReport.size()==0){
-               listaDeportistaAnt.add(new DTOAntropometricoxDeportista("","","","","","","","","","","",""));
-            }else{
+
+            if (listaDeportistaAntReport.isEmpty() || listaDeportistaAntReport.size() == 0) {
+                listaDeportistaAnt.add(new DTOAntropometricoxDeportista("", "", "", "", "", "", "", "", "", "", "", ""));
+            } else {
                 for (Antropometrico antropometrico : listaDeportistaAntReport) {
                     DTOAntropometricoxDeportista dtoAntropometrico = new DTOAntropometricoxDeportista();
 
@@ -1055,16 +1052,16 @@ public class ReportesController {
                     dtoAntropometrico.setPlitricipital(antropometrico.getPlitricipital().toString());
                     dtoAntropometrico.setPesoGraso(antropometrico.getPesoGraso());
                     dtoAntropometrico.setPesoMacro(antropometrico.getPesoMacro());
-                    dtoAntropometrico.setPorcentajeGrasa(antropometrico.getPorcentajeGrasa());                                        
+                    dtoAntropometrico.setPorcentajeGrasa(antropometrico.getPorcentajeGrasa());
                     listaDeportistaAnt.add(dtoAntropometrico);
 
                 }
             }
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaAnt));
-            
+
             modelAndView = new ModelAndView("pdfHistoricoAntropometrico", parameterMap);
-            
+
             return modelAndView;
 
         } catch (Exception e) {
@@ -1081,7 +1078,7 @@ public class ReportesController {
             return retorno;
         }
     }
-    
+
     @RequestMapping(value = "/HistoricoControlTecnico/{idDeportista}",
             method = RequestMethod.GET)
     public ModelAndView doReportHistoricoControlTecnico(
@@ -1102,27 +1099,26 @@ public class ReportesController {
         try {
             log.info("Entra a generar reporte");
             Deportista dep = daoDeportista.getById(idDeportista);
-            
+
             Map<String, Object> parameterMap = new HashMap<String, Object>();
-            
-                       
+
             if (dep.getFoto() != null) {
                 InputStream foto = new ByteInputStream(dep.getFoto(), dep.getFoto().length);
                 parameterMap.put("foto", foto);
             }
             parameterMap.put("nombreCompleto", dep.getNombreCompleto());
-            
+
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);
             java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
             parameterMap.put("logo", logo);
-            
+
             List<ControlTecnico> listaDeportistaCTReport = daoControlTecnico.CtrlTecXDeportista(idDeportista);
             List<DTOControlTecnicoxDeportista> listaDeportistaTk = new ArrayList<DTOControlTecnicoxDeportista>();
-            
-            if(listaDeportistaCTReport.isEmpty() || listaDeportistaCTReport.size()==0){
-               listaDeportistaTk.add(new DTOControlTecnicoxDeportista("","","","","","","","","",""));
-            }else{
+
+            if (listaDeportistaCTReport.isEmpty() || listaDeportistaCTReport.size() == 0) {
+                listaDeportistaTk.add(new DTOControlTecnicoxDeportista("", "", "", "", "", "", "", "", "", ""));
+            } else {
                 for (ControlTecnico controlTecnico : listaDeportistaCTReport) {
                     DTOControlTecnicoxDeportista dtoControlTecnico = new DTOControlTecnicoxDeportista();
 
@@ -1143,9 +1139,9 @@ public class ReportesController {
             }
 //           
             parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaTk));
-            
+
             modelAndView = new ModelAndView("pdfHistoricoControlTecnico", parameterMap);
-            
+
             return modelAndView;
 
         } catch (Exception e) {
@@ -1162,6 +1158,7 @@ public class ReportesController {
             return retorno;
         }
     }
+
     @RequestMapping(value = "/ReporteDeportistaPosicion/{nombreCategoria}/{categoria}/{tipo}",
             method = RequestMethod.GET)
     public ModelAndView doReportDeportistaPosicion(
@@ -1186,44 +1183,46 @@ public class ReportesController {
             List<Deportista> listaDep = daoDeportista.deportistaPosicionXCategoria(categoria);
 
             List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
-
-            for (Deportista deportista : listaDep) {
-
-                DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
-
-                dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
-                dtoDeportista.setNombres(deportista.getNombres());
-                dtoDeportista.setApellidos(deportista.getApellidos());
-                dtoDeportista.setIdentificacion(deportista.getDocumento());
-                dtoDeportista.setPosicion(deportista.getPosicion().getNombrePosicion());
-
-                listaDeportistaReport.add(dtoDeportista);
-            }
-
-            if (listaDeportistaReport.isEmpty()) {
-                listaDeportistaReport.add(new DTODeportistaxCategoria());
-            }
-            System.out.println("nombre cat" + nombreCategoria);
-
-            Map<String, Object> parameterMap = new HashMap<String, Object>();
-
-            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
-            parameterMap.put("categoria", nombreCategoria);
-
-            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-            parameterMap.put("banner", banner);
-            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
-            parameterMap.put("logo", logo);
-
-            if (tipo == TIPO_XLS) {
-                modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+            if (listaDeportistaReport.isEmpty() || listaDeportistaReport.size() == 0) {
+                listaDeportistaReport.add(new DTODeportistaxCategoria("", "", "", "", ""));
             } else {
-                modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+                for (Deportista deportista : listaDep) {
+
+                    DTODeportistaxCategoria dtoDeportista = new DTODeportistaxCategoria();
+
+                    dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
+                    dtoDeportista.setNombres(deportista.getNombres());
+                    dtoDeportista.setApellidos(deportista.getApellidos());
+                    dtoDeportista.setIdentificacion(deportista.getDocumento());
+                    dtoDeportista.setPosicion(deportista.getPosicion().getNombrePosicion());
+
+                    listaDeportistaReport.add(dtoDeportista);
+                }
             }
+                if (listaDeportistaReport.isEmpty()) {
+                    listaDeportistaReport.add(new DTODeportistaxCategoria());
+                }
+                System.out.println("nombre cat" + nombreCategoria);
 
-            return modelAndView;
+                Map<String, Object> parameterMap = new HashMap<String, Object>();
 
-        } catch (Exception e) {
+                parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+                parameterMap.put("categoria", nombreCategoria);
+
+                java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+                parameterMap.put("banner", banner);
+                java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+                parameterMap.put("logo", logo);
+
+                if (tipo == TIPO_XLS) {
+                    modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+                } else {
+                    modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+                }
+
+                return modelAndView;
+
+            }catch (Exception e) {
             ModelAndView retorno = new ModelAndView("errores");
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
@@ -1236,5 +1235,5 @@ public class ReportesController {
 
             return retorno;
         }
+        }
     }
-}

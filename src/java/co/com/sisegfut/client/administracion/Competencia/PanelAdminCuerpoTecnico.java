@@ -80,14 +80,9 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         setLayout(new FillLayout());
 //        form.setPadding(5);
         setSize("100%", "100%");
-        ToolButton btnayudaCompetencia = new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
-            @Override
-            public void componentSelected(IconButtonEvent ce) {
-                abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaCuerpoTecnico());
-            }
-        });
-        btnayudaCompetencia.setTitle("Ayuda ");
-        getHeader().addTool(btnayudaCompetencia);
+        
+//        btnayudaCompetencia.setTitle("Ayuda ");
+//        getHeader().addTool(btnayudaCompetencia);
 
         Label lbseleccione = new Label();
         lbseleccione.setText("<b>Seleccione un personal: </b>");
@@ -115,6 +110,16 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
 //                }
 //            }
 //        });
+        ToolButton btnayudaCompetenciaConvocados = new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                abrirVentanaAyuda(myConstants.ayudaPanelCompetenciaCuerpoTecnico());
+            }
+        });
+        btnayudaCompetenciaConvocados.setTitle("Ayuda");
+        
+        getHeader().addTool(btnayudaCompetenciaConvocados);
+        
         toolBar = new ToolBar();
         toolBar.setSpacing(2);
 
@@ -311,5 +316,18 @@ public class PanelAdminCuerpoTecnico extends ContentPanel {
         cbxPersonal.repaint();
 
     }
+    private void abrirVentana(String texto) {
+        final Dialog simple = new Dialog();
+        simple.setHeading("Ayuda");
+        simple.setButtons(Dialog.OK);
+        simple.setBodyStyleName("pad-text");
+        simple.addText(texto);
+        simple.getItem(0).getFocusSupport().setIgnore(true);
+        simple.setScrollMode(Style.Scroll.AUTO);
+        simple.setHideOnButtonClick(true);
+        simple.setWidth(550);
+        //simple.setSize(550, 255);
 
+        simple.show();
+    }
 }
