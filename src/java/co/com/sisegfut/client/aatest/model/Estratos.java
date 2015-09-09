@@ -17,13 +17,14 @@ public class Estratos implements Serializable{
     
     private String id;// = "" + lastId++ ;
     private String estrato;
-    private double cantidad;
+    private int cantidad;
 
-    public Estratos(String id, String estrato, double cantidad) {
+    public Estratos(String id, String estrato, int cantidad) {
         this.id = id;
         this.estrato = estrato;
         this.cantidad = cantidad;
     }
+
 
     public Estratos() {
     }
@@ -44,32 +45,34 @@ public class Estratos implements Serializable{
         this.estrato = estrato;
     }
 
-    public double getCantidad() {
+
+    
+    
+//    public static List<Estratos> getEstratos(){
+//    
+//        List<Estratos> estratos = new ArrayList<Estratos>();
+//        for (int i = 0; i < 6; i++) {
+//            estratos.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * 10, 1))));
+//        }
+//        
+//        return estratos;
+//    }
+//    
+//      public static List<Estratos> getData(int size, double min, double scale) {
+//    List<Estratos> data = new ArrayList<Estratos>();
+//    for (int i = 0; i < size; i++) {
+//      data.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * scale, min))));
+//    }
+//    return data;
+//  }
+
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(double cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
-    public static List<Estratos> getEstratos(){
-    
-        List<Estratos> estratos = new ArrayList<Estratos>();
-        for (int i = 0; i < 6; i++) {
-            estratos.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * 10, 1))));
-        }
-        
-        return estratos;
-    }
-    
-      public static List<Estratos> getData(int size, double min, double scale) {
-    List<Estratos> data = new ArrayList<Estratos>();
-    for (int i = 0; i < size; i++) {
-      data.add(new Estratos((i+1)+"","Estrato "+(i+1), Math.floor(Math.max(Math.random() * scale, min))));
-    }
-    return data;
-  }
     
     
     

@@ -66,7 +66,8 @@ public class ComboBoxCategoria extends ComboBox<BeanModel>{
         setWidth(150);
         setStore(storeCombo);
         setTypeAhead(true);
-        //setTriggerAction(TriggerAction.ALL);
+        setForceSelection(true);
+        setTriggerAction(TriggerAction.ALL);
     }
 
     /**

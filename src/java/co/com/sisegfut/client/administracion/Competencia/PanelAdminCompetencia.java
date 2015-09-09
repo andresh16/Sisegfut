@@ -88,6 +88,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 /**
  *
  * @author fhurtado
@@ -129,14 +130,14 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Button btnGuardarCompetencia;
     private Button btnNuevaCompetencia;
     private FormButtonBinding binding;
-    private Long idCompetencia=null;
+    private Long idCompetencia = null;
     private Competencia competenciaFinalizar;
     private Window wFinalizarCompetencia;
     private Window wBuscar;
     private ComboBoxRival cbxRival = null;
     private ComboBoxRival cbxRival2 = null;
 
-    private Date fechaFiltroComp = new Date();
+    private Date fechaFiltroComp = null;
     private Long IdTorneo = null;
     private Long idRival = null;
     private Long idJugadorComodin = null;
@@ -145,6 +146,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
     private Button btnEstadisticaCompetencia;
     private Button btnEliminarCompetencia;
     private PanelEstadisticas panelEstadisticas;
+    private boolean filtrar = false;
 
     private Main myConstants;
     private String observacionesCompetencia;
@@ -284,7 +286,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 abrirVentanaAyuda(myConstants.ayudaPanelCompetencia());
             }
         });
-        btnayudaCompetencia.setTitle("Ayuda ");
+        btnayudaCompetencia.setTitle("Ayuda");
+        
         form.getHeader().addTool(btnayudaCompetencia);
 
         // Layout Main que contiene todas las columnas 
@@ -393,7 +396,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
 
                                     @Override
                                     public void onFailure(Throwable caught) {
-                                     MessageBox.alert("Error", "No fue posible consultar la compentecia", null);
+                                        MessageBox.alert("Error", "No fue posible consultar la compentecia", null);
                                     }
 
                                     @Override
@@ -421,7 +424,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                         } else {
 
                             MessageBox.alert("Cuerpo Técnico", "Para poder finalizar la competencia debe tener por lo menos una persona en el cuerpo técnico. ", null);
-                           
+
                         }
 
                     }
@@ -604,7 +607,6 @@ public class PanelAdminCompetencia extends LayoutContainer {
     public Competencia obtenerFormulario() {
         Competencia competencia = new Competencia();
 
-        
         competencia.setId(idCompetencia);
         competencia.setAnfitrion("POLITECNICO JIC");
         competencia.setRival(cbxRival.getRivalElegido());
@@ -725,7 +727,12 @@ public class PanelAdminCompetencia extends LayoutContainer {
         RpcProxy<PagingLoadResult<DTOCompetencia>> proxy = new RpcProxy<PagingLoadResult<DTOCompetencia>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<DTOCompetencia>> callback) {
-                svc.obtenerCompetenciaFiltro(fechaFiltroComp, IdTorneo, idRival, callback);
+                if (filtrar) {
+                    svc.obtenerCompetenciaFiltro(fechaFiltroComp, IdTorneo, idRival, callback);
+                } else {
+                    svc.obtenerCompetencias(callback);
+                }
+
             }
         };
 
@@ -736,7 +743,9 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 return config;
             }
         };
-        loaderCompetencia.setRemoteSort(true);
+
+        loaderCompetencia.setRemoteSort(
+                true);
 
         storeCompetencia = new ListStore<Competencia>(loaderCompetencia);
 //        store.setMonitorChanges(true);
@@ -746,132 +755,188 @@ public class PanelAdminCompetencia extends LayoutContainer {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig();
-        column.setId("fecha");
+
+        column.setId(
+                "fecha");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
-        column.setHeader("Fecha");
-        column.setWidth(50);
+
+        column.setHeader(
+                "Fecha");
+        column.setWidth(
+                50);
         column.setDateTimeFormat(DateTimeFormat.getFormat("EEEE dd MMMM yyyy hh:mm aa"));
         configs.add(column);
 
         column = new ColumnConfig();
-        column.setId("compromiso");
+
+        column.setId(
+                "compromiso");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
-        column.setHeader("Compromiso");
-        column.setWidth(150);
-        column.setRenderer(new GridCellRenderer() {
 
-            @Override
-            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
-                String compromiso = model.get("compromiso");
-                if (compromiso == null) {
-                    return "";
-                } else {
-                    return compromiso;
-                }
-            }
-        });
-        configs.add(column);
+        column.setHeader(
+                "Compromiso");
+        column.setWidth(
+                150);
+        column.setRenderer(
+                new GridCellRenderer() {
 
-        column = new ColumnConfig();
-        column.setId("torneo");
-        column.setAlignment(Style.HorizontalAlignment.LEFT);
-        column.setHeader("Torneo");
-        column.setWidth(60);
-        column.setRenderer(new GridCellRenderer() {
-
-            @Override
-            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
-                String torneo = model.get("torneo");
-                if (torneo == null) {
-                    return "";
-                } else {
-                    return torneo;
-                }
-            }
-        });
-        configs.add(column);
-
-        column = new ColumnConfig();
-        column.setId("lugar");
-        column.setAlignment(Style.HorizontalAlignment.LEFT);
-        column.setHeader("Lugar");
-        column.setWidth(80);
-        column.setRenderer(new GridCellRenderer() {
-
-            @Override
-            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
-                String lugar = model.get("lugar");
-                if (lugar == null) {
-                    return "";
-                } else {
-                    return lugar;
-                }
-            }
-        });
-        configs.add(column);
-
-        column = new ColumnConfig();
-        column.setId("finalizo");
-        column.setAlignment(Style.HorizontalAlignment.CENTER);
-        column.setHeader("Finalizo?");
-        column.setWidth(45);
-        column.setRenderer(new GridCellRenderer() {
-
-            @Override
-            public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid) {
-                String finalizo = model.get("finalizo");
-                if (finalizo == null) {
-                    return "";
-                } else {
-                    String style = "";
-                    if (finalizo.equalsIgnoreCase("SI")) {
-                        style = "green";
-                    } else {
-                        style = "red";
+                    @Override
+                    public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid
+                    ) {
+                        String compromiso = model.get("compromiso");
+                        if (compromiso == null) {
+                            return "";
+                        } else {
+                            return compromiso;
+                        }
                     }
-                    return "<span style='color:" + style + "'><b>" + finalizo + "</b></span>";
                 }
-            }
-        });
+        );
+        configs.add(column);
+
+        column = new ColumnConfig();
+
+        column.setId(
+                "torneo");
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
+
+        column.setHeader(
+                "Torneo");
+        column.setWidth(
+                60);
+        column.setRenderer(
+                new GridCellRenderer() {
+
+                    @Override
+                    public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid
+                    ) {
+                        String torneo = model.get("torneo");
+                        if (torneo == null) {
+                            return "";
+                        } else {
+                            return torneo;
+                        }
+                    }
+                }
+        );
+        configs.add(column);
+
+        column = new ColumnConfig();
+
+        column.setId(
+                "lugar");
+        column.setAlignment(Style.HorizontalAlignment.LEFT);
+
+        column.setHeader(
+                "Lugar");
+        column.setWidth(
+                80);
+        column.setRenderer(
+                new GridCellRenderer() {
+
+                    @Override
+                    public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid
+                    ) {
+                        String lugar = model.get("lugar");
+                        if (lugar == null) {
+                            return "";
+                        } else {
+                            return lugar;
+                        }
+                    }
+                }
+        );
+        configs.add(column);
+
+        column = new ColumnConfig();
+
+        column.setId(
+                "finalizo");
+        column.setAlignment(Style.HorizontalAlignment.CENTER);
+
+        column.setHeader(
+                "Finalizo?");
+        column.setWidth(
+                45);
+        column.setRenderer(
+                new GridCellRenderer() {
+
+                    @Override
+                    public Object render(ModelData model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex, ListStore store, Grid grid
+                    ) {
+                        String finalizo = model.get("finalizo");
+                        if (finalizo == null) {
+                            return "";
+                        } else {
+                            String style = "";
+                            if (finalizo.equalsIgnoreCase("SI")) {
+                                style = "green";
+                            } else {
+                                style = "red";
+                            }
+                            return "<span style='color:" + style + "'><b>" + finalizo + "</b></span>";
+                        }
+                    }
+                }
+        );
 
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
 
         ContentPanel cpGrid = new ContentPanel();
-        cpGrid.setHeaderVisible(false);
-        cpGrid.setLayout(new FillLayout(Style.Orientation.VERTICAL));
-        cpGrid.setFrame(true);
-        cpGrid.setBodyBorder(false);
-        cpGrid.setBorders(false);
+
+        cpGrid.setHeaderVisible(
+                false);
+        cpGrid.setLayout(
+                new FillLayout(Style.Orientation.VERTICAL));
+        cpGrid.setFrame(
+                true);
+        cpGrid.setBodyBorder(
+                false);
+        cpGrid.setBorders(
+                false);
         cpGrid.setIcon(Resources.ICONS.table());
 
         ToolBar toolbarBuscar = new ToolBar();
-        toolbarBuscar.setSpacing(1);
 
-        DtFecha2.setValue(new Date());
+        toolbarBuscar.setSpacing(
+                1);
+
+//        DtFecha2.setValue( new Date());
 
         comboBoxTorneo2 = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
-        comboBoxTorneo2.setLabelSeparator("Torneo");
-        comboBoxTorneo2.setEditable(false);
-        comboBoxTorneo2.setForceSelection(true);
 
-        comboBoxTorneo2.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
-            @Override
-            public void handleEvent(BaseEvent be) {
-                if (comboBoxTorneo2.getValue() != null) {
-                    cbxRival2.setIdTorneoElegido(comboBoxTorneo2.getTorneosElegido().getId());
-                    cbxRival2.enable();
-                } else {
-                    cbxRival2.disable();
+        comboBoxTorneo2.setLabelSeparator(
+                "Torneo");
+        comboBoxTorneo2.setEditable(
+                false);
+        comboBoxTorneo2.setForceSelection(
+                true);
+
+        comboBoxTorneo2.addListener(Events.SelectionChange,
+                new Listener<BaseEvent>() {
+                    @Override
+                    public void handleEvent(BaseEvent be
+                    ) {
+                        if (comboBoxTorneo2.getValue() != null) {
+                            cbxRival2.setIdTorneoElegido(comboBoxTorneo2.getTorneosElegido().getId());
+                            cbxRival2.enable();
+                        } else {
+                            cbxRival2.disable();
+                        }
+                    }
                 }
-            }
-        });
+        );
         cbxRival2 = new ComboBoxRival(ACTIVOS);
-        cbxRival2.setLabelSeparator("Rival");
+
+        cbxRival2.setLabelSeparator(
+                "Rival");
         cbxRival2.disable();
-        cbxRival2.setEditable(false);
-        Button btnBuscarCompetencia = new Button("Buscar", Resources.ICONS.iconoBuscar(), new SelectionListener<ButtonEvent>() {
+
+        cbxRival2.setEditable(
+                false);
+        Button btnBuscarCompetencia = new Button("Filtrar", Resources.ICONS.iconoBuscar(), new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -901,50 +966,70 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 btnEditarCompetencia.disable();
                 btnConsularCompetencia.disable();
                 btnEliminarCompetencia.disable();
+                filtrar=false;
                 cargarGridCompetencia();
 
             }
         });
 
         // se ejecuta cuando se presiona la tecla enter.
-        DtFecha2.addKeyListener(new KeyListener() {
+        DtFecha2.addKeyListener(
+                new KeyListener() {
 
-            @Override
-            public void componentKeyPress(ComponentEvent event) {
-                if (event.getKeyCode() == 13) {
-                    buscarCompetencia();
+                    @Override
+                    public void componentKeyPress(ComponentEvent event
+                    ) {
+                        if (event.getKeyCode() == 13) {
+                            buscarCompetencia();
+                        }
+                    }
                 }
-            }
-        });
-        comboBoxTorneo2.addKeyListener(new KeyListener() {
+        );
+        comboBoxTorneo2.addKeyListener(
+                new KeyListener() {
 
-            @Override
-            public void componentKeyPress(ComponentEvent event) {
-                if (event.getKeyCode() == 13) {
-                    buscarCompetencia();
+                    @Override
+                    public void componentKeyPress(ComponentEvent event
+                    ) {
+                        if (event.getKeyCode() == 13) {
+                            buscarCompetencia();
+                        }
+                    }
                 }
-            }
-        });
-        cbxRival2.addKeyListener(new KeyListener() {
+        );
+        cbxRival2.addKeyListener(
+                new KeyListener() {
 
-            @Override
-            public void componentKeyPress(ComponentEvent event) {
-                if (event.getKeyCode() == 13) {
-                    buscarCompetencia();
+                    @Override
+                    public void componentKeyPress(ComponentEvent event
+                    ) {
+                        if (event.getKeyCode() == 13) {
+                            buscarCompetencia();
+                        }
+                    }
                 }
-            }
-        });
+        );
 
         toolbarBuscar.add(DtFecha2);
-        toolbarBuscar.add(new SeparatorToolItem());
+
+        toolbarBuscar.add(
+                new SeparatorToolItem());
         toolbarBuscar.add(comboBoxTorneo2);
-        toolbarBuscar.add(new SeparatorToolItem());
+
+        toolbarBuscar.add(
+                new SeparatorToolItem());
         toolbarBuscar.add(cbxRival2);
-        toolbarBuscar.add(new SeparatorToolItem());
+
+        toolbarBuscar.add(
+                new SeparatorToolItem());
         toolbarBuscar.add(btnBuscarCompetencia);
-        toolbarBuscar.add(new SeparatorToolItem());
+
+        toolbarBuscar.add(
+                new SeparatorToolItem());
         toolbarBuscar.add(btnLimpiarForCompetencia);
-        toolbarBuscar.add(new SeparatorToolItem());
+
+        toolbarBuscar.add(
+                new SeparatorToolItem());
         toolbarBuscar.add(btnReactivarCompetencia);
 
         cpGrid.setTopComponent(toolbarBuscar);
@@ -960,79 +1045,94 @@ public class PanelAdminCompetencia extends LayoutContainer {
 ////        panel.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 //        cpForm.add(panel);
         gridCompetencia = new Grid<Competencia>(storeCompetencia, cm);
-        gridCompetencia.setView(new BufferView());
 
-        gridCompetencia.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        gridCompetencia.setView(
+                new BufferView());
+
+        gridCompetencia.getSelectionModel()
+                .setSelectionMode(Style.SelectionMode.SINGLE);
 
         /**
          * Escucho cuando se seleciona un movimiento para cargar el formulario
          * manualmente
          */
-        gridCompetencia.getSelectionModel().addListener(Events.SelectionChange, new Listener<SelectionChangedEvent<BeanModel>>() {
-            @Override
-            public void handleEvent(SelectionChangedEvent<BeanModel> be) {
-                // formBindings.unbind();
-                if (be.getSelection().size() > 0) {
+        gridCompetencia.getSelectionModel()
+                .addListener(Events.SelectionChange, new Listener<SelectionChangedEvent<BeanModel>>() {
+                    @Override
+                    public void handleEvent(SelectionChangedEvent<BeanModel> be
+                    ) {
+                        // formBindings.unbind();
+                        if (be.getSelection().size() > 0) {
 
-                    dTOCompetencia = (DTOCompetencia) be.getSelectedItem().getBean();
+                            dTOCompetencia = (DTOCompetencia) be.getSelectedItem().getBean();
 
 //                    MessageBox.info("Competencia", "Seleccionó: "
 //                            + dTOCompetencia.getFecha() + " - "
 //                            + dTOCompetencia.getCompromiso()
 //                            + " - Id Competencia " + dTOCompetencia.getIdCompetencia()
 //                            + " id Jugador comodin " + dTOCompetencia.getIdJugadorComodin(), null);
-                    if (dTOCompetencia.getFinalizo().equalsIgnoreCase("SI")) {
-                        btnConsularCompetencia.enable();
-                        btnEliminarCompetencia.enable();
-                        btnEditarCompetencia.disable();
-                        btnEstadisticaCompetencia.enable();
-                    } else {
-                        btnConsularCompetencia.disable();
-                        btnEliminarCompetencia.disable();
-                        btnEditarCompetencia.enable();
-                        btnEstadisticaCompetencia.disable();
-                    }
+                            if (dTOCompetencia.getFinalizo().equalsIgnoreCase("SI")) {
+                                btnConsularCompetencia.enable();
+                                btnEliminarCompetencia.enable();
+                                btnEditarCompetencia.disable();
+                                btnEstadisticaCompetencia.enable();
+                            } else {
+                                btnConsularCompetencia.disable();
+                                btnEliminarCompetencia.disable();
+                                btnEditarCompetencia.enable();
+                                btnEstadisticaCompetencia.disable();
+                            }
 
 //                    idLesion = dTOLesiones.getIdLesion();
 //                    txtLesion.setValue(dTOLesiones.getNombreLesion());
 //                    dtFechaLesion.setValue(dTOLesiones.getFechaLesion());
 //                    
-                    // formBindings.bind((ModelData) be.getSelection().get(0));
-                } else {
+                            // formBindings.bind((ModelData) be.getSelection().get(0));
+                        } else {
 //                    formBindings.unbind();
+                        }
+                    }
                 }
-            }
-        });
+                );
 
-        gridCompetencia.addListener(Events.Attach, new Listener<GridEvent<BeanModel>>() {
-            @Override
-            public void handleEvent(GridEvent<BeanModel> be) {
-                PagingLoadConfig config = new BaseFilterPagingLoadConfig();
-                config.setOffset(0);
-                config.setLimit(50);
+        gridCompetencia.addListener(Events.Attach,
+                new Listener<GridEvent<BeanModel>>() {
+                    @Override
+                    public void handleEvent(GridEvent<BeanModel> be
+                    ) {
+                        PagingLoadConfig config = new BaseFilterPagingLoadConfig();
+                        config.setOffset(0);
+                        config.setLimit(50);
 
-                Map<String, Object> state = gridCompetencia.getState();
-                if (state.containsKey("offset")) {
-                    int offset = (Integer) state.get("offset");
-                    int limit = (Integer) state.get("limit");
-                    config.setOffset(offset);
-                    config.setLimit(limit);
+                        Map<String, Object> state = gridCompetencia.getState();
+                        if (state.containsKey("offset")) {
+                            int offset = (Integer) state.get("offset");
+                            int limit = (Integer) state.get("limit");
+                            config.setOffset(offset);
+                            config.setLimit(limit);
+                        }
+
+                        loaderCompetencia.load(config);
+                    }
                 }
+        );
+        gridCompetencia.setLoadMask(
+                true);
+        gridCompetencia.setBorders(
+                true);
+        gridCompetencia.getView()
+                .setForceFit(true);
 
-                loaderCompetencia.load(config);
-            }
-        });
-        gridCompetencia.setLoadMask(true);
-        gridCompetencia.setBorders(true);
-        gridCompetencia.getView().setForceFit(true);
-
-        gridCompetencia.setStateId("pagingGridExample");
-        gridCompetencia.setStateful(true);
+        gridCompetencia.setStateId(
+                "pagingGridExample");
+        gridCompetencia.setStateful(
+                true);
 
         cpGrid.add(gridCompetencia);
 
 //        lcPanelBuscarCompetencia.add(cpForm, new RowData(1, 0.4, new Margins(0)));
-        lcPanelBuscarCompetencia.add(cpGrid, new RowData(1, 1, new Margins(0)));
+        lcPanelBuscarCompetencia.add(cpGrid,
+                new RowData(1, 1, new Margins(0)));
 
         return lcPanelBuscarCompetencia;
     }
@@ -1085,6 +1185,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         if (cbxRival2.getValue() != null) {
             idRival = cbxRival2.getRivalElegido().getId();
         }
+        filtrar=true;
         cargarGridCompetencia();
     }
 
@@ -1121,7 +1222,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
     }
 
     public void limpiarPanelBuscarCompetencia() {
-        fechaFiltroComp = new Date();
+//        fechaFiltroComp = new Date();
+        fechaFiltroComp = null;
         DtFecha2.setValue(fechaFiltroComp);
         btnEstadisticaCompetencia.disable();
         btnEditarCompetencia.disable();
@@ -1131,6 +1233,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         comboBoxTorneo2.recargar();
         idRival = null;
         cbxRival2.recargar();
+        filtrar=false;
         cargarGridCompetencia();
 
     }
@@ -1160,7 +1263,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         simple.show();
     }
 
-    public void cargarDatosCompetencia(Competencia competencia,String Compromiso, boolean habilitar) {
+    public void cargarDatosCompetencia(Competencia competencia, String Compromiso, boolean habilitar) {
 
         DtFecha.setValue(competencia.getFecha());
         tmHora.setDateValue(competencia.getFecha());
@@ -1174,7 +1277,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         btnGuardarCompromiso.setVisible(habilitar);
         cbxRival.seleccionar(competencia.getRival().getId());
         txtObservaciones.setValue(competencia.getObservacion());
-        fpCompromiso.setHeading(fpCompromiso.getHeader()+"    MARCADOR "+Compromiso);
+        fpCompromiso.setHeading(fpCompromiso.getHeader() + "    MARCADOR " + Compromiso);
 //        txtObservaciones.setValue(competencia.getObservacion());
     }
 
@@ -1199,7 +1302,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
                 competencia.setObservacion(dTOCompetencia.getObservaciones());
 
-                cargarDatosCompetencia(competencia,dTOCompetencia.getCompromiso(),false);
+                cargarDatosCompetencia(competencia, dTOCompetencia.getCompromiso(), false);
                 habilitarPanelesBusqueda(false);
                 adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), false);
                 adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), false);
@@ -1267,7 +1370,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
                 competencia.setTorneo(new Torneos(dTOCompetencia.getIdtorneo()));
                 competencia.setObservacion(dTOCompetencia.getObservaciones());
 
-                cargarDatosCompetencia(competencia,dTOCompetencia.getCompromiso(), true);
+                cargarDatosCompetencia(competencia, dTOCompetencia.getCompromiso(), true);
                 habilitarPanelesBusqueda(true);
                 adminPestComp.panelAdminConvocados.cargarConvocadosCompetencia(dTOCompetencia.getIdCompetencia(), true);
                 adminPestComp.panelAdminControlDisciplinario.cargarControlJuego(idCompetencia, dTOCompetencia.getIdJugadorComodin(), true);

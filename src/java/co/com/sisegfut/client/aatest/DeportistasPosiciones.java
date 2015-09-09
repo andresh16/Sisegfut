@@ -9,6 +9,7 @@ import co.com.sisegfut.client.aatest.model.Data;
 import co.com.sisegfut.client.aatest.model.Posicion;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
+import com.extjs.gxt.ui.client.widget.FramePanel;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
@@ -53,7 +54,7 @@ import java.util.List;
  *
  * @author ManuelAlejandro
  */
-public class DeportistasPosiciones implements IsWidget, EntryPoint {
+public class DeportistasPosiciones extends FramedPanel{
 
     private List<Posicion> posiciones = new ArrayList<Posicion>();
     private Chart<Posicion> chart;
@@ -64,7 +65,7 @@ public class DeportistasPosiciones implements IsWidget, EntryPoint {
 //    ValueProvider<Data, String> name();
 // 
 
-        ValueProvider<Posicion, Double> cantidad();
+        ValueProvider<Posicion, Integer> cantidad();
 
         ValueProvider<Posicion, String> posicion();
 
@@ -74,11 +75,8 @@ public class DeportistasPosiciones implements IsWidget, EntryPoint {
 
     private static final DataPropertyAccess dataAccess = GWT.create(DataPropertyAccess.class);
 
-    private FramedPanel panel;
 
-    @Override
-    public Widget asWidget() {
-        if (panel == null) {
+    public DeportistasPosiciones() {
             final ListStore<Posicion> store = new ListStore<Posicion>(dataAccess.nameKey());
 //      store.addAll(TestData.getEstratos2(6, 20, 100));
 //      store.addAll(Estratos.getEstratos());
@@ -118,13 +116,13 @@ public class DeportistasPosiciones implements IsWidget, EntryPoint {
             SeriesLabelConfig<Posicion> labelConfig = new SeriesLabelConfig<Posicion>();
             labelConfig.setSpriteConfig(textConfig);
             labelConfig.setLabelPosition(Series.LabelPosition.START);
-            labelConfig.setValueProvider(dataAccess.posicion(), new StringLabelProvider<String>());
+            labelConfig.setValueProvider(dataAccess.cantidad(), new StringLabelProvider<Integer>());
 
             SeriesToolTipConfig<Posicion> tooltip = new SeriesToolTipConfig<Posicion>();
             tooltip.setLabelProvider(new SeriesLabelProvider<Posicion>() {
                 @Override
                 public String getLabel(Posicion item, ValueProvider<? super Posicion, ? extends Number> valueProvider) {
-                    return NumberFormat.getFormat("0").format(dataAccess.cantidad().getValue(item)) + " deportistas en "
+                    return NumberFormat.getFormat("0").format(dataAccess.cantidad().getValue(item)) + " deportistas en la posición "
                             + dataAccess.posicion().getValue(item);
                 }
             });
@@ -216,39 +214,30 @@ public class DeportistasPosiciones implements IsWidget, EntryPoint {
             layout.add(toolBar, new VerticalLayoutContainer.VerticalLayoutData(1, -1));
             layout.add(chart, new VerticalLayoutContainer.VerticalLayoutData(1, 1));
 
-            panel = new FramedPanel();
-            panel.setLayoutData(new MarginData(10));
-            panel.setCollapsible(true);
-            panel.setHeadingText("Pie Chart");
-            panel.setPixelSize(620, 500);
-            panel.setBodyBorder(true);
-            panel.add(layout);
+            setLayoutData(new MarginData(10));
+            setCollapsible(true);
+            setHeaderVisible(false);
+            setSize("420", "300");
+            setBodyBorder(true);
+            add(layout);
 
-            final Resizable resize = new Resizable(panel, Resizable.Dir.E, Resizable.Dir.SE, Resizable.Dir.S);
-            resize.setMinHeight(400);
-            resize.setMinWidth(400);
-            panel.addExpandHandler(new ExpandEvent.ExpandHandler() {
-                @Override
-                public void onExpand(ExpandEvent event) {
-                    resize.setEnabled(true);
-                }
-            });
-            panel.addCollapseHandler(new CollapseEvent.CollapseHandler() {
-                @Override
-                public void onCollapse(CollapseEvent event) {
-                    resize.setEnabled(false);
-                }
-            });
-            new Draggable(panel, panel.getHeader()).setUseProxy(false);
+//            final Resizable resize = new Resizable(this, Resizable.Dir.E, Resizable.Dir.SE, Resizable.Dir.S);
+//            resize.setMinHeight(400);
+//            resize.setMinWidth(400);
+//            panel.addExpandHandler(new ExpandEvent.ExpandHandler() {
+//                @Override
+//                public void onExpand(ExpandEvent event) {
+//                    resize.setEnabled(true);
+//                }
+//            });
+//            panel.addCollapseHandler(new CollapseEvent.CollapseHandler() {
+//                @Override
+//                public void onCollapse(CollapseEvent event) {
+//                    resize.setEnabled(false);
+//                }
+//            });
         }
 
-        return panel;
-    }
-
-    @Override
-    public void onModuleLoad() {
-        RootPanel.get().add(asWidget());
-    }
 
     public void getPosicion() {
         getServiceDeportista().getDeportistasPosicion(new AsyncCallback<List<Posicion>>() {

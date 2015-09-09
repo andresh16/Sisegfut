@@ -288,7 +288,7 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
 //                            .add(Projections.groupProperty("estrato"))
 //                            .add(Projections.count("nombres").as("cantidad")));
 //            List resultado = criteria.list();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             try {
                 
                 String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.posicion='"+i+"'";
@@ -296,12 +296,12 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
                     .createSQLQuery(sql1)
                     .addEntity("d", Deportista.class).list();
                 if(cantidadPorPosicion!=null){
-                DTOPosicionesCantidad posicionCantidad = new DTOPosicionesCantidad(""+i,cantidadPorPosicion.size());
+                DTOPosicionesCantidad posicionCantidad = new DTOPosicionesCantidad(cantidadPorPosicion.get(1).getPosicion().getNombrePosicion(),cantidadPorPosicion.size());
                 listaReporte.add(posicionCantidad);
                 //
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                    e.printStackTrace();
                 return null;
             }
         }

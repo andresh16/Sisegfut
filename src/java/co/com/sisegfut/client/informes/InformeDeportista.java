@@ -12,12 +12,9 @@ import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.MessageBox;
-import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.FillLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.core.client.GWT;
@@ -30,21 +27,21 @@ public class InformeDeportista extends FormPanel {
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
-    FormPanel panel = new FormPanel();
     private FormBinding formBindings;
     private ComboBoxCategoria cbxCategoria;
 
     public InformeDeportista() {
         
         setHeaderVisible(false);
-        setLayout(new FitLayout());
-
+//        setLayout(new FitLayout());
+        setFrame(true);
+        
         FormData formData = new FormData("-20");
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
 
         cbxCategoria.setLabelSeparator("Categoría");
-        cbxCategoria.setAllowBlank(false);
+        cbxCategoria.setEditable(false);
 
         Button btnPDF = new Button(" Generar PDF", ListenerGenerarReporte(TIPO_PDF));
         btnPDF.setIcon(Resources.ICONS.iconoPDF());
@@ -52,21 +49,19 @@ public class InformeDeportista extends FormPanel {
         Button btnExcel = new Button("Generar Excel", ListenerGenerarReporte(TIPO_XLS));
         btnExcel.setIcon(Resources.ICONS.iconoExcel());
 
-        panel.setFrame(true);
-        panel.setHeaderVisible(false);
         
-        panel.add(cbxCategoria, formData);
+        
+        add(cbxCategoria, formData);
 
-        panel.addButton(btnPDF);
-        panel.addButton(btnExcel);
+        addButton(btnPDF);
+//        panel.addButton(btnExcel);
 
-        FormButtonBinding binding = new FormButtonBinding(panel);
+        FormButtonBinding binding = new FormButtonBinding(this);
         binding.addButton(btnPDF);
         binding.addButton(btnExcel);
-        formBindings = new FormBinding(panel, true);
-        panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
+        formBindings = new FormBinding(this, true);
+        setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-         add(panel, new BorderLayoutData(Style.LayoutRegion.CENTER));
     }
 
     public SelectionListener<ButtonEvent> ListenerGenerarReporte(final int tipo) {
@@ -74,14 +69,14 @@ public class InformeDeportista extends FormPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                if (panel.isValid()) {
+                if (isValid()) {
                     Long idCategoria = cbxCategoria.getCategoriaElegida().getId();
                     String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
 
                     String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteDeportista/";
                     // usuarioSession
                     redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ + tipo);
-                    panel.reset();
+                    reset();
                 } else {
 
                     MessageBox.alert("ERROR", "No envio al redireccionar panel invalido", null);

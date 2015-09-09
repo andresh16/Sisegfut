@@ -17,13 +17,21 @@ public class Posicion implements Serializable{
     
     private String id;// = "" + lastId++ ;
     private String posicion;
-    private double cantidad;
+//    private double cantidad;
+    private int cantidad;
 
-    public Posicion(String id, String posicion, double cantidad) {
+//    public Posicion(String id, String posicion, double cantidad) {
+//        this.id = id;
+//        this.posicion = posicion;
+//        this.cantidad = cantidad;
+//    }
+
+    public Posicion(String id, String posicion, int cantidad) {
         this.id = id;
         this.posicion = posicion;
         this.cantidad = cantidad;
     }
+    
 
     public Posicion() {
     }
@@ -44,31 +52,39 @@ public class Posicion implements Serializable{
         this.posicion = posicion;
     }       
 
-    public double getCantidad() {
+//    public double getCantidad() {
+//        return cantidad;
+//    }
+
+//    public void setCantidad(double cantidad) {
+//        this.cantidad = cantidad;
+//    }
+
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(double cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
     
     
-    public static List<Posicion> getPosiciones(){
+//    public static List<Posicion> getPosiciones(){
+//    
+//        List<Posicion> posiciones = new ArrayList<Posicion>();
+//        for (int i = 0; i < 4; i++) {
+//            posiciones.add(new Posicion((i+1)+"","Posición "+(i+1), Math.floor(Math.max(Math.random() * 10, 1))));
+//        }
+//        
+//        return posiciones;
+//    }
     
-        List<Posicion> posiciones = new ArrayList<Posicion>();
-        for (int i = 0; i < 4; i++) {
-            posiciones.add(new Posicion((i+1)+"","Posición "+(i+1), Math.floor(Math.max(Math.random() * 10, 1))));
-        }
-        
-        return posiciones;
-    }
-    
-      public static List<Posicion> getData(int size, double min, double scale) {
-    List<Posicion> data = new ArrayList<Posicion>();
-    for (int i = 0; i < size; i++) {
-      data.add(new Posicion((i+1)+"","Posición "+(i+1), Math.floor(Math.max(Math.random() * scale, min))));
-    }
-    return data;
-  }
+//      public static List<Posicion> getData(int size, double min, double scale) {
+//    List<Posicion> data = new ArrayList<Posicion>();
+//    for (int i = 0; i < size; i++) {
+//      data.add(new Posicion((i+1)+"","Posición "+(i+1), Math.floor(Math.max(Math.random() * scale, min))));
+//    }
+//    return data;
+//  }
     
 }

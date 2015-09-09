@@ -25,7 +25,7 @@ public class InformeDeportistasPosicion extends Window{
     public InformeDeportistasPosicion() {
         
 //        setSize(410, 410);
-        setSize(620, 500);
+        setSize(420, 300);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
@@ -33,18 +33,9 @@ public class InformeDeportistasPosicion extends Window{
         setLayout(new FillLayout());
         setResizable(false);
         
-        panel.setLayoutData(new MarginData(0));
-        panel.setCollapsible(false);
-        panel.setHeadingText("Reporte de deportistas por posiciones");
-        panel.setHeaderVisible(false);
-        panel.setPixelSize(620, 500);
-        panel.setBodyBorder(true);
         pieChart=new DeportistasPosiciones();
-        panel.add(pieChart);
         
-        basicChartExample= new BasicChartExample();
-        
-        add(panel, new MarginData(0));
+        add(pieChart, new MarginData(0));
 
         setFocusWidget(this.getButtonBar().getItem(0));
     }

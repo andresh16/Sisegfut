@@ -554,7 +554,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             }
         }));
         wReporteAsistenciaMes.addButton(btnGenerarPDF);
-        wReporteAsistenciaMes.addButton(btnGenerarXLS);
+//        wReporteAsistenciaMes.addButton(btnGenerarXLS);
         wReporteAsistenciaMes.addButton(btnCancelarReporte);
 //                
         wReporteAsistenciaMes.setButtonAlign(Style.HorizontalAlignment.CENTER);

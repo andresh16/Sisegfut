@@ -5,6 +5,7 @@
 package co.com.sisegfut.client.informes;
 
 import co.com.sisegfut.client.util.Resources;
+import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -22,7 +23,6 @@ import com.extjs.gxt.ui.client.widget.layout.MarginData;
  */
 public class PanelInformes extends Window {
 
-    private InformeCuenta infoCuenta;
     private InformeDeportista informeDeportista;
     private InformeTest informeTest;
     private InformeDeportistaPosicion informeDeportistaPosicion;
@@ -32,35 +32,42 @@ public class PanelInformes extends Window {
 
     public PanelInformes() {
 
-        setSize(430, 200);
+        setSize(410, 200);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
         setHeading("Informes");
         setLayout(new FillLayout());
         setResizable(false);
-
+        setAutoHeight(true);
+        
         TabPanel panel = new TabPanel();
         panel.setBorders(false);
+        panel.setAutoHeight(true);
         panel.setLayoutData(new FitLayout());
+        panel.setTabScroll(true);
+        panel.setTabPosition(TabPanel.TabPosition.TOP);
 
-        infoCuenta = new InformeCuenta();
         informeDeportista = new InformeDeportista();
         informeTest = new InformeTest();
         informeDeportistaPosicion = new InformeDeportistaPosicion();
 
-        tabInfoDeportistaPosicion.setLayout(new FillLayout());
+//        tabInfoDeportistaPosicion.setLayout(new FitLayout());
         tabInfoDeportistaPosicion.addStyleName("pad-text");
+        tabInfoDeportistaPosicion.setIcon(Resources.ICONS.iconoPDF());
         tabInfoDeportistaPosicion.add(informeDeportistaPosicion);
         panel.add(tabInfoDeportistaPosicion);
 
-        tabInfoCategoria.setLayout(new FillLayout());
+//        tabInfoCategoria.setLayout(new FillLayout());
+        tabInfoCategoria.setIcon(Resources.ICONS.iconoPDF());
         tabInfoCategoria.addStyleName("pad-text");
+        tabInfoCategoria.setAutoHeight(true);
         tabInfoCategoria.add(informeDeportista);
         panel.add(tabInfoCategoria);
 
-        tabInfoTest.setLayout(new FitLayout());
+//        tabInfoTest.setLayout(new FitLayout());
         tabInfoTest.addStyleName("pad-text");
+        tabInfoTest.setIcon(Resources.ICONS.iconoPDF());
         tabInfoTest.setAutoHeight(true);
         tabInfoTest.add(informeTest);
         panel.add(tabInfoTest);

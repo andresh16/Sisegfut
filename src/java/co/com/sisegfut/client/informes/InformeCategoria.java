@@ -125,14 +125,14 @@ public class InformeCategoria extends LayoutContainer {
 
         Button btnExcel = new Button("Generar Excel", ListenerGenerarReporte(TIPO_XLS));
         btnExcel.setIcon(Resources.ICONS.iconoExcel());
-        toolBar.add(btnExcel);
+//        toolBar.add(btnExcel);
 
         //panel.setTopComponent(toolBar);
 
         //Monitors the valid state of a form and enabled / disabled all buttons.
         FormButtonBinding binding = new FormButtonBinding(panel);
         binding.addButton(btnPDF);
-        binding.addButton(btnExcel);
+//        binding.addButton(btnExcel);
 
         formBindings = new FormBinding(panel, true);
 

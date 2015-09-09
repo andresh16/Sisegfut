@@ -123,7 +123,7 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         }
         int i=1;
         for (DTOEstratosCantidad estrato : cantidadEstratos) {
-            estratos.add(new Estratos((i++)+"","Estrato "+estrato.getEstrato(),estrato.getCantidad().doubleValue() ));
+            estratos.add(new Estratos((i++)+"","Estrato "+estrato.getEstrato(),estrato.getCantidad() ));
         }
         return estratos;
         
@@ -141,7 +141,7 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         }
         int i=1;
         for (DTOPosicionesCantidad posiciones : cantidadPosicion) {
-            posicion.add(new Posicion((i++)+"","Posición "+posiciones.getPosicion(),posiciones.getCantidad().doubleValue() ));
+            posicion.add(new Posicion((i++)+"",posiciones.getPosicion(),posiciones.getCantidad() ));
         }
         return posicion;
         

@@ -18,6 +18,7 @@ import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.FillLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.core.client.GWT;
@@ -27,26 +28,28 @@ import com.google.gwt.core.client.GWT;
  * @author ManuelAlejandro
  */
 public class InformeTest extends FormPanel {
-   
+
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
-    FormPanel panel = new FormPanel();
     private FormBinding formBindings;
     private ComboBoxCategoria cbxCategoria;
     private SimpleComboBox<String> comboTests = new SimpleComboBox<String>();
 
     public InformeTest() {
         setHeaderVisible(false);
-        setLayout(new FitLayout());
+//        setLayout(new FitLayout());
+        setFrame(true);
 
         FormData formData = new FormData("-20");
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
 
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría");
         cbxCategoria.setAllowBlank(false);
-        
+        cbxCategoria.setEditable(false);
+
         comboTests.setLabelSeparator("Tests");
+        comboTests.setEditable(false);
         comboTests.setEmptyText("Seleccione un test");
         comboTests.setForceSelection(true);
         comboTests.setAllowBlank(false);
@@ -62,22 +65,18 @@ public class InformeTest extends FormPanel {
         Button btnExcel = new Button("Generar Excel", ListenerGenerarReporte(TIPO_XLS));
         btnExcel.setIcon(Resources.ICONS.iconoExcel());
 
-        panel.setFrame(true);
-        panel.setHeaderVisible(false);
-        
-        panel.add(cbxCategoria, formData);
-        panel.add(comboTests, formData);
+        add(cbxCategoria, formData);
+        add(comboTests, formData);
 
-        panel.addButton(btnPDF);
-        panel.addButton(btnExcel);
+        addButton(btnPDF);
+//        panel.addButton(btnExcel);
 
-        FormButtonBinding binding = new FormButtonBinding(panel);
+        FormButtonBinding binding = new FormButtonBinding(this);
         binding.addButton(btnPDF);
         binding.addButton(btnExcel);
-        formBindings = new FormBinding(panel, true);
-        panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
+        formBindings = new FormBinding(this, true);
+        setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-         add(panel, new BorderLayoutData(Style.LayoutRegion.CENTER));
     }
 
     public SelectionListener<ButtonEvent> ListenerGenerarReporte(final int tipo) {
@@ -85,34 +84,34 @@ public class InformeTest extends FormPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                if (panel.isValid()) {
+                if (isValid()) {
                     Long idCategoria = cbxCategoria.getCategoriaElegida().getId();
-                    if(comboTests.getSimpleValue().equalsIgnoreCase("Test de Karvonen")){
-                        System.out.println("Test Karvonen "+idCategoria);
+                    if (comboTests.getSimpleValue().equalsIgnoreCase("Test de Karvonen")) {
+                        System.out.println("Test Karvonen " + idCategoria);
                         idCategoria = cbxCategoria.getCategoriaElegida().getId();
-                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String nombreCategoria = cbxCategoria.getCategoriaElegida().getNombrecategoria();
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteTestKarvonen/";
-                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
-                    }else if(comboTests.getSimpleValue().equalsIgnoreCase("Test de Cooper")){
-                        System.out.println("Test Cooper "+idCategoria);
+                        redireccionarA(base + nombreCategoria + "/" + idCategoria + "/" + tipo);
+                    } else if (comboTests.getSimpleValue().equalsIgnoreCase("Test de Cooper")) {
+                        System.out.println("Test Cooper " + idCategoria);
                         idCategoria = cbxCategoria.getCategoriaElegida().getId();
-                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String nombreCategoria = cbxCategoria.getCategoriaElegida().getNombrecategoria();
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteTestCooper/";
-                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
-                    }else if(comboTests.getSimpleValue().equalsIgnoreCase("Medidas Antropométricas")){
-                        System.out.println("Test Antropometrico "+idCategoria);
+                        redireccionarA(base + nombreCategoria + "/" + idCategoria + "/" + tipo);
+                    } else if (comboTests.getSimpleValue().equalsIgnoreCase("Medidas Antropométricas")) {
+                        System.out.println("Test Antropometrico " + idCategoria);
                         idCategoria = cbxCategoria.getCategoriaElegida().getId();
-                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String nombreCategoria = cbxCategoria.getCategoriaElegida().getNombrecategoria();
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteAntropometrico/";
-                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
-                    }else if(comboTests.getSimpleValue().equalsIgnoreCase("Control Técnico")){
-                        System.out.println("Control Técnico "+idCategoria);
+                        redireccionarA(base + nombreCategoria + "/" + idCategoria + "/" + tipo);
+                    } else if (comboTests.getSimpleValue().equalsIgnoreCase("Control Técnico")) {
+                        System.out.println("Control Técnico " + idCategoria);
                         idCategoria = cbxCategoria.getCategoriaElegida().getId();
-                        String nombreCategoria=cbxCategoria.getCategoriaElegida().getNombrecategoria();
+                        String nombreCategoria = cbxCategoria.getCategoriaElegida().getNombrecategoria();
                         String base = GWT.getModuleBaseURL() + "../html/reportes/ReporteControlTecnico/";
-                        redireccionarA(base + nombreCategoria + "/"+idCategoria+"/"+ tipo);
+                        redireccionarA(base + nombreCategoria + "/" + idCategoria + "/" + tipo);
                     }
-                    panel.reset();
+                    reset();
                 } else {
 
                     MessageBox.alert("ERROR", "No envio al redireccionar, panel inválido", null);
@@ -121,7 +120,6 @@ public class InformeTest extends FormPanel {
             }
         };
     }
- 
 
     /**
      * Mediante una llamada nativa redirecciona el browser a la dirección

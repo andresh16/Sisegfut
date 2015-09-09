@@ -63,7 +63,7 @@ import java.util.List;
  *
  * @author fhurtado
  */
-public class PieExample implements IsWidget, EntryPoint {
+public class PieExample extends FramedPanel {
 
     private List<Estratos> estratos = new ArrayList<Estratos>();
     private Chart<Estratos> chart;
@@ -74,7 +74,7 @@ public class PieExample implements IsWidget, EntryPoint {
 //    ValueProvider<Data, String> name();
 // 
 
-        ValueProvider<Estratos, Double> cantidad();
+        ValueProvider<Estratos, Integer> cantidad();
 
         ValueProvider<Estratos, String> estrato();
 
@@ -84,11 +84,12 @@ public class PieExample implements IsWidget, EntryPoint {
 
     private static final DataPropertyAccess dataAccess = GWT.create(DataPropertyAccess.class);
 
-    private FramedPanel panel;
-
-    @Override
-    public Widget asWidget() {
-        if (panel == null) {
+//    private FramedPanel panel;
+//    @Override
+//    public Widget asWidget() {
+//        if (this == null) {
+    public PieExample() {
+    
             final ListStore<Estratos> store = new ListStore<Estratos>(dataAccess.nameKey());
 //      store.addAll(TestData.getEstratos2(6, 20, 100));
 //      store.addAll(Estratos.getEstratos());
@@ -128,7 +129,7 @@ public class PieExample implements IsWidget, EntryPoint {
             SeriesLabelConfig<Estratos> labelConfig = new SeriesLabelConfig<Estratos>();
             labelConfig.setSpriteConfig(textConfig);
             labelConfig.setLabelPosition(LabelPosition.START);
-            labelConfig.setValueProvider(dataAccess.estrato(), new StringLabelProvider<String>());
+            labelConfig.setValueProvider(dataAccess.cantidad(), new StringLabelProvider<Integer>());
 
             SeriesToolTipConfig<Estratos> tooltip = new SeriesToolTipConfig<Estratos>();
             tooltip.setLabelProvider(new SeriesLabelProvider<Estratos>() {
@@ -161,7 +162,7 @@ public class PieExample implements IsWidget, EntryPoint {
             });
 
             final Legend<Estratos> legend = new Legend<Estratos>();
-            legend.setPosition(Position.BOTTOM);
+            legend.setPosition(Position.LEFT);
             legend.setItemHighlighting(true);
             legend.setItemHiding(true);
             legend.getBorderConfig().setStrokeWidth(0);
@@ -234,39 +235,47 @@ public class PieExample implements IsWidget, EntryPoint {
             layout.add(toolBar, new VerticalLayoutData(1, -1));
             layout.add(chart, new VerticalLayoutData(1, 1));
 
-            panel = new FramedPanel();
-            panel.setLayoutData(new MarginData(10));
-            panel.setCollapsible(true);
-            panel.setHeadingText("Pie Chart");
-            panel.setPixelSize(620, 500);
-            panel.setBodyBorder(true);
-            panel.add(layout);
+//            panel = new FramedPanel();
+//            panel.setLayoutData(new MarginData(10));
+//            panel.setCollapsible(false);
+//            panel.setHeadingText("Pie Chart");
+//            panel.setPixelSize(400, 400);
+//            panel.setBodyBorder(false);
+//            panel.add(layout);
+            
+            this.setLayoutData(new MarginData(10));
+            this.setCollapsible(false);
+            this.setHeaderVisible(false);
+//            this.setPixelSize(400, 400);
+            setSize("420", "300");
+            this.setBodyBorder(false);
+            this.add(layout);
 
-            final Resizable resize = new Resizable(panel, Dir.E, Dir.SE, Dir.S);
+            final Resizable resize = new Resizable(this, Dir.E, Dir.SE, Dir.S);
             resize.setMinHeight(400);
             resize.setMinWidth(400);
-            panel.addExpandHandler(new ExpandHandler() {
-                @Override
-                public void onExpand(ExpandEvent event) {
-                    resize.setEnabled(true);
-                }
-            });
-            panel.addCollapseHandler(new CollapseHandler() {
-                @Override
-                public void onCollapse(CollapseEvent event) {
-                    resize.setEnabled(false);
-                }
-            });
-            new Draggable(panel, panel.getHeader()).setUseProxy(false);
-        }
+//            panel.addExpandHandler(new ExpandHandler() {
+//                @Override
+//                public void onExpand(ExpandEvent event) {
+//                    resize.setEnabled(true);
+//                }
+//            });
+//            panel.addCollapseHandler(new CollapseHandler() {
+//                @Override
+//                public void onCollapse(CollapseEvent event) {
+//                    resize.setEnabled(false);
+//                }
+//            });
+//            new Draggable(panel, panel.getHeader()).setUseProxy(false);
+//        }
 
-        return panel;
+//        return this;
     }
 
-    @Override
-    public void onModuleLoad() {
-        RootPanel.get().add(asWidget());
-    }
+//    @Override
+//    public void onModuleLoad() {
+//        RootPanel.get().add(asWidget());
+//    }
 
     public void getEstratificacion() {
         getServiceDeportista().getDeportistasEstratificacion(new AsyncCallback<List<Estratos>>() {

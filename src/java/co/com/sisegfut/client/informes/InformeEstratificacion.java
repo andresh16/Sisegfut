@@ -26,7 +26,7 @@ public class InformeEstratificacion extends Window{
     public InformeEstratificacion() {
         
 //        setSize(410, 410);
-        setSize(620, 500);
+        setSize(420, 300);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
@@ -34,18 +34,18 @@ public class InformeEstratificacion extends Window{
         setLayout(new FillLayout());
         setResizable(false);
         
-        panel.setLayoutData(new MarginData(0));
-        panel.setCollapsible(false);
-        panel.setHeadingText("Reporte de estratificación");
-        panel.setHeaderVisible(false);
-        panel.setPixelSize(620, 500);
-        panel.setBodyBorder(true);
+//        panel.setLayoutData(new MarginData(0));
+//        panel.setCollapsible(false);
+//        panel.setHeadingText("Reporte de estratificación");
+//        panel.setHeaderVisible(false);
+//        panel.setPixelSize(620, 500);
+//        panel.setBodyBorder(true);
          pieChart=new PieExample();
-        panel.add(pieChart);
+//        panel.add(pieChart);
         
         basicChartExample= new BasicChartExample();
         
-        add(panel, new MarginData(0));
+        add(pieChart, new MarginData(0));
 
         setFocusWidget(this.getButtonBar().getItem(0));
     }

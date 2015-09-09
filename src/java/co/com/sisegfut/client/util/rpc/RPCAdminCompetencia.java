@@ -25,6 +25,8 @@ public interface RPCAdminCompetencia extends RPCMaestro<Competencia>{
     
     public PagingLoadResult<DTOCompetencia> obtenerCompetenciaFiltro(Date fechaCompetencia, Long idTorneo, Long idRival);
     
+    public PagingLoadResult<DTOCompetencia> obtenerCompetencias();
+    
     public List<DTOCompetencia> getCompetencias(Integer tipo);
     
     

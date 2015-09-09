@@ -34,9 +34,6 @@ public class PanelEstadisticas extends Window {
     }
 
     
-    private FramedPanel panel = new FramedPanel();
-    private AdvancedChartExample advancedChartExample;
-//    private ejemploBarras ejemploBarras1 = new ejemploBarras();
     private ejemploBarras ejemploBarras1;
     private Long idCompetencia;
     private Main myConstants;
@@ -51,16 +48,8 @@ public class PanelEstadisticas extends Window {
         setLayout(new FillLayout());
         myConstants = (Main) GWT.create(Main.class);
 
-        panel.setLayoutData(new MarginData(0));
-        panel.setCollapsible(false);
-        panel.setHeadingText("Estadisticas");
-        panel.setHeaderVisible(false);
-        panel.setPixelSize(620, 500);
-        panel.setBodyBorder(true);
         ejemploBarras1 = new ejemploBarras();
-        panel.add(ejemploBarras1);
-//        panel.add(advancedChartExample);
-        add(panel);
+        add(ejemploBarras1);
         Button btnCancelarBusCompetencia = new Button("Cancelar", new SelectionListener<ButtonEvent>() {
 
             @Override

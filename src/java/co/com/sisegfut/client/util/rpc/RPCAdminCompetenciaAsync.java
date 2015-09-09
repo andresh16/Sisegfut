@@ -25,6 +25,8 @@ public interface RPCAdminCompetenciaAsync extends RPCMaestroAsync<Competencia>{
     public void obtenerCompetenciaxId(Long idCompetencia, AsyncCallback<Competencia> callback);
     
     public void obtenerCompetenciaFiltro(Date fechaCompetencia, Long idTorneo, Long idRival, AsyncCallback<PagingLoadResult<DTOCompetencia>> callback);
+    
+    public void obtenerCompetencias(AsyncCallback<PagingLoadResult<DTOCompetencia>> callback);
    
     public void getCompetencias(Integer tipo, AsyncCallback<List<DTOCompetencia>> callback);
     

@@ -53,7 +53,7 @@ import java.util.List;
  *
  * @author Andres Hurtado
  */
-public class ejemploBarras implements IsWidget {
+public class ejemploBarras extends FramedPanel{
 
     public interface DataPropertyAccess extends PropertyAccess<Data2> {
 
@@ -82,10 +82,8 @@ public class ejemploBarras implements IsWidget {
         this.idCompetencia = idCompetencia;
     }
 
-    @Override
-    public Widget asWidget() {
-        if (panel == null) {
-            store = new ListStore<Data2>(dataAccess.nameKey());
+    public ejemploBarras() {
+    store = new ListStore<Data2>(dataAccess.nameKey());
 //            store.addAll(DTOSituacionJuegoCompGraficas.getSituacionesCompetencia(4, 1, 10));
 //            store.clear();
 //            store.addAll(DTOSituacionJuegoCompGraficas.getSituacionesCompetenciaVacio(19, 1, 10));
@@ -186,35 +184,31 @@ public class ejemploBarras implements IsWidget {
 //            layout.add(toolBar, new VerticalLayoutData(1, -1));
             layout.add(chart, new VerticalLayoutData(1, 1));
 
-            panel = new FramedPanel();
-            panel.setLayoutData(new MarginData(0));
-            panel.setCollapsible(true);
-            panel.setHeadingText("Grafico barras agrupado");
-            panel.setPixelSize(520, 560);
-            panel.setHeaderVisible(false);
-            panel.setBodyBorder(true);
-            panel.add(layout);
+            setLayoutData(new MarginData(0));
+            setCollapsible(false);
+            setHeaderVisible(false);
+            setSize("520", "560");
+           setHeaderVisible(false);
+           setBodyBorder(true);
+            add(layout);
 
-            final Resizable resize = new Resizable(panel, Dir.E, Dir.SE, Dir.S);
-            resize.setMinHeight(400);
-            resize.setMinWidth(400);
-            panel.addExpandHandler(new ExpandHandler() {
-                @Override
-                public void onExpand(ExpandEvent event) {
-                    resize.setEnabled(false);
-                }
-            });
-            panel.addCollapseHandler(new CollapseHandler() {
-                @Override
-                public void onCollapse(CollapseEvent event) {
-                    resize.setEnabled(false);
-                }
-            });
+//            final Resizable resize = new Resizable(panel, Dir.E, Dir.SE, Dir.S);
+//            resize.setMinHeight(400);
+//            resize.setMinWidth(400);
+//            panel.addExpandHandler(new ExpandHandler() {
+//                @Override
+//                public void onExpand(ExpandEvent event) {
+//                    resize.setEnabled(false);
+//                }
+//            });
+//            panel.addCollapseHandler(new CollapseHandler() {
+//                @Override
+//                public void onCollapse(CollapseEvent event) {
+//                    resize.setEnabled(false);
+//                }
+//            });
 //      new Draggable(panel, panel.getHeader()).setUseProxy(false);
         }
-
-        return panel;
-    }
 
     public void buscarSituacionesxCompetencia(Long idCompetenc) {
         getServiceSituaciones().getSituacionesXCompetenciaGrafica(idCompetencia, new AsyncCallback<List<Data2>>() {
