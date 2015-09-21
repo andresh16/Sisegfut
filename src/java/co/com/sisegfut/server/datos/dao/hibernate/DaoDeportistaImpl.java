@@ -307,4 +307,20 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
         }
         return listaReporte;
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Deportista> deportistaEstratoXCategoria(Long idCategoria) throws Exception {
+        List<Deportista> listaReporte = null;
+        String sql = "Select d.* from deportista d where jugador_comodin=false and categoria=" + idCategoria + " and fechainactivado is null order by estrato asc";
+        try {
+            listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("d", Deportista.class).list();
+            return listaReporte;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

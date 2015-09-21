@@ -20,6 +20,7 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometrico;
 import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometricoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxDeportista;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistasEstratoXCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
@@ -1183,7 +1184,7 @@ public class ReportesController {
             List<Deportista> listaDep = daoDeportista.deportistaPosicionXCategoria(categoria);
 
             List<DTODeportistaxCategoria> listaDeportistaReport = new ArrayList<DTODeportistaxCategoria>();
-            if (listaDeportistaReport.isEmpty() || listaDeportistaReport.size() == 0) {
+            if (listaDep.isEmpty() || listaDep.size() == 0) {
                 listaDeportistaReport.add(new DTODeportistaxCategoria("", "", "", "", ""));
             } else {
                 for (Deportista deportista : listaDep) {
@@ -1199,30 +1200,30 @@ public class ReportesController {
                     listaDeportistaReport.add(dtoDeportista);
                 }
             }
-                if (listaDeportistaReport.isEmpty()) {
-                    listaDeportistaReport.add(new DTODeportistaxCategoria());
-                }
-                System.out.println("nombre cat" + nombreCategoria);
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTODeportistaxCategoria());
+            }
+            System.out.println("nombre cat" + nombreCategoria);
 
-                Map<String, Object> parameterMap = new HashMap<String, Object>();
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
 
-                parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
-                parameterMap.put("categoria", nombreCategoria);
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("categoria", nombreCategoria);
 
-                java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
-                parameterMap.put("banner", banner);
-                java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
-                parameterMap.put("logo", logo);
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
 
-                if (tipo == TIPO_XLS) {
-                    modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
-                } else {
-                    modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
-                }
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteDeportista", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteDeportista", parameterMap);
+            }
 
-                return modelAndView;
+            return modelAndView;
 
-            }catch (Exception e) {
+        } catch (Exception e) {
             ModelAndView retorno = new ModelAndView("errores");
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
@@ -1235,5 +1236,83 @@ public class ReportesController {
 
             return retorno;
         }
+    }
+    
+    @RequestMapping(value = "/ReporteDeportistaEstrato/{nombreCategoria}/{categoria}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportDeportistaEstrato(
+            @PathVariable String nombreCategoria,
+            @PathVariable Long categoria,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List<Deportista> listaDep = daoDeportista.deportistaEstratoXCategoria(categoria);
+
+            List<DTODeportistasEstratoXCategoria> listaDeportistaReport = new ArrayList<DTODeportistasEstratoXCategoria>();
+            if (listaDep.isEmpty() || listaDep.size() == 0) {
+                listaDeportistaReport.add(new DTODeportistasEstratoXCategoria("", "", "", "", ""));
+            } else {
+                for (Deportista deportista : listaDep) {
+
+                    DTODeportistasEstratoXCategoria dtoDeportista = new DTODeportistasEstratoXCategoria();
+
+                    dtoDeportista.setFechaNacimiento(Formatos.fecha2(deportista.getFechaNacimiento()));
+                    dtoDeportista.setNombres(deportista.getNombres());
+                    dtoDeportista.setApellidos(deportista.getApellidos());
+                    dtoDeportista.setIdentificacion(deportista.getDocumento());
+                    dtoDeportista.setEstrato(deportista.getEstrato());
+
+                    listaDeportistaReport.add(dtoDeportista);
+                }
+            }
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTODeportistasEstratoXCategoria());
+            }
+            System.out.println("nombre cat" + nombreCategoria);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("categoria", nombreCategoria);
+
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteDeportistaEstrato", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteDeportistaEstrato", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
         }
     }
+}

@@ -469,6 +469,26 @@ public class PanelMenu extends LayoutContainer {
          
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
+                + "Gráficas"
+                + "</img>",
+                true,
+                crearMenuInformesGraficas());
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "PDF"
+                + "</img>",
+                true,
+                cmdInformes);
+
+        return retorno;
+    }
+    
+    private MenuBar crearMenuInformesGraficas() {
+        MenuBar retorno = new MenuBar(true);
+        //Los comandos fuerom previamente creados
+         
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
                 + "Estratificación"
                 + "</img>",
                 true,
@@ -478,17 +498,11 @@ public class PanelMenu extends LayoutContainer {
                 + "Deportistas Por Posición"
                 + "</img>",
                 true,
-                cmdInfoDeportistasPosicion);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Otros"
-                + "</img>",
-                true,
-                cmdInformes); 
+                cmdInfoDeportistasPosicion); 
 
         return retorno;
-    }
-    
+    }    
+        
     private MenuBar crearMenuPruebasValorativas() {
         MenuBar retorno = new MenuBar(true);
         //Los comandos fuerom previamente creados

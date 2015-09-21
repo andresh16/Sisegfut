@@ -379,4 +379,31 @@
         </property>
     </bean>
     
+    <!-- Reporte de Deportista por Estrato -->
+        
+    <bean id="pdfReporteDeportistaEstrato"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/ReporteDeportistaEstrato.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_DeportistasXEstrato.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>
+                
+    <bean id="xlsReporteDeportistaEstrato"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/ReporteDeportistaEstrato.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_DeportistasXEstrato.xls
+                </prop>
+            </props>
+        </property>
+    </bean>
 </beans>
