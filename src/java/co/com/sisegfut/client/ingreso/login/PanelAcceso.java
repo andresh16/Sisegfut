@@ -11,14 +11,16 @@ package co.com.sisegfut.client.ingreso.login;
 import co.com.sisegfut.client.ingreso.recuperacionclave.PanelRecuperacion;
 import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.Style.LayoutRegion;
+import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.BoxLayout.BoxLayoutPack;
-import com.extjs.gxt.ui.client.widget.layout.CardLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout.HBoxLayoutAlign;
+import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayout.VBoxLayoutAlign;
 import com.google.gwt.user.client.Element;
@@ -55,16 +57,16 @@ public class PanelAcceso extends LayoutContainer {
         super.onRender(parent, index);
         setStyleName("elLogin");
         setScrollMode(Style.Scroll.AUTOY);
-        VBoxLayout layout2 = new VBoxLayout();  
-        layout2.setPadding(new Padding(5));  
-        layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
-        layout2.setPack(BoxLayoutPack.START);  
-        scrollIntoView(this);
-        setLayout(layout2);
+//        VBoxLayout layout2 = new VBoxLayout();  
+//        layout2.setPadding(new Padding(195));  
+//        layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
+//        layout2.setPack(BoxLayoutPack.START);  
+//        scrollIntoView(this);
+        setLayout(new CenterLayout());
 
         // Construcción del logo
-//        logoLogin = new Image("imagenes/misfinanzas.jpg");
-//        logoLogin.setSize("440", "164");
+        logoLogin = new Image("imagenes/inicio.png");
+        logoLogin.setSize("440", "164");
         formularioLogin = new FormularioLogin();
         panelRecuperacion = new PanelRecuperacion();
 
@@ -99,7 +101,7 @@ public class PanelAcceso extends LayoutContainer {
         login.setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=2 FACE='arial' Color='black'><b>INICIAR SESIÓN</b></font></center>");
         login.setAnimCollapse(true);
         login.setHeight(240);
-        login.setAutoHeight(true);
+        login.setAutoHeight(false);
         login.setBorders(false);
         login.setIcon(Resources.ICONS.iconoLogin());
         login.add(formularioLogin);
@@ -112,19 +114,19 @@ public class PanelAcceso extends LayoutContainer {
         panel.add(recuperacion);
 
 
-//        ContentPanel panelContenedor = new ContentPanel();
-//        panelContenedor.setBodyBorder(false);
-//        panelContenedor.setHeaderVisible(false);
-//        panelContenedor.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-//        panelContenedor.setHeading("<center>Bienvenido</center> ");
-//        panelContenedor.setFrame(true);
-        //panelContenedor.add(logoLogin);
-//        BorderLayoutData eastData = new BorderLayoutData(LayoutRegion.CENTER, 443);
-//        eastData.setSplit(true);
-//        eastData.setCollapsible(true);
-//        eastData.setMargins(new Margins(0, 0, 0, 5));
-//        panelContenedor.add(panel);
-//        panelContenedor.setWidth(443);
-        add(panel);
+        ContentPanel panelContenedor = new ContentPanel();
+        panelContenedor.setBodyBorder(false);
+        panelContenedor.setHeaderVisible(false);
+        panelContenedor.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        panelContenedor.setHeading("<center>Bienvenido</center> ");
+        panelContenedor.setFrame(true);
+        panelContenedor.add(logoLogin);
+        BorderLayoutData eastData = new BorderLayoutData(LayoutRegion.CENTER, 450);
+        eastData.setSplit(true);
+        eastData.setCollapsible(true);
+        eastData.setMargins(new Margins(0, 0, 0, 0));
+        panelContenedor.add(panel);
+        panelContenedor.setWidth(450);
+        add(panelContenedor);
     }
 }
