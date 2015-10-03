@@ -31,6 +31,7 @@ import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -45,6 +46,7 @@ import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
@@ -138,7 +140,7 @@ public final class PanelAntropometrico extends LayoutContainer {
         setScrollMode(Style.Scroll.AUTOY);
         setLayoutData(new FillLayout());
         setLayout(new RowLayout(Style.Orientation.VERTICAL));
-
+        myConstants = (Main) GWT.create(Main.class);
         final RPCAdminAntropometricoAsync svc = (RPCAdminAntropometricoAsync) GWT.create(RPCAdminAntropometrico.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminAntropometrico");
@@ -435,12 +437,12 @@ public final class PanelAntropometrico extends LayoutContainer {
 
         cpGrid.add(grid);
         ToolBar toolBar = new ToolBar();
-//        cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
-//            @Override
-//            public void componentSelected(IconButtonEvent ce) {
-////               abrirVentana();
-//            }
-//        }));
+        cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+               abrirVentana(myConstants.ayudaPanelPIAntropometrico());
+            }
+        }));
 
         toolBar.add(btnGuardar);
         toolBar.add(btnEliminar);

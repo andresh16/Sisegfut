@@ -1055,7 +1055,6 @@ public class ReportesController {
                     dtoAntropometrico.setPesoMacro(antropometrico.getPesoMacro());
                     dtoAntropometrico.setPorcentajeGrasa(antropometrico.getPorcentajeGrasa());
                     listaDeportistaAnt.add(dtoAntropometrico);
-
                 }
             }
 //           

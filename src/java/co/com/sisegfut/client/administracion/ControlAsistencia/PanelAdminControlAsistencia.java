@@ -498,7 +498,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         wBuscar.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-//                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
+                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
             }
         }));
         wBuscar.addButton(btnVerCtrolAsistencia);
@@ -550,7 +550,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         wReporteAsistenciaMes.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-//                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
+                        abrirVentana(myConstants.ayudaPanelAsistenciaBuscar());
             }
         }));
         wReporteAsistenciaMes.addButton(btnGenerarPDF);

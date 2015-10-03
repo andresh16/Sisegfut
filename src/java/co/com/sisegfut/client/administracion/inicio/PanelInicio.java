@@ -6,15 +6,9 @@
 package co.com.sisegfut.client.administracion.inicio;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.BoxComponentEvent;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
-import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.extjs.gxt.ui.client.widget.layout.FillLayout;
-import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.user.client.Element;
@@ -50,7 +44,7 @@ public class PanelInicio extends LayoutContainer {
         
         
           final Frame frame = new Frame();
-        frame.setUrl("http://andreshurtado16.wix.com/imgs");
+        frame.setUrl("http://polisisegfut.wix.com/imgs");
         frame.setSize("100%", "100%");
         frame.addLoadHandler(new LoadHandler() {
             @Override

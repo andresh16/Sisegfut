@@ -37,6 +37,7 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -118,7 +119,7 @@ public final class PanelControlTecnico extends LayoutContainer {
         setScrollMode(Style.Scroll.AUTOY);
         setLayoutData(new FillLayout());
         setLayout(new RowLayout(Style.Orientation.VERTICAL));
-
+        myConstants = (Main) GWT.create(Main.class);
         final RPCAdminControlTecnicoAsync svc = (RPCAdminControlTecnicoAsync) GWT.create(RPCAdminControlTecnico.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminControlTecnico");
@@ -276,7 +277,7 @@ public final class PanelControlTecnico extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("nombreconduccion");
-        column.setHeader("Condición");
+        column.setHeader("Conducción");
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setWidth(50);
         configs.add(column);
@@ -439,7 +440,7 @@ public final class PanelControlTecnico extends LayoutContainer {
         cpGrid.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-//                abrirVentana("Guarda eps");
+                abrirVentana(myConstants.ayudaPanelPIControlTecnico());
             }
         }));
 
@@ -827,6 +828,23 @@ public final class PanelControlTecnico extends LayoutContainer {
         foto.setUrl("imagenes/fotoNoDisponible.jpg");
     }
     
+     /**
+     * Abre ventana de ayuda.
+     */
+    private void abrirVentana(String texto) {
+        final Dialog simple = new Dialog();
+        simple.setHeading("Ayuda");
+        simple.setButtons(Dialog.OK);
+        simple.setBodyStyleName("pad-text");
+        simple.addText(texto);
+        simple.getItem(0).getFocusSupport().setIgnore(true);
+        simple.setScrollMode(Style.Scroll.AUTO);
+        simple.setHideOnButtonClick(true);
+        simple.setWidth(550);
+        //simple.setSize(550, 255);
+
+        simple.show();
+    }
       /**
      * Mediante una llamada nativa redirecciona el browser a la dirección
      * especificada, en el caso de descargar archivos el contenido del browser

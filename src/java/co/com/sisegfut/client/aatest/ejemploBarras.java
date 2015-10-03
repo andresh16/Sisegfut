@@ -99,7 +99,7 @@ public class ejemploBarras extends FramedPanel{
             axis.setDisplayGrid(true);
             axis.setMinimum(0);
             axis.setInterval(1);
-            axis.setMaximum(20);
+            axis.setMaximum(30);
 
             title = new TextSprite("Situaciones de Juego");
             title.setFontSize(18);

@@ -58,7 +58,7 @@ public class PanelAcceso extends LayoutContainer {
         VBoxLayout layout2 = new VBoxLayout();  
         layout2.setPadding(new Padding(5));  
         layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
-        layout2.setPack(BoxLayoutPack.CENTER);  
+        layout2.setPack(BoxLayoutPack.START);  
         scrollIntoView(this);
         setLayout(layout2);
 

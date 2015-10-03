@@ -101,6 +101,7 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdminRivales;
     private Command cmdInfoEstratificacion;
     private Command cmdInfoDeportistasPosicion;
+    private Command cmdAdminClub;
 
     /**
      * Menú de la aplicación
@@ -354,70 +355,42 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdAdmUsuario);
-
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Club"
+                + "</img>",
+                true,
+                crearMenuClub());
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Eps"
                 + "</img>",
                 true,
-                cmdAdmEps);
-        
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Rivales"
-                + "</img>",
-                true,
-                cmdAdminRivales);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Nivel Educativo"
-                + "</img>",
-                true,
-                cmdAdmNivelEducativo);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Cargos"
-                + "</img>",
-                true,
-                cmdAdmCargos);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Categorías"
-                + "</img>",
-                true,
-                cmdAdmCategorias);
+                cmdAdmEps); 
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Institución Educativa"
                 + "</img>",
                 true,
                 cmdAdmInstEducativa);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Nivel Educativo"
+                + "</img>",
+                true,
+                cmdAdmNivelEducativo);     
 //        retorno.addItem(
 //                "<img src='imagenes/iconos/icono2.ico'> "
 //                + "Situaciones de Juego"
 //                + "</img>",
 //                true,
-//                cmdAdmSituacionesJuego);
-
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Posiciones"
-                + "</img>",
-                true,
-                cmdAdmPosiciones);
-
+//                cmdAdmSituacionesJuego);        
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Tipo Documento"
                 + "</img>",
                 true,
-                cmdAdmTipoDocumento);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Torneos"
-                + "</img>",
-                true,
-                cmdAdmTorneos);
+                cmdAdmTipoDocumento);        
 
         return retorno;
     }
@@ -502,7 +475,44 @@ public class PanelMenu extends LayoutContainer {
 
         return retorno;
     }    
+    
+    private MenuBar crearMenuClub() {
+        MenuBar retorno = new MenuBar(true);
+        //Los comandos fuerom previamente creados
         
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Cargos"
+                + "</img>",
+                true,
+                cmdAdmCargos); 
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Categorías"
+                + "</img>",
+                true,
+                cmdAdmCategorias);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Posiciones"
+                + "</img>",
+                true,
+                cmdAdmPosiciones);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Rivales"
+                + "</img>",
+                true,
+                cmdAdminRivales);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Torneos"
+                + "</img>",
+                true,
+                cmdAdmTorneos);
+        
+        return retorno;
+    }
     private MenuBar crearMenuPruebasValorativas() {
         MenuBar retorno = new MenuBar(true);
         //Los comandos fuerom previamente creados
