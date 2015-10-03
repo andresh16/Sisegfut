@@ -11,13 +11,11 @@ import co.com.sisegfut.client.util.Formatos;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxAutoCategoria;
 import co.com.sisegfut.client.util.combox.ComboBoxCategoria;
-import co.com.sisegfut.client.util.combox.ComboBoxCuenta;
 import co.com.sisegfut.client.util.combox.ComboBoxEps;
 import co.com.sisegfut.client.util.combox.ComboBoxInsEducativa;
 import co.com.sisegfut.client.util.combox.ComboBoxNivelEducativo;
 import co.com.sisegfut.client.util.combox.ComboBoxPosiciones;
 import co.com.sisegfut.client.util.combox.ComboBoxTipoDocumento;
-import co.com.sisegfut.client.util.combox.ComboBoxTipoMovimiento;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
@@ -94,10 +92,7 @@ public final class PanelInfoGeneral extends FormPanel {
     TextField<String> txtIngreso = new TextField<String>();
 
     TextField<String> txtEgreso = new TextField<String>();
-    TextArea txtDescripcion = new TextArea();
-    ComboBoxCuenta cbxCuenta;
-    ComboBoxCuenta cbxCuentaTranferir;
-    ComboBoxTipoMovimiento cbxTipoMovimiento;
+    TextArea txtDescripcion = new TextArea();    
     ComboBoxAutoCategoria cbxAutoCategoria;
     Long idDeportista = null;
     String nombreCompleto;

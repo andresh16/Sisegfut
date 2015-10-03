@@ -1,13 +1,4 @@
-/**
-* PanelAdministracionEntidades
-* Versión 1.0
-* 15/09/2013
-*
-* Copyright(c) 2007-2012, Boos IT.
-* admin@boos.com.co
-*
-* http://boos.com.co/license
-**/
+
 
 package co.com.sisegfut.client.adminCRUDgral;
 
