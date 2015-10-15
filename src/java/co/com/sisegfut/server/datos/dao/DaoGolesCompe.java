@@ -6,6 +6,7 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.Goles;
+import co.com.sisegfut.client.datos.dominio.dto.DTOGolesDepTorneo;
 import java.util.List;
 
 /**
@@ -17,4 +18,6 @@ public interface DaoGolesCompe extends DaoGenerico<Goles>{
     public List<Goles> getGolesXCompetencia(Long idCompetencia)throws Exception;
     
     public boolean validarMinutoGolCompetencia(Long idCompetencia, Integer minuto)throws Exception;
+    
+    public List<DTOGolesDepTorneo> golesDeportistXTorneo(Long idTorneo) throws Exception;
 }
