@@ -25,13 +25,6 @@
                 <entry key = "RPCRecuperarClave">
                     <ref bean="ServiceControllerClave" />
                 </entry>
-                <entry key = "RPCAdminCuenta">
-                    <ref bean="ServiceControllerCuenta" />
-                </entry>
-                
-                <entry key = "RPCAdminMovimiento">
-                    <ref bean="ServiceControllerMovimiento" />
-                </entry>
                 
                 <entry key = "RPCAdminCategoria">
                     <ref bean="ServiceControllerCategoria" />
@@ -149,10 +142,20 @@
                 <entry key = "RPCAdminRivales">
                     <ref bean="ServiceControllerRivales" />
                 </entry>
+                <entry key = "RPCAdminTipoDeportista">
+                    <ref bean="ServiceControllerTipoDeportista" />
+                </entry>
             </map>
         </property>
     </bean>
     
+    
+    <bean id="ServiceControllerTipoDeportista" class="co.com.sisegfut.server.comm.ServletWrappingController">
+        <property name="servletName" value="RPCAdminTipoDeportista"/>    
+        <property name="servletInstance">
+            <ref bean="RPCAdminTipoDeportista"/>
+        </property>
+    </bean>
       <bean id="ServiceControllerRivales" class="co.com.sisegfut.server.comm.ServletWrappingController">
         <property name="servletName" value="RPCAdminRivales"/>    
         <property name="servletInstance">
@@ -241,19 +244,6 @@
         <property name="servletName" value="RPCRecuperarClave"/>    
         <property name="servletInstance">
             <ref bean="RPCRecuperarClave"/>
-        </property>
-    </bean>
-    <bean id="ServiceControllerCuenta" class="co.com.sisegfut.server.comm.ServletWrappingController">
-        <property name="servletName" value="RPCAdminCuenta"/>    
-        <property name="servletInstance">
-            <ref bean="RPCAdminCuenta"/>
-        </property>
-    </bean>
-    
-    <bean id="ServiceControllerMovimiento" class="co.com.sisegfut.server.comm.ServletWrappingController">
-        <property name="servletName" value="RPCAdminMovimiento"/>    
-        <property name="servletInstance">
-            <ref bean="RPCAdminMovimiento"/>
         </property>
     </bean>
     
@@ -387,13 +377,9 @@
      
     
     <bean id="RPCAdminUsuarios" class="co.com.sisegfut.server.rpc.administracion.RPCAdminUsuariosImpl"> </bean>
+        
+    <bean id="RPCLogin" class="co.com.sisegfut.server.rpc.usuario.RPCLoginImpl"> </bean>   
     
-    <bean id="RPCAdminCuenta" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCuentaImpl"> </bean>
-    
-    <bean id="RPCLogin" class="co.com.sisegfut.server.rpc.usuario.RPCLoginImpl"> </bean>
-   
-    <bean id="RPCAdminMovimiento" class="co.com.sisegfut.server.rpc.administracion.RPCAdminMovimientoImpl"> </bean>
-   
     <bean id="RPCRecuperarClave" class="co.com.sisegfut.server.rpc.usuario.RPCRecuperarClaveImpl"> </bean>
     
     <bean id="RPCAdminCategoria" class="co.com.sisegfut.server.rpc.administracion.RPCAdminCategoriaImpl"> </bean>
@@ -454,6 +440,8 @@
       
     <bean id="RPCAdminExperiencia" class="co.com.sisegfut.server.rpc.administracion.RPCAdminExperienciaImpl"> </bean>    
    
-    <bean id="RPCAdminRivales" class="co.com.sisegfut.server.rpc.administracion.RPCAdminRivalesImpl"> </bean>    
+    <bean id="RPCAdminRivales" class="co.com.sisegfut.server.rpc.administracion.RPCAdminRivalesImpl"> </bean>
+    
+    <bean id="RPCAdminTipoDeportista" class="co.com.sisegfut.server.rpc.administracion.RPCAdminTipoDeportistaImpl"> </bean>    
 
 </beans>

@@ -425,7 +425,7 @@ public class PanelLesion extends LayoutContainer {
         dtFechaLesion.setName("fechaLesion");
         dtFechaLesion.setAllowBlank(false);
         dtFechaLesion.setMaxValue(new Date());//corregir se debe sumar un dia
-        dtFechaLesion.setFieldLabel("Fecha Lesión");
+        dtFechaLesion.setFieldLabel("<font color='red'>*</font>Fecha Lesión");
         Columna1.add(dtFechaLesion, formData);
 
         ///////////////////// Columna 2 //////////////////////////// 
@@ -436,7 +436,7 @@ public class PanelLesion extends LayoutContainer {
         Columna2.setLayout(layout);
         
         txtLesion.setName("nombreLesion");
-        txtLesion.setFieldLabel("Lesión");
+        txtLesion.setFieldLabel("<font color='red'>*</font>Lesión");
         txtLesion.setEmptyText("");
         txtLesion.setAllowBlank(false);
         Columna2.add(txtLesion, formData);

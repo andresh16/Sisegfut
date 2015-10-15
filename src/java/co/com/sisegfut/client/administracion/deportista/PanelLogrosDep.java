@@ -463,7 +463,7 @@ public class PanelLogrosDep extends LayoutContainer {
         Columna1.setLayout(layout);
 
         txtLogro.setName("logroDeportivo");
-        txtLogro.setFieldLabel("Logro");
+        txtLogro.setFieldLabel("<font color='red'>*</font>Logro");
         txtLogro.setEmptyText("");
         txtLogro.setAllowBlank(false);
         Columna1.add(txtLogro, formData);
@@ -477,7 +477,7 @@ public class PanelLogrosDep extends LayoutContainer {
 
         cbxCategoria.setName("categoriaLogro");
 //        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Elija una categoria"));
-        cbxCategoria.setFieldLabel("Categoria");
+        cbxCategoria.setFieldLabel("<font color='red'>*</font>Categoría");
         cbxCategoria.setAllowBlank(false);
         Columna2.add(cbxCategoria, formData);
 
@@ -490,7 +490,7 @@ public class PanelLogrosDep extends LayoutContainer {
 
         comboAnios.setName("anioLogro");
         comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
-        comboAnios.setFieldLabel("Años");
+        comboAnios.setFieldLabel("<font color='red'>*</font>Año");
         comboAnios.setAllowBlank(false);
         Columna3.add(comboAnios, formData);
 

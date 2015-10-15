@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="942" pageHeight="595" orientation="Landscape" columnWidth="902" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="389be595-d7aa-46cf-8d57-b8c3cf8cd908">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="16"/>
+	<property name="ireport.x" value="12"/>
 	<property name="ireport.y" value="96"/>
 	<parameter name="nombreCompleto" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
@@ -190,7 +190,7 @@
 	<detail>
 		<band height="35" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="19" y="0" width="133" height="35" uuid="95d5813d-b5a4-498b-9f64-e03524cff0f6"/>
+				<reportElement x="2" y="0" width="133" height="35" uuid="95d5813d-b5a4-498b-9f64-e03524cff0f6"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -203,7 +203,7 @@
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="152" y="0" width="86" height="35" uuid="b98a3d71-af5c-4c4f-866e-9d118d209a3d"/>
+				<reportElement x="135" y="0" width="86" height="35" uuid="b98a3d71-af5c-4c4f-866e-9d118d209a3d"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -216,7 +216,7 @@
 				<textFieldExpression><![CDATA[$F{nombrerecepcion30seg}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="238" y="0" width="81" height="35" uuid="5c6c7e32-e667-4463-ad40-82042db90e99"/>
+				<reportElement x="221" y="0" width="81" height="35" uuid="5c6c7e32-e667-4463-ad40-82042db90e99"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -229,7 +229,7 @@
 				<textFieldExpression><![CDATA[$F{nombreprecisionpase15seg}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="319" y="0" width="100" height="35" uuid="c0d5afb5-c4cc-4bb1-9b52-6be8146253f9"/>
+				<reportElement x="302" y="0" width="100" height="35" uuid="c0d5afb5-c4cc-4bb1-9b52-6be8146253f9"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -242,7 +242,7 @@
 				<textFieldExpression><![CDATA[$F{nombreprecisiondisparoempeine}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="419" y="0" width="73" height="35" uuid="7d6d2cfe-f050-4aed-8e69-28896496d869"/>
+				<reportElement x="402" y="0" width="73" height="35" uuid="7d6d2cfe-f050-4aed-8e69-28896496d869"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -255,7 +255,7 @@
 				<textFieldExpression><![CDATA[$F{nombrepotenciaremate}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="492" y="0" width="87" height="35" uuid="ceed714a-390e-4202-8d33-4188b0f0aee5"/>
+				<reportElement x="475" y="0" width="87" height="35" uuid="ceed714a-390e-4202-8d33-4188b0f0aee5"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -268,7 +268,7 @@
 				<textFieldExpression><![CDATA[$F{nombrecontrolbalon50seg}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="579" y="0" width="76" height="35" uuid="fb65b4bc-6ab3-4aef-be3a-1b0297fb0dea"/>
+				<reportElement x="562" y="0" width="76" height="35" uuid="fb65b4bc-6ab3-4aef-be3a-1b0297fb0dea"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -281,7 +281,7 @@
 				<textFieldExpression><![CDATA[$F{nombreconduccion}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="655" y="0" width="81" height="35" uuid="5bf647d7-df87-4308-b238-f93ed203edb0"/>
+				<reportElement x="638" y="0" width="81" height="35" uuid="5bf647d7-df87-4308-b238-f93ed203edb0"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -294,7 +294,7 @@
 				<textFieldExpression><![CDATA[$F{nombrecabeceodefensivo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="736" y="0" width="70" height="35" uuid="34e60ea1-007b-4021-b753-93b098c17240"/>
+				<reportElement x="719" y="0" width="70" height="35" uuid="34e60ea1-007b-4021-b753-93b098c17240"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -307,7 +307,7 @@
 				<textFieldExpression><![CDATA[$F{nombrecabeceoofensivo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="806" y="0" width="84" height="35" uuid="6f2cb4a1-97e6-4474-951f-5550fc5cf943"/>
+				<reportElement x="789" y="0" width="84" height="35" uuid="6f2cb4a1-97e6-4474-951f-5550fc5cf943"/>
 				<box leftPadding="3">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>

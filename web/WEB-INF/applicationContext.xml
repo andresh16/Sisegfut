@@ -71,11 +71,11 @@
                 <value>co.com.sisegfut.client.datos.dominio.ConvocadosCompe</value>           
                 <value>co.com.sisegfut.client.datos.dominio.CuerpoTecnicoCompe</value>           
                 <value>co.com.sisegfut.client.datos.dominio.Goles</value>           
-                <value>co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe</value>  
-                
+                <value>co.com.sisegfut.client.datos.dominio.SituacionesJuegoCompe</value>                 
                 <value>co.com.sisegfut.client.datos.dominio.Experiencia</value>           
                 <value>co.com.sisegfut.client.datos.dominio.EstudiosRealizados</value>             
-                <value>co.com.sisegfut.client.datos.dominio.Rivales</value>             
+                <value>co.com.sisegfut.client.datos.dominio.Rivales</value> 
+                <value>co.com.sisegfut.client.datos.dominio.TipoDeportista</value>             
         
                 
             </list>

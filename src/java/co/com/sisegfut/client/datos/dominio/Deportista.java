@@ -124,6 +124,10 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "inst_educativa", nullable = false)
     private InstEducativa instEducativa;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tipo_deportista", nullable = false)
+    private TipoDeportista tipoDeportista;
 
     @Column(name = "jugador_comodin", nullable = false, length = 150)
     private boolean jugadorComodin;
@@ -170,9 +174,10 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
         this.eps = new Eps(3L);
         this.nivelEducativo = new NivelEducativo(3L);
         this.instEducativa = new InstEducativa(1L);
+        this.tipoDeportista = new TipoDeportista(1L);
     }
 
-    public Deportista(String documento, TipoDocumento tipoDocumento, String nombres, String apellidos, Date fechaNacimiento, String correoElectronico, String direccion, String telefono, String nombreMadre, String nombrePadre, Categoria categoria, String numeroCamisa, String barrio, String estatura, String imc, String peso, String grasa, String genero, String estrato, Posiciones posicion, Eps eps, NivelEducativo nivelEducativo, InstEducativa instEducativa, boolean jugadorComodin) {
+    public Deportista(String documento, TipoDocumento tipoDocumento, String nombres, String apellidos, Date fechaNacimiento, String correoElectronico, String direccion, String telefono, String nombreMadre, String nombrePadre, Categoria categoria, String numeroCamisa, String barrio, String estatura, String imc, String peso, String grasa, String genero, String estrato, Posiciones posicion, Eps eps, NivelEducativo nivelEducativo, InstEducativa instEducativa, boolean jugadorComodin, TipoDeportista tipoDeportista) {
 
         this.direccion = direccion;
         this.telefono = telefono;
@@ -192,6 +197,7 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
         this.nivelEducativo = nivelEducativo;
         this.instEducativa = instEducativa;
         this.jugadorComodin = jugadorComodin;
+        this.tipoDeportista = tipoDeportista;
     }
 
     public Deportista(Long IdDep) {
@@ -346,7 +352,7 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
 
     public String getEstatura() {
         return estatura;
-    }
+    }    
 
     public void setEstatura(String estatura) {
         this.estatura = estatura;
@@ -416,6 +422,14 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
         this.instEducativa = instEducativa;
     }
 
+    public TipoDeportista getTipoDeportista() {
+        return tipoDeportista;
+    }
+
+    public void setTipoDeportista(TipoDeportista tipoDeportista) {
+        this.tipoDeportista = tipoDeportista;
+    }
+    
     public byte[] getFoto() {
         return foto;
     }

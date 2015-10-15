@@ -115,18 +115,4 @@ public class ComboBoxEps extends ComboBox<BeanModel>{
     }
     
     
-    // En la imagen averiguar como traer el id del tipo de cuenta
-       private native String getSaldoTemplate() /*-{ 
-     return  [ 
-     '<tpl for=".">', 
-     '<div class="x-combo-list-item" qtip=" " qtitle="Saldo Actual ${saldo} - N° de cuenta: {numcuenta}" >{nombrecuenta}</div>', 
-     '</tpl>' 
-     ].join(""); 
-     }-*/;
-    
-       //Para ponerle imagen al combo
-     //  <img width="20" height="20" src="imagenes/tiposcuentas/{id}TipoCuenta.png "/>
-       
-    
-    
 }

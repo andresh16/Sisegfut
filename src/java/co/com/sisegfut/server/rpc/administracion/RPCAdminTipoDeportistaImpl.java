@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.com.sisegfut.server.rpc.administracion;
 
-import co.com.sisegfut.client.datos.dominio.Eps;
+import co.com.sisegfut.client.datos.dominio.TipoDeportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
-import co.com.sisegfut.client.util.rpc.RPCAdminEps;
-import co.com.sisegfut.server.datos.dao.DaoEps;
+import co.com.sisegfut.client.util.rpc.RPCAdminTipoDeportista;
+import co.com.sisegfut.server.datos.dao.DaoTipoDeportista;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
- * @author anfeh_000
+ * @author ManuelAlejandro
  */
-public class RPCAdminEpsImpl extends RPCMaestroImpl<Eps> implements RPCAdminEps{
+public class RPCAdminTipoDeportistaImpl extends RPCMaestroImpl<TipoDeportista> implements RPCAdminTipoDeportista{
     
     private Usuarios usuarioSession;
-    private DaoEps daoEps;
-
+    private DaoTipoDeportista daoTipoDeportista;
+    
     @Autowired
     @Override
     public void setUsuarioSession(Usuarios usuarioSession) {
@@ -29,8 +28,8 @@ public class RPCAdminEpsImpl extends RPCMaestroImpl<Eps> implements RPCAdminEps{
     }
     
     @Autowired
-    public void setDaoEps(DaoEps daoEps) {
-        this.daoEps = daoEps;
-        super.setDaoGenerico(daoEps);
+    public void setDaoTipoDeportista(DaoTipoDeportista daoTipoDeportista) {
+        this.daoTipoDeportista = daoTipoDeportista;
+        super.setDaoGenerico(daoTipoDeportista);
     }
 }

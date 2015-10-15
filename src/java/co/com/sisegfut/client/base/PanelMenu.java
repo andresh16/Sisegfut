@@ -14,6 +14,7 @@ import co.com.sisegfut.client.administracion.eps.PanelAdminEps;
 import co.com.sisegfut.client.administracion.instEducativa.PanelAdminInsEducativa;
 import co.com.sisegfut.client.administracion.nivelEducativo.PanelAdminNivelEducativo;
 import co.com.sisegfut.client.administracion.posiciones.PanelAdminPosiciones;
+import co.com.sisegfut.client.administracion.tipodeportista.PanelAdminTipoDeportista;
 import co.com.sisegfut.client.administracion.tipodocumento.PanelAdminTipoDocumento;
 import co.com.sisegfut.client.administracion.torneos.PanelAdminTorneos;
 import co.com.sisegfut.client.administracion.usuarios.FormularioUsuarios;
@@ -83,7 +84,7 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdmInstEducativa;
     private Command cmdAdmPersonal;
     private Command cmdAdmDeportista;
-    private Command cmdAdmSituacionesJuego;
+    private Command cmdAdmTipoDeportista;
 //    private Command cmdAdmEstadoAsistencia;
 
     private Command cmdAdmCompetencia;
@@ -506,6 +507,12 @@ public class PanelMenu extends LayoutContainer {
                 cmdAdminRivales);
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
+                + "Tipo Deportista"
+                + "</img>",
+                true,
+                cmdAdmTipoDeportista);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
                 + "Torneos"
                 + "</img>",
                 true,
@@ -677,6 +684,15 @@ public class PanelMenu extends LayoutContainer {
             }
         };
 
+        cmdAdmTipoDeportista = new Command() {
+
+            public void execute() {
+
+                PanelAdminTipoDeportista adminTipoDeportista = new PanelAdminTipoDeportista();
+                adminTipoDeportista.show();
+            }
+        };
+        
         cmdAdmInstEducativa = new Command() {
 
             public void execute() {

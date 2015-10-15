@@ -7,6 +7,7 @@ import co.com.sisegfut.client.datos.dominio.InstEducativa;
 import co.com.sisegfut.client.datos.dominio.NivelEducativo;
 import co.com.sisegfut.client.datos.dominio.Posiciones;
 import co.com.sisegfut.client.datos.dominio.Rol;
+import co.com.sisegfut.client.datos.dominio.TipoDeportista;
 import co.com.sisegfut.client.datos.dominio.TipoDocumento;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.server.datos.dao.DaoCargos;
@@ -18,6 +19,7 @@ import co.com.sisegfut.server.datos.dao.DaoPosiciones;
 import co.com.sisegfut.server.util.Cifrado;
 import co.com.sisegfut.server.datos.dao.DaoRol;
 import co.com.sisegfut.server.datos.dao.DaoSituacionesJuego;
+import co.com.sisegfut.server.datos.dao.DaoTipoDeportista;
 import co.com.sisegfut.server.datos.dao.DaoTipoDocumento;
 import co.com.sisegfut.server.datos.dao.DaoUsuario;
 import org.apache.log4j.Logger;
@@ -54,6 +56,8 @@ public class Bootstrap implements InitializingBean {
     private DaoCargos daoCargos ;
     @Autowired
     private DaoCategoria daoCategoria;
+    @Autowired
+    private DaoTipoDeportista daoTipoDeportista;
 
 
     /**
@@ -107,7 +111,7 @@ public class Bootstrap implements InitializingBean {
             daoTipoDocumento.guardar(tipoDocumento);
             
             tipoDocumento = new TipoDocumento();
-            tipoDocumento.setNombreTipoDocumento("tARJETA DE IDENTIDAD");
+            tipoDocumento.setNombreTipoDocumento("TARJETA DE IDENTIDAD");
             daoTipoDocumento.guardar(tipoDocumento);
             
             tipoDocumento = new TipoDocumento();
@@ -233,7 +237,22 @@ public class Bootstrap implements InitializingBean {
             cargos = new Cargos();
             cargos.setNombrecargo("FISIOTERAPEUTA");
             daoCargos.guardar(cargos);
-
+            
+            TipoDeportista tipoDeportista = new TipoDeportista();
+            tipoDeportista.setNombreTipoDeportista("ALTO RENDIMIENTO");
+            daoTipoDeportista.guardar(tipoDeportista);
+            
+            tipoDeportista = new TipoDeportista();
+            tipoDeportista.setNombreTipoDeportista("RENDIMIENTO");
+            daoTipoDeportista.guardar(tipoDeportista);
+            
+            tipoDeportista = new TipoDeportista();
+            tipoDeportista.setNombreTipoDeportista("LIGA");
+            daoTipoDeportista.guardar(tipoDeportista);
+            
+            tipoDeportista = new TipoDeportista();
+            tipoDeportista.setNombreTipoDeportista("UNIVERSITARIO");
+            daoTipoDeportista.guardar(tipoDeportista);
             
             //Se ingresa un usuario admin de prueba
             Usuarios usuarioAdmin = new Usuarios();

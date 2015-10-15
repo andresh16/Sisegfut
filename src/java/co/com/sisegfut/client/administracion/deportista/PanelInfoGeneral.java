@@ -15,6 +15,7 @@ import co.com.sisegfut.client.util.combox.ComboBoxEps;
 import co.com.sisegfut.client.util.combox.ComboBoxInsEducativa;
 import co.com.sisegfut.client.util.combox.ComboBoxNivelEducativo;
 import co.com.sisegfut.client.util.combox.ComboBoxPosiciones;
+import co.com.sisegfut.client.util.combox.ComboBoxTipoDeportista;
 import co.com.sisegfut.client.util.combox.ComboBoxTipoDocumento;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
@@ -51,7 +52,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Image;
-import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -79,6 +79,7 @@ public final class PanelInfoGeneral extends FormPanel {
     TextField<String> txtBarrio = new TextField<String>();
     ComboBoxInsEducativa cbxInstEducativa;
     ComboBoxNivelEducativo cbxNivelEdu;
+    ComboBoxTipoDeportista cbxTipoDeportista;
     TextField<String> txtPeso = new TextField<String>();
     TextField<String> txtNumCamisa = new TextField<String>();
     TextField<String> txtEstatura = new TextField<String>();
@@ -310,6 +311,14 @@ public final class PanelInfoGeneral extends FormPanel {
         cbxInstEducativa.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
         Columna1.add(cbxInstEducativa, formData);
+        
+        cbxNivelEdu = new ComboBoxNivelEducativo(ACTIVOS);
+        cbxNivelEdu.setName("nombre_inst_educativa.nombre_nivel_educativo");
+        cbxNivelEdu.setToolTip(new ToolTipConfig("INivel de educación", "Seleccione el nivel de educación"));
+        cbxNivelEdu.setFieldLabel("<font color='red'>*</font>Escolaridad");
+        cbxNivelEdu.setAllowBlank(false);
+        //  cbxCategoria.setEditable(false);
+        Columna1.add(cbxNivelEdu, formData);
 
         cbxEps = new ComboBoxEps(ACTIVOS);
         cbxEps.setName("eps.nombre_eps");
@@ -388,7 +397,7 @@ public final class PanelInfoGeneral extends FormPanel {
 //        fieldSet.add(contenedorFotoUsuario);
         Columna2.add(LayoutFoto, formData);
         
-         txtNumCamisa.setName("numero_camisa");
+        txtNumCamisa.setName("numero_camisa");
         txtNumCamisa.setFieldLabel("<font color='red'>*</font> # Camisa");
         txtNumCamisa.setMaxLength(3);
         txtNumCamisa.setRegex("^[.0-9]*$");
@@ -398,6 +407,14 @@ public final class PanelInfoGeneral extends FormPanel {
 //        txttxtPesoPeso.setEnabled(false);
         Columna2.add(txtNumCamisa, formData);
 
+        cbxTipoDeportista = new ComboBoxTipoDeportista(ACTIVOS);
+        cbxTipoDeportista.setName("tipo_deportista.tipoDeportista");
+        cbxTipoDeportista.setToolTip(new ToolTipConfig("Tipo Deportista", "Seleccione un tipo deportista"));
+        cbxTipoDeportista.setFieldLabel("<font color='red'>*</font> Tipo Deportista");
+        cbxTipoDeportista.setAllowBlank(false);
+        //  cbxCategoria.setEditable(false);
+        Columna2.add(cbxTipoDeportista, formData);
+        
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
         cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
@@ -423,14 +440,7 @@ public final class PanelInfoGeneral extends FormPanel {
         llenarEstractos();
         Columna2.add(cbxEstratos, formData);
 
-        cbxNivelEdu = new ComboBoxNivelEducativo(ACTIVOS);
-        cbxNivelEdu.setName("nombre_inst_educativa.nombre_nivel_educativo");
-        cbxNivelEdu.setToolTip(new ToolTipConfig("INivel de educación", "Seleccione el nivel de educación"));
-        cbxNivelEdu.setFieldLabel("<font color='red'>*</font>Escolaridad");
-        cbxNivelEdu.setAllowBlank(false);
-        //  cbxCategoria.setEditable(false);
-        Columna2.add(cbxNivelEdu, formData);
-
+       
         txtPeso.setName("peso");
         txtPeso.setFieldLabel("<font color='red'>*</font> Peso (Kg)");
         txtPeso.setMaxLength(4);
@@ -651,8 +661,7 @@ public final class PanelInfoGeneral extends FormPanel {
 
                     Deportista deportista = new Deportista(idDeportista);
                     deportista = obtenerDatosFormulario(deportista);
-                    
-                    
+                                        
                     getServiceDeportista().updateConFoto(deportista, new AsyncCallback<Deportista>() {
 
                         @Override
@@ -665,7 +674,6 @@ public final class PanelInfoGeneral extends FormPanel {
                             result.getFoto();
                             Info.display("Guardar", "Guardó correctamente el deportista");
                             limpiar();
-
                         }
                     });
                 } else {
@@ -715,6 +723,7 @@ public final class PanelInfoGeneral extends FormPanel {
         deportista.setEps(cbxEps.getEpsElegido());
         deportista.setInstEducativa(cbxInstEducativa.getInstEducativaElegida());
         deportista.setNivelEducativo(cbxNivelEdu.getNivelEducativoElegido());
+        deportista.setTipoDeportista(cbxTipoDeportista.getTipoDeportistaElegido());
 
         return deportista;
     }
@@ -799,11 +808,10 @@ public final class PanelInfoGeneral extends FormPanel {
 
             @Override
             public void onSuccess(Object result) {
-                Info.display("Guardar", "Guardo correctamente el deportista");
+                Info.display("Guardar", "Guardó correctamente el deportista");
                 limpiar();
 //                        MessageBox.alert("Guardar", "Guardo correctamente el deportista", null);
             }
         });
     }
-
 }

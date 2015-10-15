@@ -471,7 +471,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
         Columna1.setLayout(layout);
 
         txtClubAnterior.setName("clubAnterior");
-        txtClubAnterior.setFieldLabel("Club Anterior");
+        txtClubAnterior.setFieldLabel("<font color='red'>*</font>Club Anterior");
         txtClubAnterior.setEmptyText("");
         txtClubAnterior.setAllowBlank(false);
         Columna1.add(txtClubAnterior, formData);
@@ -485,7 +485,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
 
         cbxCategoria.setName("categoriaAnterior");
 //        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Elija una categoria"));
-        cbxCategoria.setFieldLabel("Categoria");
+        cbxCategoria.setFieldLabel("<font color='red'>*</font>Categoría");
         cbxCategoria.setAllowBlank(false);
         Columna2.add(cbxCategoria, formData);
 
@@ -498,7 +498,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
 
         comboAnios.setName("anno");
         comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
-        comboAnios.setFieldLabel("Años");
+        comboAnios.setFieldLabel("<font color='red'>*</font>Año");
         comboAnios.setAllowBlank(false);
         Columna3.add(comboAnios, formData);
 
