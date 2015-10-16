@@ -111,15 +111,17 @@ public class PanelAdminPestDeportista extends LayoutContainer {
         panelInfoGeneral.cbxEps.seleccionar(dep.getEps().getId());
         panelInfoGeneral.cbxEstratos.setSimpleValue(dep.getEstrato()); 
         panelInfoGeneral.cbxInstEducativa.seleccionar(dep.getInstEducativa().getId());
-        panelInfoGeneral.cbxNivelEdu.seleccionar(dep.getNivelEducativo().getId());        
+        panelInfoGeneral.cbxNivelEdu.seleccionar(dep.getNivelEducativo().getId());
+        
         panelInfoGeneral.txtPeso.setValue(dep.getPeso());
         panelInfoGeneral.txtEstatura.setValue(dep.getEstatura());
         panelInfoGeneral.txtImc.setValue(dep.getImc());
         panelInfoGeneral.txtGrasa.setValue(dep.getGrasa());
         panelInfoGeneral.calcularFCM();
         panelInfoGeneral.muestraFoto(dep.getId());
-        panelInfoGeneral.cbxTipoDeportista.seleccionar(dep.getTipoDeportista().getId());
+        
         panelInfoGeneral.setNombreCompleto(dep.getNombreCompleto());
+        panelInfoGeneral.cbxTipoDeportista.seleccionar(dep.getTipoDeportista().getId());
                 
         panelAntecedentesDep.setId(dep.getId());
         panelLogrosDep.setId(dep.getId());

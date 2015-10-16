@@ -177,7 +177,7 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
         this.tipoDeportista = new TipoDeportista(1L);
     }
 
-    public Deportista(String documento, TipoDocumento tipoDocumento, String nombres, String apellidos, Date fechaNacimiento, String correoElectronico, String direccion, String telefono, String nombreMadre, String nombrePadre, Categoria categoria, String numeroCamisa, String barrio, String estatura, String imc, String peso, String grasa, String genero, String estrato, Posiciones posicion, Eps eps, NivelEducativo nivelEducativo, InstEducativa instEducativa, boolean jugadorComodin, TipoDeportista tipoDeportista) {
+    public Deportista(String documento, TipoDocumento tipoDocumento, String nombres, String apellidos, Date fechaNacimiento, String correoElectronico, String direccion, String telefono, String nombreMadre, String nombrePadre, Categoria categoria, String numeroCamisa, String barrio, String estatura, String imc, String peso, String grasa, String genero, String estrato, Posiciones posicion, Eps eps, NivelEducativo nivelEducativo, InstEducativa instEducativa, TipoDeportista tipoDeportista, boolean jugadorComodin) {
 
         this.direccion = direccion;
         this.telefono = telefono;
@@ -196,10 +196,11 @@ public class Deportista extends EntidadPerpetua implements BeanModelTag, Seriali
         this.eps = eps;
         this.nivelEducativo = nivelEducativo;
         this.instEducativa = instEducativa;
-        this.jugadorComodin = jugadorComodin;
         this.tipoDeportista = tipoDeportista;
+        this.jugadorComodin = jugadorComodin;
+        
     }
-
+    
     public Deportista(Long IdDep) {
         this.Id = IdDep;
     }

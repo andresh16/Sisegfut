@@ -408,7 +408,7 @@ public final class PanelInfoGeneral extends FormPanel {
         Columna2.add(txtNumCamisa, formData);
 
         cbxTipoDeportista = new ComboBoxTipoDeportista(ACTIVOS);
-        cbxTipoDeportista.setName("tipo_deportista.tipoDeportista");
+        cbxTipoDeportista.setName("tipo_deportista");
         cbxTipoDeportista.setToolTip(new ToolTipConfig("Tipo Deportista", "Seleccione un tipo deportista"));
         cbxTipoDeportista.setFieldLabel("<font color='red'>*</font> Tipo Deportista");
         cbxTipoDeportista.setAllowBlank(false);
@@ -503,8 +503,8 @@ public final class PanelInfoGeneral extends FormPanel {
         txtFCM.setReadOnly(true);
         txtFCM.setFieldLabel("FCM");
         txtFCM.setMaxLength(4);
-        txtFCM.setToolTip("Frecuencia Cardiaca Máxima");
-        txtFCM.setEmptyText("Frecuencia Cardiaca Máxima");
+        txtFCM.setToolTip("Frecuencia Cardiáca Máxima");
+        txtFCM.setEmptyText("Frecuencia Cardiáca Máxima");
 //        txtFCM.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtGrasa.setEnabled(false);
         Columna2.add(txtFCM, formData);
@@ -713,9 +713,9 @@ public final class PanelInfoGeneral extends FormPanel {
 
         String genero;
         if (rdMasculino.getValue()) {
-            genero = "Masculino";
+            genero = "MASCULINO";
         } else {
-            genero = "Femenino";
+            genero = "FEMENINO";
         }
         deportista.setGenero(genero);
         deportista.setEstrato(cbxEstratos.getSimpleValue());

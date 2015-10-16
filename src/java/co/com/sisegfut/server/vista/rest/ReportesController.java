@@ -250,6 +250,7 @@ public class ReportesController {
             parameterMap.put("camisa", dep.getNumeroCamisa());
             parameterMap.put("nivelEducativo", dep.getNivelEducativo().getNombreNivelEducativo());
             parameterMap.put("instEducativa", dep.getInstEducativa().getNombreInstEducativa());
+            parameterMap.put("tipoDeportista", dep.getTipoDeportista().getNombreTipoDeportista());
 
             java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
             parameterMap.put("banner", banner);

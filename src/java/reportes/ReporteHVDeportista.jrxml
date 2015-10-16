@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="820" pageHeight="675" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="780" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56934f50-f8a2-495e-b8ee-e6e89bc61cd9">
 	<property name="ireport.zoom" value="0.8264462809917354"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="93"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -92,6 +92,7 @@
 	<parameter name="camisa" class="java.lang.String"/>
 	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
+	<parameter name="tipoDeportista" class="java.lang.String"/>
 	<field name="clubAnterior" class="java.lang.String"/>
 	<field name="categoriaAnteriorAntDep" class="java.lang.String"/>
 	<field name="annoAntDep" class="java.lang.String"/>
@@ -110,7 +111,7 @@
 				<text><![CDATA[HOJA DE VIDA DEL DEPORTISTA]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="480" width="181" height="23" uuid="f8e25659-ee4d-43b5-b0ba-faa6fc8b0396"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="470" width="230" height="23" uuid="f8e25659-ee4d-43b5-b0ba-faa6fc8b0396"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -119,12 +120,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nivelEducativo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="388" width="181" height="23" uuid="465830f1-febe-426c-859c-b2b7e58cfbb8"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="378" width="230" height="23" uuid="465830f1-febe-426c-859c-b2b7e58cfbb8"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -133,12 +134,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{peso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="308" width="270" height="20" backcolor="#FFFFFF" uuid="7b96b251-b3b6-4f7c-b0af-9c8f745c6571"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="308" width="239" height="20" backcolor="#FFFFFF" uuid="7b96b251-b3b6-4f7c-b0af-9c8f745c6571"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -147,12 +148,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{direccion}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="348" width="270" height="20" backcolor="#FFFFFF" uuid="de655fdb-af19-4dcf-b5b5-e2f7b03470e1"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="348" width="239" height="20" backcolor="#FFFFFF" uuid="de655fdb-af19-4dcf-b5b5-e2f7b03470e1"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -161,12 +162,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="208" width="270" height="20" backcolor="#FFFFFF" uuid="422f37ba-a1c9-4dfe-8ba0-1b8ef5679b87"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="208" width="239" height="20" backcolor="#FFFFFF" uuid="422f37ba-a1c9-4dfe-8ba0-1b8ef5679b87"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -175,12 +176,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{apellidos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="147" width="270" height="21" backcolor="#FFFFFF" uuid="0800091b-8af9-4bb0-9108-84a66819b7dc"/>
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="147" width="239" height="21" backcolor="#FFFFFF" uuid="0800091b-8af9-4bb0-9108-84a66819b7dc"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -189,12 +190,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="411" width="124" height="23" backcolor="#BDE0C0" uuid="e61460c3-00f2-4401-b93c-d7ce3b0041b0"/>
+				<reportElement mode="Opaque" x="421" y="401" width="124" height="23" backcolor="#BDE0C0" uuid="e61460c3-00f2-4401-b93c-d7ce3b0041b0"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -208,7 +209,7 @@
 				<text><![CDATA[IMC  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="328" width="270" height="20" backcolor="#FFFFFF" uuid="d81fba5a-5e43-40eb-bddb-8213616e7338"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="328" width="239" height="20" backcolor="#FFFFFF" uuid="d81fba5a-5e43-40eb-bddb-8213616e7338"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -217,12 +218,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{barrio}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="248" width="270" height="20" backcolor="#FFFFFF" uuid="103c3cf7-3ed2-4ba7-be60-0c894b5b3083"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="248" width="239" height="20" backcolor="#FFFFFF" uuid="103c3cf7-3ed2-4ba7-be60-0c894b5b3083"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -231,7 +232,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{genero}]]></textFieldExpression>
 			</textField>
@@ -250,7 +251,7 @@
 				<text><![CDATA[Nombres  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="228" width="270" height="20" backcolor="#FFFFFF" uuid="2d2748b1-61fe-4d1e-ab22-bb9f933488cd"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="228" width="239" height="20" backcolor="#FFFFFF" uuid="2d2748b1-61fe-4d1e-ab22-bb9f933488cd"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -259,12 +260,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaNacimiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="365" width="124" height="23" backcolor="#BDE0C0" uuid="b4aea3e9-4cfb-468f-9339-175bb5970353"/>
+				<reportElement mode="Opaque" x="421" y="355" width="124" height="23" backcolor="#BDE0C0" uuid="b4aea3e9-4cfb-468f-9339-175bb5970353"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -278,7 +279,7 @@
 				<text><![CDATA[Estatura  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="388" width="124" height="23" backcolor="#BDE0C0" uuid="48f7d8db-d707-4173-a8ed-1a83f0fd8679"/>
+				<reportElement mode="Opaque" x="421" y="378" width="124" height="23" backcolor="#BDE0C0" uuid="48f7d8db-d707-4173-a8ed-1a83f0fd8679"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -306,7 +307,7 @@
 				<text><![CDATA[Género  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="343" width="124" height="23" backcolor="#BDE0C0" uuid="561f18f6-5797-43d9-bd74-992f38c7c848"/>
+				<reportElement mode="Opaque" x="421" y="333" width="124" height="23" backcolor="#BDE0C0" uuid="561f18f6-5797-43d9-bd74-992f38c7c848"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -334,7 +335,7 @@
 				<text><![CDATA[Posición  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="457" width="124" height="23" backcolor="#BDE0C0" uuid="d631cb8c-8a54-4bbd-8549-9d593b52d662"/>
+				<reportElement mode="Opaque" x="421" y="447" width="124" height="23" backcolor="#BDE0C0" uuid="d631cb8c-8a54-4bbd-8549-9d593b52d662"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -348,7 +349,7 @@
 				<text><![CDATA[Ins. Educativa  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="366" width="181" height="22" uuid="719cecee-c72e-4299-8987-4f352590e7bd"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="356" width="230" height="22" uuid="719cecee-c72e-4299-8987-4f352590e7bd"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -357,12 +358,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{estatura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="320" width="124" height="23" backcolor="#BDE0C0" uuid="730b1a9e-11ee-4613-b3a4-df23450beb79"/>
+				<reportElement mode="Opaque" x="421" y="310" width="124" height="23" backcolor="#BDE0C0" uuid="730b1a9e-11ee-4613-b3a4-df23450beb79"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -376,7 +377,7 @@
 				<text><![CDATA[Eps  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="431" width="270" height="21" backcolor="#FFFFFF" uuid="cd5a5075-8a66-4496-a909-0fd40b564c34"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="431" width="239" height="21" backcolor="#FFFFFF" uuid="cd5a5075-8a66-4496-a909-0fd40b564c34"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -385,7 +386,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{numeroMadre}]]></textFieldExpression>
 			</textField>
@@ -418,7 +419,7 @@
 				<text><![CDATA[Tipo Documento  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="408" width="270" height="23" backcolor="#FFFFFF" uuid="02e377cd-1bf7-4a42-9ad9-3b2ce35a7469"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="408" width="239" height="23" backcolor="#FFFFFF" uuid="02e377cd-1bf7-4a42-9ad9-3b2ce35a7469"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -427,12 +428,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombreMadre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="368" width="270" height="20" backcolor="#FFFFFF" uuid="5eba65b7-545b-4482-8f9a-104b8eb7e95f"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="368" width="239" height="20" backcolor="#FFFFFF" uuid="5eba65b7-545b-4482-8f9a-104b8eb7e95f"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -441,7 +442,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{posicion}]]></textFieldExpression>
 			</textField>
@@ -502,7 +503,7 @@
 				<text><![CDATA[Dirección  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="268" width="270" height="20" backcolor="#FFFFFF" uuid="af55c27f-4c01-408d-b305-b893bc180c1f"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="268" width="239" height="20" backcolor="#FFFFFF" uuid="af55c27f-4c01-408d-b305-b893bc180c1f"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -511,7 +512,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
 			</textField>
@@ -530,7 +531,7 @@
 				<text><![CDATA[Número Madre  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="452" width="270" height="23" backcolor="#FFFFFF" uuid="d8930d2c-c41e-45b7-9b61-b7c14a0ccbcd"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="452" width="239" height="23" backcolor="#FFFFFF" uuid="d8930d2c-c41e-45b7-9b61-b7c14a0ccbcd"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -539,12 +540,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombrePadre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="343" width="181" height="23" uuid="35474c13-99e0-4987-b007-c39f8d56a442"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="333" width="230" height="23" uuid="35474c13-99e0-4987-b007-c39f8d56a442"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -553,12 +554,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{estrato}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="457" width="181" height="23" uuid="efa9f37a-b6ef-44cb-931f-1e006ba33455"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="447" width="230" height="23" uuid="efa9f37a-b6ef-44cb-931f-1e006ba33455"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -567,7 +568,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{instEducativa}]]></textFieldExpression>
 			</textField>
@@ -628,7 +629,7 @@
 				<text><![CDATA[Nombre Madre  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="434" width="124" height="23" backcolor="#BDE0C0" uuid="be0e052f-1ebe-450e-9174-48e51eae6370"/>
+				<reportElement mode="Opaque" x="421" y="424" width="124" height="23" backcolor="#BDE0C0" uuid="be0e052f-1ebe-450e-9174-48e51eae6370"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -656,7 +657,7 @@
 				<text><![CDATA[Documento  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="480" width="124" height="23" backcolor="#BDE0C0" uuid="1ba02439-0a8f-4e43-9f02-7a40419c4124"/>
+				<reportElement mode="Opaque" x="421" y="470" width="124" height="23" backcolor="#BDE0C0" uuid="1ba02439-0a8f-4e43-9f02-7a40419c4124"/>
 				<box rightPadding="3">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -684,7 +685,7 @@
 				<text><![CDATA[ Apellidos  ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="475" width="270" height="28" backcolor="#FFFFFF" uuid="96c86624-5236-4c92-8fed-e0db57609845"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="475" width="239" height="28" backcolor="#FFFFFF" uuid="96c86624-5236-4c92-8fed-e0db57609845"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -693,12 +694,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{numeroPadre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="168" width="270" height="20" backcolor="#FFFFFF" uuid="c05ab6eb-f041-4916-b182-98d48f306dfa"/>
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="163" y="168" width="239" height="20" backcolor="#FFFFFF" uuid="c05ab6eb-f041-4916-b182-98d48f306dfa"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -707,12 +708,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipoDocumento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="411" width="181" height="23" uuid="8fb2ae4e-fed1-4b39-9959-7e3b9a85fea5"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="401" width="230" height="23" uuid="8fb2ae4e-fed1-4b39-9959-7e3b9a85fea5"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -726,7 +727,7 @@
 				<textFieldExpression><![CDATA[$P{imc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="320" width="181" height="23" uuid="71b53697-fda0-4ab7-9814-80118a8f792e"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="310" width="230" height="23" uuid="71b53697-fda0-4ab7-9814-80118a8f792e"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -735,12 +736,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{eps}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="288" width="270" height="20" backcolor="#FFFFFF" uuid="3a7cb937-d7a6-4ffb-98f8-7da8a845a48f"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="288" width="239" height="20" backcolor="#FFFFFF" uuid="3a7cb937-d7a6-4ffb-98f8-7da8a845a48f"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -749,12 +750,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="574" y="434" width="181" height="23" uuid="bb4d371b-7334-4063-b270-244a7da70026"/>
+				<reportElement isPrintRepeatedValues="false" x="545" y="424" width="230" height="23" uuid="bb4d371b-7334-4063-b270-244a7da70026"/>
 				<box leftPadding="10">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -763,12 +764,12 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fcm}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" x="163" y="188" width="270" height="20" backcolor="#FFFFFF" uuid="dbed0fb7-9bb4-4fad-a030-1ab37469c349"/>
+				<reportElement isPrintRepeatedValues="false" x="163" y="188" width="239" height="20" backcolor="#FFFFFF" uuid="dbed0fb7-9bb4-4fad-a030-1ab37469c349"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -777,7 +778,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombres}]]></textFieldExpression>
 			</textField>
@@ -785,7 +786,7 @@
 				<reportElement x="0" y="500" width="117" height="1" uuid="cf4c040c-18fc-4696-8245-d8fb8732e6bb"/>
 			</break>
 			<textField isBlankWhenNull="true">
-				<reportElement x="163" y="388" width="270" height="20" backcolor="#FFFFFF" uuid="1349c54d-b8b7-4222-a6c0-355277170e91"/>
+				<reportElement x="163" y="388" width="239" height="20" backcolor="#FFFFFF" uuid="1349c54d-b8b7-4222-a6c0-355277170e91"/>
 				<box leftPadding="10">
 					<pen lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -794,7 +795,7 @@
 					<rightPen lineWidth="1.0" lineColor="#339900"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="13" pdfFontName="Helvetica"/>
+					<font size="12" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{camisa}]]></textFieldExpression>
 			</textField>
@@ -821,7 +822,7 @@
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<rectangle>
-				<reportElement x="523" y="133" width="153" height="151" backcolor="#D9D6D6" uuid="73764e30-3aab-4b41-a2c3-a53ffdd1b55a"/>
+				<reportElement x="523" y="133" width="153" height="145" backcolor="#D9D6D6" uuid="73764e30-3aab-4b41-a2c3-a53ffdd1b55a"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="557" y="197" width="104" height="41" uuid="65037be8-d701-43b1-a53c-b20831b5d3a1"/>
@@ -831,9 +832,36 @@
 				<text><![CDATA[Sin Foto]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement isPrintRepeatedValues="false" x="509" y="120" width="191" height="188" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
+				<reportElement isPrintRepeatedValues="false" x="505" y="116" width="191" height="162" uuid="87b67b88-e9e7-434b-9894-a2d7b707be93"/>
 				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="545" y="288" width="230" height="22" uuid="fe334578-7139-4138-9a08-79bd189541ed"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[   $P{tipoDeportista}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="421" y="288" width="124" height="23" backcolor="#BDE0C0" uuid="48b91ced-809f-4fe3-99c1-992a08efaf91"/>
+				<box rightPadding="3">
+					<pen lineColor="#339900"/>
+					<topPen lineWidth="1.0" lineColor="#339900"/>
+					<leftPen lineWidth="1.0" lineColor="#339900"/>
+					<bottomPen lineWidth="1.0" lineColor="#339900"/>
+					<rightPen lineWidth="1.0" lineColor="#339900"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Tipo Deportista]]></text>
+			</staticText>
 		</band>
 	</title>
 	<columnHeader>
@@ -995,9 +1023,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24">
+		<band height="36">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="138" height="22" uuid="ff0b1aa2-251e-4213-af5d-2cc2c6fd1910"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="138" height="36" uuid="ff0b1aa2-251e-4213-af5d-2cc2c6fd1910"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1011,7 +1039,7 @@
 				<textFieldExpression><![CDATA[$F{clubAnterior}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="138" y="0" width="75" height="22" uuid="d37134b4-f1b0-41b7-86e6-c161d75efa09"/>
+				<reportElement stretchType="RelativeToBandHeight" x="138" y="0" width="75" height="36" uuid="d37134b4-f1b0-41b7-86e6-c161d75efa09"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1025,7 +1053,7 @@
 				<textFieldExpression><![CDATA[$F{categoriaAnteriorAntDep}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="213" y="0" width="62" height="22" uuid="aba72b4a-376b-4b78-b080-42e934ffac8f"/>
+				<reportElement stretchType="RelativeToBandHeight" x="213" y="0" width="62" height="36" uuid="aba72b4a-376b-4b78-b080-42e934ffac8f"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1039,7 +1067,7 @@
 				<textFieldExpression><![CDATA[$F{annoAntDep}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="283" y="0" width="167" height="22" uuid="c6632b03-761d-40c3-a185-7240989feb65"/>
+				<reportElement stretchType="RelativeToBandHeight" x="283" y="0" width="167" height="36" uuid="c6632b03-761d-40c3-a185-7240989feb65"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1053,7 +1081,7 @@
 				<textFieldExpression><![CDATA[$F{logro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="523" y="0" width="51" height="22" uuid="1afe2f49-4e91-4aa8-90a7-465b12edfd84"/>
+				<reportElement stretchType="RelativeToBandHeight" x="523" y="0" width="51" height="36" uuid="1afe2f49-4e91-4aa8-90a7-465b12edfd84"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1067,7 +1095,7 @@
 				<textFieldExpression><![CDATA[$F{annoLogro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="590" y="0" width="105" height="22" uuid="bcf8580f-df90-4c4a-be57-956230c0ca92"/>
+				<reportElement stretchType="RelativeToBandHeight" x="590" y="0" width="105" height="36" uuid="bcf8580f-df90-4c4a-be57-956230c0ca92"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1081,7 +1109,7 @@
 				<textFieldExpression><![CDATA[$F{lesion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="695" y="0" width="85" height="22" uuid="a555d8ef-5335-477c-a436-436b33dca069"/>
+				<reportElement x="695" y="0" width="85" height="36" uuid="a555d8ef-5335-477c-a436-436b33dca069"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>
@@ -1095,7 +1123,7 @@
 				<textFieldExpression><![CDATA[$F{fechaLesion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="450" y="0" width="73" height="22" uuid="a2db6f09-604f-41d3-81dc-d0d72ce6e062"/>
+				<reportElement x="450" y="0" width="73" height="36" uuid="a2db6f09-604f-41d3-81dc-d0d72ce6e062"/>
 				<box leftPadding="3">
 					<pen lineWidth="1.0" lineColor="#339900"/>
 					<topPen lineWidth="1.0" lineColor="#339900"/>

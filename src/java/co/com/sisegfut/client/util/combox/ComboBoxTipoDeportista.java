@@ -91,7 +91,7 @@ public class ComboBoxTipoDeportista extends ComboBox<BeanModel>{
                 
         List<BeanModel> lista = storeCombo.getModels();
         for (BeanModel beanModel : lista) {
-            Eps entidad = (Eps)beanModel.getBean();
+            TipoDeportista entidad = (TipoDeportista)beanModel.getBean();
             if(entidad.getId().longValue()==id){
                 setValue(beanModel);
                 break;
