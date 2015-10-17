@@ -59,6 +59,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
+import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.Radio;
@@ -178,8 +179,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
-        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
-        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoria");
+        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Seleccione una categoría"));
+        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoría");
         cbxCategoria.setAllowBlank(false);
 
         //  cbxCategoria.setEditable(false);
@@ -208,7 +209,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Deportistas");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }
@@ -412,8 +413,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        dataWest.setSplit(true);
         panel2.add(cp2, new RowData(0.4, 1, new Margins(0)));
 
-        cp2.add(crearPanelReporteAsistencia(), new RowData(1, 0.35, new Margins(0)));
-        cp2.add(panelFormularioControlAsistencia, new RowData(1, 0.65, new Margins(0)));
+        cp2.add(crearPanelReporteAsistencia(), new RowData(1, 0.45, new Margins(0)));
+        cp2.add(panelFormularioControlAsistencia, new RowData(1, 0.55, new Margins(0)));
 
         cp2.setHeaderVisible(false);
 
@@ -1118,6 +1119,21 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         fmReporteAsistencia.setFrame(true);
         fmReporteAsistencia.setHeaderVisible(true);
         fmReporteAsistencia.setHeight(150);
+        
+        
+//        fmReporteAsistencia.getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
+//            @Override
+//            public void componentSelected(IconButtonEvent ce) {
+//               abrirVentana(myConstants.ayudaPanelPIAntropometrico());
+//            }
+//        }));
+        
+        FormLayout layout = new FormLayout();
+        FieldSet flBuscar = new FieldSet();
+        flBuscar.setHeading("Ver Reporte Asistencia ");
+        layout = new FormLayout();
+        layout.setLabelWidth(100);
+        flBuscar.setLayout(layout);
 
         FormData formData = new FormData("-10");
 
@@ -1128,10 +1144,11 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         cbxCategoriaReporte.setForceSelection(true);
         cbxCategoriaReporte.setEditable(false);
         cbxCategoriaReporte.setTriggerAction(ComboBox.TriggerAction.ALL);
+        flBuscar.add(cbxCategoriaReporte, formData);
 
         final SimpleComboBox<String> comboAnios = new SimpleComboBox<String>();
         final SimpleComboBox<String> comboMeses = new SimpleComboBox<String>();
-
+                
         comboAnios.setName("anio");
         comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
         comboAnios.setFieldLabel("<font color='red'>*</font> Año");
@@ -1139,6 +1156,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         comboAnios.setForceSelection(true);
         comboAnios.setEditable(false);
         comboAnios.setTriggerAction(ComboBox.TriggerAction.ALL);
+        flBuscar.add(comboAnios, formData);
 
         Date anio = new Date();
         Integer anioActual = Integer.parseInt(Formatos.anio(anio));
@@ -1161,10 +1179,12 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         for (int i = 0; i < 12; i++) {
             comboMeses.add(meses[i]);
         }
+        flBuscar.add(comboMeses, formData);
 //        comboMeses.getSelectedIndex();
-        fmReporteAsistencia.add(cbxCategoriaReporte, formData);
-        fmReporteAsistencia.add(comboAnios, formData);
-        fmReporteAsistencia.add(comboMeses, formData);
+        fmReporteAsistencia.add(flBuscar, formData);
+//        fmReporteAsistencia.add(cbxCategoriaReporte, formData);
+//        fmReporteAsistencia.add(comboAnios, formData);
+//        fmReporteAsistencia.add(comboMeses, formData);
 
         Button btnVerReporte = new Button("Ver reporte", Resources.ICONS.iconoGrid(), new SelectionListener<ButtonEvent>() {
 

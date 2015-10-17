@@ -20,12 +20,12 @@ import com.extjs.gxt.ui.client.widget.ComponentPlugin;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.DateField;
+import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.Radio;
 import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.form.Time;
 import com.extjs.gxt.ui.client.widget.form.TimeField;
 import com.extjs.gxt.ui.client.widget.layout.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
@@ -94,13 +94,19 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         layout.setLabelAlign(LabelAlign.LEFT);
         Columna1.setLayout(layout);
 
+        FieldSet flCrear = new FieldSet();
+        flCrear.setHeading("Datos para crear una asistencia");
+        layout = new FormLayout();
+        layout.setLabelWidth(115);
+        flCrear.setLayout(layout);
+        
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
         cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
         cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoria");
         cbxCategoria.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
-        Columna1.add(cbxCategoria, formData);
+        flCrear.add(cbxCategoria, formData);
 
         DtFecha.setName("fecha_nacimiento");
         DtFecha.setAllowBlank(false);
@@ -111,7 +117,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         DtFecha.setValue(new Date());
 
         DtFecha.setFieldLabel("<font color='red'>*</font> Fecha ");
-        Columna1.add(DtFecha, formData);
+        flCrear.add(DtFecha, formData);
 
         tmHora.setFieldLabel("<font color='red'>*</font> Hora");
 //        tmHora.addPlugin(plugin);
@@ -125,7 +131,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         tmHora.setTriggerAction(ComboBox.TriggerAction.ALL);
         tmHora.setEditable(false);
         tmHora.setAllowBlank(false);
-        Columna1.add(tmHora, formData);
+        flCrear.add(tmHora, formData);
 
         cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
@@ -164,7 +170,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         radioGroup.setEnabled(false);
         radioGroup.add(rdCompetencia);
         radioGroup.add(rdEntrenamiento);
-        Columna1.add(radioGroup, formData);
+        flCrear.add(radioGroup, formData);
 
         txtLugar.setName("lugar");
         txtLugar.setFieldLabel("<font color='red'>*</font> Lugar");
@@ -174,7 +180,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         txtLugar.setEmptyText("");
 //        txtNombres.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
-        Columna1.add(txtLugar, formData);
+        flCrear.add(txtLugar, formData);
 
         txtObservacion.setName("observaciones");
         txtObservacion.setFieldLabel("Observaciones");
@@ -182,8 +188,10 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         txtObservacion.setValue("  ");
         txtObservacion.setEnabled(false);
         txtObservacion.setEmptyText("Escriba un comentario");
-        Columna1.add(txtObservacion, formData);
+        flCrear.add(txtObservacion, formData);
 
+        Columna1.add(flCrear);
+        
         main.add(Columna1, new ColumnData(1.0));
 
 //        main.add(Columna3, new ColumnData(.25));
