@@ -610,10 +610,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         competencia.setId(idCompetencia);
         competencia.setAnfitrion("POLITECNICO JIC");
         competencia.setRival(cbxRival.getRivalElegido());
-        fechaActividad = DtFecha.getValue();
-        System.out.println("hora actividad" + Formatos.Hora(tmHora.getDateValue()));
-        fechaActividad.setTime(tmHora.getDateValue().getTime());
-        System.out.println("fecha  " + fechaActividad);
+        fechaActividad=Formatos.FechaConHora(DtFecha.getValue(), tmHora.getDateValue());
+        System.out.println("-----Fecha  "+fechaActividad.toString()+"--------");
         competencia.setFecha(fechaActividad);
         competencia.setLugar(txtLugar.getValue().toUpperCase());
         competencia.setTorneo(comboBoxTorneo.getTorneosElegido());
@@ -621,7 +619,7 @@ public class PanelAdminCompetencia extends LayoutContainer {
         competencia.setGolesAnfitrion(0);
         competencia.setGolesRival(0);
         competencia.setFinalizaCompentcia(false);
-        competencia.setObservacion(txtObservaciones.getValue().toUpperCase());
+        competencia.setObservacion(txtObservaciones.getValue()==null?"":txtObservaciones.getValue().toUpperCase());
         return competencia;
     }
 

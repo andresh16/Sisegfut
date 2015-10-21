@@ -233,10 +233,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         controlAsistencia.setId(id);
         controlAsistencia.setCategoria(cbxCategoria.getCategoriaElegida());
         ////////////////////////////////////////////////////
-        fechaActividad = DtFecha.getValue();
-        System.out.println("hora actividad" + Formatos.Hora(tmHora.getDateValue()));
-        fechaActividad.setTime(tmHora.getDateValue().getTime());
-        System.out.println("fecha  " + fechaActividad);
+        fechaActividad=Formatos.FechaConHora(DtFecha.getValue(), tmHora.getDateValue());
         controlAsistencia.setFecha(fechaActividad);
         ///////////////////////////////////////////////////
         String actividad = "";

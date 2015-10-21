@@ -706,12 +706,12 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    System.out.println(caught.getMessage());
                 }
 
                 @Override
                 public void onSuccess(RespuestaRPC<Asistencia> result) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    System.out.println("Guardo correctamente la lista de jugadores para la asistencia");
                 }
             });
         }

@@ -5,12 +5,13 @@
 package co.com.sisegfut.client.util;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
- * @author 
+ * @author
  */
 public class Formatos {
 
@@ -177,5 +178,21 @@ public class Formatos {
         return fecha;
 //
     }
-    
+
+    public static Date FechaConHora(Date fecha, Date hora) {
+        Date fechaRetorno = new Date();
+
+        String fechaHora=fecha2(fecha)+" "+HoraMilitar(hora);
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+            fechaRetorno=formatter.parse(fechaHora);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
+        
+        
+        return fechaRetorno;
+    }
+
+}
