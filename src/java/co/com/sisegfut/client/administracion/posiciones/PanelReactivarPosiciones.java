@@ -57,7 +57,7 @@ public class PanelReactivarPosiciones extends LayoutContainer {
 
         cbxPosiciones = new ComboBoxPosiciones(ComboBoxPosiciones.INACTIVOS);
 
-        cbxPosiciones.setLabelSeparator("Posición");
+        cbxPosiciones.setLabelSeparator("Posición:");
         cbxPosiciones.setAllowBlank(false);
 
        // 

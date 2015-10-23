@@ -65,7 +65,7 @@ public class PanelModificarTipoDeportista extends LayoutContainer {
 
         cbxTipoDeportista = new ComboBoxTipoDeportista(ComboBoxTipoDeportista.ACTIVOS);
 
-        cbxTipoDeportista.setLabelSeparator("Tipo Deportista");
+        cbxTipoDeportista.setLabelSeparator("Tipo Deportista:");
         cbxTipoDeportista.setAllowBlank(false);
 
         // 

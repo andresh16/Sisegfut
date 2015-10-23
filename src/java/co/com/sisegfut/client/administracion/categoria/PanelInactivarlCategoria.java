@@ -55,7 +55,7 @@ public class PanelInactivarlCategoria extends LayoutContainer {
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
 
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría:");
         cbxCategoria.setAllowBlank(false);
 
        // 
@@ -124,12 +124,12 @@ public class PanelInactivarlCategoria extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No se Inactivo la Categoria");
+                    pnlErrores.aniadir("No se Inactivo la Categoría");
                 }
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Inactivo correctamente la Categoria");
+                    pnlExito.definirTexto("Se Inactivó correctamente la Categoría");
                     pnlExito.setVisible(true);
                 }
 
@@ -139,7 +139,7 @@ public class PanelInactivarlCategoria extends LayoutContainer {
         {
             pnlErrores.limpiar();
             pnlErrores.setVisible(true);
-            pnlErrores.aniadir("Debe seleccionar una categoria");
+            pnlErrores.aniadir("Debe seleccionar una categoría");
         }
 
     }

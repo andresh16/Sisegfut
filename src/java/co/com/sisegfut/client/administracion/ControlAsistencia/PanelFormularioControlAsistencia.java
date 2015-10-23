@@ -244,7 +244,7 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         }
         controlAsistencia.setActividad(actividad);
         controlAsistencia.setLugar(txtLugar.getValue());
-        controlAsistencia.setObservaciones(txtObservacion.getValue());
+        controlAsistencia.setObservaciones(txtObservacion.getValue()==null?"":txtObservacion.getValue().toUpperCase());
 
         return controlAsistencia;
     }

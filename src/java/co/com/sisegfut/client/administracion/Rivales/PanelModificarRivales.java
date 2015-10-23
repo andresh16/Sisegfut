@@ -66,17 +66,17 @@ public class PanelModificarRivales extends LayoutContainer {
         // setLayout(new FillLayout());
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        txtRival.setName("torneo");
+        txtRival.setName("rival");
         txtRival.setFieldLabel("Nombre Rival");
         txtRival.setAllowBlank(false);
         txtRival.setToolTip("Digite un rival que desee guardar");
 
         cbxRival = new ComboBoxRival(ComboBoxRival.ACTIVOS);
-        cbxRival.setLabelSeparator("Rival");
+        cbxRival.setLabelSeparator("Rival:");
         cbxRival.setAllowBlank(false);
 
         cbxTorneo = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
-        cbxTorneo.setLabelSeparator("Torneo");
+        cbxTorneo.setLabelSeparator("Torneo:");
         cbxTorneo.setAllowBlank(false);
 
         // 

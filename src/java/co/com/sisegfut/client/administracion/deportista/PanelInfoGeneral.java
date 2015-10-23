@@ -142,10 +142,10 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtDocumento.setName("documento");
         txtDocumento.setFieldLabel("<font color='red'>*</font>Documento");
-        txtDocumento.setRegex("^[.0-9]*$");
+        txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
         txtDocumento.setEmptyText("");
         txtDocumento.setAllowBlank(false);
-        txtDocumento.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
+        txtDocumento.getMessages().setRegexText("El campo no puede contener más de 11 caracteres .");
 //        txtDocumento.setEnabled(false);
         Columna1.add(txtDocumento, formData);
 
@@ -183,15 +183,15 @@ public final class PanelInfoGeneral extends FormPanel {
         Columna1.add(txtApellidos, formData);
 
         rdMasculino = new Radio();
-        rdMasculino.setBoxLabel("Masculino");
+        rdMasculino.setBoxLabel("MASCULINO");
         rdMasculino.setValue(true);
 
         rdFemenino = new Radio();
-        rdFemenino.setBoxLabel("Femenino");
+        rdFemenino.setBoxLabel("FEMENINO");
 ////        rdFemenino.setValue(true);
 
         RadioGroup radioGroup = new RadioGroup();
-        radioGroup.setFieldLabel("Genero");
+        radioGroup.setFieldLabel("Género");
         radioGroup.add(rdMasculino);
         radioGroup.add(rdFemenino);
 
@@ -212,8 +212,9 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtTelefono.setName("telefono");
         txtTelefono.setAllowBlank(false);
-        txtTelefono.setFieldLabel("<font color='red'>*</font>Télefono");
+        txtTelefono.setFieldLabel("<font color='red'>*</font>Teléfono");
         txtTelefono.setRegex("^[.0-9]*$");
+        txtTelefono.setMaxLength(7);
         txtTelefono.setEmptyText("");
         txtTelefono.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
@@ -273,6 +274,7 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtNumeroMadre.setFieldLabel("<font color='red'>*</font>N° contacto");
         txtNumeroMadre.setRegex("^[.0-9]*$");
+        txtNumeroMadre.setMaxLength(10);
         txtNumeroMadre.setEmptyText("");
         txtNumeroMadre.setAllowBlank(false);
         txtNumeroMadre.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
@@ -299,6 +301,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtNumeroPadre.setName("numero_madre");
         txtNumeroPadre.setFieldLabel("N° contacto");
         txtNumeroPadre.setRegex("^[.0-9]*$");
+        txtNumeroPadre.setMaxLength(10);
         txtNumeroPadre.setEmptyText("");
         txtNumeroPadre.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtNombreMadre.setEnabled(false);
@@ -417,8 +420,8 @@ public final class PanelInfoGeneral extends FormPanel {
         
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
-        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
-        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoria");
+        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Seleccione una categoría"));
+        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoría");
         cbxCategoria.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
         Columna2.add(cbxCategoria, formData);
@@ -503,8 +506,8 @@ public final class PanelInfoGeneral extends FormPanel {
         txtFCM.setReadOnly(true);
         txtFCM.setFieldLabel("FCM");
         txtFCM.setMaxLength(4);
-        txtFCM.setToolTip("Frecuencia Cardiáca Máxima");
-        txtFCM.setEmptyText("Frecuencia Cardiáca Máxima");
+        txtFCM.setToolTip("Frecuencia Cardíaca Máxima");
+        txtFCM.setEmptyText("Frecuencia Cardíaca Máxima");
 //        txtFCM.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtGrasa.setEnabled(false);
         Columna2.add(txtFCM, formData);
@@ -700,15 +703,15 @@ public final class PanelInfoGeneral extends FormPanel {
         deportista.setCorreoElectronico(txtCorreo.getValue());
         deportista.setNombreMadre(txtNombreMadre.getValue().toUpperCase());
         deportista.setNombrePadre(txtNombrePadre.getValue().toUpperCase());
-        deportista.setNumeroMadre(txtNumeroMadre.getValue());
-        deportista.setNumeroPadre(txtNumeroPadre.getValue());
+        deportista.setNumeroMadre(txtNumeroMadre.getValue()==null?"":txtNumeroMadre.getValue().toUpperCase());
+        deportista.setNumeroPadre(txtNumeroPadre.getValue()==null?"":txtNumeroPadre.getValue().toUpperCase());
         deportista.setNumeroCamisa(txtNumCamisa.getValue());
         deportista.setCategoria(cbxCategoria.getCategoriaElegida());
         deportista.setBarrio(txtBarrio.getValue().toUpperCase());
         deportista.setEstatura(txtEstatura.getValue());
         deportista.setImc(calcularImc(Double.parseDouble(txtPeso.getValue()), Double.parseDouble(txtEstatura.getValue())));
         deportista.setPeso(txtPeso.getValue());
-        deportista.setGrasa(txtGrasa.getValue());
+        deportista.setGrasa(txtGrasa.getValue()==null?"":txtGrasa.getValue().toUpperCase());
         deportista.setJugadorComodin(false);
 
         String genero;

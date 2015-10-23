@@ -77,7 +77,7 @@ public class PanelCrearRivales extends LayoutContainer {
         });
 
         cbxTorneo = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
-        cbxTorneo.setLabelSeparator("Torneo");
+        cbxTorneo.setLabelSeparator("Torneo:");
         cbxTorneo.setAllowBlank(false);
 
         Button btnCrear = new Button(" Crear", ListenerCrear(1));

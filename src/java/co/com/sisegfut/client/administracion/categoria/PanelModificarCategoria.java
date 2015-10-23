@@ -60,13 +60,13 @@ public class PanelModificarCategoria extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
         txtCategoria.setName("categoria");
-        txtCategoria.setFieldLabel("Categoria");
+        txtCategoria.setFieldLabel("Categoría");
         txtCategoria.setAllowBlank(false);
-        txtCategoria.setToolTip("Digite una Categoria que desee guardar");
+        txtCategoria.setToolTip("Digite una Categoría que desee guardar");
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
 
-        cbxCategoria.setLabelSeparator("Categoria");
+        cbxCategoria.setLabelSeparator("Categoría:");
         cbxCategoria.setAllowBlank(false);
 
        // 

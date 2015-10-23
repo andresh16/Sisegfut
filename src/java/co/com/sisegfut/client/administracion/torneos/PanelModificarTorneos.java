@@ -71,7 +71,7 @@ public class PanelModificarTorneos extends LayoutContainer {
         txtTorneo.setToolTip("Digite un torneo que desee guardar");
 
         cbxTorneo = new ComboBoxTorneo(ComboBoxTorneo.ACTIVOS);
-        cbxTorneo.setLabelSeparator("Torneo");
+        cbxTorneo.setLabelSeparator("Torneo:");
         cbxTorneo.setAllowBlank(false);
 
         txtAnno.setFieldLabel("Año");
@@ -85,7 +85,7 @@ public class PanelModificarTorneos extends LayoutContainer {
         txtAnno.setValue(Formatos.anio(anio));
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
-        cbxCategoria.setLabelSeparator("Categoría");
+        cbxCategoria.setLabelSeparator("Categoría:");
         cbxCategoria.setAllowBlank(false);
 
         // 

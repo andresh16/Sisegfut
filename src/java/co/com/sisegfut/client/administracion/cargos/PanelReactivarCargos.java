@@ -59,7 +59,7 @@ public class PanelReactivarCargos extends LayoutContainer {
 
         cbxCargo = new ComboBoxCargos(ComboBoxCargos.INACTIVOS);
 
-        cbxCargo.setLabelSeparator("Cargo");
+        cbxCargo.setLabelSeparator("Cargo:");
         cbxCargo.setAllowBlank(false);
 
         // 

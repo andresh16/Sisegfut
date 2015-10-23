@@ -75,7 +75,7 @@ public class Personal extends EntidadPerpetua implements BeanModelTag, Serializa
     @Column(name = "genero", nullable = false, length = 150)
     private String genero;
     
-    @Column(name = "barrio", nullable = true, length = 150)
+    @Column(name = "barrio", nullable = false, length = 150)
     private String barrio;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -112,7 +112,7 @@ public class Personal extends EntidadPerpetua implements BeanModelTag, Serializa
     @Column(name = "hora_fin", nullable = true)
     private Date horaFin;
     
-     @GwtTransient
+    @GwtTransient
     @Column(name = "foto")
     @JsonIgnore(true)
     @Basic(fetch = FetchType.LAZY)

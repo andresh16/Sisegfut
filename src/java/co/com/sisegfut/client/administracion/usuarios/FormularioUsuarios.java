@@ -60,6 +60,7 @@ public class FormularioUsuarios extends FormularioCRUD<Usuarios> {
         txtDocumento.setFieldLabel("Documento");
         txtDocumento.setAllowBlank(false);
         txtDocumento.setRegex("^[^\\s].*");
+//        txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
         txtDocumento.getMessages().setRegexText("El campo no puede contener solo espacios en blanco.");
         add(txtDocumento, formData);
 

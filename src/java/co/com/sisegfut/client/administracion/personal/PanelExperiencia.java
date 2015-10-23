@@ -361,7 +361,7 @@ public class PanelExperiencia extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<Experiencia> result) {
-                            Info.display("Guardar", "Guardo correctamente el logro ");
+                            Info.display("Guardar", "Guardó correctamente el logro ");
 //                            MessageBox.info("Guardar!", "Guardo correctamente el antecedente deportivo", null);
                             Limpiar();
                         }
@@ -463,7 +463,7 @@ public class PanelExperiencia extends LayoutContainer {
         Columna1.setLayout(layout);
 
         txtEmpresa.setName("empresa");
-        txtEmpresa.setFieldLabel("Empresa");
+        txtEmpresa.setFieldLabel("<font color='red'>*</font>Empresa");
         txtEmpresa.setEmptyText("");
         txtEmpresa.setAllowBlank(false);
         Columna1.add(txtEmpresa, formData);
@@ -478,7 +478,7 @@ public class PanelExperiencia extends LayoutContainer {
         cbxCargo = new ComboBoxCargos(ACTIVOS);
         cbxCargo.setName("cargo");
         cbxCargo.setToolTip(new ToolTipConfig("Categoria", "Elija un cargo"));
-        cbxCargo.setFieldLabel("Cargo");
+        cbxCargo.setFieldLabel("<font color='red'>*</font>Cargo");
         cbxCargo.setAllowBlank(false);
         Columna1.add(cbxCargo, formData);
 
@@ -491,7 +491,7 @@ public class PanelExperiencia extends LayoutContainer {
 
         txtTiempoLaborado.setName("tiempoLaborado");
         txtTiempoLaborado.setToolTip(new ToolTipConfig("Años", "Escriba un año"));
-        txtTiempoLaborado.setFieldLabel("Tiempo Laborado");
+        txtTiempoLaborado.setFieldLabel("<font color='red'>*</font>Tiempo Laborado");
         txtTiempoLaborado.setAllowBlank(false);
         Columna1.add(txtTiempoLaborado, formData);
 

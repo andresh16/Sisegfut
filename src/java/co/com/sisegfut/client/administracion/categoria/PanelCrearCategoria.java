@@ -59,9 +59,9 @@ public class PanelCrearCategoria extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
         txtCategoria.setName("nombreCategoria");
-        txtCategoria.setFieldLabel("Categoria");
+        txtCategoria.setFieldLabel("Categoría");
         txtCategoria.setAllowBlank(false);
-        txtCategoria.setToolTip("Digite una categoria que desee guardar");
+        txtCategoria.setToolTip("Digite una categoría que desee guardar");
 
         Button btnCrear = new Button(" Crear", ListenerCrear(1));
         btnCrear.setArrowAlign(Style.ButtonArrowAlign.BOTTOM);
@@ -127,12 +127,12 @@ public class PanelCrearCategoria extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No guardo la Categoria");
+                    pnlErrores.aniadir("No guardo la Categoría");
                 }
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Guardo correctamente la Categoría");
+                    pnlExito.definirTexto("Guardó correctamente la Categoría");
                     pnlExito.setVisible(true);
                 }
             }

@@ -56,7 +56,7 @@ public class PanelReactivarTipoDeportista extends LayoutContainer {
 
         cbxTipoDeportista = new ComboBoxTipoDeportista(ComboBoxTipoDeportista.INACTIVOS);
 
-        cbxTipoDeportista.setLabelSeparator("Tipo Deportista");
+        cbxTipoDeportista.setLabelSeparator("Tipo Deportista:");
         cbxTipoDeportista.setAllowBlank(false);
 
         // 

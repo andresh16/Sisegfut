@@ -74,7 +74,7 @@ public class PanelCrearTorneos extends LayoutContainer {
         txtAnno.setToolTip("Digite un año que desee guardar");
 
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
-        cbxCategoria.setLabelSeparator("Categoría");
+        cbxCategoria.setLabelSeparator("Categoría:");
         cbxCategoria.setAllowBlank(false);
 
         Button btnCrear = new Button(" Crear", ListenerCrear(1));

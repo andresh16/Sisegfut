@@ -60,7 +60,7 @@ public class PanelReactivarInstEducativa extends LayoutContainer{
         
         cbxInsEducativa=new ComboBoxInsEducativa(ComboBoxInsEducativa.INACTIVOS);
         
-        cbxInsEducativa.setLabelSeparator("Inst Educativa");
+        cbxInsEducativa.setLabelSeparator("Inst. Educativa");
         cbxInsEducativa.setAllowBlank(false);
         
        // 
@@ -144,7 +144,7 @@ public class PanelReactivarInstEducativa extends LayoutContainer{
         {
             pnlErrores.limpiar();
             pnlErrores.setVisible(true);
-            pnlErrores.aniadir("Debe seleccionar una Inst Educativa");
+            pnlErrores.aniadir("Debe seleccionar una Inst. Educativa");
         }
     }
     

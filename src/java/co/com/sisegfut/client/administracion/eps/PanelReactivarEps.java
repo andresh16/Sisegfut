@@ -56,7 +56,7 @@ public class PanelReactivarEps extends LayoutContainer {
 
         cbxEps = new ComboBoxEps(ComboBoxEps.INACTIVOS);
 
-        cbxEps.setLabelSeparator("Eps");
+        cbxEps.setLabelSeparator("Eps:");
         cbxEps.setAllowBlank(false);
 
         // 

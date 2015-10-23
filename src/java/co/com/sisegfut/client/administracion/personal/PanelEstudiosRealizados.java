@@ -201,7 +201,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         column = new ColumnConfig();
         column.setId("institucion");
         column.setAlignment(Style.HorizontalAlignment.CENTER);
-        column.setHeader("Institucion");
+        column.setHeader("Institución");
         column.setWidth(300);
         column.setRenderer(new GridCellRenderer() {
             
@@ -383,7 +383,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
                     
                     @Override
                     public void onSuccess(RespuestaRPC<EstudiosRealizados> result) {
-                        Info.display("Guardar", "Guardo correctamente el estudio ");
+                        Info.display("Guardar", "Guardó correctamente el estudio ");
                         Limpiar();
                     }
                 });
@@ -410,7 +410,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
                                         
                                         @Override
                                         public void onFailure(Throwable caught) {
-                                            Info.display("Eliminar", "No eliminó el estudio  " + txtTitulo.getValue());
+                                            Info.display("Eliminar", "No elimino el estudio  " + txtTitulo.getValue());
                                         }
                                         
                                         @Override
@@ -475,13 +475,13 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         LayoutContainer Columna1 = new LayoutContainer();
         Columna1.setStyleAttribute("paddingRight", "0px");
         txtTitulo.setName("titulo");
-        txtTitulo.setFieldLabel("Titulo");
+        txtTitulo.setFieldLabel("<font color='red'>*</font>Título");
         txtTitulo.setEmptyText("");
         txtTitulo.setAllowBlank(false);
         Columna1.add(txtTitulo, formData);
         
         txtInsEducativa.setName("institucion");
-        txtInsEducativa.setFieldLabel("Institucion Educativa");
+        txtInsEducativa.setFieldLabel("<font color='red'>*</font>Institución Educativa");
         txtInsEducativa.setEmptyText("");
         txtInsEducativa.setAllowBlank(false);
         Columna1.add(txtInsEducativa, formData);

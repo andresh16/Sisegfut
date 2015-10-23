@@ -66,7 +66,7 @@ public class PanelModificarPosiciones extends LayoutContainer {
 
         cbxPosiciones = new ComboBoxPosiciones(ComboBoxPosiciones.ACTIVOS);
 
-        cbxPosiciones.setLabelSeparator("Posición");
+        cbxPosiciones.setLabelSeparator("Posición:");
         cbxPosiciones.setAllowBlank(false);
 
        // 

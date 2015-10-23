@@ -145,7 +145,7 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtDocumento.setName("documento");
         txtDocumento.setFieldLabel("<font color='red'>*</font>Documento");
-        txtDocumento.setRegex("^[.0-9]*$");
+        txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
         txtDocumento.setEmptyText("");
         txtDocumento.setAllowBlank(false);
         txtDocumento.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
@@ -171,15 +171,15 @@ public final class PanelInfoGeneral extends FormPanel {
         ColumnaDias.add(txtApellidos, formData);
 
         rdMasculino = new Radio();
-        rdMasculino.setBoxLabel("Masculino");
+        rdMasculino.setBoxLabel("MASCULINO");
         rdMasculino.setValue(true);
 
         rdFemenino = new Radio();
-        rdFemenino.setBoxLabel("Femenino");
+        rdFemenino.setBoxLabel("FEMENINO");
 ////        rdFemenino.setValue(true);
 
         RadioGroup radioGroup = new RadioGroup();
-        radioGroup.setFieldLabel("Genero");
+        radioGroup.setFieldLabel("Género");
         radioGroup.add(rdMasculino);
         radioGroup.add(rdFemenino);
 
@@ -200,8 +200,9 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtTelefono.setName("telefono");
         txtTelefono.setAllowBlank(false);
-        txtTelefono.setFieldLabel("<font color='red'>*</font>Télefono");
+        txtTelefono.setFieldLabel("<font color='red'>*</font>Teléfono Fijo");
         txtTelefono.setRegex("^[.0-9]*$");
+        txtTelefono.setMaxLength(7);
         txtTelefono.setEmptyText("");
         txtTelefono.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
 //        txtDireccion.setEnabled(false);
@@ -211,6 +212,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtCelular.setAllowBlank(false);
         txtCelular.setFieldLabel("<font color='red'>*</font>Celular");
         txtCelular.setRegex("^[.0-9]*$");
+        txtCelular.setMaxLength(10);
         txtCelular.setEmptyText("");
         txtCelular.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
         ColumnaDias.add(txtCelular, formData);
@@ -274,7 +276,7 @@ public final class PanelInfoGeneral extends FormPanel {
 
         cbxNivelEdu = new ComboBoxNivelEducativo(ACTIVOS);
         cbxNivelEdu.setName("nombre_inst_educativa.nombre_nivel_educativo");
-        cbxNivelEdu.setToolTip(new ToolTipConfig("INivel de educación", "Seleccione el nivel de educación"));
+        cbxNivelEdu.setToolTip(new ToolTipConfig("Nivel de educación", "Seleccione el nivel de educación"));
         cbxNivelEdu.setFieldLabel("<font color='red'>*</font>Escolaridad");
         cbxNivelEdu.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
@@ -487,7 +489,7 @@ public final class PanelInfoGeneral extends FormPanel {
                                 public void onSuccess(Personal result) {
                                     result.getFoto();
 
-                                    Info.display("Guardar", "Guardo correctamente el deportista");
+                                    Info.display("Guardar", "Guardó correctamente el personal");
                                     limpiar();
 
                                 }
@@ -515,14 +517,14 @@ public final class PanelInfoGeneral extends FormPanel {
         personal.setFechaNacimiento(DtFecha.getValue());
         personal.setDireccion(txtDireccion.getValue());
         personal.setTelefono(txtTelefono.getValue());
-        personal.setCelular(txtCelular.getValue());
+        personal.setCelular(txtCelular.getValue()==null?"":txtCelular.getValue().toUpperCase());
         personal.setCorreoElectronico(txtCorreo.getValue());
         personal.setBarrio(txtBarrio.getValue().toUpperCase());
         String genero;
         if (rdMasculino.getValue()) {
-            genero = "Masculino";
+            genero = "MASCULINO";
         } else {
-            genero = "Femenino";
+            genero = "FEMENINO";
         }
         personal.setGenero(genero);
         personal.setNivelEducativo(cbxNivelEdu.getNivelEducativoElegido());
@@ -602,7 +604,7 @@ public final class PanelInfoGeneral extends FormPanel {
 
             @Override
             public void onSuccess(Object result) {
-                Info.display("Guardar", "Guardo correctamente el personal");
+                Info.display("Guardar", "Guardó correctamente el personal");
                 limpiar();
 //                        MessageBox.alert("Guardar", "Guardo correctamente el deportista", null);
             }

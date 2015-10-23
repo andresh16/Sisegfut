@@ -58,7 +58,7 @@ public class PanelReactivarNivelEducativo extends LayoutContainer {
 
         cbxNivelEducativo = new ComboBoxNivelEducativo(ComboBoxNivelEducativo.INACTIVOS);
 
-        cbxNivelEducativo.setLabelSeparator("Nivel Educativo");
+        cbxNivelEducativo.setLabelSeparator("Nivel Educativo:");
         cbxNivelEducativo.setAllowBlank(false);
 
         // 

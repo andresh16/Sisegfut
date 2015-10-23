@@ -55,7 +55,7 @@ public class PanelReactivarRivales extends LayoutContainer {
 
         cbxRival = new ComboBoxRival(ComboBoxRival.INACTIVOS);
 
-        cbxRival.setLabelSeparator("Rivales");
+        cbxRival.setLabelSeparator("Rivales:");
         cbxRival.setAllowBlank(false);
 
         // 

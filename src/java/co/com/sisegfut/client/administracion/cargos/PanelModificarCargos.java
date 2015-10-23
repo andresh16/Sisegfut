@@ -67,7 +67,7 @@ public class PanelModificarCargos extends LayoutContainer {
 
         cbxCargos = new ComboBoxCargos(ComboBoxCargos.ACTIVOS);
 
-        cbxCargos.setLabelSeparator("Cargo");
+        cbxCargos.setLabelSeparator("Cargo:");
         cbxCargos.setAllowBlank(false);
 
         // 

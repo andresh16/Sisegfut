@@ -55,7 +55,7 @@ public class PanelReactivarTipoDocumento extends LayoutContainer {
 
         cbxTipoDocumento = new ComboBoxTipoDocumento(ComboBoxTipoDocumento.INACTIVOS);
 
-        cbxTipoDocumento.setLabelSeparator("Tipo de Documento");
+        cbxTipoDocumento.setLabelSeparator("Tipo de Documento:");
         cbxTipoDocumento.setAllowBlank(false);
 
         // 
@@ -132,7 +132,7 @@ public class PanelReactivarTipoDocumento extends LayoutContainer {
                 @Override
                 public void onSuccess(Object result) {
 //                    MessageBox.alert("Reactivar", "Se Reactivo correctamente el Tipo de Documento", null);
-                     pnlExito.definirTexto("Se Reactivo correctamente el Tipo de Documento");
+                     pnlExito.definirTexto("Se Reactivó correctamente el Tipo de Documento");
                     pnlExito.setVisible(true);
                 }
 

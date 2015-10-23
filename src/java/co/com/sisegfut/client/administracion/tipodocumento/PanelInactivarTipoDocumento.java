@@ -56,7 +56,7 @@ public class PanelInactivarTipoDocumento extends LayoutContainer {
 
         cbxTipoDocumento = new ComboBoxTipoDocumento(ComboBoxEps.ACTIVOS);
 
-        cbxTipoDocumento.setLabelSeparator("Tipo de documento");
+        cbxTipoDocumento.setLabelSeparator("Tipo de Documento:");
         cbxTipoDocumento.setAllowBlank(false);
 
         // 

@@ -56,7 +56,7 @@ public class PanelReactivarTorneos extends LayoutContainer {
 
         cbxTorneos = new ComboBoxTorneo(ComboBoxTorneo.INACTIVOS);
 
-        cbxTorneos.setLabelSeparator("Torneos");
+        cbxTorneos.setLabelSeparator("Torneos:");
         cbxTorneos.setAllowBlank(false);
 
         // 
