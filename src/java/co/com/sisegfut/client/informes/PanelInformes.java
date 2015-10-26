@@ -22,14 +22,16 @@ public class PanelInformes extends Window {
     private InformeTest informeTest;
     private InformeDeportistaPosicion informeDeportistaPosicion;
     private InformeDeportistasEstrato informeDeportistasEstrato;
+    private InformeGolesDepTorneo informeGolesDepTorneo;
     TabItem tabInfoCategoria = new TabItem("Informe por categoría");
     TabItem tabInfoDeportistaPosicion = new TabItem("Informe deportistas posición");
     TabItem tabInfoDeportistasEstrato = new TabItem("Informe deportistas estrato");
     TabItem tabInfoTest = new TabItem("Informe tests");
+    TabItem tabInfoGolesTorneo = new TabItem("Informe goles torneo");
 
     public PanelInformes() {
 
-        setSize(510, 200);
+        setSize(520, 200);
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
@@ -49,12 +51,19 @@ public class PanelInformes extends Window {
         informeTest = new InformeTest();
         informeDeportistaPosicion = new InformeDeportistaPosicion();
         informeDeportistasEstrato = new InformeDeportistasEstrato();
-
+        informeGolesDepTorneo = new InformeGolesDepTorneo();
+                       
 //        tabInfoDeportistaPosicion.setLayout(new FitLayout());
         tabInfoDeportistaPosicion.addStyleName("pad-text");
         tabInfoDeportistaPosicion.setIcon(Resources.ICONS.iconoPDF());
         tabInfoDeportistaPosicion.add(informeDeportistaPosicion);
         panel.add(tabInfoDeportistaPosicion);
+        
+//                 informeGolesDepTorneo.setLayout(new FitLayout());
+        tabInfoGolesTorneo.addStyleName("pad-text");
+        tabInfoGolesTorneo.setIcon(Resources.ICONS.iconoPDF());
+        tabInfoGolesTorneo.add(informeGolesDepTorneo);
+        panel.add(tabInfoGolesTorneo); 
         
 //         tabInfoDeportistasEstrato.setLayout(new FitLayout());
         tabInfoDeportistasEstrato.addStyleName("pad-text");

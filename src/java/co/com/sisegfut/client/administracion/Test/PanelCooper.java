@@ -165,7 +165,7 @@ public class PanelCooper extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("condicionFisica");
-        column.setHeader("Condición Fisica");
+        column.setHeader("Condición Física");
         column.setWidth(50);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         configs.add(column);
@@ -179,11 +179,11 @@ public class PanelCooper extends LayoutContainer {
                 } else {
                     String style = "";
                     if (condFisica.equalsIgnoreCase("MUY MALA")) {
-                        style = "black";
-                    } else if (condFisica.equalsIgnoreCase("MALA")) {
                         style = "red";
+                    } else if (condFisica.equalsIgnoreCase("MALA")) {
+                        style = "yellow";
                     } else if (condFisica.equalsIgnoreCase("MEDIA")) {
-                        style = "orange";
+                        style = "yellow";
                     } else if (condFisica.equalsIgnoreCase("BUENA")) {
                         style = "green";
                     } else if (condFisica.equalsIgnoreCase("MUY BUENA")) {
@@ -237,7 +237,7 @@ public class PanelCooper extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("consumOxigeno");
-        column.setHeader("Consumo de Oxigeno Litros/Minutos");
+        column.setHeader("Consumo de Oxígeno Litros/Minutos");
         column.setWidth(50);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         configs.add(column);
@@ -736,12 +736,12 @@ public class PanelCooper extends LayoutContainer {
             @Override
             public void onFailure(Throwable caught) {
 
-                MessageBox.alert("Error", "No guardo el onrol técnico", null);
+                MessageBox.alert("Error", "No guardo el test de cooper", null);
             }
 
             @Override
             public void onSuccess(RespuestaRPC<TestCooper> result) {
-                Info.display("Guardar", "Guardo correctamente el test de cooper ");
+                Info.display("Guardar", "Guardó correctamente el test de cooper ");
                 cargar();
                 form.reset();
             }
@@ -799,7 +799,7 @@ public class PanelCooper extends LayoutContainer {
                 + "			<td><center><b>Condici&oacute;n F&iacute;sica</b></center></td><td><b>13 a 19 a&ntilde;os</b></td><td><b>20 a 29 a&ntilde;os</b></td><td><b>30 a 39 a&ntilde;os</b></td>\n"
                 + "		</tr>\n"
                 + "		<tr   >\n"
-                + "			<td><b>Muy mala</b></td><td>Menos de 2100m</td><td>Menos de 1950m</td><td>Menos de 1900m</td>\n"
+                + "			<td><b>Muy Mala</b></td><td>Menos de 2100m</td><td>Menos de 1950m</td><td>Menos de 1900m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
                 + "			<td><b>Mala</b></td><td>2100m a 2199m</td><td>1950m a 2099m</td><td>1900m a 2099m</td>\n"
@@ -811,7 +811,7 @@ public class PanelCooper extends LayoutContainer {
                 + "			<td><b>Buena</b></td><td>2500m a 2749m</td><td>2400m a 2649m</td><td>2350m a 2499m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
-                + "			<td><b>Muy buena</b></td><td>2750m a 2999m</td><td>2650m a 2849m</td><td>2500m a 2699m</td>\n"
+                + "			<td><b>Muy Buena</b></td><td>2750m a 2999m</td><td>2650m a 2849m</td><td>2500m a 2699m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
                 + "			<td><b>Excelente</b></td><td>M&aacute;s de 3000m</td><td>M&aacute;s de 2850m</td><td>M&aacute;s de 2700m</td>\n"
@@ -820,7 +820,7 @@ public class PanelCooper extends LayoutContainer {
                 + "			<td colspan=\"7\"><center><b>Mujeres (12 Minutos)</b></center></td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
-                + "			<td><b>Muy mala</b></td><td>Menos de 1600m</td><td>Menos de 1550m</td><td>Menos de 1500m</td>\n"
+                + "			<td><b>Muy Mala</b></td><td>Menos de 1600m</td><td>Menos de 1550m</td><td>Menos de 1500m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
                 + "			<td><b>Mala</b></td><td>1600m a 1899m</td><td>1550m a 1799m</td><td>1500m a 1699m</td>\n"
@@ -832,7 +832,7 @@ public class PanelCooper extends LayoutContainer {
                 + "			<td><b>Buena</b></td><td>2100m a 2299m</td><td>1950m a 2149m</td><td>1900m a 2099m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
-                + "			<td><b>Muy buena</b></td><td>2300m a 2449m</td><td>2150m a 2349m</td><td>2100m a 2249m</td>\n"
+                + "			<td><b>Muy Buena</b></td><td>2300m a 2449m</td><td>2150m a 2349m</td><td>2100m a 2249m</td>\n"
                 + "		</tr>\n"
                 + "		<tr>\n"
                 + "			<td><b>Excelente</b></td><td>M&aacute;s de 2450m</td><td>M&aacute;s de 2350m</td><td>M&aacute;s de 2250m</td>\n"

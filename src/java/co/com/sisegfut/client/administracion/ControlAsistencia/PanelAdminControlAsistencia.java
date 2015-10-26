@@ -321,8 +321,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        checkColumn.setEditor(checkBoxEditor);
 ////        columns.add(checkColumn);
         columns.add(new ColumnConfig("idDeportista.documento", "Documento ", 60));
-        columns.add(new ColumnConfig("idDeportista.label", "Nombre completo ", 120));
-        columns.add(new ColumnConfig("idDeportista.telefono", "Télefono", 50));
+        columns.add(new ColumnConfig("idDeportista.label", "Nombre Completo ", 120));
+        columns.add(new ColumnConfig("idDeportista.telefono", "Teléfono", 50));
         columns.add(new ColumnConfig("idDeportista.posicion.nombrePosicion", "Posición", 50));
 
         ColumnConfig idDep = new ColumnConfig();
@@ -808,7 +808,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Lesiones");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
 //            return;
         }
@@ -1025,7 +1025,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         cbxCategoria2.setEditable(false);
 //        cbxCategoria2.setLabelSeparator("<font color='red'>*</font> Categor&iacute;a");
-        cbxCategoria2.setLabelSeparator("Categor&iacute;a");
+        cbxCategoria2.setLabelSeparator("Categoría");
         cbxCategoria2.setForceSelection(true);
 //        cbxCategoria2.setAllowBlank(false);
         Columna2.add(cbxCategoria2, formData);
@@ -1138,8 +1138,8 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
         FormData formData = new FormData("-10");
 
         final ComboBoxCategoria cbxCategoriaReporte = new ComboBoxCategoria(ACTIVOS);
-        cbxCategoriaReporte.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
-        cbxCategoriaReporte.setFieldLabel("<font color='red'>*</font> Categoria");
+        cbxCategoriaReporte.setToolTip(new ToolTipConfig("Categoría", "Seleccione una categoría"));
+        cbxCategoriaReporte.setFieldLabel("<font color='red'>*</font> Categoría");
         cbxCategoriaReporte.setAllowBlank(false);
         cbxCategoriaReporte.setForceSelection(true);
         cbxCategoriaReporte.setEditable(false);
@@ -1186,7 +1186,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 //        fmReporteAsistencia.add(comboAnios, formData);
 //        fmReporteAsistencia.add(comboMeses, formData);
 
-        Button btnVerReporte = new Button("Ver reporte", Resources.ICONS.iconoGrid(), new SelectionListener<ButtonEvent>() {
+        Button btnVerReporte = new Button("Ver Reporte", Resources.ICONS.iconoGrid(), new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -1197,7 +1197,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
                 nombreCategoria=cbxCategoriaReporte.getCategoriaElegida().getNombrecategoria();
                 mes=comboMeses.getSimpleValue();
                 
-                wReporteAsistenciaMes.setHeading("<b>Reporte asistencia de la categoria "
+                wReporteAsistenciaMes.setHeading("<b>Reporte asistencia de la categoría "
                         + nombreCategoria + " para el año " + idAnio + " del mes " + mes + "</b>");
                 cargarLoaderReporteAsistencia();
 
@@ -1266,7 +1266,7 @@ public class PanelAdminControlAsistencia extends LayoutContainer {
 
         columns.add(columnaNumeros);
 
-        columns.add(new ColumnConfig("nombreDeportista", "Nombre completo ", 100));
+        columns.add(new ColumnConfig("nombreDeportista", "Nombre Completo ", 100));
 
         columns.add(new ColumnConfig("diasAsistenciaTotal", "Total Asistencia", 50));
 

@@ -406,4 +406,32 @@
             </props>
         </property>
     </bean>
+    
+    <!-- Reporte Goles Por Torneo -->
+        
+    <bean id="pdfGolesDeportistaTorneo"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+              p:url="classpath:reportes/GolesDeportistaTorneo.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_GolesTorneo.pdf
+                </prop>
+            </props>
+        </property>
+    </bean>
+                
+    <bean id="xlsGolesDeportistaTorneo"
+              class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
+              p:url="classpath:reportes/GolesDeportistaTorneo.jrxml"
+              p:reportDataKey="datasource" >
+        <property name="headers">
+            <props>
+                <prop key="Content-Disposition">
+                    attachment; filename=reporte_GolesTorneo.xls
+                </prop>
+            </props>
+        </property>
+    </bean>
 </beans>

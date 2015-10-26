@@ -102,8 +102,8 @@ public class PanelFormularioControlAsistencia extends FormPanel {
         
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
-        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Seleccione una categoria"));
-        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoria");
+        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Seleccione una categoría"));
+        cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoría");
         cbxCategoria.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
         flCrear.add(cbxCategoria, formData);

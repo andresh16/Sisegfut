@@ -79,7 +79,7 @@ public class InformeDeportista extends FormPanel {
                     reset();
                 } else {
 
-                    MessageBox.alert("ERROR", "No envio al redireccionar panel invalido", null);
+                    MessageBox.alert("ERROR", "No envio al redireccionar panel inválido", null);
                 }
 
             }

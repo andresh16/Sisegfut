@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="980" pageHeight="595" orientation="Landscape" columnWidth="940" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fb33ed8-e1ce-4751-9e10-295ed27919ee">
 	<property name="ireport.zoom" value="1.0263162364614133"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="97"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String"/>
 	<parameter name="banner" class="java.net.URL" isForPrompting="false"/>
@@ -33,11 +33,11 @@
 				<text><![CDATA[Reporte Valoración Antropométrica de la categoría]]></text>
 			</staticText>
 			<image onErrorType="Blank">
-				<reportElement x="23" y="0" width="423" height="69" uuid="a3a4fc86-593c-49c1-9fba-0790a051d6a6"/>
+				<reportElement x="50" y="0" width="423" height="69" uuid="a3a4fc86-593c-49c1-9fba-0790a051d6a6"/>
 				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
 			</image>
 			<image onErrorType="Blank">
-				<reportElement x="840" y="0" width="61" height="69" uuid="e4721f4f-09cc-49f7-95f4-f5dee21ba1e6"/>
+				<reportElement x="867" y="0" width="61" height="69" uuid="e4721f4f-09cc-49f7-95f4-f5dee21ba1e6"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

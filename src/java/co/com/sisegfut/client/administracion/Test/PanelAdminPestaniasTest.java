@@ -29,7 +29,7 @@ public class PanelAdminPestaniasTest extends LayoutContainer {
     TabItem tabItemAntropometrico = new TabItem("Antropométrico");
     TabItem tabItemCtlTecnico = new TabItem("Control Técnico");
 
-    TabItem tabItemKarvonen = new TabItem("Test de carga progresiva Karvonen");
+    TabItem tabItemKarvonen = new TabItem("Test de Carga Progresiva Karvonen");
     TabItem tabItemCooper = new TabItem("Test de Cooper");
     TextField<String> txtPerBrazoRelajado = new TextField<String>();
 

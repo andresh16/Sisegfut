@@ -22,6 +22,7 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistasEstratoXCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
+import co.com.sisegfut.client.datos.dominio.dto.DTOGolesDepTorneo;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVPersonal;
 import co.com.sisegfut.client.datos.dominio.dto.DTOReporteAsistenciaXMes;
@@ -37,6 +38,7 @@ import co.com.sisegfut.server.datos.dao.DaoLesiones;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import co.com.sisegfut.server.datos.dao.DaoEstudiosRealizados;
 import co.com.sisegfut.server.datos.dao.DaoExperiencia;
+import co.com.sisegfut.server.datos.dao.DaoGolesCompe;
 import co.com.sisegfut.server.datos.dao.DaoLogrosDeportivos;
 import co.com.sisegfut.server.datos.dao.DaoPersonal;
 import co.com.sisegfut.server.datos.dao.DaoTestCooper;
@@ -94,6 +96,8 @@ public class ReportesController {
     private DaoControlTecnico daoControlTecnico;
     @Autowired
     private DaoControlAsistencia daoControlAsistencia;
+    @Autowired
+    private DaoGolesCompe daoGolesCompe;
 
     private static final int TIPO_XLS = 1;
     private static final int TIPO_PDF = 2;
@@ -122,7 +126,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -175,7 +179,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -196,7 +200,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -337,7 +341,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.\n" + e);
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.\n" + e);
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -358,7 +362,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -456,7 +460,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.\n" + e);
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.\n" + e);
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -480,7 +484,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -544,7 +548,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -568,7 +572,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -620,7 +624,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -644,7 +648,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -694,7 +698,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -718,7 +722,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -774,7 +778,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -801,7 +805,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -835,7 +839,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -856,7 +860,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -913,7 +917,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -934,7 +938,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -987,7 +991,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1008,7 +1012,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1070,7 +1074,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1091,7 +1095,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1150,7 +1154,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1173,7 +1177,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1228,7 +1232,7 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1251,7 +1255,7 @@ public class ReportesController {
         if (usuarioSession == null || usuarioSession.getId() == null) {
             ModelAndView retorno = new ModelAndView("errores");
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
-            retorno.addObject("mensaje", "Debe tener una sesion activa para mostrar este contenido.");
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 
@@ -1306,7 +1310,82 @@ public class ReportesController {
 
             retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
 
-            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el area de soporte técnico.");
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+    
+    @RequestMapping(value = "/GolesDeportistaTorneo/{nombreTorneo}/{torneo}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportGolesDepTorneo(
+            @PathVariable String nombreTorneo,
+            @PathVariable Long torneo,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List<DTOGolesDepTorneo> listaDep = daoGolesCompe.golesDeportistXTorneo(torneo);
+
+            List<DTOGolesDepTorneo> listaDeportistaReport = new ArrayList<DTOGolesDepTorneo>();
+            if (listaDep.isEmpty() || listaDep.size() == 0) {
+                listaDeportistaReport.add(new DTOGolesDepTorneo("", ""));
+            } else {
+                for (DTOGolesDepTorneo deportista : listaDep) {
+
+                    DTOGolesDepTorneo dtoDeportista = new DTOGolesDepTorneo();
+
+                    dtoDeportista.setNombreCompletoJu(deportista.getNombreCompletoJu());
+                    dtoDeportista.setCantidadGoles(deportista.getCantidadGoles());
+
+                    listaDeportistaReport.add(dtoDeportista);
+                }
+            }
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTOGolesDepTorneo());
+            }
+            System.out.println("nombre torneo" + nombreTorneo);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("torneo", nombreTorneo);
+
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsGolesDeportistaTorneo", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfGolesDeportistaTorneo", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
             response.setHeader("Pragma", "public");
             response.setHeader("Cache-Control", "max-age=0");
 

@@ -164,7 +164,7 @@ public class PanelKarvonen extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("fcReposo");
-        column.setHeader("Frecuencia Cardiaca Reposo");
+        column.setHeader("Frecuencia Cardíaca Reposo");
         column.setWidth(50);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         configs.add(column);
@@ -381,7 +381,7 @@ public class PanelKarvonen extends LayoutContainer {
         Columna1.setLayout(layout);
 
         txtFCReposo.setName("fcReposo");
-        txtFCReposo.setFieldLabel("<font color='red'>*</font>Frecuencia cardiaca en reposo");
+        txtFCReposo.setFieldLabel("<font color='red'>*</font>Frecuencia cardíaca en reposo");
         txtFCReposo.setRegex("^[.0-9]*$");
         txtFCReposo.setEmptyText("");
         txtFCReposo.setMaxLength(3);
@@ -521,7 +521,7 @@ public class PanelKarvonen extends LayoutContainer {
 
             @Override
             public void onSuccess(RespuestaRPC<TestKarvonen> result) {
-                Info.display("Guardar", "Guardo correctamente el test de karvonen ");
+                Info.display("Guardar", "Guardó correctamente el test de karvonen ");
                 cargar();
                 form.reset();
             }
