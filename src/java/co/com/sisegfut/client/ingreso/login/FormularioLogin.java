@@ -65,6 +65,7 @@ public class FormularioLogin extends FormPanel {
 
         formData = new FormData("-20");
         formData.setMargins(new Margins(0,0,0, 20));
+        setAutoHeight(true);
 
        // setFrame(true);
 //        setLabelAlign(LabelAlign.LEFT); 

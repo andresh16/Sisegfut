@@ -102,7 +102,7 @@ public class PanelAdminTests extends LayoutContainer {
         
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
-        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Seleccione una categoría"));
+        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Filtrar por categoría"));
         cbxCategoria.setFieldLabel("<font color='red'>*</font> Categoría");
         cbxCategoria.setAllowBlank(false);
         //  cbxCategoria.setEditable(false);
@@ -123,7 +123,6 @@ public class PanelAdminTests extends LayoutContainer {
         cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-                Info.display("Categoría", "Filtro por la categoría "+cbxCategoria.getCategoriaElegida().getNombrecategoria());
                 IdCategoriaElegida=cbxCategoria.getCategoriaElegida().getId();
                 cargar();
             }

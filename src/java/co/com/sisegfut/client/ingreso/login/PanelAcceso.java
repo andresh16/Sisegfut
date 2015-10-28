@@ -6,16 +6,12 @@ import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.util.Margins;
-import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.BoxLayout.BoxLayoutPack;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
-import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.VBoxLayout.VBoxLayoutAlign;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 
@@ -50,11 +46,6 @@ public class PanelAcceso extends LayoutContainer {
         super.onRender(parent, index);
         setStyleName("elLogin");
         setScrollMode(Style.Scroll.AUTOY);
-//        VBoxLayout layout2 = new VBoxLayout();  
-//        layout2.setPadding(new Padding(195));  
-//        layout2.setVBoxLayoutAlign(VBoxLayoutAlign.CENTER);  
-//        layout2.setPack(BoxLayoutPack.START);  
-//        scrollIntoView(this);
         setLayout(new CenterLayout());
 
         // Construcción del logo
@@ -62,46 +53,29 @@ public class PanelAcceso extends LayoutContainer {
         logoLogin.setSize("440", "164");
         formularioLogin = new FormularioLogin();
         panelRecuperacion = new PanelRecuperacion();
-
-//        TabPanel panel = new TabPanel();
-//        panel.setPlain(true);
-//        panel.setWidth(440);
-//        panel.setSize(440, 240);
-//        panel.setAutoHeight(true);
-//
-//        TabItem login = new TabItem("INICIAR SESIÓN");
-//        login.setBorders(false);
-//        login.setIcon(Resources.ICONS.iconoLogin());
-//        login.add(formularioLogin);
-//        panel.add(login);
-//
-//        TabItem recuperacion = new TabItem("RECUPERAR CONTRASEÑA");
-//        recuperacion.setIcon(Resources.ICONS.iconoClave());
-//        recuperacion.add(panelRecuperacion);
-//        panel.add(recuperacion);
         
         ContentPanel panel = new ContentPanel();
 
         panel.setLayout(new AccordionLayout());
         panel.setWidth(440);
-//        panel.setSize(440, 240);
         panel.setAutoHeight(true);
+        panel.setBodyBorder(false);
+        panel.setBorders(false);
         panel.setScrollMode(Style.Scroll.AUTOY);
         panel.setHeaderVisible(false);
-//        panel.setIcon(Resources.ICONS.);
 
         ContentPanel login = new ContentPanel();
         login.setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=2 FACE='arial' Color='black'><b>INICIAR SESIÓN</b></font></center>");
         login.setAnimCollapse(true);
-        login.setHeight(240);
-        login.setAutoHeight(false);
+        login.setHeight(250);
+        login.setAutoHeight(true);
         login.setBorders(false);
         login.setIcon(Resources.ICONS.iconoLogin());
         login.add(formularioLogin);
         panel.add(login);
 
         ContentPanel recuperacion = new ContentPanel();
-        recuperacion.setHeading("<FONT SIZE=2 FACE='arial' Color='blue'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECUPERAR CONTRASEÑA</b></font></center>");
+        recuperacion.setHeading("<FONT SIZE='2' FACE='arial' Color='blue'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECUPERAR CONTRASEÑA</b></font></center>");
         recuperacion.setIcon(Resources.ICONS.iconoClave());
         recuperacion.add(panelRecuperacion);
         panel.add(recuperacion);
@@ -112,14 +86,14 @@ public class PanelAcceso extends LayoutContainer {
         panelContenedor.setHeaderVisible(false);
         panelContenedor.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         panelContenedor.setHeading("<center>Bienvenido</center> ");
-        panelContenedor.setFrame(true);
+        panelContenedor.setFrame(false);
         panelContenedor.add(logoLogin);
-        BorderLayoutData eastData = new BorderLayoutData(LayoutRegion.CENTER, 450);
-        eastData.setSplit(true);
-        eastData.setCollapsible(true);
-        eastData.setMargins(new Margins(0, 0, 0, 0));
-        panelContenedor.add(panel);
-        panelContenedor.setWidth(450);
+//        BorderLayoutData eastData = new BorderLayoutData(LayoutRegion.NORTH, 450);
+//        eastData.setSplit(true);
+//        eastData.setCollapsible(true);
+//        eastData.setMargins(new Margins(0, 0, 0, 0));
+        panelContenedor.add(panel);   
+        panelContenedor.setWidth(440);
         add(panelContenedor);
     }
 }

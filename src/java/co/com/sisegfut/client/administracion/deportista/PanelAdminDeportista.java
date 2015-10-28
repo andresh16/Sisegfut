@@ -4,6 +4,7 @@
  */
 package co.com.sisegfut.client.administracion.deportista;
 
+import static co.com.sisegfut.client.administracion.deportista.PanelInfoGeneral.ACTIVOS;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
@@ -22,12 +23,12 @@ import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.data.BeanModelReader;
-import com.extjs.gxt.ui.client.data.FilterPagingLoadConfig;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -43,6 +44,8 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
@@ -51,9 +54,14 @@ import com.extjs.gxt.ui.client.widget.grid.filters.ListFilter;
 import com.extjs.gxt.ui.client.widget.grid.filters.StringFilter;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.ColumnData;
+import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FillLayout;
+import com.extjs.gxt.ui.client.widget.layout.FormData;
+import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
+import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -79,6 +87,7 @@ public class PanelAdminDeportista extends LayoutContainer {
     Long IdCategoriaElegida=null;
     protected MessageBox boxWait;
     private Usuarios usuarioLogeado;
+    TextField<String> txtCampoBusqueda = new TextField<String>();
     //Creo el toolbar de paginacion de el grid
     final PagingToolBar PgtoolBar = new PagingToolBar(50);
     private Deportista dep;
@@ -102,15 +111,72 @@ public class PanelAdminDeportista extends LayoutContainer {
         final ContentPanel cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
         cp.setScrollMode(Style.Scroll.AUTO);
+         cp.setLayout(new RowLayout(Orientation.VERTICAL));
+        cp.setSize(250, 250);
+//        cp.setLayout(new FillLayout(Orientation.VERTICAL));
 
 //        setLayout(new FillLayout(Orientation.VERTICAL));
         ToolBar toolBar = new ToolBar();
         toolBar.setSpacing(2);
 
-//        Button btnLimpiar = new Button(" Limpiar", listenerlimpiar());
-//        btnLimpiar.setIcon(Resources.ICONS.iconoLimpiar());
-//        toolBar.add(btnLimpiar);
+          FormData formData = new FormData("0");
+        LayoutContainer main = new LayoutContainer();
+        main.setLayout(new ColumnLayout());
+        // main.setHeight(100);
+        
+        main.setAutoHeight(afterRender);
+
+        ///////////////////// Columna 1 ////////////////////////////  
+        LayoutContainer Columna1 = new LayoutContainer();
+        Columna1.setStyleAttribute("paddingRight", "0px");
+        FormLayout layoutfrm = new FormLayout();
+        Columna1.setWidth(200);
+//        layoutfrm.setLabelAlign(FormPanel.LabelAlign.LEFT);
+        Columna1.setLayout(layoutfrm);
+        
+        txtCampoBusqueda.setName("filtrar");
+//        txtCampoBusqueda.setFieldLabel("<b>Filtrar<b>");
+        txtCampoBusqueda.setEmptyText("Filtrar");
+        txtCampoBusqueda.setHideLabel(true);
+        Columna1.add(txtCampoBusqueda, formData);
+        
+        Button btnBuscar = new Button("Filtrar", listenerBuscar());
+        btnBuscar.setIcon(Resources.ICONS.iconoBuscar());
+        
+        cbxCategoria = new ComboBoxCategoria(ACTIVOS);
+        cbxCategoria.setName("categoria.nombrecategoria");
+        cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Filtrar por categoría"));
+        cbxCategoria.setFieldLabel("Filtrar Categoría");
+        cbxCategoria.setAllowBlank(false);
+        
+        Columna1.add(cbxCategoria, formData);
+        
+         ///////////////////// Columna 2 //////////////////////////// 
+        LayoutContainer Columna2 = new LayoutContainer();
+        Columna2.setStyleAttribute("paddingLeft", "0px");
+        layoutfrm = new FormLayout();
+//        layoutfrm.setLabelAlign(FormPanel.LabelAlign.LEFT);
+        
+        
+        Columna2.add(btnBuscar, formData);
+//        Columna2.add(cbxCategoria, formData);
+        
+        main.add(Columna1, new ColumnData(.5));
+        main.add(Columna2, new ColumnData(.5));
+//        toolBar.add(cbxCategoria);
 //        toolBar.add(new SeparatorToolItem());
+        cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
+            @Override
+            public void handleEvent(BaseEvent be) {
+                IdCategoriaElegida=cbxCategoria.getCategoriaElegida().getId();
+                cargar();
+            }
+        });
+        cp.add(main,new RowData(1,0.12, new Margins(0)));
+        
+        
+        toolBar.add(new SeparatorToolItem());
+        
         Button btnEliminar = new Button(" Eliminar", listenerEliminar());
         btnEliminar.setIcon(Resources.ICONS.iconoEliminar());
         toolBar.add(btnEliminar);
@@ -200,7 +266,7 @@ public class PanelAdminDeportista extends LayoutContainer {
         ColumnModel cm = new ColumnModel(columns);
         GridFilters filters = new GridFilters();
 
-        StringFilter nombreFilter = new StringFilter("nombres");
+        StringFilter nombreFilter = new StringFilter("label");
 //        NumericFilter numberfilter = new NumericFilter("peso");  
         ListStore<BeanModel> listacategoria = cbxCategoria.getStore();
 
@@ -261,17 +327,15 @@ public class PanelAdminDeportista extends LayoutContainer {
         grid.getView().setForceFit(true);
         grid.setTrackMouseOver(false);  
         
-
-        cp.setLayout(new FillLayout(Orientation.HORIZONTAL));
-
+        
         cp.setBottomComponent(PgtoolBar);
         grid.setStateId("pagingGridExample");
         grid.setStateful(true);
 
         //cp.add(grid, new RowData(.5, 1));
-        cp.add(grid);
+        cp.add(grid, new RowData(1, 0.88, new Margins(0)));
         cp.setScrollMode(Style.Scroll.AUTO);
-
+   
         panel2 = new ContentPanel();
         panel2.setLayout(new RowLayout(Orientation.HORIZONTAL));
         panel2.setSize(500, 500);
@@ -283,7 +347,6 @@ public class PanelAdminDeportista extends LayoutContainer {
         cp.setHeading("Tabla deportista");
 //        cp2.add(toolBar, new FlowData(0));
 //        cp.setLayout(new RowLayout(Orientation.HORIZONTAL));
-        cp.setCollapsible(true);
         dataWest = new BorderLayoutData(LayoutRegion.WEST);
         dataWest.setMargins(new Margins(0, 0, 0, 0));
         dataWest.setSplit(true);
@@ -368,6 +431,20 @@ public class PanelAdminDeportista extends LayoutContainer {
                 } else {
                     MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
                 }
+
+            }
+        };
+    }
+    
+    public SelectionListener<ButtonEvent> listenerBuscar() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+//                if (dep != null) {
+//
+//                } else {
+//                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
+//                }
 
             }
         };
