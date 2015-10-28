@@ -145,7 +145,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
         txtDocumento.setEmptyText("");
         txtDocumento.setAllowBlank(false);
-        txtDocumento.getMessages().setRegexText("El campo no puede contener más de 11 caracteres .");
+        txtDocumento.getMessages().setRegexText("El campo no puede contener más de 11 caracteres.");
 //        txtDocumento.setEnabled(false);
         Columna1.add(txtDocumento, formData);
 

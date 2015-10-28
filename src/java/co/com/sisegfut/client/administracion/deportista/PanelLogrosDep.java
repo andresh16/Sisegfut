@@ -111,7 +111,7 @@ public class PanelLogrosDep extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Logros Deportivos");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }
@@ -362,7 +362,7 @@ public class PanelLogrosDep extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<LogrosDeportivos> result) {
-                            Info.display("Guardar", "Guardo correctamente el logro ");
+                            Info.display("Guardar", "Guardó correctamente el logro ");
 //                            MessageBox.info("Guardar!", "Guardo correctamente el antecedente deportivo", null);
                             Limpiar();
                         }
@@ -394,7 +394,7 @@ public class PanelLogrosDep extends LayoutContainer {
 
                                         @Override
                                         public void onFailure(Throwable caught) {
-                                            Info.display("Eliminar", "No Elimino " + idLogro);
+                                            Info.display("Eliminar", "No Eliminó el logro deportivo" + idLogro);
                                         }
 
                                         @Override
@@ -489,7 +489,7 @@ public class PanelLogrosDep extends LayoutContainer {
         Columna3.setLayout(layout);
 
         comboAnios.setName("anioLogro");
-        comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
+        comboAnios.setToolTip(new ToolTipConfig("Año", "Elija un año"));
         comboAnios.setFieldLabel("<font color='red'>*</font>Año");
         comboAnios.setAllowBlank(false);
         Columna3.add(comboAnios, formData);

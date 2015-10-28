@@ -228,7 +228,7 @@ public class PanelCargarFotoPer extends Window {
                 } else // Si hay errores
                 {
 
-                    MessageBox.alert("Advertencia!", "Debe seleccionar un deportista", null);
+                    MessageBox.alert("Advertencia!", "Debe seleccionar un personal", null);
                 }
             }
         };
@@ -257,5 +257,4 @@ public class PanelCargarFotoPer extends Window {
 
         simple.show();
     }
-
 }

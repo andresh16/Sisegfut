@@ -77,7 +77,7 @@ public class DaoGolesCompeImpl extends DaoGenericoImpl<Goles> implements DaoGole
             System.out.println("Goles "+resultado[0]);
             System.out.println("Jugador "+resultado[1]);
             System.out.println("--------------------");
-            DTOGolesDepTorneo dTOGolesDepTorneo = new DTOGolesDepTorneo((String)resultado[0],(String)resultado[1]);
+            DTOGolesDepTorneo dTOGolesDepTorneo = new DTOGolesDepTorneo(resultado[0].toString(),(String)resultado[1]);
             ListDepGolesXTorneo.add(dTOGolesDepTorneo);
         }
         } catch (Exception e) {

@@ -163,7 +163,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         column = new ColumnConfig();
         column.setId("titulo");
         column.setAlignment(Style.HorizontalAlignment.CENTER);
-        column.setHeader("Titulo");
+        column.setHeader("Título");
         column.setWidth(280);
         column.setRenderer(new GridCellRenderer() {
             

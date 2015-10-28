@@ -111,7 +111,7 @@ public class PanelLesion extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Lesiones");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }
@@ -321,12 +321,12 @@ public class PanelLesion extends LayoutContainer {
                     
                     @Override
                     public void onFailure(Throwable caught) {
-                        Info.display("Guardar", "No Guardo la lesion ");
+                        Info.display("Guardar", "No Guardo la lesión ");
                     }
                     
                     @Override
                     public void onSuccess(RespuestaRPC<Lesiones> result) {
-                        Info.display("Guardar", "Guardo correctamente la lesion ");
+                        Info.display("Guardar", "Guardó correctamente la lesión ");
                         Limpiar();
                     }
                 });
@@ -358,7 +358,7 @@ public class PanelLesion extends LayoutContainer {
                                         
                                         @Override
                                         public void onSuccess(RespuestaRPC<Lesiones> result) {
-                                            Info.display("Eliminar", "Se eliminó la lesión  " + txtLesion.getValue());
+                                            Info.display("Eliminar", "Se eliminó correctamente la lesión  " + txtLesion.getValue());
                                             Limpiar();
                                         }
                                     });

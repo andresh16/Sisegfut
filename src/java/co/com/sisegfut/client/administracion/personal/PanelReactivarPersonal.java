@@ -53,7 +53,7 @@ public class PanelReactivarPersonal extends Window{
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
-        setHeading("Reactivar deportista");
+        setHeading("Reactivar personal");
         setLayout(new FillLayout());
         setResizable(false);
  
@@ -64,7 +64,7 @@ public class PanelReactivarPersonal extends Window{
         
         cbxPersonal=new ComboBoxPersonal(2);
         
-        cbxPersonal.setLabelSeparator("Deportista");
+        cbxPersonal.setLabelSeparator("Personal");
         cbxPersonal.setAllowBlank(false);
         
          Button btnReactivar = new Button("Reactivar", ListenerReactivar());
@@ -111,7 +111,7 @@ public class PanelReactivarPersonal extends Window{
                        @Override
                        public void onSuccess(Object result) {
                            
-                      Info.display("Reactivar", "Se Reactivo correctamente el personal");
+                      Info.display("Reactivar", "Se Reactivó correctamente el personal");
                        adminPersonal.cargar();
                        }
                        
@@ -135,8 +135,6 @@ public class PanelReactivarPersonal extends Window{
     }
     
     public void cerrar(){
-    this.hide();
-    
-    }
-    
+    this.hide();    
+    }    
 }

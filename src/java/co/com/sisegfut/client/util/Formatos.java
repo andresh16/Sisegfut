@@ -183,15 +183,10 @@ public class Formatos {
         Date fechaRetorno = new Date();
 
         String fechaHora=fecha2(fecha)+" "+HoraMilitar(hora);
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+        
+            DateTimeFormat formatter = DateTimeFormat.getFormat("yyyy-MM-dd kk:mm");
             fechaRetorno=formatter.parse(fechaHora);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
-        }
-        
-        
+       
         return fechaRetorno;
     }
 

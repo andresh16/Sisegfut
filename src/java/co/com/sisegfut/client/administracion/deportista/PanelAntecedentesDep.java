@@ -369,7 +369,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<AntecedentesDeportivos> result) {
-                            Info.display("Guardar", "Guardo correctamente el antecedente deportivo ");
+                            Info.display("Guardar", "Guardó correctamente el antecedente deportivo ");
 //                            MessageBox.info("Guardar!", "Guardo correctamente el antecedente deportivo", null);
                             Limpiar();
                         }
@@ -402,7 +402,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
 
                                         @Override
                                         public void onFailure(Throwable caught) {
-                                            Info.display("Eliminar", "No Elimino " + idAntecedente);
+                                            Info.display("Eliminar", "No Eliminó el antecedente deportivo" + idAntecedente);
                                         }
 
                                         @Override

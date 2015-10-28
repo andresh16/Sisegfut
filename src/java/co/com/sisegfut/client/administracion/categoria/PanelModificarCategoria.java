@@ -141,8 +141,8 @@ public class PanelModificarCategoria extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No Modifico la Categoría");
-                    MessageBox.alert("Error", "No Modifico la Categoría", null);
+                    pnlErrores.aniadir("No Modificó la Categoría");
+                    MessageBox.alert("Error", "No Modificó la Categoría", null);
                 }
 
                 @Override

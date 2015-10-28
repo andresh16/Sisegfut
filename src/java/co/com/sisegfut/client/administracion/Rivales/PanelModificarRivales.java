@@ -164,7 +164,7 @@ public class PanelModificarRivales extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No Modifico el jugador comodin");
+                    pnlErrores.aniadir("No Modificó el jugador comodín");
                 }
 
                 @Override
@@ -181,7 +181,7 @@ public class PanelModificarRivales extends LayoutContainer {
                         public void onFailure(Throwable caught) {
                             pnlErrores.limpiar();
                             pnlErrores.setVisible(true);
-                            pnlErrores.aniadir("No Modifico el torneo");
+                            pnlErrores.aniadir("No Modificó el torneo");
                         }
 
                         @Override

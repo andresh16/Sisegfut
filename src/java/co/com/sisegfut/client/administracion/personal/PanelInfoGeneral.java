@@ -294,7 +294,7 @@ public final class PanelInfoGeneral extends FormPanel {
         txtCorreo.setToolTip(new ToolTipConfig("Correo", "Digite el correo electrónico"));
         txtCorreo.setFieldLabel("<font color='red'>*</font>Correo");
         txtCorreo.setRegex("^(\\w+)([-+.][\\w]+)*@(\\w[-\\w]*\\.){1,5}([A-Za-z]){2,4}$");
-        txtCorreo.getMessages().setRegexText("Formato no valido, ej: ejemplo@dominio.com");
+        txtCorreo.getMessages().setRegexText("Formato no válido, ej: ejemplo@dominio.com");
         txtCorreo.setAllowBlank(false);
         Columna2.add(txtCorreo, formData);
 

@@ -137,7 +137,7 @@ public class PanelCrearTorneos extends LayoutContainer {
                 public void onFailure(Throwable caught) {
                     pnlErrores.limpiar();
                     pnlErrores.setVisible(true);
-                    pnlErrores.aniadir("No guardo el torneo");
+                    pnlErrores.aniadir("No guardó el torneo");
                 }
 
                 @Override
