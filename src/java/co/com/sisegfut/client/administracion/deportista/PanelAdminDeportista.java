@@ -31,8 +31,10 @@ import com.extjs.gxt.ui.client.data.RpcProxy;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.BoxComponentEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
+import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -81,15 +83,14 @@ public class PanelAdminDeportista extends LayoutContainer {
 
     private FormBinding formBindings;
     private PagingLoader<PagingLoadResult<ModelData>> loader;
-    
 
     Long id = null;
-    Long IdCategoriaElegida=null;
+    Long IdCategoriaElegida = null;
     protected MessageBox boxWait;
     private Usuarios usuarioLogeado;
     TextField<String> txtCampoBusqueda = new TextField<String>();
     //Creo el toolbar de paginacion de el grid
-    final PagingToolBar PgtoolBar = new PagingToolBar(50);
+//    final PagingToolBar PgtoolBar = new PagingToolBar(50);
     private Deportista dep;
     BorderLayoutData dataWest;
     BorderLayoutData dataCenter;
@@ -98,20 +99,23 @@ public class PanelAdminDeportista extends LayoutContainer {
     private PanelReactivarDeportista reactivarDeportista;
     ComboBoxCategoria cbxCategoria;
 
+    private String filtroNombres = "";
+    private Boolean filtrar = false;
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-       setStyleAttribute("padding", "0px");
+        setStyleAttribute("padding", "0px");
         cbxCategoria = new ComboBoxCategoria(ComboBoxCategoria.ACTIVOS);
 
 //        setScrollMode(Style.Scroll.AUTOY);
         final ContentPanel cp = new ContentPanel();
         final ContentPanel cp2 = new ContentPanel();
         cp.setScrollMode(Style.Scroll.AUTO);
-         cp.setLayout(new RowLayout(Orientation.VERTICAL));
+        cp.setLayout(new RowLayout(Orientation.VERTICAL));
         cp.setSize(250, 250);
 //        cp.setLayout(new FillLayout(Orientation.VERTICAL));
 
@@ -119,11 +123,11 @@ public class PanelAdminDeportista extends LayoutContainer {
         ToolBar toolBar = new ToolBar();
         toolBar.setSpacing(2);
 
-          FormData formData = new FormData("0");
+        FormData formData = new FormData("0");
         LayoutContainer main = new LayoutContainer();
         main.setLayout(new ColumnLayout());
         // main.setHeight(100);
-        
+
         main.setAutoHeight(afterRender);
 
         ///////////////////// Columna 1 ////////////////////////////  
@@ -133,34 +137,43 @@ public class PanelAdminDeportista extends LayoutContainer {
         Columna1.setWidth(200);
 //        layoutfrm.setLabelAlign(FormPanel.LabelAlign.LEFT);
         Columna1.setLayout(layoutfrm);
-        
+
         txtCampoBusqueda.setName("filtrar");
 //        txtCampoBusqueda.setFieldLabel("<b>Filtrar<b>");
         txtCampoBusqueda.setEmptyText("Filtrar");
         txtCampoBusqueda.setHideLabel(true);
+        
+        txtCampoBusqueda.addKeyListener(new KeyListener() {
+
+            @Override
+            public void componentKeyPress(ComponentEvent event) {
+                if (event.getKeyCode() == 13) {
+                    recargaFiltra();
+                }
+            }
+        });
         Columna1.add(txtCampoBusqueda, formData);
-        
-        Button btnBuscar = new Button("Filtrar", listenerBuscar());
-        btnBuscar.setIcon(Resources.ICONS.iconoBuscar());
-        
+
+        Button btnFiltrar = new Button("Filtrar", listenerFiltrar());
+        btnFiltrar.setIcon(Resources.ICONS.iconoBuscar());
+
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
         cbxCategoria.setToolTip(new ToolTipConfig("Categoría", "Filtrar por categoría"));
         cbxCategoria.setFieldLabel("Filtrar Categoría");
         cbxCategoria.setAllowBlank(false);
-        
+
         Columna1.add(cbxCategoria, formData);
-        
-         ///////////////////// Columna 2 //////////////////////////// 
+
+        ///////////////////// Columna 2 //////////////////////////// 
         LayoutContainer Columna2 = new LayoutContainer();
         Columna2.setStyleAttribute("paddingLeft", "0px");
         layoutfrm = new FormLayout();
 //        layoutfrm.setLabelAlign(FormPanel.LabelAlign.LEFT);
-        
-        
-        Columna2.add(btnBuscar, formData);
+
+        Columna2.add(btnFiltrar, formData);
 //        Columna2.add(cbxCategoria, formData);
-        
+
         main.add(Columna1, new ColumnData(.5));
         main.add(Columna2, new ColumnData(.5));
 //        toolBar.add(cbxCategoria);
@@ -168,15 +181,15 @@ public class PanelAdminDeportista extends LayoutContainer {
         cbxCategoria.addListener(Events.SelectionChange, new Listener<BaseEvent>() {
             @Override
             public void handleEvent(BaseEvent be) {
-                IdCategoriaElegida=cbxCategoria.getCategoriaElegida().getId();
+                IdCategoriaElegida = cbxCategoria.getCategoriaElegida().getId();
+                filtrar = false;
                 cargar();
             }
         });
-        cp.add(main,new RowData(1,0.12, new Margins(0)));
-        
-        
+        cp.add(main, new RowData(1, 0.12, new Margins(0)));
+
         toolBar.add(new SeparatorToolItem());
-        
+
         Button btnEliminar = new Button(" Eliminar", listenerEliminar());
         btnEliminar.setIcon(Resources.ICONS.iconoEliminar());
         toolBar.add(btnEliminar);
@@ -221,13 +234,17 @@ public class PanelAdminDeportista extends LayoutContainer {
         RpcProxy<PagingLoadResult<Deportista>> proxy = new RpcProxy<PagingLoadResult<Deportista>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Deportista>> callback) {
-                if (IdCategoriaElegida!=null){
-                 svc.getDeportistaxCategoria(IdCategoriaElegida, callback);
-                }else{
-                    svc.getDeportistas(callback);
+                if (filtrar) {
+                    svc.getFiltroDeportistas(filtroNombres, callback);
+                } else {
+                    if (IdCategoriaElegida != null) {
+                        svc.getDeportistaxCategoria(IdCategoriaElegida, callback);
+                    } else {
+                        svc.getDeportistas(callback);
+                    }
                 }
             }
-           
+
         };
 
         loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, new BeanModelReader()) {
@@ -242,8 +259,8 @@ public class PanelAdminDeportista extends LayoutContainer {
         ListStore<BeanModel> store = new ListStore<BeanModel>(loader);
         store.setMonitorChanges(true);
 
-        PgtoolBar.bind(loader);
-        PgtoolBar.enable();
+//        PgtoolBar.bind(loader);
+//        PgtoolBar.enable();
         //Configuro las columnas de la tabla
         List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
 
@@ -325,17 +342,16 @@ public class PanelAdminDeportista extends LayoutContainer {
         grid.setBorders(true);
         grid.addPlugin(filters);
         grid.getView().setForceFit(true);
-        grid.setTrackMouseOver(false);  
-        
-        
-        cp.setBottomComponent(PgtoolBar);
+        grid.setTrackMouseOver(false);
+
+//        cp.setBottomComponent(PgtoolBar);
         grid.setStateId("pagingGridExample");
         grid.setStateful(true);
 
         //cp.add(grid, new RowData(.5, 1));
         cp.add(grid, new RowData(1, 0.88, new Margins(0)));
         cp.setScrollMode(Style.Scroll.AUTO);
-   
+
         panel2 = new ContentPanel();
         panel2.setLayout(new RowLayout(Orientation.HORIZONTAL));
         panel2.setSize(500, 500);
@@ -384,8 +400,7 @@ public class PanelAdminDeportista extends LayoutContainer {
     public void cargar() {
         loader.load(0, 50);
         loader.load(0, 50);
-        PgtoolBar.enable();
-        
+
 //        loader.load(0, 50);
     }
 
@@ -435,19 +450,21 @@ public class PanelAdminDeportista extends LayoutContainer {
             }
         };
     }
-    
-    public SelectionListener<ButtonEvent> listenerBuscar() {
+
+    public SelectionListener<ButtonEvent> listenerFiltrar() {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-//                if (dep != null) {
-//
-//                } else {
-//                    MessageBox.alert("Alerta", "Debe seleccionar primero un deportista", null);
-//                }
-
+                recargaFiltra();
             }
         };
+    }
+
+    public void recargaFiltra() {
+                filtroNombres = txtCampoBusqueda.getValue();
+                filtrar = true;
+                cargar();
+
     }
 
     public SelectionListener<ButtonEvent> listenerReactivar() {

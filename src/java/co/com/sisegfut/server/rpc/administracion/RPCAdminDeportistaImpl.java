@@ -187,6 +187,14 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
 
     @Override
     public PagingLoadResult<Deportista> getFiltroDeportistas(String filtro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Deportista> listaRetorno = new ArrayList<Deportista>();
+        try {
+            listaRetorno = daoDeportista.filtrarDeportista(filtro);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        PagingLoadResult<Deportista> loadResult = new BasePagingLoadResult<Deportista>(listaRetorno, 1, 1000);
+        return loadResult;
     }
 }
