@@ -29,6 +29,8 @@ public interface RPCAdminDeportistaAsync extends RPCMaestroAsync<Deportista> {
 
     public void getDeportistaxCategoria(Long idCategoria, AsyncCallback<PagingLoadResult<Deportista>> callback);
     
+    public void getFiltroDeportistas(String filtro, AsyncCallback<PagingLoadResult<Deportista>> callback);
+    
     public void getDeportistas(AsyncCallback<PagingLoadResult<Deportista>> callback);
     
     public void getDeportistasEstratificacion(AsyncCallback<List<Estratos>> callback);

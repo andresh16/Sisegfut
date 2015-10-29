@@ -8,7 +8,6 @@ package co.com.sisegfut.server.datos.dao.hibernate;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EntidadPerpetua;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
-import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaPosicion;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
 import co.com.sisegfut.client.util.Pair;
@@ -322,5 +321,21 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
             e.printStackTrace();
             return null;
         }
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public List<Deportista> filtrarDeportista(String filtro) throws Exception {
+        List<Deportista> listaReporte = null;
+        String query="select d.* from deportista d where d.nombres like '%"+filtro.toUpperCase()+"%' or d.apellidos like '%"+filtro.toUpperCase()+"%' AND d.jugador_comodin=false and d.fechainactivado is null;";
+        try {
+            listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(query)
+                    .addEntity("d", Deportista.class).list();
+            return listaReporte;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 }

@@ -9,7 +9,6 @@ import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.aatest.model.Posicion;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
-import co.com.sisegfut.client.datos.dominio.Posiciones;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
@@ -185,4 +184,9 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
 //        
 //        
 //    }
+
+    @Override
+    public PagingLoadResult<Deportista> getFiltroDeportistas(String filtro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

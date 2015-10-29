@@ -27,6 +27,8 @@ public interface RPCAdminDeportista extends RPCMaestro<Deportista>{
      
      public PagingLoadResult<Deportista> getDeportistas();
      
+     public PagingLoadResult<Deportista> getFiltroDeportistas(String filtro);
+     
      public String CalcularFCM(Date fechaNacimiento);
      
      public Integer CalcularEdad(Date fechaNacimiento);

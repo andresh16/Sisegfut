@@ -35,6 +35,8 @@ public interface DaoDeportista extends DaoGenerico<Deportista>{
       
       public List<DTOPosicionesCantidad> getCantidadPorPosicion()throws Exception;
       
-      public List<Deportista> deportistaEstratoXCategoria(Long idCategoria) throws Exception;      
+      public List<Deportista> deportistaEstratoXCategoria(Long idCategoria) throws Exception;  
+      
+      public List<Deportista> filtrarDeportista(String filtro)throws Exception;
       
 }
