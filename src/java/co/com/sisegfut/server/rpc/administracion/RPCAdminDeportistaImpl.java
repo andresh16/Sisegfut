@@ -7,10 +7,12 @@ package co.com.sisegfut.server.rpc.administracion;
 
 import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.aatest.model.Posicion;
+import co.com.sisegfut.client.aatest.model.TipoDeportista;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTipoDeportistasCantidad;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
 import co.com.sisegfut.server.util.Formatos;
@@ -197,4 +199,25 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         PagingLoadResult<Deportista> loadResult = new BasePagingLoadResult<Deportista>(listaRetorno, 1, 1000);
         return loadResult;
     }
+
+    @Override
+    public List<TipoDeportista> getDeportistasTipoDeportista() {
+        List<DTOTipoDeportistasCantidad> cantidadTipoDeportista=null;
+        System.out.println("cantidad" + cantidadTipoDeportista);
+        List<TipoDeportista> tipoDeportistas= new ArrayList<TipoDeportista>();
+        try {
+            cantidadTipoDeportista=daoDeportista.getCantidadPorTipoDeportista();
+        } catch (Exception ex) {
+            Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int i=1;
+        for (DTOTipoDeportistasCantidad tipoDeportista : cantidadTipoDeportista) {
+            tipoDeportistas.add(new TipoDeportista((i++)+"",tipoDeportista.getTipoDeportista(),tipoDeportista.getCantidad()));
+        }
+        return tipoDeportistas;
+        
+    }
+    
+    final String[] vectorTipoDeportistas = new String[]{
+        "Alto Rendimiento", "Rendimiento", "Liga", "Universitario"};
 }

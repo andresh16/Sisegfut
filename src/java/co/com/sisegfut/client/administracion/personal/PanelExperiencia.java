@@ -361,13 +361,13 @@ public class PanelExperiencia extends LayoutContainer {
 
                         @Override
                         public void onSuccess(RespuestaRPC<Experiencia> result) {
-                            Info.display("Guardar", "Guardó correctamente el logro ");
+                            Info.display("Guardar", "Guardó correctamente la experiencia");
 //                            MessageBox.info("Guardar!", "Guardo correctamente el antecedente deportivo", null);
                             Limpiar();
                         }
                     });
                 } else {
-                    MessageBox.alert("Advertencia!", "Debe seleccionar un deportista", null);
+                    MessageBox.alert("Advertencia!", "Debe seleccionar un personal", null);
                 }
             }
         };
@@ -393,12 +393,12 @@ public class PanelExperiencia extends LayoutContainer {
 
                                         @Override
                                         public void onFailure(Throwable caught) {
-                                            Info.display("Eliminar", "No Elimino " + idExperiencia);
+                                            Info.display("Eliminar", "No Elimino la experiencia" + idExperiencia);
                                         }
 
                                         @Override
                                         public void onSuccess(RespuestaRPC<Experiencia> result) {
-                                            Info.display("Eliminar", "Se eliminó correctamente el logro " + txtEmpresa.getValue());
+                                            Info.display("Eliminar", "Se eliminó correctamente la experiencia " + txtEmpresa.getValue());
                                             Limpiar();
                                         }
                                     });
@@ -408,10 +408,10 @@ public class PanelExperiencia extends LayoutContainer {
                             }
                         });
                     } else {
-                        MessageBox.alert("Advertencia!", "Debe seleccionar un logro", null);
+                        MessageBox.alert("Advertencia!", "Debe seleccionar una experiencia", null);
                     }
                 } else {
-                    MessageBox.alert("Advertencia!", "Debe seleccionar un deportista", null);
+                    MessageBox.alert("Advertencia!", "Debe seleccionar un personal", null);
                 }
             }
         };
@@ -477,7 +477,7 @@ public class PanelExperiencia extends LayoutContainer {
 
         cbxCargo = new ComboBoxCargos(ACTIVOS);
         cbxCargo.setName("cargo");
-        cbxCargo.setToolTip(new ToolTipConfig("Categoria", "Elija un cargo"));
+        cbxCargo.setToolTip(new ToolTipConfig("Cargo", "Elija un cargo"));
         cbxCargo.setFieldLabel("<font color='red'>*</font>Cargo");
         cbxCargo.setAllowBlank(false);
         Columna1.add(cbxCargo, formData);
@@ -490,7 +490,7 @@ public class PanelExperiencia extends LayoutContainer {
 //        Columna3.setLayout(layout);
 
         txtTiempoLaborado.setName("tiempoLaborado");
-        txtTiempoLaborado.setToolTip(new ToolTipConfig("Años", "Escriba un año"));
+        txtTiempoLaborado.setToolTip(new ToolTipConfig("Tiempo Laborado", "Escriba cantidad de meses o años"));
         txtTiempoLaborado.setFieldLabel("<font color='red'>*</font>Tiempo Laborado");
         txtTiempoLaborado.setAllowBlank(false);
         Columna1.add(txtTiempoLaborado, formData);

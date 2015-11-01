@@ -140,7 +140,7 @@ public class PanelAdminDeportista extends LayoutContainer {
 
         txtCampoBusqueda.setName("filtrar");
 //        txtCampoBusqueda.setFieldLabel("<b>Filtrar<b>");
-        txtCampoBusqueda.setEmptyText("Filtrar");
+        txtCampoBusqueda.setEmptyText("Filtrar por nombre");
         txtCampoBusqueda.setHideLabel(true);
         
         txtCampoBusqueda.addKeyListener(new KeyListener() {
@@ -156,6 +156,9 @@ public class PanelAdminDeportista extends LayoutContainer {
 
         Button btnFiltrar = new Button("Filtrar", listenerFiltrar());
         btnFiltrar.setIcon(Resources.ICONS.iconoBuscar());
+        
+        Button btnLimpiar = new Button("Limpiar", listenerLimpiar());
+        btnLimpiar.setIcon(Resources.ICONS.iconoRefrescar());
 
         cbxCategoria = new ComboBoxCategoria(ACTIVOS);
         cbxCategoria.setName("categoria.nombrecategoria");
@@ -172,7 +175,7 @@ public class PanelAdminDeportista extends LayoutContainer {
 //        layoutfrm.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         Columna2.add(btnFiltrar, formData);
-//        Columna2.add(cbxCategoria, formData);
+//        Columna2.add(btnLimpiar, formData);
 
         main.add(Columna1, new ColumnData(.5));
         main.add(Columna2, new ColumnData(.5));
@@ -226,7 +229,7 @@ public class PanelAdminDeportista extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Deportistas");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }
@@ -272,7 +275,7 @@ public class PanelAdminDeportista extends LayoutContainer {
 
         columns.add(new ColumnConfig("posicion.nombrePosicion", "Posición", 50));
 
-        columns.add(new ColumnConfig("categoria.nombrecategoria", "Categoria", 80));
+        columns.add(new ColumnConfig("categoria.nombrecategoria", "Categoría", 80));
 
 //
 //        ColumnConfig Egreso = new ColumnConfig("egreso", "Egreso", 80);
@@ -409,16 +412,23 @@ public class PanelAdminDeportista extends LayoutContainer {
 //     *
 //     * @return
 //     */
-//    protected SelectionListener<ButtonEvent> listenerlimpiar() {
-//        return new SelectionListener<ButtonEvent>() {
-//            @Override
-//            public void componentSelected(ButtonEvent ce) {
-//                System.out.println("Ingrese al limpiar");
-//                limpiar();
-//
-//            }
-//        };
-//    }
+    protected SelectionListener<ButtonEvent> listenerLimpiar() {
+        return new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                Limpiar();
+            }
+        };
+
+    }
+    
+    public void Limpiar() {
+        txtCampoBusqueda.reset();
+        
+//        idAntecedente = null;
+        cargar();
+    }
+    
     /**
      * Escucha el boton eliminar, este elimina un movimiento logicamente.
      *

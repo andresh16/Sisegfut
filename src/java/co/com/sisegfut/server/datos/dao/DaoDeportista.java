@@ -7,9 +7,9 @@
 package co.com.sisegfut.server.datos.dao;
 
 import co.com.sisegfut.client.datos.dominio.Deportista;
-import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaPosicion;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTipoDeportistasCantidad;
 import co.com.sisegfut.client.util.Pair;
 import co.com.sisegfut.client.util.consulta.Consulta;
 import java.util.List;
@@ -38,5 +38,9 @@ public interface DaoDeportista extends DaoGenerico<Deportista>{
       public List<Deportista> deportistaEstratoXCategoria(Long idCategoria) throws Exception;  
       
       public List<Deportista> filtrarDeportista(String filtro)throws Exception;
+      
+      public List<Deportista> deportistaTipoDeportista(Long idTipoDeportista) throws Exception;
+      
+      public List<DTOTipoDeportistasCantidad> getCantidadPorTipoDeportista()throws Exception;
       
 }
