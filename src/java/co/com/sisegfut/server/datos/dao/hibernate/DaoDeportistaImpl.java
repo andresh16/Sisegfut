@@ -17,6 +17,7 @@ import co.com.sisegfut.client.util.consulta.Comparacion;
 import co.com.sisegfut.client.util.consulta.Consulta;
 import co.com.sisegfut.client.util.consulta.Orden;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -362,30 +363,26 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
     @Override
     public List<DTOTipoDeportistasCantidad> getCantidadPorTipoDeportista() throws Exception {
         List<DTOTipoDeportistasCantidad> listaReporte = new ArrayList<DTOTipoDeportistasCantidad>();
-        String sql = "select tipo_deportista,Count(*)as cantidad from deportista as d group by tipo_deportista";
-// Criteria que sirve para traer agrupado los estratos y la cantidad, pero no fue posible capturar los valores de los objets
-//            Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Deportista.class)
-//                    .setProjection(Projections.projectionList()
-//                            .add(Projections.groupProperty("estrato"))
-//                            .add(Projections.count("nombres").as("cantidad")));
-//            List resultado = criteria.list();
-        for (int i = 1; i < 5; i++) {
             try {
+                String sql1 = "select t.tipo_deportista,Count(*)as cantidad from deportista as d inner join tipo_deportista as t on d.tipo_deportista=t.id group by t.tipo_deportista";
+                List<Object[]> cantidadPorTipoDeportista = (List<Object[]>)sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql1).list();
+//                    .addEntity("d", Deportista.class).list();
+                System.out.println("aaa "+cantidadPorTipoDeportista.toString());
                 
-                String sql1 = "select d.* from deportista as d where d.fechainactivado is null and d.tipo_deportista='"+i+"'";
-                List<Deportista> cantidadPorTipoDeportista = (List<Deportista>) sessionFactory.getCurrentSession()
-                    .createSQLQuery(sql1)
-                    .addEntity("d", Deportista.class).list();
-                if(cantidadPorTipoDeportista!=null){
-                DTOTipoDeportistasCantidad tipoDeportistaCantidad = new DTOTipoDeportistasCantidad(cantidadPorTipoDeportista.get(1).getTipoDeportista().getNombreTipoDeportista(),cantidadPorTipoDeportista.size());
+                for (Object[] cantidadTidDep : cantidadPorTipoDeportista) {
+                   
+                    
+                    DTOTipoDeportistasCantidad tipoDeportistaCantidad=
+                            new DTOTipoDeportistasCantidad(cantidadTidDep[0].toString(),((BigInteger)cantidadTidDep[1]).intValue());
                 listaReporte.add(tipoDeportistaCantidad);
-                //
                 }
+//                }
             } catch (Exception e) {
                     e.printStackTrace();
                 return null;
             }
-        }
+        
         return listaReporte;
     }
 }

@@ -32,4 +32,7 @@ public class RPCAdminTipoDeportistaImpl extends RPCMaestroImpl<TipoDeportista> i
         this.daoTipoDeportista = daoTipoDeportista;
         super.setDaoGenerico(daoTipoDeportista);
     }
+    
+    
+    
 }

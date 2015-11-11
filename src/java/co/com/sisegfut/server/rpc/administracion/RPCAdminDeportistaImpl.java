@@ -148,9 +148,6 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         
     }
     
-    final String[] vectorPosiciones = new String[]{
-        "Portero", "Defensa", "Volante", "Delantero"};
-    
 //    @Override
 //    public List<Posiciones> getDeportistasPosicionD() {
 //        List<Posiciones> cantidadPosicion=null;
@@ -218,6 +215,4 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         
     }
     
-    final String[] vectorTipoDeportistas = new String[]{
-        "Alto Rendimiento", "Rendimiento", "Liga", "Universitario"};
 }

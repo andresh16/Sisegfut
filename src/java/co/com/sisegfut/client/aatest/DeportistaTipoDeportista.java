@@ -233,7 +233,10 @@ public class DeportistaTipoDeportista extends FramedPanel{
 
             @Override
             public void onFailure(Throwable caught) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                caught.printStackTrace();
+                System.out.println("Error:  "+caught.getMessage());
+                System.out.println("Causa: "+caught.getCause());
+                
             }
 
             @Override
