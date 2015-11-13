@@ -206,8 +206,8 @@ public class PanelAdminCompetencia extends LayoutContainer {
         cpCuerpoTecCom = adminCuerpoTecnico;
         cpCuerpoTecCom.disable();
 
-        cp.add(fpCompromiso, new RowData(1, 0.65, new Margins(0)));
-        cp.add(cpCuerpoTecCom, new RowData(1, 0.35, new Margins(0)));
+        cp.add(fpCompromiso, new RowData(1, 0.7, new Margins(0)));
+        cp.add(cpCuerpoTecCom, new RowData(1, 0.3, new Margins(0)));
         cp2.add(adminPestComp);
 
         panel2 = new ContentPanel();
