@@ -112,7 +112,7 @@ public class PanelEstudiosRealizados extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Estudios Realizados");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }
@@ -340,8 +340,8 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         
         cpForm.setTopComponent(toolBar);
         
-        add(cpForm, new RowData(1, 0.3, new Margins(0)));
-        add(cpGrid, new RowData(1, 0.7, new Margins(0)));
+        add(cpForm, new RowData(1, 0.35, new Margins(0)));
+        add(cpGrid, new RowData(1, 0.65, new Margins(0)));
         
     }
     
@@ -365,31 +365,34 @@ public class PanelEstudiosRealizados extends LayoutContainer {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                
-                EstudiosRealizados estudiosRealizados = new EstudiosRealizados();
-                estudiosRealizados.setId(idEstudiosRealizados);
-                estudiosRealizados.setTitulo(txtTitulo.getValue().toUpperCase());
-                estudiosRealizados.setAnioGraduacion(comboAnios.getSimpleValue());
+                if (idPersonal != null) {
+                    EstudiosRealizados estudiosRealizados = new EstudiosRealizados();
+                    estudiosRealizados.setId(idEstudiosRealizados);
+                    estudiosRealizados.setTitulo(txtTitulo.getValue().toUpperCase());
+                    estudiosRealizados.setAnioGraduacion(comboAnios.getSimpleValue());
 //                estudiosRealizados.setInstitucion(cbxInsEducativa.getInstEducativaElegida());
-                estudiosRealizados.setInstitucion(txtInsEducativa.getValue().toUpperCase());
-                estudiosRealizados.setNivelEducativo(cbxNEducativo.getNivelEducativoElegido());
-                estudiosRealizados.setIdPersonal(new Personal(idPersonal));
-                getServiceEstudiosRealizados().guardarEntidad(estudiosRealizados, new AsyncCallback<RespuestaRPC<EstudiosRealizados>>() {
-                    
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        Info.display("Guardar", "No Guardo el estudio ");
-                    }
-                    
-                    @Override
-                    public void onSuccess(RespuestaRPC<EstudiosRealizados> result) {
-                        Info.display("Guardar", "Guardó correctamente el estudio ");
-                        Limpiar();
-                    }
-                });
+                    estudiosRealizados.setInstitucion(txtInsEducativa.getValue().toUpperCase());
+                    estudiosRealizados.setNivelEducativo(cbxNEducativo.getNivelEducativoElegido());
+                    estudiosRealizados.setIdPersonal(new Personal(idPersonal));
+                    getServiceEstudiosRealizados().guardarEntidad(estudiosRealizados, new AsyncCallback<RespuestaRPC<EstudiosRealizados>>() {
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            Info.display("Guardar", "No Guardo el estudio ");
+                        }
+
+                        @Override
+                        public void onSuccess(RespuestaRPC<EstudiosRealizados> result) {
+                            Info.display("Guardar", "Guardó correctamente el estudio ");
+                            Limpiar();
+                        }
+                    });
+                } else {
+                    MessageBox.alert("Advertencia!", "Debe seleccionar un personal", null);
+                }
             }
         };
-        
+
     }
     
     protected SelectionListener<ButtonEvent> listenerEliminar() {

@@ -8,13 +8,16 @@ package co.com.sisegfut.server.datos.dao.hibernate;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import co.com.sisegfut.client.datos.dominio.EntidadPerpetua;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistasxTipoDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOEstratosCantidad;
 import co.com.sisegfut.client.datos.dominio.dto.DTOPosicionesCantidad;
+import co.com.sisegfut.client.datos.dominio.dto.DTOTipoDeportistasCantidad;
 import co.com.sisegfut.client.util.Pair;
 import co.com.sisegfut.client.util.consulta.Comparacion;
 import co.com.sisegfut.client.util.consulta.Consulta;
 import co.com.sisegfut.client.util.consulta.Orden;
 import co.com.sisegfut.server.datos.dao.DaoDeportista;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -322,6 +325,7 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
             return null;
         }
     }
+    
     @Transactional(readOnly = true)
     @Override
     public List<Deportista> filtrarDeportista(String filtro) throws Exception {
@@ -337,5 +341,48 @@ public class DaoDeportistaImpl extends DaoGenericoImpl<Deportista> implements Da
             return null;
         }
         
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Deportista> deportistaTipoDeportista(Long idTipoDeportista) throws Exception {
+        List<Deportista> listaReporte = null;
+        String sql = "Select d.* from deportista d where jugador_comodin=false and tipo_deportista=" + idTipoDeportista + " and fechainactivado is null order by tipo_deportista asc";
+        try {
+            listaReporte = (List<Deportista>) sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql)
+                    .addEntity("d", Deportista.class).list();
+            return listaReporte;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<DTOTipoDeportistasCantidad> getCantidadPorTipoDeportista() throws Exception {
+        List<DTOTipoDeportistasCantidad> listaReporte = new ArrayList<DTOTipoDeportistasCantidad>();
+            try {
+                String sql1 = "select t.tipo_deportista,Count(*)as cantidad from deportista as d inner join tipo_deportista as t on d.tipo_deportista=t.id group by t.tipo_deportista";
+                List<Object[]> cantidadPorTipoDeportista = (List<Object[]>)sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql1).list();
+//                    .addEntity("d", Deportista.class).list();
+                System.out.println("aaa "+cantidadPorTipoDeportista.toString());
+                
+                for (Object[] cantidadTidDep : cantidadPorTipoDeportista) {
+                   
+                    
+                    DTOTipoDeportistasCantidad tipoDeportistaCantidad=
+                            new DTOTipoDeportistasCantidad(cantidadTidDep[0].toString(),((BigInteger)cantidadTidDep[1]).intValue());
+                listaReporte.add(tipoDeportistaCantidad);
+                }
+//                }
+            } catch (Exception e) {
+                    e.printStackTrace();
+                return null;
+            }
+        
+        return listaReporte;
     }
 }

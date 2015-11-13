@@ -6,7 +6,7 @@
 package co.com.sisegfut.client.aatest;
 
 import co.com.sisegfut.client.aatest.model.Data;
-import co.com.sisegfut.client.aatest.model.Posicion;
+import co.com.sisegfut.client.aatest.model.TipoDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportista;
 import co.com.sisegfut.client.util.rpc.RPCAdminDeportistaAsync;
 import com.google.gwt.core.client.GWT;
@@ -45,33 +45,31 @@ import java.util.List;
  *
  * @author ManuelAlejandro
  */
-public class DeportistasPosiciones extends FramedPanel{
-
-    private List<Posicion> posiciones = new ArrayList<Posicion>();
-    private Chart<Posicion> chart;
-
+public class DeportistaTipoDeportista extends FramedPanel{
+    
+    private List<TipoDeportista> tipoDeportista = new ArrayList<TipoDeportista>();
+    private Chart<TipoDeportista> chart;
+    
     public interface DataPropertyAccess extends PropertyAccess<Data> {
 //    ValueProvider<Data, Double> data1();
 // 
 //    ValueProvider<Data, String> name();
 // 
 
-        ValueProvider<Posicion, Integer> cantidad();
+        ValueProvider<TipoDeportista, Integer> cantidad();
 
-        ValueProvider<Posicion, String> posicion();
+        ValueProvider<TipoDeportista, String> tipoDeportista();
 
         @Editor.Path("id")
-        ModelKeyProvider<Posicion> nameKey();
+        ModelKeyProvider<TipoDeportista> nameKey();
     }
-
     private static final DataPropertyAccess dataAccess = GWT.create(DataPropertyAccess.class);
 
-
-    public DeportistasPosiciones() {
-            final ListStore<Posicion> store = new ListStore<Posicion>(dataAccess.nameKey());
+    public DeportistaTipoDeportista() {
+            final ListStore<TipoDeportista> store = new ListStore<TipoDeportista>(dataAccess.nameKey());
 //      store.addAll(TestData.getEstratos2(6, 20, 100));
 //      store.addAll(Estratos.getEstratos());
-            getPosicion();
+            getTipoDeportista();
 
             Gradient slice1 = new Gradient("s1", 45);
             slice1.addStop(new Stop(0, new RGB(148, 174, 10)));
@@ -104,23 +102,23 @@ public class DeportistasPosiciones extends FramedPanel{
             textConfig.setTextAnchor(TextSprite.TextAnchor.MIDDLE);
             textConfig.setZIndex(15);
 
-            SeriesLabelConfig<Posicion> labelConfig = new SeriesLabelConfig<Posicion>();
+            SeriesLabelConfig<TipoDeportista> labelConfig = new SeriesLabelConfig<TipoDeportista>();
             labelConfig.setSpriteConfig(textConfig);
             labelConfig.setLabelPosition(Series.LabelPosition.START);
             labelConfig.setValueProvider(dataAccess.cantidad(), new StringLabelProvider<Integer>());
 
-            SeriesToolTipConfig<Posicion> tooltip = new SeriesToolTipConfig<Posicion>();
-            tooltip.setLabelProvider(new SeriesLabelProvider<Posicion>() {
+            SeriesToolTipConfig<TipoDeportista> tooltip = new SeriesToolTipConfig<TipoDeportista>();
+            tooltip.setLabelProvider(new SeriesLabelProvider<TipoDeportista>() {
                 @Override
-                public String getLabel(Posicion item, ValueProvider<? super Posicion, ? extends Number> valueProvider) {
+                public String getLabel(TipoDeportista item, ValueProvider<? super TipoDeportista, ? extends Number> valueProvider) {
                     return NumberFormat.getFormat("0").format(dataAccess.cantidad().getValue(item)) + " deportistas en la posición "
-                            + dataAccess.posicion().getValue(item);
+                            + dataAccess.tipoDeportista().getValue(item);
                 }
             });
             tooltip.setDismissDelay(3000);
             tooltip.setShowDelay(500);
 
-            final PieSeries<Posicion> series = new PieSeries<Posicion>();
+            final PieSeries<TipoDeportista> series = new PieSeries<TipoDeportista>();
             series.setAngleField(dataAccess.cantidad());
             series.addColor(slice1);
             series.addColor(slice2);
@@ -131,7 +129,7 @@ public class DeportistasPosiciones extends FramedPanel{
             series.setLabelConfig(labelConfig);
             series.setHighlighting(true);
             series.setToolTipConfig(tooltip);
-            series.setLegendValueProvider(dataAccess.posicion(), new LabelProvider<String>() {
+            series.setLegendValueProvider(dataAccess.tipoDeportista(), new LabelProvider<String>() {
                 @Override
                 public String getLabel(String item) {
                     return item;
@@ -139,7 +137,7 @@ public class DeportistasPosiciones extends FramedPanel{
                 }
             });
 
-            final Legend<Posicion> legend = new Legend<Posicion>();
+            final Legend<TipoDeportista> legend = new Legend<TipoDeportista>();
             legend.setPosition(Chart.Position.BOTTOM);
             legend.setItemHighlighting(true);
             legend.setItemHiding(true);
@@ -148,7 +146,7 @@ public class DeportistasPosiciones extends FramedPanel{
             legend.setPadding(10);
             
 
-            chart = new Chart<Posicion>();
+            chart = new Chart<TipoDeportista>();
             chart.setDefaultInsets(4);
             chart.setStore(store);
             chart.setShadowChart(false);
@@ -230,16 +228,19 @@ public class DeportistasPosiciones extends FramedPanel{
         }
 
 
-    public void getPosicion() {
-        getServiceDeportista().getDeportistasPosicion(new AsyncCallback<List<Posicion>>() {
+    public void getTipoDeportista() {
+        getServiceDeportista().getDeportistasTipoDeportista(new AsyncCallback<List<TipoDeportista>>() {
 
             @Override
             public void onFailure(Throwable caught) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                caught.printStackTrace();
+                System.out.println("Error:  "+caught.getMessage());
+                System.out.println("Causa: "+caught.getCause());
+                
             }
 
             @Override
-            public void onSuccess(List<Posicion> result) {
+            public void onSuccess(List<TipoDeportista> result) {
                 chart.getStore().addAll(result);
                 chart.redrawChart();
             }
@@ -253,5 +254,4 @@ public class DeportistasPosiciones extends FramedPanel{
         endpoint.setServiceEntryPoint("services/RPCAdminDeportista");
         return svc;
     }
-
 }

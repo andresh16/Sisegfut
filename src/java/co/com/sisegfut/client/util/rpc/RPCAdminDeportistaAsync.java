@@ -7,6 +7,7 @@ package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.aatest.model.Estratos;
 import co.com.sisegfut.client.aatest.model.Posicion;
+import co.com.sisegfut.client.aatest.model.TipoDeportista;
 import co.com.sisegfut.client.datos.dominio.Deportista;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -36,5 +37,7 @@ public interface RPCAdminDeportistaAsync extends RPCMaestroAsync<Deportista> {
     public void getDeportistasEstratificacion(AsyncCallback<List<Estratos>> callback);
     
     public void getDeportistasPosicion(AsyncCallback<List<Posicion>> callback);
+    
+    public void getDeportistasTipoDeportista(AsyncCallback<List<TipoDeportista>> callback);
 
 }

@@ -21,6 +21,7 @@ import co.com.sisegfut.client.administracion.usuarios.FormularioUsuarios;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.informes.InformeDeportistasPosicion;
 import co.com.sisegfut.client.informes.InformeEstratificacion;
+import co.com.sisegfut.client.informes.InformeDeportistasTipoDeportista;
 import co.com.sisegfut.client.informes.PanelInformes;
 
 import co.com.sisegfut.client.util.BeansLocales;
@@ -102,6 +103,7 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdminRivales;
     private Command cmdInfoEstratificacion;
     private Command cmdInfoDeportistasPosicion;
+    private Command cmdInfoDeportistasTipoDeportista;
     private Command cmdAdminClub;
 
     /**
@@ -472,7 +474,13 @@ public class PanelMenu extends LayoutContainer {
                 + "Deportistas Por Posición"
                 + "</img>",
                 true,
-                cmdInfoDeportistasPosicion); 
+                cmdInfoDeportistasPosicion);
+        retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Deportistas Por Tipo Deportista"
+                + "</img>",
+                true,
+                cmdInfoDeportistasTipoDeportista);
 
         return retorno;
     }    
@@ -673,6 +681,15 @@ public class PanelMenu extends LayoutContainer {
 
                 InformeDeportistasPosicion informeDeportistasPosicion = new InformeDeportistasPosicion();
                 informeDeportistasPosicion.show();
+            }
+        };
+        
+        cmdInfoDeportistasTipoDeportista = new Command() {
+
+            public void execute() {
+
+                InformeDeportistasTipoDeportista informeDeportistasTipoDeportista = new InformeDeportistasTipoDeportista();
+                informeDeportistasTipoDeportista.show();
             }
         };
         cmdAdmCargos = new Command() {

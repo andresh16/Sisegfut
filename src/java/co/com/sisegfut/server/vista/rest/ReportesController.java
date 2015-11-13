@@ -21,6 +21,7 @@ import co.com.sisegfut.client.datos.dominio.dto.DTOAntropometricoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOControlTecnicoxDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistasEstratoXCategoria;
+import co.com.sisegfut.client.datos.dominio.dto.DTODeportistasxTipoDeportista;
 import co.com.sisegfut.client.datos.dominio.dto.DTODeportistaxCategoria;
 import co.com.sisegfut.client.datos.dominio.dto.DTOGolesDepTorneo;
 import co.com.sisegfut.client.datos.dominio.dto.DTOHVDeportista;
@@ -1376,6 +1377,84 @@ public class ReportesController {
                 modelAndView = new ModelAndView("xlsGolesDeportistaTorneo", parameterMap);
             } else {
                 modelAndView = new ModelAndView("pdfGolesDeportistaTorneo", parameterMap);
+            }
+
+            return modelAndView;
+
+        } catch (Exception e) {
+            ModelAndView retorno = new ModelAndView("errores");
+
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+
+            retorno.addObject("mensaje", "Ha ocurrido un error inesperado, por favor comuniquese con el área de soporte técnico.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            log.error("Error generando reporte", e);
+
+            return retorno;
+        }
+    }
+    
+    @RequestMapping(value = "/ReporteDeportistaTipoDeportista/{nombreTipoDeportista}/{tipoDeportista}/{tipo}",
+            method = RequestMethod.GET)
+    public ModelAndView doReportDeportistaTipoDeportista(
+            @PathVariable String nombreTipoDeportista,
+            @PathVariable Long tipoDeportista,
+            @PathVariable Long tipo,
+            ModelAndView modelAndView,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        if (usuarioSession == null || usuarioSession.getId() == null) {
+            ModelAndView retorno = new ModelAndView("errores");
+            retorno.addObject("fecha_actual", Formatos.fechaHora(new Date()));
+            retorno.addObject("mensaje", "Debe tener una sesión activa para mostrar este contenido.");
+            response.setHeader("Pragma", "public");
+            response.setHeader("Cache-Control", "max-age=0");
+
+            return retorno;
+        }
+        try {
+            log.info("Entra a generar reporte");
+            List<Deportista> listaDep = daoDeportista.deportistaTipoDeportista(tipoDeportista);
+
+            List<DTODeportistasxTipoDeportista> listaDeportistaReport = new ArrayList<DTODeportistasxTipoDeportista>();
+            if (listaDep.isEmpty() || listaDep.size() == 0) {
+                listaDeportistaReport.add(new DTODeportistasxTipoDeportista("", "", "", ""));
+            } else {
+                for (Deportista deportista : listaDep) {
+
+                    DTODeportistasxTipoDeportista dtoDeportista = new DTODeportistasxTipoDeportista();
+
+
+                    dtoDeportista.setNombres(deportista.getNombres());
+                    dtoDeportista.setApellidos(deportista.getApellidos());
+                    dtoDeportista.setIdentificacion(deportista.getDocumento());
+                    dtoDeportista.setTipoDeportista(deportista.getTipoDeportista().getNombreTipoDeportista());
+
+                    listaDeportistaReport.add(dtoDeportista);
+                }
+            }
+            if (listaDeportistaReport.isEmpty()) {
+                listaDeportistaReport.add(new DTODeportistasxTipoDeportista());
+            }
+            System.out.println("nombre cat" + nombreTipoDeportista);
+
+            Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+            parameterMap.put("datasource", new JRBeanCollectionDataSource(listaDeportistaReport));
+            parameterMap.put("tipoDeportista", nombreTipoDeportista);
+
+            java.net.URL banner = this.getClass().getResource("/imagenes/bannerPoli.jpg");
+            parameterMap.put("banner", banner);
+            java.net.URL logo = this.getClass().getResource("/imagenes/logo.png");
+            parameterMap.put("logo", logo);
+
+            if (tipo == TIPO_XLS) {
+                modelAndView = new ModelAndView("xlsReporteDeportistaTipoDeportista", parameterMap);
+            } else {
+                modelAndView = new ModelAndView("pdfReporteDeportistaTipoDeportista", parameterMap);
             }
 
             return modelAndView;

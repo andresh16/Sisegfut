@@ -328,8 +328,8 @@ public class PanelAntecedentesDep extends LayoutContainer {
 
         cpForm.setTopComponent(toolBar);
 
-        add(cpForm, new RowData(1, 0.25, new Margins(0)));
-        add(cpGrid, new RowData(1, 0.75, new Margins(0)));
+        add(cpForm, new RowData(1, 0.32, new Margins(0)));
+        add(cpGrid, new RowData(1, 0.68, new Margins(0)));
     }
 
     public void setId(Long id) {
@@ -487,7 +487,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
 //        cbxCategoria.setToolTip(new ToolTipConfig("Categoria", "Elija una categoria"));
         cbxCategoria.setFieldLabel("<font color='red'>*</font>Categoría");
         cbxCategoria.setAllowBlank(false);
-        Columna2.add(cbxCategoria, formData);
+        Columna1.add(cbxCategoria, formData);
 
         ///////////////////// Columna 3 //////////////////////////// 
         LayoutContainer Columna3 = new LayoutContainer();
@@ -500,7 +500,7 @@ public class PanelAntecedentesDep extends LayoutContainer {
         comboAnios.setToolTip(new ToolTipConfig("Años", "Elija un año"));
         comboAnios.setFieldLabel("<font color='red'>*</font>Año");
         comboAnios.setAllowBlank(false);
-        Columna3.add(comboAnios, formData);
+        Columna2.add(comboAnios, formData);
 
         main.add(Columna1, new ColumnData(.4));
         main.add(Columna2, new ColumnData(.3));
