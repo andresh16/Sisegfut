@@ -18,7 +18,7 @@ import com.google.gwt.user.client.Element;
 
 /**
  *
- * @author josorio
+ * @author Andres Hurtado
  */
 public class PanelPrueba extends LayoutContainer {
 

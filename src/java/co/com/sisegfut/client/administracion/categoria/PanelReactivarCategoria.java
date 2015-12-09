@@ -9,7 +9,6 @@ import co.com.sisegfut.client.util.PanelErrores;
 import co.com.sisegfut.client.util.PanelExito;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxCategoria;
-import co.com.sisegfut.client.util.combox.ComboBoxEps;
 import co.com.sisegfut.client.util.rpc.RPCAdminCategoria;
 import co.com.sisegfut.client.util.rpc.RPCAdminCategoriaAsync;
 import com.extjs.gxt.ui.client.Style;
@@ -19,7 +18,6 @@ import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -129,7 +127,7 @@ public class PanelReactivarCategoria extends LayoutContainer {
 
                 @Override
                 public void onSuccess(Object result) {
-                    pnlExito.definirTexto("Se Reactivo correctamente la Categoría");
+                    pnlExito.definirTexto("Se Reactivó correctamente la Categoría");
                     pnlExito.setVisible(true);
                 }
 

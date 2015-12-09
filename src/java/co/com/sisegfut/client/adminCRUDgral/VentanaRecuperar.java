@@ -30,7 +30,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public abstract class VentanaRecuperar<T extends Serializable> extends Window implements ListenerGuardado{
 //    private PanelInformativo pnlInformativo;

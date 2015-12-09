@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 
 /**
  *
- * @author Juan David Botero <jdbotero@gmail.com>
+ * @author fhurtado
  */
 //@Controller
 //@GwtRpcEndPoint

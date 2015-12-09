@@ -18,12 +18,12 @@ import java.util.List;
 
 /**
  *
- * @author 
+ * @author anfeh_000
  */
 public class ComboBoxUsuarios extends ComboBoxEntidades<Usuarios> {
 
     /**
-     * Combobox d eusuarios
+     * Combobox de usuarios
      * @param tipo 1 para activos y 2 para borrados
      */
     public ComboBoxUsuarios(final int tipo) {

@@ -11,7 +11,7 @@ import org.springframework.dao.DataAccessException;
 
 /**
  *
- * @author agomez
+ * @author anfeh_000
  */
 public interface DaoRol extends DaoGenerico<Rol> {
 

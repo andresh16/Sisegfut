@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author 
+ * @author fhurtado
  */
 @Controller
 public class RolesController
@@ -35,7 +35,7 @@ public class RolesController
         }
         else
         {
-            if(!usuarioSession.isAdministradorSistema()){
+            if(!usuarioSession.isAdminClub()){
                 listaEntidades.remove(0);
             }
         }

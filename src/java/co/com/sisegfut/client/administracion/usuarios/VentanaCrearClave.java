@@ -40,7 +40,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @
+ * @author anfeh_000
  */
 public class VentanaCrearClave extends Window implements AsyncCallback<RespuestaRPC<Integer>>{
 //    private PanelInformativo pnlInformativo;

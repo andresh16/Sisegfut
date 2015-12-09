@@ -27,7 +27,7 @@ import org.springframework.web.context.ServletContextAware;
  * Spring HandlerAdapter to dispatch GWT-RPC requests. Relies on handlers
  * registered by GwtAnnotationHandlerMapper
  *
- * @author Chris Lee, Martin Zdila
+ * @author 
  *
  */
 public class GwtRpcEndPointHandlerAdapter extends RemoteServiceServlet implements HandlerAdapter, ApplicationContextAware, ServletContextAware

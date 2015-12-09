@@ -47,14 +47,6 @@ public interface Main extends Constants {
 
     String creditoDatosEmpresa();
     
-    String ayudaCrearCuenta();
-    
-    String ayudaModificarCuenta();
-    
-    String ayudaReactivarCuenta();
-    
-    String ayudaAdministracionCuenta();
-    
     String ayudaPanelDeportista();
     
     String ayudaPanelPersonal();
@@ -128,5 +120,7 @@ public interface Main extends Constants {
     String ayudaPanelCambios();
     
     String ayudaPanelTarjetas();
+    
+    String ayudaPanelTipoDeportista();
     
 }

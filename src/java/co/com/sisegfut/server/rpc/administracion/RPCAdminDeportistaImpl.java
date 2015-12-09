@@ -200,10 +200,11 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
     @Override
     public List<TipoDeportista> getDeportistasTipoDeportista() {
         List<DTOTipoDeportistasCantidad> cantidadTipoDeportista=null;
-        System.out.println("cantidad" + cantidadTipoDeportista);
+        
         List<TipoDeportista> tipoDeportistas= new ArrayList<TipoDeportista>();
         try {
             cantidadTipoDeportista=daoDeportista.getCantidadPorTipoDeportista();
+            System.out.println("cantidad" + cantidadTipoDeportista);
         } catch (Exception ex) {
             Logger.getLogger(RPCAdminDeportistaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -211,8 +212,6 @@ public class RPCAdminDeportistaImpl extends RPCMaestroImpl<Deportista> implement
         for (DTOTipoDeportistasCantidad tipoDeportista : cantidadTipoDeportista) {
             tipoDeportistas.add(new TipoDeportista((i++)+"",tipoDeportista.getTipoDeportista(),tipoDeportista.getCantidad()));
         }
-        return tipoDeportistas;
-        
-    }
-    
+        return tipoDeportistas;        
+    }    
 }

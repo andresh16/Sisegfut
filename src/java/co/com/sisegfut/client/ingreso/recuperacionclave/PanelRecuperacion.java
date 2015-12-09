@@ -1,11 +1,4 @@
-/*
- * 
- * PanelRecuperacion
- * 
- * 
- * 
- * 
- */
+
 package co.com.sisegfut.client.ingreso.recuperacionclave;
 
 import co.com.sisegfut.client.util.PanelInformativo;
@@ -14,7 +7,7 @@ import com.google.gwt.user.client.Element;
 
 /**
  *
- * @author 
+ * @author anfeh_000
  */
 public class PanelRecuperacion extends LayoutContainer{
     

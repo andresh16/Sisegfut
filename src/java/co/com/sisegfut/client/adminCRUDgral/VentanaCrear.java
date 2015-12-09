@@ -21,7 +21,7 @@ import com.google.gwt.core.client.GWT;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public class VentanaCrear extends Window implements ListenerGuardado{
 

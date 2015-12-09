@@ -1,11 +1,4 @@
-/**
- * PanelAdminstracionUsuarios 
- *
- * 
- * 
- * 
- *
- */
+
 package co.com.sisegfut.client.administracion.usuarios;
 
 import co.com.sisegfut.client.adminCRUDgral.FormularioCRUD;
@@ -28,7 +21,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @
+ * @author anfeh_000
  */
 public class PanelAdminstracionUsuarios extends PanelAdministracionEntidades<Usuarios> {
 

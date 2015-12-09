@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author
+ * @author anfeh_000
  */
 public abstract class ComboBoxEntidades<T extends Serializable> extends ComboBox<BeanModel> {
 
@@ -28,7 +28,7 @@ public abstract class ComboBoxEntidades<T extends Serializable> extends ComboBox
     private Long idElegido;
 
     /**
-     * Combobox d eusuarios
+     * Combobox de usuarios
      * @param tipo 1 para activos y 2 para borrados
      */
     public ComboBoxEntidades(final int tipo, String campoFiltro) {
@@ -41,7 +41,7 @@ public abstract class ComboBoxEntidades<T extends Serializable> extends ComboBox
    
     
     /**
-     * Combobox d eusuarios
+     * Combobox de usuarios
      * @param tipo 1 para activos y 2 para borrados
      */
     public ComboBoxEntidades(final int tipo) {

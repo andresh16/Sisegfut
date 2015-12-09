@@ -11,7 +11,7 @@ import org.springframework.dao.DataAccessException;
 
 /**
  *
- * @author jdbotero@gmail.com
+ * @author anfeh_000
  */
 public interface DaoUsuario extends DaoGenerico<Usuarios>
 {

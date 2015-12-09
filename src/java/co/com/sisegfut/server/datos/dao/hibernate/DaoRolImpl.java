@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author agomez
+ * @author anfeh_000
  */
 @Repository
 public class DaoRolImpl extends DaoGenericoImpl<Rol> implements DaoRol {

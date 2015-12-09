@@ -1,7 +1,3 @@
-/*
- * PanelMenu
- *
- */
 package co.com.sisegfut.client.base;
 
 import co.com.sisegfut.client.aaI18N.Main;
@@ -23,7 +19,6 @@ import co.com.sisegfut.client.informes.InformeDeportistasPosicion;
 import co.com.sisegfut.client.informes.InformeEstratificacion;
 import co.com.sisegfut.client.informes.InformeDeportistasTipoDeportista;
 import co.com.sisegfut.client.informes.PanelInformes;
-
 import co.com.sisegfut.client.util.BeansLocales;
 import co.com.sisegfut.client.util.Dialogo;
 import co.com.sisegfut.client.util.ListenerGuardado;
@@ -51,7 +46,7 @@ import com.google.gwt.user.client.ui.*;
 
 /**
  *
- * @author 
+ * @author Manuel Alejandro
  */
 public class PanelMenu extends LayoutContainer {
 
@@ -72,11 +67,8 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdCerrarSesion;
     private Command cmdInicio;
     private Command cmdInformes;
-    private Command cmdMovimientos;
     private Command cmdDatosUsuario;
     private Command cmdAdmUsuario;
-    private Command cmdAdmCuenta;
-
     private Command cmdAdmEps;
     private Command cmdAdmCargos;
     private Command cmdAdmPosiciones;
@@ -86,15 +78,11 @@ public class PanelMenu extends LayoutContainer {
     private Command cmdAdmPersonal;
     private Command cmdAdmDeportista;
     private Command cmdAdmTipoDeportista;
-//    private Command cmdAdmEstadoAsistencia;
-
     private Command cmdAdmCompetencia;
     private Command cmdAdmControlAsistencia;
-
     private Command cmdAdmMedAntropometricas;
     private Command cmdAdmTestTecnico;
     private Command cmdAdmTestCargaProgresiva;
-    private Command cmdAdmTest1Kilometro;
     private Command cmdAdmFrecuenciaCardiaca;
     private Command cmdAdmBosco;
     private Command cmdAdmTipoDocumento;
@@ -263,7 +251,7 @@ public class PanelMenu extends LayoutContainer {
                 true,
                 cmdInicio);
         // Si el usuario administra el sistema
-        if (usuarioLogueado.isAdministradorSistema()) {
+        if (usuarioLogueado.isAdminClub()) {
             menuBar.addItem(
                     "<img src='imagenes/iconos/icono2.ico'> "
                     + "Administración"
@@ -291,24 +279,6 @@ public class PanelMenu extends LayoutContainer {
                 true,
                 cmdAdmDeportista);
 
-        // Si el usuario administra el sistema
-//        if (usuarioLogueado.isAdministradorSistema()) {
-//        menuBar.addItem(
-//                "<img src='imagenes/iconos/vinetaMenu.gif'> "
-//                + "Movimientos"
-//                + "</img>",
-//                true,
-//                cmdMovimientos);
-//        }
-        if (usuarioLogueado.isAdminClub() || usuarioLogueado.isAdministradorSistema()) {
-            menuBar.addItem(
-                    "<img src='imagenes/iconos/icono2.ico'> "
-                    + "Personal"
-                    + "</img>",
-                    true,
-                    cmdAdmPersonal);
-        }
-
         menuBar.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Informes "
@@ -321,20 +291,7 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdDatosUsuario);
-//        menuBar.addItem(
-//                "<img src='imagenes/iconos/icono2.ico'> "
-//                + "Estratificación"
-//                + "</img>",
-//                true,
-//                cmdInfoEstratificacion);
-//        menuBar.addItem(
-//                "<img src='imagenes/iconos/icono2.ico'> "
-//                + "Deportistas Por Posición"
-//                + "</img>",
-//                true,
-//                cmdInfoDeportistasPosicion);
 
-        //------------
         menuBar.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Cerrar sesión"
@@ -358,6 +315,12 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdAdmUsuario);
+         retorno.addItem(
+                "<img src='imagenes/iconos/icono2.ico'> "
+                + "Personal"
+                + "</img>",
+                true,
+                cmdAdmPersonal);
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Club"
@@ -382,12 +345,7 @@ public class PanelMenu extends LayoutContainer {
                 + "</img>",
                 true,
                 cmdAdmNivelEducativo);     
-//        retorno.addItem(
-//                "<img src='imagenes/iconos/icono2.ico'> "
-//                + "Situaciones de Juego"
-//                + "</img>",
-//                true,
-//                cmdAdmSituacionesJuego);        
+       
         retorno.addItem(
                 "<img src='imagenes/iconos/icono2.ico'> "
                 + "Tipo Documento"
@@ -397,27 +355,7 @@ public class PanelMenu extends LayoutContainer {
 
         return retorno;
     }
-
-    private MenuBar crearMenuTestIndividual() {
-        MenuBar retorno = new MenuBar(true);
-        //Los comandos fuerom previamente creados
-
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Medidas Antropométricas"
-                + "</img>",
-                true,
-                cmdAdmMedAntropometricas);
-
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Test Técnico"
-                + "</img>",
-                true,
-                cmdAdmTestTecnico);
-
-        return retorno;
-    }
+    
 
     private MenuBar crearMenuEntrenamientos() {
         MenuBar retorno = new MenuBar(true);
@@ -527,39 +465,7 @@ public class PanelMenu extends LayoutContainer {
                 cmdAdmTorneos);
         
         return retorno;
-    }
-    private MenuBar crearMenuPruebasValorativas() {
-        MenuBar retorno = new MenuBar(true);
-        //Los comandos fuerom previamente creados
-
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Test Carga Progresiva Karvonen"
-                + "</img>",
-                true,
-                cmdAdmTestCargaProgresiva);
-
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Test 1 Kilómetro"
-                + "</img>",
-                true,
-                cmdAdmTest1Kilometro);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Frecuencia Cardíaca Máxima"
-                + "</img>",
-                true,
-                cmdAdmFrecuenciaCardiaca);
-        retorno.addItem(
-                "<img src='imagenes/iconos/icono2.ico'> "
-                + "Test Bosco"
-                + "</img>",
-                true,
-                cmdAdmBosco);
-
-        return retorno;
-    }
+    } 
 
     /**
      * Método que instancia los comandos del menú
@@ -598,8 +504,6 @@ public class PanelMenu extends LayoutContainer {
 
                 PanelAdminTorneos panelAdminTorneos = new PanelAdminTorneos();
                 panelAdminTorneos.show();
-
-                // activarPanel(panelBase.getPanelInformes());
             }
         };
 
@@ -727,25 +631,7 @@ public class PanelMenu extends LayoutContainer {
                 adminPosiciones.show();
             }
         };
-
-//        cmdAdmSituacionesJuego = new Command() {
-//
-//            public void execute() {
-//
-//                PanelAdminSituacionesJuego adminSituacionesJuego = new PanelAdminSituacionesJuego();
-//                adminSituacionesJuego.show();
-//            }
-//        };
-
-//        cmdAdmEstadoAsistencia = new Command() {
-//
-//            public void execute() {
-//
-//                PanelAdminEstadoAsistencia panelAdminEstadoAsistencia = new PanelAdminEstadoAsistencia();
-//                panelAdminEstadoAsistencia.show();
-//            }
-//        };
-
+        
         cmdAdmNivelEducativo = new Command() {
 
             public void execute() {

@@ -1,9 +1,3 @@
-/**
-* 
-*
-*
-* 
-**/
 
 package co.com.sisegfut.client.administracion.usuarios;
 
@@ -24,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @
+ * @author anfeh_000
  */
 public class PaginGridUsuarios extends PaginGridEntidades<Usuarios>{
    
@@ -76,8 +70,8 @@ public class PaginGridUsuarios extends PaginGridEntidades<Usuarios>{
     private ListStore<ModelData> getRolesUsuario() {
 
         ArrayList<ModelData> listaEstados = new ArrayList<ModelData>();
-        listaEstados.add(estado("Administrador sistema", Rol.ROL_ADMINISTRADOR_SISTEMA));
-        listaEstados.add(estado("Administrador empresa", Rol.ROL_ADMINISTRADOR_CLUB));
+        listaEstados.add(estado("Administrador sistema", Rol.ROL_ADMINISTRADOR_CLUB));
+        listaEstados.add(estado("Entrenador", Rol.ROL_ADMINISTRADOR_ENTRENADOR));
         
         ListStore<ModelData> estadoStore = new ListStore<ModelData>();
         estadoStore.add(listaEstados);

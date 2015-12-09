@@ -113,7 +113,7 @@ public class PanelExperiencia extends LayoutContainer {
             box.setButtons(MessageBox.OK);
             box.setIcon(MessageBox.INFO);
             box.setTitle("Experiencia");
-            box.setMessage("No se ha detectado ningun servicio RPC");
+            box.setMessage("No se ha detectado ningún servicio RPC");
             box.show();
             return;
         }

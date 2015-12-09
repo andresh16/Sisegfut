@@ -1,6 +1,4 @@
-/**
- * PanelInformativo
- */
+
 
 package co.com.sisegfut.client.util;
 
@@ -22,7 +20,7 @@ import com.google.gwt.user.client.Element;
 
 /**
  *
- * @author 
+ * @author anfeh_000 
  */
 public class PanelInformativo extends HorizontalPanel {
 

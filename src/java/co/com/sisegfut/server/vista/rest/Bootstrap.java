@@ -47,9 +47,7 @@ public class Bootstrap implements InitializingBean {
     @Autowired
     private DaoPosiciones daoPosiciones;
     @Autowired
-    private DaoEps daoEps;
-    @Autowired
-    private DaoSituacionesJuego daoSituacionesJuego;
+    private DaoEps daoEps;    
     @Autowired
     private DaoInstEducativa daoInstEducativa;
     @Autowired
@@ -79,7 +77,7 @@ public class Bootstrap implements InitializingBean {
 
     private void inicializarUsuriosGrupos() {
         try {
-            Rol g = daoRol.getById(Rol.ROL_ADMINISTRADOR_SISTEMA);
+            Rol g = daoRol.getById(Rol.ROL_ADMINISTRADOR_CLUB);
             // if there is data already created
             if (g != null) {
                 return;

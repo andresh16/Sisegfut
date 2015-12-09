@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 
 /**
  * Clase abstracta que trabaja como superclase para crear las entidades JPA y tiene un campo de fecha inactivado para manejar borrado logico
- * @author josorio
+ * @author anfeh_000
  */
 @MappedSuperclass
 public abstract class EntidadPerpetua extends EntidadBase{

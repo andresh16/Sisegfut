@@ -7,7 +7,6 @@ package co.com.sisegfut.client.administracion.usuarios;
 import co.com.sisegfut.client.adminCRUDgral.FormularioCRUD;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.ListenerGuardado;
-import co.com.sisegfut.client.util.BeansLocales;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.util.combox.ComboBoxRoles;
 import com.extjs.gxt.ui.client.Style;
@@ -18,7 +17,7 @@ import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 
 /**
  *
- *
+ * @author anfeh_000
  */
 public class FormularioUsuarios extends FormularioCRUD<Usuarios> {
 
@@ -158,10 +157,6 @@ public class FormularioUsuarios extends FormularioCRUD<Usuarios> {
         entidad.setNombres(txtNombres.getValue());
         entidad.setApellidos(txtApellidos.getValue());
         entidad.setDocumento(txtDocumento.getValue());
-        if (BeansLocales.getUsuario().isAdministradorSistema()) {
-        } else {
-        }
-        
    
         //Si los componentes comboboxroles y cbinactivo estan visibles los uso para setearlos en la entidad
         if(comboBoxRoles.isVisible()){

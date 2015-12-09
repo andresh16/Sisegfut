@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  *
  * @param <T> 
- * @author 
+ * @author anfeh_000
  */
 public class RespuestaJ2ME<T /*extends Serializable*/> /*implements Serializable*/
 {

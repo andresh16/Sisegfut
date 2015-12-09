@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author jdbotero@gmail.com
+ * @author anfeh_000
  */
 @Repository
 public class DaoUsuarioImpl extends DaoGenericoImpl<Usuarios> implements DaoUsuario {

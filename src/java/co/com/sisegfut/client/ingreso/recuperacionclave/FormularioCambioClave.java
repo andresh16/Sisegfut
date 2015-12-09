@@ -1,11 +1,4 @@
-/*
- * 
- * FormularioCambioClave
- * 
- * 
- * 
- * 
- */
+
 package co.com.sisegfut.client.ingreso.recuperacionclave;
 
 import co.com.sisegfut.client.util.rpc.RPCRecuperarClave;
@@ -30,7 +23,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 /**
  *
- * @author 
+ * @author anfeh_000 
  */
 public class FormularioCambioClave extends FormPanel {
 

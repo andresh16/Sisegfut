@@ -14,7 +14,7 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 /**
-
+ * @author 
  */
 public class ServicioSMSImpl implements ServicioSMS
 {

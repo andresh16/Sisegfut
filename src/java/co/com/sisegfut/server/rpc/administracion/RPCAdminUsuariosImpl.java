@@ -1,22 +1,10 @@
-/**
- * RPCAdminUsuarios Versión 1.0 15/09/2013
- * 
-* Copyright(c) 2007-2012, Boos IT. admin@boos.com.co
- * 
-* http://boos.com.co/license
- *
- */
 package co.com.sisegfut.server.rpc.administracion;
 
 import co.com.sisegfut.client.datos.dominio.Rol;
-import co.com.sisegfut.client.datos.dominio.TipoCuenta;
-import co.com.sisegfut.client.datos.dominio.TipoMovimiento;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
 import co.com.sisegfut.client.util.rpc.RPCAdminUsuarios;
 import co.com.sisegfut.server.datos.dao.DaoRol;
-import co.com.sisegfut.server.datos.dao.DaoTipoCuenta;
-import co.com.sisegfut.server.datos.dao.DaoTipoMovimiento;
 import co.com.sisegfut.server.datos.dao.DaoUsuario;
 import co.com.sisegfut.server.util.Cifrado;
 import java.util.List;
@@ -24,15 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
- * @author josorio
+ * @author anfeh_000
  */
 public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RPCAdminUsuarios {
 
-    @Autowired
-    private DaoTipoCuenta daoTipoCuenta;
-    
-    @Autowired
-    private DaoTipoMovimiento daoTipoMovimiento;
     private DaoRol daoRol;
     private Usuarios usuarioSession;
     private DaoUsuario daoUsuario;
@@ -55,14 +38,12 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
         super.setUsuarioSession(usuarioSession);
     }
 
-
-
     @Override
     public RespuestaRPC<Usuarios> guardarEntidad(Usuarios usuario) {
         RespuestaRPC<Usuarios> retorno = new RespuestaRPC<Usuarios>();
 
         // Validamos que sea admin de sistema si desea almacenar un usuario administrador
-        if (!usuarioSession.isAdministradorSistema() && usuario.isAdministradorSistema()) {
+        if (!usuarioSession.isAdminClub() && usuario.isAdminClub()) {
             retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
             return retorno;
         }
@@ -104,7 +85,7 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
         Usuarios borrar = daoUsuario.getById(idEntidad);
 
         // Validamos que sea admin de negocio si desae borrar un usuario administrador
-        if (!usuarioSession.isAdministradorSistema() && borrar.getRol().getId() == 1) {
+        if (!usuarioSession.isAdminClub() && borrar.getRol().getId() == 1) {
             retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
             return retorno;
         }
@@ -121,7 +102,7 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
         RespuestaRPC<Usuarios> retorno = new RespuestaRPC<Usuarios>();
 
         // Validamos que sea admin de negocio si desae borrar un usuario administrador
-        if (!usuarioSession.isAdministradorSistema() && entidad.getRol().getId() == 1) {
+        if (!usuarioSession.isAdminClub() && entidad.getRol().getId() == 1) {
             retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
             return retorno;
         }
@@ -138,7 +119,7 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
 
         Usuarios reactivar = daoUsuario.getById(idUsuario);
         // Validamos que sea admin de sistema si desae reactivar un usuario administrador
-        if (!usuarioSession.isAdministradorSistema() && reactivar.getRol().getId() == 1) {
+        if (!usuarioSession.isAdminClub() && reactivar.getRol().getId() == 1) {
             retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
             return retorno;
         }
@@ -168,7 +149,7 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
 
             Usuarios cambiar = daoUsuario.getById(idUsuario);
             // Validamos que sea admin de negocio si desae modificar un usuario administrador
-            if (!usuarioSession.isAdministradorSistema() && cambiar.getRol().getId() == 1) {
+            if (!usuarioSession.isAdminClub() && cambiar.getRol().getId() == 1) {
                 retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
                 return retorno;
             }
@@ -197,7 +178,7 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
 
         try {
             // Validamos que sea admin de negocio si desae modificar un usuario administrador
-            if (!usuarioSession.isAdministradorSistema() && usuario.getRol().getId() == 1) {
+            if (!usuarioSession.isAdminClub() && usuario.getRol().getId() == 1) {
                 retorno.setResultado(RespuestaRPC.RESULTADO_FALLO_PERMISOS_INSUFICIENTES);
                 return retorno;
             }
@@ -238,28 +219,18 @@ public class RPCAdminUsuariosImpl extends RPCMaestroImpl<Usuarios> implements RP
 
         return retorno;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public List<Rol> getRoles() {
         return daoRol.listar();
     }
-    
+
     public List<Usuarios> getUsuariosRol(long rol) {
 
         return daoUsuario.getUsuariosActivosPropietarios(rol);
 
     }
 
-    public List<TipoCuenta> getTipoCuenta() {
-    return daoTipoCuenta.listar();
-    }
-
-    @Override
-    public List<TipoMovimiento> getTipoMovimiento() {
-        
-     return   daoTipoMovimiento.getTipoMovimiento();
-      
-  }
 }

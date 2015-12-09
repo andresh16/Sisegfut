@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author josorio
+ * @author anfeh_000
  */
 public class ComboBoxRoles extends ComboBox<BeanModel> {
 

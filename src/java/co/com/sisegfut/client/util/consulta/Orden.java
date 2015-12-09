@@ -1,10 +1,3 @@
-/**
-* Orden
-*
-* 
-*
-* 
-**/
 
 package co.com.sisegfut.client.util.consulta;
 

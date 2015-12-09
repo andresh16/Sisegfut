@@ -74,7 +74,6 @@ import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
@@ -672,49 +671,49 @@ public final class PanelAntropometrico extends LayoutContainer {
 //        Columna1.add(LayoutFoto, new FormData("100%"));
 
         FieldSet flPerimetros = new FieldSet();
-        flPerimetros.setHeading("Perímetros");
+        flPerimetros.setHeading("Perímetros (CM)");
         layout = new FormLayout();
         layout.setLabelWidth(115);
         flPerimetros.setLayout(layout);
 
         txtPerBrazoRelajado.setName("brazorelajado");
         txtPerBrazoRelajado.setFieldLabel("<font color='red'>*</font> Brazo Relajado");
-        txtPerBrazoRelajado.setRegex("^[.0-9]*$");
+        txtPerBrazoRelajado.setAllowDecimals(true);
         txtPerBrazoRelajado.setMaxLength(3);
-        txtPerBrazoRelajado.setEmptyText("");
+        txtPerBrazoRelajado.setMaxValue(50);
+        txtPerBrazoRelajado.setMinValue(1);
+        txtPerBrazoRelajado.setEmptyText("1 - 50");
         txtPerBrazoRelajado.setAllowBlank(false);
-        txtPerBrazoRelajado.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
+//        txtPerBrazoRelajado.getMessages().setRegexText("El campo sólo puede contener números enteros ó decimales y que se comprendan entre 1-20.");
 //        txtDocumento.setEnabled(false);
         flPerimetros.add(txtPerBrazoRelajado, formData);
 
         txtPerAbdominal.setName("nombres");
         txtPerAbdominal.setFieldLabel("<font color='red'>*</font> Abdominal");
         txtPerAbdominal.setAllowBlank(false);
-        txtPerAbdominal.setMaxLength(6);
-//        txtNombres.setRegex("^[.0-9]*$");
-        txtPerAbdominal.setEmptyText("");
-//        txtNombres.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
-//        txtNombres.setEnabled(false);
+       txtPerAbdominal.setMaxLength(3);
+        txtPerAbdominal.setMaxValue(150);
+        txtPerAbdominal.setMinValue(1);
+        txtPerAbdominal.setEmptyText("1 - 150");
         flPerimetros.add(txtPerAbdominal, formData);
 
         txtPerCadera.setName("cadera");
         txtPerCadera.setFieldLabel("<font color='red'>*</font> Cadera");
         txtPerCadera.setAllowBlank(false);
         txtPerCadera.setMaxLength(3);
-//        txtNombres.setRegex("^[.0-9]*$");
-        txtPerCadera.setEmptyText("");
-//        txtNombres.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
-//        txtApellidos.setEnabled(false);
+        txtPerCadera.setMaxValue(150);
+        txtPerCadera.setMinValue(1);
+        txtPerCadera.setEmptyText("1 - 150");
         flPerimetros.add(txtPerCadera, formData);
 
         txtPerPantorrilla.setName("pantorrilla");
         txtPerPantorrilla.setAllowBlank(false);
+        txtPerPantorrilla.setMaxLength(3);
+        txtPerPantorrilla.setMaxValue(50);
+        txtPerPantorrilla.setMinValue(1);
+        txtPerPantorrilla.setEmptyText("1 - 150");
         txtPerPantorrilla.setFieldLabel("<font color='red'>*</font> Pantorrilla");
-        txtPerPantorrilla.setRegex("^[.0-9]*$");
-        txtPerPantorrilla.setEmptyText("");
-        txtPerPantorrilla.setMaxLength(6);
-        txtPerPantorrilla.getMessages().setRegexText("El campo no puede contener letras ni caracteres especiales .");
-//        txtDireccion.setEnabled(false);
+        
         flPerimetros.add(txtPerPantorrilla, formData);
 
         ///////////////////// Columna 2 //////////////////////////// 
@@ -731,7 +730,7 @@ public final class PanelAntropometrico extends LayoutContainer {
         Columna2.setLayout(layout);
 
         FieldSet flPliegues = new FieldSet();
-        flPliegues.setHeading("Pliegues Cutáneos");
+        flPliegues.setHeading("Pliegues Cutáneos (CM)");
         layout = new FormLayout();
         layout.setLabelWidth(115);
         flPliegues.setLayout(layout);
@@ -740,29 +739,35 @@ public final class PanelAntropometrico extends LayoutContainer {
 //        LayoutFoto.add(LblPesoMagro);
 //        LayoutFoto.add(LblPesoGraso);
         txtPliAbdominal.setFieldLabel("<font color='red'>*</font> Abdominal");
-        txtPliAbdominal.setFormat(NumberFormat.getDecimalFormat());
-        txtPliAbdominal.setMaxLength(6);
+        txtPliAbdominal.setMaxLength(3);
+        txtPliAbdominal.setMaxValue(50);
+        txtPliAbdominal.setMinValue(1);
+        txtPliAbdominal.setEmptyText("1 - 50");
         txtPliAbdominal.setAllowBlank(false);
-//        txttxtPesoPeso.setEnabled(false);
         flPliegues.add(txtPliAbdominal, formData);
 
         txtPliSubescapular.setFieldLabel("<font color='red'>*</font> Subescapular");
-        txtPliSubescapular.setMaxLength(6);
-        txtPliSubescapular.setFormat(NumberFormat.getDecimalFormat());
+        txtPliSubescapular.setMaxLength(3);
+        txtPliSubescapular.setMaxValue(50);
+        txtPliSubescapular.setMinValue(1);
+        txtPliSubescapular.setEmptyText("1 - 50");
         txtPliSubescapular.setAllowBlank(false);
-//        txtEstatura.setEnabled(false);
         flPliegues.add(txtPliSubescapular, formData);
 
         txtPliSupraescapular.setFieldLabel("<font color='red'>*</font> Supraescapular");
-        txtPliSupraescapular.setFormat(NumberFormat.getDecimalFormat());
-        txtPliSupraescapular.setMaxLength(6);
+        txtPliSupraescapular.setMaxLength(3);
+        txtPliSupraescapular.setMaxValue(50);
+        txtPliSupraescapular.setMinValue(1);
+        txtPliSupraescapular.setEmptyText("1 - 50");
         txtPliSupraescapular.setAllowBlank(false);
 //        txtEstatura.setEnabled(false);
         flPliegues.add(txtPliSupraescapular, formData);
 
         txtPliTricipital.setFieldLabel("<font color='red'>*</font> Tricipital");
-        txtPliTricipital.setMaxLength(6);
-        txtPliTricipital.setFormat(NumberFormat.getDecimalFormat());
+        txtPliTricipital.setMaxLength(3);
+        txtPliTricipital.setMaxValue(50);
+        txtPliTricipital.setMinValue(1);
+        txtPliTricipital.setEmptyText("1 - 50");
         txtPliTricipital.setAllowBlank(false);
 //        txtEstatura.setEnabled(false);
         flPliegues.add(txtPliTricipital, formData);

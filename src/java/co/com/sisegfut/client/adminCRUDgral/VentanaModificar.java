@@ -23,7 +23,7 @@ import com.google.gwt.core.client.GWT;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public class VentanaModificar  extends Window implements ListenerGuardado{
 //    private PanelInformativo pnlInformativo;

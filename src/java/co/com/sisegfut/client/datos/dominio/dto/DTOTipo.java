@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author josorio
+ * @author anfeh_000
  */
 public class DTOTipo implements Serializable {
 

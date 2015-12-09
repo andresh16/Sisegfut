@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public abstract class FormularioCRUD<T extends Serializable> extends FormPanel{
 

@@ -9,8 +9,6 @@ import co.com.sisegfut.client.util.PanelErrores;
 import co.com.sisegfut.client.util.PanelExito;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxNivelEducativo;
-import co.com.sisegfut.client.util.rpc.RPCAdminEps;
-import co.com.sisegfut.client.util.rpc.RPCAdminEpsAsync;
 import co.com.sisegfut.client.util.rpc.RPCAdminNivelEducativo;
 import co.com.sisegfut.client.util.rpc.RPCAdminNivelEducativoAsync;
 import com.extjs.gxt.ui.client.Style;

@@ -19,7 +19,7 @@ import java.util.List;
 public interface RPCAdminExperienciaAsync extends RPCMaestroAsync<Experiencia>{
   
     /**
-     * Método que obtiene los antecedentes de los deportivas
+     * Método que obtiene l
      * @param idPersonal
      * @param callback 
      */

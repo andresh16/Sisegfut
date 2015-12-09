@@ -5,7 +5,6 @@
  */
 package co.com.sisegfut.client.administracion.posiciones;
 
-import co.com.sisegfut.client.datos.dominio.Posiciones;
 import co.com.sisegfut.client.util.PanelErrores;
 import co.com.sisegfut.client.util.PanelExito;
 import co.com.sisegfut.client.util.Resources;
@@ -19,7 +18,6 @@ import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;

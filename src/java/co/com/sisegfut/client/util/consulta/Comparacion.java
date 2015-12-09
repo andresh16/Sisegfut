@@ -1,10 +1,4 @@
-/**
-* Comparacion
-*
-* 
-*
-*
-**/
+
 
 package co.com.sisegfut.client.util.consulta;
 

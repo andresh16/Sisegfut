@@ -5,9 +5,7 @@ import co.com.sisegfut.client.datos.dominio.Personal;
 import co.com.sisegfut.client.util.Formatos;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxCargos;
-
 import co.com.sisegfut.client.util.combox.ComboBoxNivelEducativo;
-
 import co.com.sisegfut.client.util.combox.ComboBoxTipoDocumento;
 import co.com.sisegfut.client.util.rpc.RPCAdminPersonal;
 import co.com.sisegfut.client.util.rpc.RPCAdminPersonalAsync;

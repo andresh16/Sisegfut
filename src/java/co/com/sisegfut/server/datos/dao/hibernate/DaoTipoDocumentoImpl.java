@@ -7,13 +7,12 @@
 package co.com.sisegfut.server.datos.dao.hibernate;
 
 import co.com.sisegfut.client.datos.dominio.TipoDocumento;
-import co.com.sisegfut.server.datos.dao.DaoGenerico;
 import co.com.sisegfut.server.datos.dao.DaoTipoDocumento;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Andres Hurtado
+ * @author Manuel Alejandro
  */
 @Repository
 public class DaoTipoDocumentoImpl extends DaoGenericoImpl<TipoDocumento> implements DaoTipoDocumento{

@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public abstract class PaginGridEntidades<T extends Serializable>
         extends LayoutContainer {

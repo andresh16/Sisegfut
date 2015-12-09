@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.com.sisegfut.client.administracion.deportista;
 
 import co.com.sisegfut.client.aaI18N.Main;
@@ -35,50 +34,48 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
  *
  * @author fhurtado
  */
-public class PanelReactivarDeportista extends Window{
+public class PanelReactivarDeportista extends Window {
 
-    
-     FormPanel panel = new FormPanel();
-     private FormBinding formBindings;
+    FormPanel panel = new FormPanel();
+    private FormBinding formBindings;
     private ComboBoxDeportista cbxDeportista;
-     PanelAdminDeportista adminDeportista ;
-      private PanelErrores pnlErrores;
+    PanelAdminDeportista adminDeportista;
+    private PanelErrores pnlErrores;
     private PanelExito pnlExito;
-    
+
     private Main myConstants = (Main) GWT.create(Main.class);
-    
+
     public PanelReactivarDeportista(PanelAdminDeportista panelPadre) {
         setSize(350, 145);
-       adminDeportista=panelPadre;
+        adminDeportista = panelPadre;
         setPlain(true);
         setModal(true);
         setBlinkModal(true);
         setHeading("Reactivar deportista");
         setLayout(new FillLayout());
         setResizable(false);
- 
-        
-         FormData formData = new FormData("-20");
-         panel.setFrame(true);
+
+        FormData formData = new FormData("-20");
+        panel.setFrame(true);
         panel.setHeaderVisible(false);
-        
-        cbxDeportista=new ComboBoxDeportista(ComboBoxDeportista.INACTIVOS);
-        
+
+        cbxDeportista = new ComboBoxDeportista(ComboBoxDeportista.INACTIVOS);
+
         cbxDeportista.setLabelSeparator("Deportista");
         cbxDeportista.setAllowBlank(false);
-        
-         Button btnReactivar = new Button("Reactivar", ListenerReactivar());
+
+        Button btnReactivar = new Button("Reactivar", ListenerReactivar());
         btnReactivar.setArrowAlign(Style.ButtonArrowAlign.BOTTOM);
         btnReactivar.setIcon(Resources.ICONS.iconoRefrescar());
-        
-         pnlErrores = new PanelErrores();
+
+        pnlErrores = new PanelErrores();
         pnlExito = new PanelExito();
 
         panel.add(pnlErrores);
         panel.add(pnlExito);
-        
+
         panel.add(cbxDeportista, formData);
-        
+
         panel.addButton(btnReactivar);
 
         FormButtonBinding binding = new FormButtonBinding(panel);
@@ -86,57 +83,53 @@ public class PanelReactivarDeportista extends Window{
 
         panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         formBindings = new FormBinding(panel, true);
-        
+
         add(panel, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        
-        
-        
-        
+
         add(panel, new MarginData(0));
 
         setFocusWidget(this.getButtonBar().getItem(0));
     }
+
     public SelectionListener<ButtonEvent> ListenerReactivar() {
         return new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (panel.isValid()) {         
-                    
+                if (panel.isValid()) {
+
                     getServiceDeportista().reactivarEntidad(cbxDeportista.getDeportistaElegido().getId(), new AsyncCallback() {
 
-                       @Override
-                       public void onFailure(Throwable caught) {
-                      MessageBox.alert("Error", "No se Reactivo el deportista", null);}
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            MessageBox.alert("Error", "No se Reactivo el deportista", null);
+                        }
 
-                       @Override
-                       public void onSuccess(Object result) {
-                           
-                      Info.display("Reactivar", "Se Reactivo correctamente el deportista");
-                       adminDeportista.cargar();
-                       }
-                       
-                   });
-                    
+                        @Override
+                        public void onSuccess(Object result) {
+
+                            Info.display("Reactivar", "Se Reactivo correctamente el deportista");
+                            adminDeportista.cargar();
+                        }
+
+                    });
+
                     cbxDeportista.recargar();
-                   cerrar();
+                    cerrar();
                 }
             }
         };
     }
 
-    
-
-
-  public RPCAdminDeportistaAsync getServiceDeportista() {
+    public RPCAdminDeportistaAsync getServiceDeportista() {
         RPCAdminDeportistaAsync svc = (RPCAdminDeportistaAsync) GWT.create(RPCAdminDeportista.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) svc;
         endpoint.setServiceEntryPoint("services/RPCAdminDeportista");
         return svc;
     }
-    
-    public void cerrar(){
-    this.hide();
-    
+
+    public void cerrar() {
+        this.hide();
+
     }
-    
+
 }

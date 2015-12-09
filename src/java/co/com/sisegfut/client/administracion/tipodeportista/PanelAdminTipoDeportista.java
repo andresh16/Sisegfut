@@ -5,14 +5,10 @@
  */
 package co.com.sisegfut.client.administracion.tipodeportista;
 
-import co.com.sisegfut.client.administracion.eps.*;
 import co.com.sisegfut.client.aaI18N.Main;
 import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ComponentEvent;
-import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.IconButtonEvent;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -106,7 +102,7 @@ public class PanelAdminTipoDeportista extends Window {
         getHeader().addTool(new ToolButton("x-tool-help", new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                abrirVentana(myConstants.ayudaPanelEps());
+                abrirVentana(myConstants.ayudaPanelTipoDeportista());
             }
         }));
 

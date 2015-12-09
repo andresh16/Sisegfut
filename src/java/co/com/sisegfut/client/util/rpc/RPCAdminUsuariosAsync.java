@@ -1,19 +1,6 @@
-/**
-* RPCAdminUsuariosAsync
-* Versión 1.0
-* 15/09/2013
-*
-* Copyright(c) 2007-2012, Boos IT.
-* admin@boos.com.co
-*
-* http://boos.com.co/license
-**/
-
 package co.com.sisegfut.client.util.rpc;
 
 import co.com.sisegfut.client.datos.dominio.Rol;
-import co.com.sisegfut.client.datos.dominio.TipoCuenta;
-import co.com.sisegfut.client.datos.dominio.TipoMovimiento;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.entidades.RespuestaRPC;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -21,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author josorio
+ * @author anfeh_000
  */
 public interface RPCAdminUsuariosAsync extends RPCMaestroAsync<Usuarios> { 
 
@@ -50,10 +37,7 @@ public interface RPCAdminUsuariosAsync extends RPCMaestroAsync<Usuarios> {
      * @return 
      */
     public void getRoles(AsyncCallback<List<Rol>> callback);
-    
-    public void getTipoCuenta(AsyncCallback<List<TipoCuenta>> callback);
-    
-    public void getTipoMovimiento(AsyncCallback<List<TipoMovimiento>> callback);
+        
     /**
      * Para listar los usuario segun el rol
      * @param rol

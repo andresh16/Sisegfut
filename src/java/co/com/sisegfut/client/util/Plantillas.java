@@ -2,7 +2,7 @@ package co.com.sisegfut.client.util;
 
 /**
  * Plantillas para las diferentes presentaciones del sistema
- * @author 
+ * @author anfeh_000 
  */
 public class Plantillas 
 {

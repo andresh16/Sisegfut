@@ -43,7 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author 
+ * @author fhurtado
  */
 @Controller
 //@RequestMapping("/foto")

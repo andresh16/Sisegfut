@@ -31,9 +31,8 @@ public class Rol extends EntidadPerpetua  implements BeanModelTag
     @GwtTransient
     private Set<Usuarios> usuarios = new HashSet<Usuarios>(0);
 
-    public static final long ROL_ADMINISTRADOR_SISTEMA = 1;
-    public static final long ROL_ADMINISTRADOR_CLUB = 2;
-    public static final long ROL_ADMINISTRADOR_ENTRENADOR = 3;
+    public static final long ROL_ADMINISTRADOR_CLUB = 1;
+    public static final long ROL_ADMINISTRADOR_ENTRENADOR = 2;
 
 
     public Rol()

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 
 /**
  *
- * @author Juan David Botero <jdbotero@gmail.com>
+ * @author anfeh_000
  */
 //@Controller
 //@GwtRpcEndPoint
@@ -26,7 +26,7 @@ public class RPCLoginImpl extends RemoteServiceServlet implements RPCLogin
     /**
      * Verifica si un usuario puede loguearse en el sistema o no, en caso
      * de ser los datos válidos se creará una sesión en el servidor
-     * @param documento Documento del usuario para intentar el login
+     * @param correo correo del usuario para intentar el login
      * @param clave Clave del usuario a loguear sin encriptar (se cifra usando Cifrado.SHA256)
      * @return Nulo si el usuario no existe, en caso de existir, un objeto
      *         de la clase Usuario con los datos del mismo

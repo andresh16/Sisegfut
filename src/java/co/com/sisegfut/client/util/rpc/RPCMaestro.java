@@ -1,13 +1,4 @@
-/**
-* RPCMaestro
-* Versión 1.0
-* 15/09/2013
-*
-* Copyright(c) 2007-2012, Boos IT.
-* admin@boos.com.co
-*
-* http://boos.com.co/license
-**/
+
 
 package co.com.sisegfut.client.util.rpc;
 
@@ -24,7 +15,7 @@ import java.util.List;
 
 /**
  * 
- * @author josorio
+ * @author anfeh_000
  * @param <T> 
  */
 public interface RPCMaestro<T extends Serializable> extends RemoteService{

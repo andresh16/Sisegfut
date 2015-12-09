@@ -4,12 +4,9 @@ package co.com.sisegfut.client.ingreso.login;
 import co.com.sisegfut.client.ingreso.recuperacionclave.PanelRecuperacion;
 import co.com.sisegfut.client.util.Resources;
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.Style.LayoutRegion;
-import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.AccordionLayout;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
@@ -17,7 +14,7 @@ import com.google.gwt.user.client.ui.Image;
 
 /**
  *
- * @author josorio
+ * @author anfeh_000
  */
 public class PanelAcceso extends LayoutContainer {
 

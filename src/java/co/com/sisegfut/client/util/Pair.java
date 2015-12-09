@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author 
+ * @author anfeh_000 
  */
 public class Pair<D extends Object, E extends Object> implements Serializable {
     

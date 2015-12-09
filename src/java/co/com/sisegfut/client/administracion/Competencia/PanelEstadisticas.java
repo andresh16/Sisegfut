@@ -6,7 +6,6 @@
 package co.com.sisegfut.client.administracion.Competencia;
 
 import co.com.sisegfut.client.aaI18N.Main;
-import co.com.sisegfut.client.aatest.AdvancedChartExample;
 import co.com.sisegfut.client.aatest.ejemploBarras;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -17,9 +16,7 @@ import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.FillLayout;
-import com.extjs.gxt.ui.client.widget.layout.MarginData;
 import com.google.gwt.core.client.GWT;
-import com.sencha.gxt.widget.core.client.FramedPanel;
 
 /**
  *

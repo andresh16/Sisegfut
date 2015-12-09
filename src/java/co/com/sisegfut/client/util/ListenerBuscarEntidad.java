@@ -7,7 +7,7 @@ package co.com.sisegfut.client.util;
 import com.extjs.gxt.ui.client.data.BeanModel;
 
 /**
- * @author 
+ * @author anfeh_000 
  */
 public interface ListenerBuscarEntidad<T extends Object> {
     public void onFind(T entidad);

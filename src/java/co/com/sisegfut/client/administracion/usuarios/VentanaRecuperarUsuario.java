@@ -1,11 +1,4 @@
-/**
-* VentanaRecuperarUsuario
-* 
-* 
-*
-*
-* 
-**/
+
 
 package co.com.sisegfut.client.administracion.usuarios;
 
@@ -19,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 
 /**
  *
- * @
+ * @author anfeh_000
  */
 public class VentanaRecuperarUsuario extends VentanaRecuperar<Usuarios>{
 

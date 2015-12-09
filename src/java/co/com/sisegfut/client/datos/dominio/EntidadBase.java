@@ -10,7 +10,7 @@ import javax.persistence.Transient;
 
 /**
  * Clase abstracta que trabaja como superclase para crear las entidades JPA
- * @author josorio
+ * @author anfeh_000
  */
 @MappedSuperclass
 public abstract class EntidadBase implements Serializable {

@@ -1,9 +1,4 @@
-/**
-* Consulta
-*
-*
-* 
-**/
+
 
 package co.com.sisegfut.client.util.consulta;
 

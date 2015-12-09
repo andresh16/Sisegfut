@@ -1,15 +1,10 @@
-/**
- * PanelErrores
- */
+
 package co.com.sisegfut.client.util;
 
 import com.extjs.gxt.ui.client.widget.Html;
-
-
-
 /**
  * 
- * @author ManuelAlejandro
+ * @author anfeh_000
  */
 public class PanelErrores extends Html
 {

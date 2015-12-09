@@ -10,7 +10,6 @@ import co.com.sisegfut.client.util.PanelErrores;
 import co.com.sisegfut.client.util.PanelExito;
 import co.com.sisegfut.client.util.Resources;
 import co.com.sisegfut.client.util.combox.ComboBoxRival;
-import co.com.sisegfut.client.util.combox.ComboBoxTorneo;
 import co.com.sisegfut.client.util.rpc.RPCAdminRivales;
 import co.com.sisegfut.client.util.rpc.RPCAdminRivalesAsync;
 import com.extjs.gxt.ui.client.Style;

@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author
+ * @author anfeh_000
  */
 public interface ListenerGuardado<T extends Serializable>
 {

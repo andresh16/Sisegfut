@@ -1,11 +1,4 @@
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- */
+
 package co.com.sisegfut.client.base;
 
 import co.com.sisegfut.client.aaI18N.Main;
@@ -20,11 +13,7 @@ import co.com.sisegfut.client.administracion.inicio.PanelInicio;
 import co.com.sisegfut.client.administracion.personal.PanelAdminPersonal;
 import co.com.sisegfut.client.administracion.torneos.PanelAdminTorneos;
 import co.com.sisegfut.client.administracion.usuarios.PanelAdminstracionUsuarios;
-
-
 import co.com.sisegfut.client.datos.dominio.Usuarios;
-
-
 import co.com.sisegfut.client.util.PanelInformativo;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -39,7 +28,7 @@ import java.util.Date;
 
 /**
  *
- * @author 
+ * @author anfeh_000
  */
 public class PanelBase extends LayoutContainer {
 
@@ -127,11 +116,8 @@ public class PanelBase extends LayoutContainer {
 //        }else{
 //        cargarfotoNoDisponilble();
 //        }
-        cargarfotoNoDisponilble();
-        
-        
+        cargarfotoNoDisponilble();               
     }
-
     /**
      * Construyo el titulo
      *

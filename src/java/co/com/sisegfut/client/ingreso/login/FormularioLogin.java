@@ -1,11 +1,4 @@
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- */
+
 package co.com.sisegfut.client.ingreso.login;
 
 import co.com.sisegfut.client.util.rpc.RPCLoginAsync;
@@ -43,7 +36,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  *
- * @author 
+ * @author anfeh_000 
  */
 public class FormularioLogin extends FormPanel {
 

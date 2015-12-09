@@ -5,7 +5,6 @@
  */
 package co.com.sisegfut.client.util.combox;
 
-import co.com.sisegfut.client.datos.dominio.Eps;
 import co.com.sisegfut.client.datos.dominio.TipoDeportista;
 import co.com.sisegfut.client.datos.dominio.Usuarios;
 import co.com.sisegfut.client.util.BeansLocales;

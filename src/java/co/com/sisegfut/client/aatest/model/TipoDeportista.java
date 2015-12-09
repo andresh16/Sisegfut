@@ -15,7 +15,6 @@ public class TipoDeportista implements Serializable{
     
     private String id;// = "" + lastId++ ;
     private String tipoDeportista;
-//    private double cantidad;
     private int cantidad;
 
     public TipoDeportista() {

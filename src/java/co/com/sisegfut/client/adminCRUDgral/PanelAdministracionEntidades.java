@@ -30,7 +30,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author josorio
+ * @author fhurtado
  */
 public abstract class PanelAdministracionEntidades<T extends Serializable> 
                         extends ContentPanel implements ListenerGuardado<T>, ListenerBuscarEntidad<T> {
