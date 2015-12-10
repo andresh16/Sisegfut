@@ -36,6 +36,7 @@ import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FileUploadField;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.Radio;
 import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
@@ -61,7 +62,7 @@ import java.util.Date;
 public final class PanelInfoGeneral extends FormPanel {
 
     ComboBoxTipoDocumento cbxTipoDocumento;
-    TextField<String> txtDocumento = new TextField<String>();
+    NumberField txtDocumento = new NumberField();
     TextField<String> txtNombres = new TextField<String>();
     TextField<String> txtApellidos = new TextField<String>();
     ComboBoxCategoria cbxCategoria;
@@ -142,8 +143,9 @@ public final class PanelInfoGeneral extends FormPanel {
 
         txtDocumento.setName("documento");
         txtDocumento.setFieldLabel("<font color='red'>*</font>Documento");
-        txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
+//        txtDocumento.setRegex("^((\\d{8})|(\\d{10})|(\\d{11})|(\\d{6}-\\d{5}))?$");
         txtDocumento.setEmptyText("");
+        txtDocumento.setMaxLength(11);
         txtDocumento.setAllowBlank(false);
         txtDocumento.getMessages().setRegexText("El campo no puede contener más de 11 caracteres.");
 //        txtDocumento.setEnabled(false);
@@ -694,7 +696,7 @@ public final class PanelInfoGeneral extends FormPanel {
     public Deportista obtenerDatosFormulario(Deportista deportista) {
 
         deportista.setTipoDocumento(cbxTipoDocumento.getTipoDocumentoElegido());
-        deportista.setDocumento(txtDocumento.getValue());
+        deportista.setDocumento(String.valueOf(txtDocumento.getValue().intValue()));
         deportista.setNombres(txtNombres.getValue().toUpperCase());
         deportista.setApellidos(txtApellidos.getValue().toUpperCase());
         deportista.setFechaNacimiento(DtFecha.getValue());

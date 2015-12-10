@@ -87,8 +87,9 @@ public class PanelAdminPestDeportista extends LayoutContainer {
 //         mask("Cargando datos");
         
         panelInfoGeneral.setId(dep.getId());
+        Integer id=Integer.parseInt(dep.getDocumento());
         panelInfoGeneral.cbxTipoDocumento.seleccionar(dep.getTipoDocumento().getId());
-        panelInfoGeneral.txtDocumento.setValue(dep.getDocumento());
+        panelInfoGeneral.txtDocumento.setValue(id);
         panelInfoGeneral.txtNombres.setValue(dep.getNombres());
         panelInfoGeneral.txtApellidos.setValue(dep.getApellidos());
         panelInfoGeneral.DtFecha.setValue(dep.getFechaNacimiento());

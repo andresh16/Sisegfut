@@ -235,7 +235,7 @@ public class PanelAdminDeportista extends LayoutContainer {
         RpcProxy<PagingLoadResult<Deportista>> proxy = new RpcProxy<PagingLoadResult<Deportista>>() {
             @Override
             protected void load(Object loadConfig, AsyncCallback<PagingLoadResult<Deportista>> callback) {
-                if (filtrar) {
+                if (filtrar && filtroNombres!=null) {
                     svc.getFiltroDeportistas(filtroNombres, callback);
                 } else {
                     if (IdCategoriaElegida != null) {
